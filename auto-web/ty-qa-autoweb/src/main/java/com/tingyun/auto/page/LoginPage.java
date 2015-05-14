@@ -49,13 +49,16 @@ public class LoginPage extends IndexPage{
 	 * 登录测试用例
 	 */
 	public void login()throws Exception{
-		assertEquals("2", 1);
 		//输入用户名
 		driverBrowser.sendKeys(idTypeUserName, SeleniumSettings.USERNAME);
 		//输入密码
-		driverBrowser.sendKeys(idTypeUserName, SeleniumSettings.PASSWORD);
+		driverBrowser.sendKeys(idTypePassword, SeleniumSettings.PASSWORD);
 		//点击登陆按钮
 		driverBrowser.click(xpathCliLogin);
+		//判断登陆后元素是否存在
+		int number = driverBrowser.getElementNums(xpathGetas);
+		
+		assertEquals(number, 3);
 	}
 	
 }

@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
+import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 
@@ -32,7 +33,7 @@ public class GlobalStep{
 	@BeforeClass
 	public void beforeClass() {
 		driverBrowser = new DriverBrowser(BrowserType.Chrome);
-		driverBrowser.open("http://www.baidu.com");
+		driverBrowser.open(SeleniumSettings.URL);
 	}
 	
 	

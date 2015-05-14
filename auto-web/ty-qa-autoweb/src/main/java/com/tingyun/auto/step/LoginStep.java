@@ -23,11 +23,11 @@ public class LoginStep extends GlobalStep {
 	public void testLogin(){
 			//初始化登陆pase
 			loginPage = new LoginPage(driverBrowser);
-			
 			pinfo(LoginStep.class,desLogin+caseStart);
 			//执行登陆用例
 			try {
 				loginPage.login();
+				pinfo(LoginStep.class,desLogin+caseEnd);
 			}catch(Error e){
 				driverBrowser.failScreenShot("testLogin");
 				fail(desLogin+FAIL + e.getMessage(), e);
@@ -35,7 +35,6 @@ public class LoginStep extends GlobalStep {
 				driverBrowser.failScreenShot("testLogin");
 				throw new TestNGException(desLogin+FAIL + e.getMessage(), e);
 			} 
-			pinfo(LoginStep.class,desLogin+caseEnd);
 			
 	}
 }

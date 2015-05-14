@@ -3,6 +3,7 @@ package com.tingyun.auto.framework.browser;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.util.List;
 
 import org.openqa.selenium.Cookie;
 import org.apache.commons.io.FileUtils;
@@ -356,7 +357,7 @@ public class DriverBrowser{
                     return isElementPresent(webElement);
                 }
             }.wait("Failed to find element " + getWebElementContent(webElement), timeout);
-        } catch (Exception e) {
+        } catch (Error e) {
             e.printStackTrace();
             handleFailure("Failed to find element " + getWebElementContent(webElement));
         }
@@ -643,7 +644,12 @@ public class DriverBrowser{
         String pageText = webElement.getText();
         return pageText;
     }
-
+    
+    public int getElementNums(List<WebElement> elements){
+    	int	number = elements.size();
+		return number;
+    }
+    
     /**
      * @Description 关闭已经打开的浏览器模拟器
      */

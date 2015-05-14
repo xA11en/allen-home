@@ -48,6 +48,7 @@ import org.testng.Reporter;
 import org.testng.xml.XmlSuite;
 
 import com.tingyun.auto.common.Constant;
+import com.tingyun.auto.utils.FtpUtil;
 import com.tingyun.auto.utils.HtmlMail;
 
 
