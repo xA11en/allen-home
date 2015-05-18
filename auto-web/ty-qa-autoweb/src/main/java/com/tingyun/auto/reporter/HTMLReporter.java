@@ -48,7 +48,8 @@ import org.testng.Reporter;
 import org.testng.xml.XmlSuite;
 
 import com.tingyun.auto.common.Constant;
-import com.tingyun.auto.utils.FtpUtil;
+import com.tingyun.auto.utils.ShareSmbConfig;
+import com.tingyun.auto.utils.Smb;
 import com.tingyun.auto.utils.HtmlMail;
 
 
@@ -132,7 +133,8 @@ public class HTMLReporter extends AbstractReporter {
 			createResults(suites, outputDirectory, onlyFailures);
 			createLog(outputDirectory, onlyFailures);
 			copyResources(outputDirectory);
-			//FtpUtil.upload(META.getReportCurrent());
+			Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
+			logger.info("上传svn共享服务器完成");
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
 		} catch (Exception ex) {
@@ -178,10 +180,8 @@ public class HTMLReporter extends AbstractReporter {
 //			env = "生产";
 //		}
 
-		String url = "http://" + bundle.getString("server") + ":8080"
-				+ bundle.getString("htmlPath") + "auto" + "/"
-				+ new SimpleDateFormat("yyyyMMddHHmmss").format(reportTime)
-				+ "/html/" + INDEX_FILE;
+		String url ="\\\\"+ShareSmbConfig.getSharePath() + INDEX_FILE;
+		//String url = "E:\\workspace\\ty-qa-autoweb\\test-output\\html\\index.html";
 
 		int passed = 0;
 		int fail = 0;
@@ -190,7 +190,7 @@ public class HTMLReporter extends AbstractReporter {
 		StringBuilder html = new StringBuilder("<html>");
 
 		StringBuilder sb = new StringBuilder("");
-		sb.append("<h4>" + "详细结果：" + url + "</h4><br>");
+		sb.append("<h4>" + "详细结果：" + "<a href= '"+url+"' target='_blank'></>"+url+"</h4><br>");
 		int lineCount = 0;
 
 		for (ISuite suite : suites) {

@@ -11,6 +11,10 @@
 	<test name="系统登录" preserve-order="true">
 		<classes>
 			<class name="com.tingyun.auto.step.LoginStep">
+			 <methods>
+        			<include name="testLogin"/><!-- 编辑账号信息测试方法 -->
+ 
+        		</methods>
 			</class>
 		</classes>
 	</test>

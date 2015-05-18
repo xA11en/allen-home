@@ -144,12 +144,17 @@
 			</exclusions>
 		</dependency>
 
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.tmatesoft.svnkit</groupId> -->
+<!-- 			<artifactId>svnkit</artifactId> -->
+<!-- 			<version>1.8.7</version> -->
+<!-- 		</dependency> -->
+		
 		<dependency>
-			<groupId>org.tmatesoft.svnkit</groupId>
-			<artifactId>svnkit</artifactId>
-			<version>1.8.7</version>
+			<groupId>org.samba.jcifs</groupId>
+			<artifactId>jcifs</artifactId>
+			<version>1.2.19</version>
 		</dependency>
-
 	</dependencies>
 
 

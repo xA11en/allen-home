@@ -36,12 +36,6 @@ public class GlobalStep{
 		driverBrowser.open(SeleniumSettings.URL);
 	}
 	
-	
-	@AfterClass
-	public void Shutdown(){
-		driverBrowser.quit();
-	}
-	
 	@BeforeMethod
 	public void beforeMethod(){
 		
@@ -54,11 +48,16 @@ public class GlobalStep{
 	
 	@BeforeTest
 	public void beforeTest(){
+		
 	}
 	
 	@AfterTest
 	public void afterTest(){
 		
+	}
+	@AfterClass
+	public void afterClass(){
+		driverBrowser.quit();
 	}
 	public void pinfo(Class<?> clazz,String info){
 		logger = LoggerFactory.getLogger(clazz);

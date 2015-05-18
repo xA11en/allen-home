@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.tingyun.auto.utils.FtpUtil;
+import com.tingyun.auto.utils.Smb;
 
 public class FtpUtilTest {
 
