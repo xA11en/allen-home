@@ -5,6 +5,9 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+
+
 
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.DriverBrowser;
@@ -19,6 +22,8 @@ public class GlobalPage  {
 	
 	public static DriverBrowser driverBrowser;
 	protected Logger logger;
+	
+	
 	public GlobalPage(DriverBrowser driverBrowser){
 		this.driverBrowser = driverBrowser;
 		ElementLocatorFactory factory = new AjaxElementLocatorFactory(this.driverBrowser.getWebDriver(), SeleniumSettings.PAGE_FACTORY_TIME_OUT);
@@ -62,4 +67,5 @@ public class GlobalPage  {
 	public void updateProperties(String keyname,String keyvalue){
 		 OperateProperties.updateProperties(keyname, keyvalue);
 	}
+	
 }

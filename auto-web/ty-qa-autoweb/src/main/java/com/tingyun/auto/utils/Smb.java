@@ -71,7 +71,7 @@ public class Smb {
     }  
 	 public static void smbPut(String localFilePath){  
 	        InputStream in = null;  
-	        OutputStream out = null;
+	        OutputStream out = null; 
 	            File localFile = new File(localFilePath);
 	            File[] localFiles = localFile.listFiles();
 	            for (int i = 0; i < localFiles.length; i++) {
@@ -87,7 +87,7 @@ public class Smb {
 	            		  upload(SMBPATH, 
             					  LOCALPATH+"/"+localFiles[i].getName());
 	            	}
-	            	if(localFiles[i].getName().endsWith("js")){
+	            	if(localFiles[i].getName().endsWith("js")){                      
 	            		 upload(SMBPATH, 
 	            				 LOCALPATH+"/"+localFiles[i].getName());
 	            	}

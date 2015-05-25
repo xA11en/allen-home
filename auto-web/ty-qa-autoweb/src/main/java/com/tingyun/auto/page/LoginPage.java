@@ -24,23 +24,23 @@ public class LoginPage extends IndexPage{
 	 * 用户名
 	 */
 	@FindBy(id="username")
-	private WebElement idTypeUserName;
+	public WebElement idTypeUserName;
 	/**
 	 * 密码
 	 */
 	@FindBy(id="password")
-	private WebElement idTypePassword;
+	public WebElement idTypePassword;
 	/**
 	 * 记住密码
 	 */
 	@FindBy(xpath="//input[@name='rememberMe']")
-	private WebElement xpathCliRemberPwd;
+	public WebElement xpathCliRemberPwd;
 	
 	/**
 	 * 点击登陆
 	 */
 	@FindBy(xpath="//a[contains(text(),'登')]")
-	private WebElement xpathCliLogin;
+	public WebElement xpathCliLogin;
 	
 
 	//************************************************** 对应用例*******************************
@@ -50,15 +50,17 @@ public class LoginPage extends IndexPage{
 	 */
 	public void login()throws Exception{
 		//输入用户名
+		
 		driverBrowser.sendKeys(idTypeUserName, SeleniumSettings.USERNAME);
 		//输入密码
 		driverBrowser.sendKeys(idTypePassword, SeleniumSettings.PASSWORD);
 		//点击登陆按钮
+		driverBrowser.click(xpathCliRemberPwd);
 		driverBrowser.click(xpathCliLogin);
 		//判断登陆后元素是否存在
-		int number = driverBrowser.getElementNums(xpathGetas);
+		//int number = driverBrowser.getElementNums(xpathGetas);
 		
-		assertEquals(number, 3);
+		//assertEquals(number, 3);
 	}
 	
 }

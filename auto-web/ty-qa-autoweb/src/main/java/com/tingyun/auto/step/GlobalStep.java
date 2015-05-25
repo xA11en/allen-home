@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeTest;
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
+import com.tingyun.auto.page.rpc.RpcLoginPage;
 
 /**
 * @author :chenjingli 
@@ -22,7 +23,6 @@ import com.tingyun.auto.framework.browser.DriverBrowser;
  */
 public class GlobalStep{
 	
-	
 	protected DriverBrowser driverBrowser;
 	
 	protected Logger logger;
@@ -30,35 +30,36 @@ public class GlobalStep{
 	protected static final String caseStart ="执行开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	protected static final String caseEnd ="执行结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	protected static final String FAIL ="失败 >> >>";
-	@BeforeClass
-	public void beforeClass() {
-		driverBrowser = new DriverBrowser(BrowserType.Chrome);
-		driverBrowser.open(SeleniumSettings.URL);
-	}
 	
-	@BeforeMethod
-	public void beforeMethod(){
-		
-	}
-	
-	@AfterMethod
-	public void afterMethod(){
-		
-	}
-	
-	@BeforeTest
-	public void beforeTest(){
-		
-	}
-	
-	@AfterTest
-	public void afterTest(){
-		
-	}
-	@AfterClass
-	public void afterClass(){
-		driverBrowser.quit();
-	}
+//	@BeforeClass
+//	public void beforeClass() {
+//		driverBrowser = new DriverBrowser(BrowserType.Firefox);
+//		driverBrowser.open(SeleniumSettings.URL);
+//	}
+//	
+//	@BeforeMethod
+//	public void beforeMethod(){
+//		
+//	}
+//	
+//	@AfterMethod
+//	public void afterMethod(){
+//		
+//	}
+//	
+//	@BeforeTest
+//	public void beforeTest(){
+//		
+//	}
+//	
+//	@AfterTest
+//	public void afterTest(){
+//		
+//	}
+//	@AfterClass
+//	public void afterClass(){
+//		driverBrowser.quit();
+//	}
 	public void pinfo(Class<?> clazz,String info){
 		logger = LoggerFactory.getLogger(clazz);
 		logger.info(info);

@@ -133,7 +133,7 @@ public class HTMLReporter extends AbstractReporter {
 			createResults(suites, outputDirectory, onlyFailures);
 			createLog(outputDirectory, onlyFailures);
 			copyResources(outputDirectory);
-			Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
+			//Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
 			logger.info("上传svn共享服务器完成");
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
@@ -244,7 +244,7 @@ public class HTMLReporter extends AbstractReporter {
 				+ "auto"
 				+ "环境      "
 				+ bundle.getString("subject");
-		HtmlMail.send(toMail, subject, html.toString());
+	//	HtmlMail.send(toMail, subject, html.toString());
 	}
 
 	/**
