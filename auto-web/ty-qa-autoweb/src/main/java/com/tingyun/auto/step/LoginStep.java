@@ -1,13 +1,9 @@
 package com.tingyun.auto.step;
 
-import org.testng.Reporter;
 import org.testng.TestNGException;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
-import com.tingyun.auto.framework.SeleniumSettings;
-import com.tingyun.auto.framework.browser.BrowserType;
-import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.page.LoginPage;
 
 

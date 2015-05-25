@@ -33,6 +33,9 @@ public class ReportPage extends GlobalPage {
 	@FindBy(xpath="//*[@id='chinamap']/embed")
 	public WebElement booleanMapIsExist;//用来判断地图是否出现
 	
+	@FindBy(xpath="//*[@id='nbs2']/div/table/tbody")
+	public WebElement booleanTableIsExist;//用来判断表格是否出现
+	
 	@FindBy(xpath="//*[@name='basedOn0']")
 	public WebElement xpathSelOption;//选择性能指标选项
 	
@@ -79,14 +82,11 @@ public class ReportPage extends GlobalPage {
 		driverBrowser.click(xpathCliChinaMap);
 		assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
 		driverBrowser.select(nameSelRelativeTime, "2880", "value");//1 day
-		System.out.println( driverBrowser.getElementNums(xpathGetOptions));
 		assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
 		for (int i = 0; i < driverBrowser.getElementNums(xpathGetOptions); i++) {
 			driverBrowser.select(xpathSelOption
 					,String.valueOf(i), "index");
 			driverBrowser.click(xpathCliAdvancedOptions);
-			System.out
-			.println("开始调用高级选项的方法 start==========================================");
 			ap.highOption();
 			assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
 		}

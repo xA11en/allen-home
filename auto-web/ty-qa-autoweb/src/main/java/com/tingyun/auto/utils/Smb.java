@@ -20,11 +20,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 实现FTP 客户端的各种操作
+ * 实现远程共享服务器的上传操作基于smb协议
  *
  *
- * @author
- * @version 2008-06-10 Ftp.java
+ * @author chenjingli
  *
  */
 public class Smb {

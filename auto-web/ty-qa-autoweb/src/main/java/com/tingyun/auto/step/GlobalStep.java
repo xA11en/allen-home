@@ -4,17 +4,7 @@ package com.tingyun.auto.step;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-
-import com.tingyun.auto.framework.SeleniumSettings;
-import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
-import com.tingyun.auto.page.rpc.RpcLoginPage;
 
 /**
 * @author :chenjingli 

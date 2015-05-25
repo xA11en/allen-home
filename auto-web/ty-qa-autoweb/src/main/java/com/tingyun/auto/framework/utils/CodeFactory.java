@@ -3,38 +3,42 @@ package com.tingyun.auto.framework.utils;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
 
 import com.tingyun.auto.framework.browser.DriverBrowser;
+
 
 /**
 * @author :chenjingli 
 * @version ：2015-5-21 下午3:14:56 
-* @decription: 自动生成page和step部分固定代码方便脚本写入
+* @decription: 自动生成page和step部分固定代码方便脚本写入  代码生成工具类
  */
 public class CodeFactory {
 	public static void main(String[] args) {
 		try {
-			writeFile("Test", 5);
+			writeFile(className);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	private static Logger log = LoggerFactory.getLogger(CodeFactory.class); 
-	
-	//自定义生成路径
-	public static final String filePath = System.getProperty("user.dir")+"/src/main/java/com/tingyun/auto/page/rpc/report/";
-	
-	public static final String name = ".java";
+	public static final int count = 5;//@findby生成个数
+	public static final String className = "";//要生成的类名
 	//自定义包
 	public static final String packagePath = "com.tingyun.auto.page.rpc.report";
 	
+	
+	private static Logger log = LoggerFactory.getLogger(CodeFactory.class); 
+	//自定义生成路径 page and step
+	public static final String filePathPage = System.getProperty("user.dir")+"/src/main/java/"+packagePath.replace(".","/")+"/";
+	public static final String name = ".java";
+	
 	public static StringBuffer sb = new StringBuffer();
+	
+
 	/**
 	* @author : chenjingli
 	* @decription 是生成page页
@@ -47,15 +51,17 @@ public class CodeFactory {
 		sb.append("package "+packagePath+";\r\n");
 		sb.append("\r\n");
 		sb.append("import org.openqa.selenium.WebElement;\r\n");
+		sb.append("import static org.testng.Assert.*;\r\n");
 		sb.append("import org.openqa.selenium.support.FindBy;\r\n");
 		sb.append("import com.tingyun.auto.framework.browser.DriverBrowser;\r\n");
 		sb.append("import com.tingyun.auto.page.GlobalPage;\r\n");
 		sb.append("\r\n");
 		sb.append("public class "+className+" extends GlobalPage {\r\n");
+		sb.append("\r\n");
 		sb.append("\tpublic "+className+"(DriverBrowser driverBrowser) {\r\n");
 		sb.append("\t\tsuper(driverBrowser);\r\n");
 		sb.append("\t}\r\n");
-		for (int i = 0; i < number; i++) {
+		for (int i = 0; i < count; i++) {
 			sb.append("\t@FindBy(xpath= )\r\n");
 			sb.append("\tprivate WebElement ;\r\n");
 			sb.append("\r\n");
@@ -63,24 +69,77 @@ public class CodeFactory {
 		sb.append("\t}");
 		log.info(className,"{}--文件创建结束*****************************");
 		return sb;
+		
 	} 
 	
-	private static void writeFile(String className,int num) throws IOException {
-		log.info("开始创建文件：" + filePath);
-
-		File file = new File(filePath+className+name);
-		if (!file.exists()) {
-			file.createNewFile();
-			FileOutputStream out = new FileOutputStream(file, true);
-			out.write(createPage(className, num).toString(). getBytes("utf-8"));
-			out.close();
-			log.info("文件创建完成！路径：" + filePath+className+name);
-		} else {
-			file.delete();
-			log.info("文件删除：" + filePath);
+	public static StringBuffer createStep(String className){
+		log.info("开始创建step页信息*****************************");
+		String stepPackage = packagePath.replace("page", "step");
+		sb.append("package "+stepPackage+";\r\n");
+		sb.append("\r\n");
+		sb.append("\r\n");
+		sb.append("\r\n");
+		sb.append("import static org.testng.Assert.*;\r\n");
+		sb.append("import org.testng.TestNGException;\r\n");
+		sb.append("import org.testng.annotations.AfterClass;\r\n");
+		sb.append("import org.testng.annotations.BeforeClass;\r\n");
+		sb.append("import org.testng.annotations.Test;\r\n");
+		sb.append("import com.tingyun.auto.framework.browser.DriverBrowser;\r\n");
+		sb.append("import com.tingyun.auto.step.GlobalStep;\r\n");
+		sb.append("\r\n");
+		sb.append("public class "+className+" extends GlobalStep {\r\n");
+		sb.append("\r\n");
+		sb.append("\r\n");
+		sb.append("\tpublic static DriverBrowser driverBrowser;\r\n");
+		sb.append("\r\n");
+		sb.append("\t@BeforeClass(description=)\r\n");
+		sb.append("\t@Test(description=)\r\n");
+		sb.append("\r\n");
+		sb.append("\r\n");
+		sb.append("\t@AfterClass\r\n");
+		sb.append("\tpublic void afterClass(){\r\n");
+		sb.append("\t\tdriverBrowser.quit();\r\n");
+		sb.append("\t}\r\n");
+		sb.append("}");
+		log.info(className,"{}--文件创建结束*****************************");
+		return sb;
+		
+	} 
+	private static void writeFile(String className) throws IOException {
+		for (int i = 0; i < 2; i++) {
+			File file = null;
+			if(i==0){
+				String pageClassName = className+"Page";
+				log.info("开始创建page,path====={},classsname======={}",filePathPage,pageClassName);
+				file= new File(filePathPage+pageClassName+name);
+				createFile(file, pageClassName,i);
+			}
+			if(i==1){
+				String stepPath = filePathPage.replace("page", "step");
+				String stepClassName = className+"Step";
+				log.info("开始创建step,path====={},classsname======={}",stepPath,stepClassName);
+				file = new File(stepPath+stepClassName+name);
+				createFile(file, stepClassName,i);
+			}
 		}
 
 	}
 	
-
+	public static void createFile(File file, String className,int number)throws IOException{
+		if (!file.exists()) {
+			file.createNewFile();
+			FileOutputStream out = new FileOutputStream(file, true);
+			if(number==0){
+				out.write(createPage(className,number).toString(). getBytes("utf-8"));
+			}else if(number==1){
+				out.write(createStep(className).toString(). getBytes("utf-8"));
+			}
+			sb.delete(0, sb.length());
+			out.close();
+			log.info("文件创建完成！路径：" +className+name);
+		} else {
+			file.delete();
+			log.info("文件删除：" +className );
+		}
+	}
 }

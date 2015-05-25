@@ -104,7 +104,7 @@ public class DriverBrowser{
         }
         try {
             Thread.sleep(time);
-            logger.info("Pause " + time + " ms");
+          //  logger.info("Pause " + time + " ms");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -145,6 +145,7 @@ public class DriverBrowser{
         try {
         if(selector.isDisplayed()){
         	select = new Select(selector);
+        	logger.info("select 元素===={}选择的值是===={}通过===={}方式选择",selector,option,value);
         	if("value".equals(value)){
         		select.selectByValue(value);
         	}else if("text".equals(value)){
