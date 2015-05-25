@@ -139,9 +139,26 @@ public class DriverBrowser{
      * @param option
      *            被选项文本
      */
-    public void select(WebElement selector, String option) {
-        Select select = new Select(selector);
-        select.selectByVisibleText(option);
+    public void select(WebElement selector, String option,String value) {
+    	pause(stepInterval);
+        Select select = null;
+        try {
+        if(selector.isDisplayed()){
+        	select = new Select(selector);
+        	if("value".equals(value)){
+        		select.selectByValue(value);
+        	}else if("text".equals(value)){
+        		select.selectByVisibleText(option);
+        	}else if("index".equals(value)){
+        		select.selectByIndex(Integer.parseInt(value));
+        	}
+        }else{
+        	fail(selector+"元素未找到！");
+        }
+        } catch (AssertionError e) {
+        	fail("Failed to select! element is====:"+selector+"选择的值是===："+option+"通过"+value+"方式来选择");
+            handleFailure("Failed to select! element is====:"+selector+"选择的值是===："+option+"通过"+value+"方式来选择");
+        }
     }
 
     /**
@@ -416,7 +433,7 @@ public class DriverBrowser{
     }
 
     private void handleFailure(String notice) {
-        String log = "Error Image >>" + notice + " >> ";
+        String log = "Error info >>" + notice + " >> ";
         logger.error(log);
         Reporter.log(log );
         Assert.fail(log);
