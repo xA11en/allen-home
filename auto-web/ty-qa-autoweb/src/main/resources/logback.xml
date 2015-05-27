@@ -7,7 +7,7 @@
 	</appender>
 	
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logs/auto_test.%d{yyyy-MM-dd}.log</file>  
+		<file>logs/auto_test.log</file>  
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
             <FileNamePattern>logs/auto_test.%d{yyyy-MM-dd}.log</FileNamePattern>  
         </rollingPolicy>  
