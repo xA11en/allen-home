@@ -6,10 +6,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
 
-import com.tingyun.auto.framework.browser.DriverBrowser;
 
 
 /**
@@ -25,11 +22,11 @@ public class CodeFactory {
 			e.printStackTrace();
 		}
 	}
-	public static final int count = 5;//@findby生成个数
-	public static final String className = "";//要生成的类名
-	//自定义包
-	public static final String packagePath = "com.tingyun.auto.page.rpc.report";
+	public static final int count = 10;//@findby生成个数
+	public static final String className = "";//要生成的类名类名首字母要大写
+	public static final String packagePath = "com.tingyun.auto.page.rpc.report";//自定义包 首先保证step和page这个路径结构相同 
 	
+	//修改以上内容
 	
 	private static Logger log = LoggerFactory.getLogger(CodeFactory.class); 
 	//自定义生成路径 page and step
@@ -52,11 +49,15 @@ public class CodeFactory {
 		sb.append("\r\n");
 		sb.append("import org.openqa.selenium.WebElement;\r\n");
 		sb.append("import static org.testng.Assert.*;\r\n");
+		sb.append("import org.slf4j.Logger;\r\n");
+		sb.append("import org.slf4j.LoggerFactory;\r\n");
 		sb.append("import org.openqa.selenium.support.FindBy;\r\n");
 		sb.append("import com.tingyun.auto.framework.browser.DriverBrowser;\r\n");
 		sb.append("import com.tingyun.auto.page.GlobalPage;\r\n");
 		sb.append("\r\n");
 		sb.append("public class "+className+" extends GlobalPage {\r\n");
+		sb.append("\r\n");
+		sb.append("private static Logger logger = LoggerFactory.getLogger("+className+"Page.class);\r\n");
 		sb.append("\r\n");
 		sb.append("\tpublic "+className+"(DriverBrowser driverBrowser) {\r\n");
 		sb.append("\t\tsuper(driverBrowser);\r\n");
@@ -82,12 +83,16 @@ public class CodeFactory {
 		sb.append("import static org.testng.Assert.*;\r\n");
 		sb.append("import org.testng.TestNGException;\r\n");
 		sb.append("import org.testng.annotations.AfterClass;\r\n");
+		sb.append("import org.slf4j.Logger;\r\n");
+		sb.append("import org.slf4j.LoggerFactory;\r\n");
 		sb.append("import org.testng.annotations.BeforeClass;\r\n");
 		sb.append("import org.testng.annotations.Test;\r\n");
 		sb.append("import com.tingyun.auto.framework.browser.DriverBrowser;\r\n");
 		sb.append("import com.tingyun.auto.step.GlobalStep;\r\n");
 		sb.append("\r\n");
 		sb.append("public class "+className+" extends GlobalStep {\r\n");
+		sb.append("\r\n");
+		sb.append("private static Logger logger = LoggerFactory.getLogger("+className+"Step.class);\r\n");
 		sb.append("\r\n");
 		sb.append("\r\n");
 		sb.append("\tpublic static DriverBrowser driverBrowser;\r\n");

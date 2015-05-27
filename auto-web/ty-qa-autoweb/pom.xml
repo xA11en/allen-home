@@ -30,24 +30,46 @@
 			<version>${spring.version}</version> <type>jar</type> <scope>test</scope> 
 			</dependency> -->
 		<!-- Servlet Spec -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.googlecode.xmemcached</groupId> -->
+<!-- 			<artifactId>xmemcached</artifactId> -->
+<!-- 			<version>${xmemcached.version}</version> -->
+<!-- 		</dependency> -->
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.opera</groupId> -->
+<!-- 			<artifactId>operadriver</artifactId> -->
+<!-- 			<version>1.5</version> -->
+<!-- 		</dependency> -->
+<!-- 解析excel所需jar包 -->
 		<dependency>
-			<groupId>com.googlecode.xmemcached</groupId>
-			<artifactId>xmemcached</artifactId>
-			<version>${xmemcached.version}</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
 		</dependency>
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>2.44.0</version>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>3.9</version>
 		</dependency>
-
 		<dependency>
-			<groupId>com.opera</groupId>
-			<artifactId>operadriver</artifactId>
-			<version>1.5</version>
+    			<groupId>org.apache.poi</groupId>
+   				 <artifactId>poi-ooxml-schemas</artifactId>
+  			  	<version>3.9</version>
 		</dependency>
-
-
+		<dependency>
+				<groupId>org.apache.xmlbeans</groupId>
+				<artifactId>xmlbeans</artifactId>
+				<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>stax</groupId>
+			<artifactId>stax-api</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		
+		
+		
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
@@ -97,12 +119,12 @@
 <!-- 			<scope>test</scope> -->
 <!-- 		</dependency> -->
 
-		<dependency>
-			<groupId>io.appium</groupId>
-			<artifactId>java-client</artifactId>
-			<version>1.6.1</version>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>io.appium</groupId> -->
+<!-- 			<artifactId>java-client</artifactId> -->
+<!-- 			<version>1.6.1</version> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>io.netty</groupId>

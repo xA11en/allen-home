@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.openqa.selenium.Cookie;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -118,6 +120,7 @@ public class DriverBrowser{
      */
     public void sendKeys(WebElement webElement, String text) {
         if (webElement == null) {
+        	logger.error("Not found Element , SendKeys not issued!");
             handleFailure("Not found Element , SendKeys not issued!");
         }
         pause(stepInterval);
@@ -145,15 +148,15 @@ public class DriverBrowser{
         try {
         if(selector.isDisplayed()){
         	select = new Select(selector);
-        	logger.info("select 元素===={}选择的值是===={}通过===={}方式选择",selector,option,value);
         	if("value".equals(value)){
-        		select.selectByValue(value);
+        		select.selectByValue(option);
         	}else if("text".equals(value)){
         		select.selectByVisibleText(option);
         	}else if("index".equals(value)){
-        		select.selectByIndex(Integer.parseInt(value));
+        		select.selectByIndex(Integer.parseInt(option));
         	}
         }else{
+        	logger.error("select 元素未找到：elemetn location is:{}",getWebElementContent(selector));
         	fail(selector+"元素未找到！");
         }
         } catch (AssertionError e) {
@@ -196,6 +199,7 @@ public class DriverBrowser{
             long endTime = clock.laterBy(timeout);
             isClickAble(webElement, clock, endTime);
         } else {
+        	logger.error("click 元素未找到：elemetn location is:{}",getWebElementContent(webElement));
             handleFailure("Element display is none!");
         }
     }
@@ -476,17 +480,16 @@ public class DriverBrowser{
      * @return 返回webElement内容 String 如linktext = “内容”
      */
     private String getWebElementContent(WebElement webElement) {
-//        if (webElement == null)
-//            return null;
-//        try {
-//
-//            String[] splits = webElement.toString().split("->");
-//            String result = splits[1].replaceFirst("]", "");
-//            return result;
-//        } catch (Exception e) {
-//            return "can't catch name";
-//        }
-    	return "";
+        if (webElement == null)
+            return null;
+        try {
+
+            String[] splits = webElement.toString().split("->");
+            String result = splits[1].replaceFirst("]", "");
+            return "Element location is -->"+result;
+        } catch (Exception e) {
+            return "can't catch name";
+        }
     }
 
 
@@ -659,8 +662,14 @@ public class DriverBrowser{
      * @return 页面文本
      */
     public String getPageText(WebElement webElement) {
-        String pageText = webElement.getText();
-        return pageText;
+    	pause(stepInterval);
+    	if(webElement.isDisplayed()){
+    		String pageText = webElement.getText();
+    		return pageText;
+    	}else{
+    		logger.error("element is none location is:{}",webElement);
+    		return "";
+    	}
     }
     
     public int getElementNums(List<WebElement> elements){
@@ -681,5 +690,25 @@ public class DriverBrowser{
         	webDriver.close();
     }
     
-   
+    /**
+	 * 控制Alert的确认与取消
+	 * 
+	 * @param flag
+	 *            根据传递的参数accept、dismiss，进行相应的操作
+	 */
+	public void confirmAlert(boolean flag) {
+		try {
+			Alert alert = webDriver.switchTo().alert();
+			if (alert == null) {
+				return;
+			}
+			if (flag) {
+				alert.accept();
+			} else {
+				alert.dismiss();
+			}
+		} catch (NoAlertPresentException e) {
+			return;
+		}
+	}
 }
