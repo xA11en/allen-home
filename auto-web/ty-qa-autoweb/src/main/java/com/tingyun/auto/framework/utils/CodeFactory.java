@@ -53,7 +53,7 @@ public class CodeFactory {
 		sb.append("import org.slf4j.LoggerFactory;\r\n");
 		sb.append("import org.openqa.selenium.support.FindBy;\r\n");
 		sb.append("import com.tingyun.auto.framework.browser.DriverBrowser;\r\n");
-		sb.append("import com.tingyun.auto.page.GlobalPage;\r\n");
+		sb.append("import com.tingyun.auto.common.GlobalPage;\r\n");
 		sb.append("\r\n");
 		sb.append("public class "+className+" extends GlobalPage {\r\n");
 		sb.append("\r\n");

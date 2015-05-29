@@ -1,5 +1,4 @@
 package com.tingyun.auto.rpc.page.report;
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
 
-import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.utils.StrAndDateUtil;
 /**
@@ -19,7 +17,7 @@ import com.tingyun.auto.utils.StrAndDateUtil;
 * @version ：2015-5-19 上午10:41:21 
 * @decription: rpc 系统报表page
  */
-public class ReportPage extends GlobalPage {
+public class ReportPage extends AdvancedOptionsPage {
 	private static Logger logger = LoggerFactory.getLogger(ReportPage.class);
 	protected StringBuffer sb = new StringBuffer();
 	public static AdvancedOptionsPage ap;
@@ -37,11 +35,7 @@ public class ReportPage extends GlobalPage {
 	@FindBy(xpath="//*[@id='perfAvailChart']/li[1]/a")
 	public WebElement xpathCliChinaMap;//点击第一个中国地图
 	
-	@FindBy(xpath="//*[@id='chinamap']/embed")
-	public WebElement booleanMapIsExist;//用来判断地图是否出现
-	
-	@FindBy(xpath="//*[@id='nbs2']/div/table/tbody")
-	public WebElement booleanTableIsExist;//用来判断表格是否出现
+
 	
 	@FindBy(xpath="//*[@name='basedOn0']")
 	public WebElement xpathSelOption;//选择性能指标选项
@@ -72,6 +66,25 @@ public class ReportPage extends GlobalPage {
 	
 	@FindBy(id="chartTitle")
 	public WebElement booleanTitle;//用来地图标题
+	
+	/**
+	 * 判断地图显示路径中国地图 和表格
+	 */
+	@FindBy(xpath="//*[@id='chinamap']/embed")
+	public WebElement booleanMapIsExist;//用来判断地图是否出现
+	
+	@FindBy(xpath="//*[@id='nbs2']/div/table/tbody")
+	public WebElement booleanTableIsExist;//用来判断表格是否出现
+	
+
+	
+	public void tryCatch()throws Exception{
+		driverBrowser.pause(2000);
+		//引用父类的方法
+		tryCatch2();
+		sb.delete(0, sb.length());
+	}
+	
 	/**
 	 * 单页面检测--单任务--中国地图
 	 */
@@ -84,38 +97,81 @@ public class ReportPage extends GlobalPage {
 	 * 单页面检测--单任务--世界地图
 	 */
 	public void wordMap(){
-		//点击世界地图
 		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[2]/a")).click();
 		this.testPublich();
 	}
-	
+	/**
+	 * 单页面检测--单任务--性能历史曲线图
+	 */
+	public void xingNengMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[3]/a")).click();
+		this.testPublich();
+		
+	}
+	/**
+	 * 单页面检测--单任务--运营商性能曲线图
+	 */
+	public void yunYingShangMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[4]/a")).click();
+		this.testPublich();
+		
+	}
+	/**
+	 * 单页面检测--单任务--城市性能曲线图
+	 */
+	public void cityMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[5]/a")).click();
+		this.testPublich();
+		
+	}
+	/**
+	 * 单页面检测--单任务--城市运营商性能曲线图
+	 */
+	public void cityCommunication(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[6]/a")).click();
+		this.testPublich();
+	}
+	/**
+	 * 单页面检测--单任务--运营商性能图
+	 */
+	public void cityCommXing(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[7]/a")).click();
+		this.testPublich();
+	}
 	public void testPublich(){
 		int count = 0;
-		
+		int count4=0;
 		//判断地图和图标是否存在
-		if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
-			assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
+		try{
+			//判断地图是否存在 表格
+			this.tryCatch();
+		}catch(Exception e){
+			Reporter.log("/n"+sb.toString()+"失败");
+			sb.delete(0, sb.length());
+			count++;
 		}
-		else{
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
-		} 
-		assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
-		//点击高级选项
-		driverBrowser.click(xpathCliAdvancedOptions);
-		if(ap.highOption()!=0){
-			count = ap.highOption();
-			logger.info("高级选项循环的错误次数为：count========================================{}",count);
+		count4 = ap.highOption();
+		logger.info("高级选项循环的错误次数为：count========================================{}",count4);
+		if(count4!=0){
+			count = count4+count;
 		}
 		//相对时间
 		for (int i = 0; i < 2; i++) {
-			//选择相对时间为1天开始循环性能指标
-			if(i==0){
-				int count3 = PerIndexCycle();
-				if(count3!=0){
-					count = count3+count;
+			
+			//性能图展现的时候不需要循环性能指标
+			if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
+			   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+				//选择相对时间为1天开始循环性能指标
+				if(i==0){
+					int count3 = PerIndexCycle();
+					if(count3!=0){
+						count = count3+count;
+					}
+					sb.delete(0, sb.length());//清楚stringbuffer内容
 				}
-				sb.delete(0, sb.length());//清楚stringbuffer内容
-			}
+				}
+			
+			
 			//选择相对时间为2周开始循环性能指标
 			if(i==1){
 				logger.info("快捷选项===》select相对时间为：2周");
@@ -124,93 +180,98 @@ public class ReportPage extends GlobalPage {
 				driverBrowser.pause(1000);
 				try{
 					//判断地图是否存在 表格
-					if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
-						assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
-					}
-					else{
-						assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
-					} 	
-					assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
+					this.tryCatch();
 				}catch(Exception e){
 					Reporter.log("/n"+sb.toString()+"失败");
 					sb.delete(0, sb.length());
 					count++;
 				}
-				//性能指标循环
-				int count3 = PerIndexCycle();
-				if(count3!=0){
-					count = count3+count;
+				//性能图展现的时候不需要循环性能指标
+				if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
+						   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+					//性能指标循环
+					int count3 = PerIndexCycle();
+					if(count3!=0){
+						count = count3+count;
+					}
+					driverBrowser.pause(1000);
+					sb.delete(0, sb.length());//清楚stringbuffer内容
 				}
-				driverBrowser.pause(1000);
-				sb.delete(0, sb.length());//清楚stringbuffer内容
 			}
 			
-		}
+		}	
+		
 		//绝对时间
 		for (int i = 0; i < 2; i++) {
+			
 			//选择绝对时间为1天
 			if(i==0){
 				logger.info("快捷选项===》select绝对时间为：1天");
 				sb.append("快捷选项===》select绝对时间为：1天");
 				driverBrowser.sendKeys(idTypeStartTime, StrAndDateUtil.randowStringTime("start", 1));//选择绝对时间1天
 				driverBrowser.pause(1000);
-				
 				try{
 					//判断地图是否存在 表格
-					if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
-						assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
-					}
-					else{
-						assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
-					} 	
-					assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
+					this.tryCatch();
 				}catch(Exception e){
 					Reporter.log("/n"+sb.toString()+"失败");
 					sb.delete(0, sb.length());
 					count++;
 				}
-				//性能指标循环
-				int count3 = PerIndexCycle();
-				if(count3!=0){
-					count = count3+count;
+				//性能图展现的时候不需要循环性能指标
+				if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
+						   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+					//性能指标循环
+					int count3 = PerIndexCycle();
+					if(count3!=0){
+						count = count3+count;
+					}
+					sb.delete(0, sb.length());//清楚stringbuffer内容
 				}
-				sb.delete(0, sb.length());//清楚stringbuffer内容
 			}
 			//选择绝对时间为2周
 			if(i==1){
 				logger.info("快捷选项===》select绝对时间为：2周");
 				sb.append("快捷选项===》select绝对时间为：2周");
 				driverBrowser.pause(1000);
-				driverBrowser.sendKeys(idTypeEndTime, StrAndDateUtil.randowStringTime("end", 14));//选择绝对时间两周
-				
-				try{
-					//判断地图是否存在
-					if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
-						assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
+				if(driverBrowser.getPageText(booleanTitle).contains("城市性能曲线图")){
+					//消除alert
+					try{
+						//判断地图是否存在
+						this.tryCatch();
+					}catch(Exception e){
+						Reporter.log("/n"+sb.toString()+"失败");
+						sb.delete(0, sb.length());
+						count++;
 					}
-					else{
-						assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
-					} 
-					assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
-				
-				}catch(Exception e){
-					Reporter.log("/n"+sb.toString()+"失败");
-					sb.delete(0, sb.length());
-					count++;
+				}else{
+					driverBrowser.sendKeys(idTypeEndTime, StrAndDateUtil.randowStringTime("end", 14));//选择绝对时间两周
+					try{
+						//判断地图是否存在
+						this.tryCatch();
+					}catch(Exception e){
+						Reporter.log("/n"+sb.toString()+"失败");
+						sb.delete(0, sb.length());
+						count++;
+					}
+				}
+				//性能图展现的时候不需要循环性能指标
+				if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
+						   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+					int count3 = PerIndexCycle();
+					if(count3!=0){
+						count = count3+count;
+					}
+					
+					sb.delete(0, sb.length());//清楚stringbuffer内容
 				}
 				//性能指标循环选择
-				int count3 = PerIndexCycle();
-				if(count3!=0){
-					count = count3+count;
-				}
-			
-				sb.delete(0, sb.length());//清楚stringbuffer内容
 			}
 			
 		}
-		logger.info("中国地图testChinaMap测试用例共未找到地图或表格的次数为：{}",count);
+		logger.info("测试用例共未找到地图或表格的次数为：{}",count);
 		if(count !=0){
-			Reporter.log("中国地图testChinaMap测试用例共未找到地图或表格的次数为:"+count+"次");
+			Reporter.log("测试用例共未找到地图或表格的次数为:"+count+"次");
 			fail("中国地图用例测试失败");
 		}
 		
@@ -229,15 +290,7 @@ public class ReportPage extends GlobalPage {
 			driverBrowser.confirmAlert(true);
 			try{
 				//判断图标是否存在
-				if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
-					assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
-				}
-				else{
-					//中国地图
-					assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
-				} 
-				assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
-				sb.delete(0, sb.length());//清楚stringbuffer内容
+				this.tryCatch();
 			}catch(Exception e){
 				Reporter.log("/n"+sb.toString()+"失败");
 				sb.delete(0, sb.length());
