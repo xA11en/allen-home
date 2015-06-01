@@ -81,7 +81,7 @@ public class ReportPage extends AdvancedOptionsPage {
 	public void tryCatch()throws Exception{
 		driverBrowser.pause(2000);
 		//引用父类的方法
-		tryCatch2();
+		assEqual();
 		sb.delete(0, sb.length());
 	}
 	
@@ -134,10 +134,12 @@ public class ReportPage extends AdvancedOptionsPage {
 	/**
 	 * 单页面检测--单任务--运营商性能图
 	 */
-	public void cityCommXing(){
+	public void YunXingSXingNengMap(){
 		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[7]/a")).click();
 		this.testPublich();
 	}
+	
+	
 	public void testPublich(){
 		int count = 0;
 		int count4=0;
@@ -150,7 +152,12 @@ public class ReportPage extends AdvancedOptionsPage {
 			sb.delete(0, sb.length());
 			count++;
 		}
-		count4 = ap.highOption();
+		//判断使用哪个高级选项
+		if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
+			count4 = ap.highOptionMropertyMap();
+		}else{
+			count4 = ap.highOption();
+		}
 		logger.info("高级选项循环的错误次数为：count========================================{}",count4);
 		if(count4!=0){
 			count = count4+count;

@@ -49,12 +49,19 @@ public class AdvancedOptionsPage extends CommonPage {
 	@FindBy(id="sortAscendant1")
 	public WebElement idCliSortZheng;//选择性能正排序
 	
+	@FindBy(id="sortBy2")
+	public WebElement idCliAble;//选择可用性
+	
+	@FindBy(id="sortBy3")
+	public WebElement idCliYunYingS;//选择按运营商
+	
 	//显示及排序选项 的性能历史曲线
 	@FindBy(id="showPerfValues1")
 	public WebElement idCliPerfValues;//选择性能图
 	
 	@FindBy(id="showAvailValues1")
-	public WebElement idCliAvailValues;//选择可用性图
+	public WebElement idCliAvailValues;//选择可用性图图
+	
 	
 	/**
 	 * 运营商选项开始*************************************************
@@ -227,7 +234,7 @@ public class AdvancedOptionsPage extends CommonPage {
 	public WebElement booleanTitle;//用来地图标题
 	
 	
-	public void tryCatch2(){
+	public void assEqual(){
 		if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
 			assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
 			assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
@@ -248,22 +255,36 @@ public class AdvancedOptionsPage extends CommonPage {
 		}else if(driverBrowser.getPageText(booleanTitle).contains("城市运营商性能曲线图")){
 			assertEquals(true, driverBrowser.isElementPresent(booleanMapCityXingN));
 			assertEquals(true, driverBrowser.isElementPresent(booleanTableCityXingN));
+		}else if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
+			//assertEquals(true, driverBrowser.isElementPresent(booleanMapComXing));
+			assertEquals(true, driverBrowser.isElementPresent(booleanMapAbale));
 		}
+		
 	}
 	
 	
 	public int tryCatch(int i){
+		logger.info("*********************开始进入第{}次循环*****************",i);
 		int count = 0;
 		try{
 			driverBrowser.pause(1);
 			logger.info("点击确定提交按钮！");
 			driverBrowser.click(xpathCliSure);
 			driverBrowser.pause(2500);
-			if(i!=4){
-				//点击高级选项
-				driverBrowser.click(xpathCliAdvancedOptions);
+		
+			if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
+				if(i!=5){
+					//点击高级选项
+					driverBrowser.click(xpathCliAdvancedOptions);
+				}
+			}else{
+				if(i!=4){ 
+					//点击高级选项
+					driverBrowser.click(xpathCliAdvancedOptions);
+				}
 			}
-			this.tryCatch2();
+			
+			this.assEqual();
 			sb.delete(0, sb.length());
 		}catch(Exception e){
 			Reporter.log("/n"+sb.toString()+"失败");
@@ -578,7 +599,11 @@ public class AdvancedOptionsPage extends CommonPage {
 		
 		
 }
-	
+	/**
+	* @author : chenjingli
+	* @decription 判断太多导致脚本会卡在摘取一个循环次数为6次显示及排序选项
+	* @return
+	 */
 	public int highOptionMropertyMap(){ 
 		logger.info("****************开始进入高级选项循环**********************");
 		//点击高级选项
@@ -586,7 +611,7 @@ public class AdvancedOptionsPage extends CommonPage {
 		//获取图标名称
 		String title =driverBrowser.getPageText(booleanTitle)	;
 		int a = 0;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 6; i++) {
 			if(i==0){
 				driverBrowser.pause(1);
 				logger.info("默认高级选项执行查询");
@@ -602,72 +627,25 @@ public class AdvancedOptionsPage extends CommonPage {
 				sb.append("时间匹配模式选项===》select{10:00，全部天}");
 				driverBrowser.pause(1);
 				driverBrowser.select(idSelHour, "10","value");
-				if(title.contains("性能历史曲线图")){
-					if(title.contains("运营商性能曲线图") || title.contains("城市性能曲线图")){
-						//选择时间粒度
-						logger.info("时间粒度选项===》select{默认选择时间粒度第一个}");
-						sb.append("时间粒度选项===》select{默认选择时间粒度第一个}");
-						driverBrowser.pause(1);
-						driverBrowser.select(idSelTime, "1", "index");
-						
-						//选择城市选项
-						logger.info("城市选项===》select{默认选择第一个城市}");
-						sb.append("城市选项===》select{默认选择第一个城市}");
-						driverBrowser.pause(1);
-						driverBrowser.click(xpathCliFirstCity);
-						driverBrowser.click(xpathCliFirstCity);
-						
-						//选择城市选项
-						logger.info("显示及排序选项===》click{性能图}");
-						sb.append("显示及排序选项===》click{性能图}");
-						driverBrowser.pause(1);
-						driverBrowser.click(idCliPerfValues);
-					}
-					//选择时间粒度
-					logger.info("时间粒度选项===》select{默认选择时间粒度第一个}");
-					sb.append("时间粒度选项===》select{默认选择时间粒度第一个}");
-					driverBrowser.pause(1);
-					driverBrowser.select(idSelTime, "1", "index");
-					
-					//选择城市选项
-					logger.info("城市选项===》select{默认选择第一个城市}");
-					sb.append("城市选项===》select{默认选择第一个城市}");
-					driverBrowser.pause(1);
-					driverBrowser.click(xpathCliFirstCity);
-					driverBrowser.click(xpathCliFirstCity);
-					
-					//选择城市选项
-					logger.info("显示及排序选项===》click{性能图}");
-					sb.append("显示及排序选项===》click{性能图}");
-					driverBrowser.pause(1);
-					driverBrowser.click(idCliPerfValues);
-					
-					//行业选项
-					logger.info("行业选项===》click{默认第一个行业}");
-					sb.append("行业选项===》click{默认第一个行业}");
-					driverBrowser.pause(1);
-					driverBrowser.click(xpathSel);
-					driverBrowser.click(xpathCliFirst);
-				}else if(title.contains("中国地图") || title.contains("世界地图")){
-					//显示及排序选项
-					logger.info("显示及排序选项===》click{性能，正排序}");
-					sb.append("显示及排序选项===》click{性能，正排序}");
-					driverBrowser.pause(1);
-					driverBrowser.click(idCliSortZheng);
-				}
 				
+				//显示及排序选项
+				logger.info("显示及排序选项===》click{显示，可用性图}");
+				sb.append("显示及排序选项===》click{显示，可用性图}");
+				driverBrowser.pause(1);
+				driverBrowser.click(idCliPerfValues);
+				
+				//选择城市选项
+				logger.info("城市选项===》select{默认选择第一个城市}");
+				sb.append("城市选项===》select{默认选择第一个城市}");
+				driverBrowser.pause(1);
+				driverBrowser.click(xpathCliFirstCity);
+				driverBrowser.click(xpathCliFirstCity);
 				
 				//运营商选项
 				logger.info("运营商选项===》select{节点组中的运营商}");
 				sb.append("运营商选项===》select{节点组中的运营商}");
 				driverBrowser.pause(1);
 				driverBrowser.select(idSelOperator, "0","value");
-				
-				//按性能过滤
-				logger.info("按性能过滤选项===》select{自动，按总体}");
-				sb.append("按性能过滤选项===》select{自动，按总体}");
-				driverBrowser.click(idCliAuto);
-				driverBrowser.pause(1);
 				
 				//按监测节点IP/ID过滤
 				logger.info("按监测节点IP/ID过滤===》select{按ip 包含ip，send ip:192.168.9.1}");
@@ -707,6 +685,12 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.pause(1);
 				driverBrowser.click(idCliIE11);
 				
+				//按性能过滤
+				logger.info("按性能过滤选项===》select{自动，按总体}");
+				sb.append("按性能过滤选项===》select{自动，按总体}");
+				driverBrowser.click(idCliAuto);
+				driverBrowser.pause(1);
+				
 				int number = tryCatch(i);
 				if(number!=0){
 					a = number+a;
@@ -721,38 +705,17 @@ public class AdvancedOptionsPage extends CommonPage {
 				logger.info("时间匹配模式选项===》select{星期三}");
 				driverBrowser.select(idSelDay, "4","value");
 				
+				//显示及排序
+				logger.info("显示及排序选项===》click{排序，可用性}");
+				sb.append("显示及排序选项===》click{排序，可用性}");
+				driverBrowser.pause(1);
+				driverBrowser.click(idCliAble);
 				
-				if(title.contains("运营商性能曲线图")){
-					
-					//选择城市选项
-					logger.info("城市选项===》select{选择全部城市}");
-					sb.append("城市选项===》select{选择全部城市}");
-					driverBrowser.pause(1);
-					driverBrowser.click(xpathCliRigth);
-					
-					//显示及排序
-					logger.info("显示及排序选项===》click{可用性图}");
-					sb.append("显示及排序选项===》click{可用性图}");
-					driverBrowser.pause(1);
-					driverBrowser.click(idCliAvailValues);
-				}else if(title.contains("中国地图") || title.contains("世界地图")){
-					//显示及排序选项
-					logger.info("显示及排序选项===》click{性能，正排序}");
-					sb.append("显示及排序选项===》click{性能，正排序}");
-					driverBrowser.pause(1);
-					driverBrowser.click(idCliSortZheng);
-					
-					//显示及排序选项
-					if(driverBrowser.getPageText(xpathGetSortText).contains("省")){
-						logger.info("显示及排序选项===》click{省}");
-						sb.append("显示及排序选项===》click{省}");
-					}else{
-						logger.info("显示及排序选项===》click{国家}");
-						sb.append("显示及排序选项===》click{国家}");
-					}
-					driverBrowser.pause(1);
-					driverBrowser.click(idCliProvince);
-				}
+				//选择城市选项
+				logger.info("城市选项===》select{选择全部城市}");
+				sb.append("城市选项===》select{选择全部城市}");
+				driverBrowser.pause(1);
+				driverBrowser.click(xpathCliRigth);
 				
 				//运营商选项
 				logger.info("运营商选项===》select{指定运营商}");
@@ -761,10 +724,6 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.select(idSelOperator, "主要网络提供商","text");
 				driverBrowser.click(xpathCliItOper);
 				
-				//按性能过滤
-				logger.info("按性能过滤选项===》select{自动，按图标维度}");
-				sb.append("按性能过滤选项===》select{自动，按图标维度}");
-				driverBrowser.select(idSelAuto, "按图表维度","text");
 				
 				//按监测节点IP/ID过滤 
 				logger.info("按监测节点IP/ID过滤===》select{按ip 不包含ip，send ip:192.168.9.1}");
@@ -805,6 +764,11 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.pause(1);
 				driverBrowser.click(xpathCliRightLiu);
 				
+				//按性能过滤
+				logger.info("按性能过滤选项===》select{自动，按图标维度}");
+				sb.append("按性能过滤选项===》select{自动，按图标维度}");
+				driverBrowser.select(idSelAuto, "按图表维度","text");
+				
 				tryCatch(i);
 			}
 			if(i==3){
@@ -814,14 +778,12 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.pause(1);
 				driverBrowser.select(idSelDay, "4","value");
 				
-				//按性能过滤
-				logger.info("按性能过滤选项===》click{手动,总下载时间}，send{'10'秒以下的监测数据 }");
-				sb.append("按性能过滤选项===》click{手动，总下载时间}");
-				driverBrowser.pause(1000);
-				driverBrowser.click(idCliManual);
+				//显示及排序
+				logger.info("显示及排序选项===》click{顺序，正排序}");
+				sb.append("显示及排序选项===》click{顺序，正排序}");
 				driverBrowser.pause(1);
-				logger.info("按性能过滤选项===》send{'10'秒以下的监测数据 }");
-				driverBrowser.sendKeys(xpathTypeSeconds,"10");
+				driverBrowser.click(idCliSortZheng);
+				
 				
 				//按监测节点IP/ID过滤
 				logger.info("按监测节点IP/ID过滤===》select{按节点ID},click{包含节点为：12}");
@@ -849,19 +811,30 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.pause(1);
 				driverBrowser.click(xpathCliLeft);
 				
+				//按性能过滤
+				logger.info("按性能过滤选项===》click{手动,总下载时间}，send{'10'秒以下的监测数据 }");
+				sb.append("按性能过滤选项===》click{手动，总下载时间}");
+				driverBrowser.pause(1000);
+				driverBrowser.click(idCliManual);
+				driverBrowser.pause(1);
+				logger.info("按性能过滤选项===》send{'10'秒以下的监测数据 }");
+				driverBrowser.sendKeys(xpathTypeSeconds,"10");
+				
 				int number = tryCatch(i);
 				if(number!=0){
 					a = number+a;
 				}
 			}
 			if(i==4){
-				if(title.contains("中国地图") || title.contains("世界地图")){
-					//按性能过滤
-					logger.info("按性能过滤选项===》click{手动,按性能过滤}，send{'10'秒以下的监测数据 }");
-					sb.append("按性能过滤选项===》click{手动，按性能过滤}，send{'10'秒以下的监测数据 }");
-					driverBrowser.pause(1000);
-					driverBrowser.select(idSelAutoOut, "首屏时间", "text");
+				
+				//显示及排序
+				logger.info("显示及排序选项===》条件是{性能——到排序}");
+				sb.append("显示及排序选项===》条件是{性能——到排序}");
+				driverBrowser.pause(1);
+				if(!idCliAvailValues.isSelected()){
+					driverBrowser.click(idCliAvailValues);
 				}
+				
 				//按监测节点IP/ID过滤
 				logger.info("按监测节点IP/ID过滤===》select{按节点ID},click{去除节点为：12}");
 				sb.append("按监测节点IP/ID过滤===》select{按节点ID},click{去除节点为：12}");
@@ -870,6 +843,23 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.clear(idTypeIpAdress);
 				driverBrowser.sendKeys(idTypeIpAdress, "12");
 				
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
+			}
+			
+			if(i==5){
+				
+				//显示及排序
+				logger.info("显示及排序选项===》条件是{按运营商}");
+				sb.append("显示及排序选项===》条件是{按运营商}");
+				driverBrowser.pause(1);
+				driverBrowser.click(idCliYunYingS);
+				if(!idCliAvailValues.isSelected() && !idCliPerfValues.isSelected()){
+					driverBrowser.click(idCliAvailValues);
+					driverBrowser.click(idCliPerfValues);
+				}
 				int number = tryCatch(i);
 				if(number!=0){
 					a = number+a;

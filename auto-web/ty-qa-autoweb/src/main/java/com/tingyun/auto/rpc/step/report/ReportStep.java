@@ -9,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
@@ -28,6 +29,7 @@ public class ReportStep extends GlobalStep {
 	public static final String DESYUNXINGSHANGMAP = "性能概括-运营商性能曲线图测试用例";
 	public static final String DESCITYGMAP = "性能概括-城市性能曲线图测试用例";
 	public static final String DESCOMMUNICATIONMAP = "性能概括-城市运营商性能曲线图测试用例";
+	public static final String DESYUNXINGSXINGNENGMAP = "性能概括-运营商性能图测试用例";
 	public static final String rpcDesLogin = "rpc系统登录测试用例";
 	private static DriverBrowser driverBrowser;
 	
@@ -124,7 +126,7 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESCITYGMAP+"" + e.getMessage(), e);
 		} 
 	}
-	@Test
+	//@Test
 	public void testCityCommunication(){
 		pinfo(ReportStep.class,DESCOMMUNICATIONMAP+caseStart);
 		try {
@@ -137,6 +139,21 @@ public class ReportStep extends GlobalStep {
 		}catch (Exception e) {
 			driverBrowser.failScreenShot("testCityCommunication");
 			throw new TestNGException(DESCOMMUNICATIONMAP+"" + e.getMessage(), e);
+		} 
+	}
+	@Test
+	public void testYunXingSXingNengMap(){
+		pinfo(ReportStep.class,DESYUNXINGSXINGNENGMAP+caseStart);
+		try {
+			ReportPage reportPage = new ReportPage(driverBrowser);
+			reportPage.YunXingSXingNengMap();
+		pinfo(ReportStep.class,DESYUNXINGSXINGNENGMAP+caseEnd);	
+		}catch(Error e){
+			driverBrowser.failScreenShot("testYunXingSXingNengMap");
+			fail(DESYUNXINGSXINGNENGMAP+FAIL + e.getMessage(), e);
+		}catch (Exception e) {
+			driverBrowser.failScreenShot("testYunXingSXingNengMap");
+			throw new TestNGException(DESYUNXINGSXINGNENGMAP+"" + e.getMessage(), e);
 		} 
 	}
 	@AfterClass
