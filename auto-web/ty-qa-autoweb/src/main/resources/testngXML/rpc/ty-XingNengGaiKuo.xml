@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+
+<suite name="系统登录" preserve-order="true" parallel="tests"
+	thread-count="1">
+	<listeners>
+		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener>
+<!-- 		//<listener class-name="com.tingyun.auto.listener.TestNGListener"></listener> -->
+	</listeners>
+
+	 <test name="单页面检测-" junit="false" annotations="jdk" preserve-order="true">
+        <classes>
+            <class name="com.tingyun.auto.rpc.step.report.ReportStep">
+            <methods>
+        			<include name="testChinaMap"/> 
+        			<include name="testWordMap"/>
+        			<include name="testXingNengMap"/>
+        			<include name="testYunYingShangMap"/>
+        			<include name="testCityMap"/>
+        			<include name="testCityCommunication"/>
+        			<include name="testYunXingSXingNengMap"/> 
+        			<include name="testProvinceXingNengMap"/>
+        			<include name="testCityXingNengMap"/>
+        			<include name="testSanDianMap"/>
+        			<include name="testDistributionHistogramMap"/>
+        		</methods>
+            </class>         
+        </classes>
+    </test>
+</suite>

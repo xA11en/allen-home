@@ -2,6 +2,9 @@ package com.tingyun.auto.rpc.page.report;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -142,6 +145,43 @@ public class AdvancedOptionsPage extends CommonPage {
 	public WebElement xpathTypeUpKB ;//输入多少Kb以上
 	
 	
+	
+	/**
+	 * 监测节点排除选项开始*************************************************第二套
+	 */
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[1]")
+	public WebElement xpathCliOutCpu1;//点击排除cpu使用率
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[2]")
+	public WebElement xpathTypeCpu2;//输入cpu使用率
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[3]")
+	public WebElement xpathCliAvgMemory;//点击平均内存使用率
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[4]")
+	public WebElement xpathTypeAvgMemory ;//输入内存使用率
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[5]")
+	public WebElement xpathCliAvgDownLoad2;//点击平均下载速度
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[6]")
+	public WebElement xpathCliAvgDownLoadXia ;//输入多少Kb一下
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[7]")
+	public WebElement xpathTypeUAvgDownLoadUp ;//输入多少Kb以上
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[8]")
+	public WebElement xpathCliTaskOut;//点击排除任务平均下载速度
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[9]")
+	public WebElement xpathCliTaskOutXia ;//输入多少Kb一下
+	
+	@FindBy(xpath="//*[@id='probeTrimOption']/descendant::input[10]")
+	public WebElement xpathCliTaskOutUp ;//输入多少Kb以上
+	
+	
+	
+	
 	/**
 	 * 错误排除选项开始*************************************************
 	 */
@@ -210,8 +250,35 @@ public class AdvancedOptionsPage extends CommonPage {
 	@FindBy(xpath="//*[@id='cbcontainer']/descendant::li[2]")
 	public WebElement xpathCliFirst;//行业选项默认选择第一个
 	
+	/**
+	 * 按特定DNS服务器过滤
+	 */
+	@FindBy(id="dnsServerIpFilterMode1")
+	public WebElement idCliContainsDNS;//点击包含的dns
 	
+	@FindBy(id="dnsServerIpFilterMode2")
+	public WebElement idClioutDNS;//点击排除的dns
 	
+	@FindBy(id="dnsServerIp")
+	public WebElement idSendDnsAdress;//send dns
+	
+	/**
+	 * 显示数据点类型
+	 */
+	@FindBy(id="showType")
+	public WebElement idSelectShowType;//显示数据点类型select
+	
+	/**
+	 * 散点图选项
+	 */
+	@FindBy(id="showScatterPlot1")
+	public WebElement idShowPlot;//点击显示散点图
+	
+	@FindBy(id="showSmoke1")
+	public WebElement idShowSmoke;//点击显示smoke
+	
+	@FindBy(id="smokeCategorizedBy")
+	public WebElement idSelGroup;//select smoke图分组区间
 	
 	//**********************************************************
 	
@@ -233,32 +300,55 @@ public class AdvancedOptionsPage extends CommonPage {
 	@FindBy(id="chartTitle")
 	public WebElement booleanTitle;//用来地图标题
 	
+
+	@FindBy(tagName="h1")
+	public WebElement booleanTitle2;//用来地图标题
 	
 	public void assEqual(){
-		if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
-			assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
-			assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
-		}else if(driverBrowser.getPageText(booleanTitle).contains("中国地图")){
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
-			assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
-		} else if(driverBrowser.getPageText(booleanTitle).contains("性能历史曲线图")){
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapKeYongXing));
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapXingNeng));
-			assertEquals(true, driverBrowser.isElementPresent(booleanTableXingNeng));
-		} else if(driverBrowser.getPageText(booleanTitle).length()==8){
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapYunYingShang));
-			assertEquals(true, driverBrowser.isElementPresent(booleanTableYunYingShang));
-		}else if(driverBrowser.getPageText(booleanTitle).contains("城市性能曲线图")){
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapCity));
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapCity2));
-			assertEquals(true, driverBrowser.isElementPresent(booleanTableYunYingShang));
-		}else if(driverBrowser.getPageText(booleanTitle).contains("城市运营商性能曲线图")){
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapCityXingN));
-			assertEquals(true, driverBrowser.isElementPresent(booleanTableCityXingN));
-		}else if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
-			//assertEquals(true, driverBrowser.isElementPresent(booleanMapComXing));
-			assertEquals(true, driverBrowser.isElementPresent(booleanMapAbale));
+		
+		if(driverBrowser.getPageText(booleanTitle2).contains("性能分布直方图")){
+			driverBrowser.executeScript("document.getElementsByTagName('h1')[0].setAttribute('id','chartTitle');");
 		}
+		
+			if (driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanWordMapIsExist));
+				assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
+			}else if(driverBrowser.getPageText(booleanTitle).contains("中国地图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapIsExist));
+				assertEquals(true, driverBrowser.isElementPresent(booleanTableIsExist));
+			} else if(driverBrowser.getPageText(booleanTitle).contains("性能历史曲线图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapKeYongXing));
+//				assertEquals(true, driverBrowser.isElementPresent(booleanMapXingNeng));
+				assertEquals(true, driverBrowser.isElementPresent(booleanTableXingNeng));
+			} else if(driverBrowser.getPageText(booleanTitle).length()==8){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapYunYingShang));
+				assertEquals(true, driverBrowser.isElementPresent(booleanTableYunYingShang));
+			}else if(driverBrowser.getPageText(booleanTitle).contains("城市性能曲线图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapCity));
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapCity2));
+				assertEquals(true, driverBrowser.isElementPresent(booleanTableYunYingShang));
+			}else if(driverBrowser.getPageText(booleanTitle).contains("城市运营商性能曲线图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapCityXingN));
+				assertEquals(true, driverBrowser.isElementPresent(booleanTableCityXingN));
+			}else if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapAbale));
+			}else if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")||
+					driverBrowser.getPageText(booleanTitle).contains("城市性能图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanMapProvinceAbale));
+			}else if(driverBrowser.getPageText(booleanTitle).contains("散点图")){
+				if(driverBrowser.getElementNums(getMaps)==1){
+					assertEquals(true, driverBrowser.isElementPresent(booleanSanDianMap));
+				}else{
+					assertEquals(true, driverBrowser.isElementPresent(booleanSanDianMap));
+					assertEquals(true, driverBrowser.isElementPresent(booleanMapSmoke));
+				}	
+				
+			}else if(driverBrowser.getPageText(booleanTitle2).contains("性能分布直方图")){
+				assertEquals(true, driverBrowser.isElementPresent(booDistributionHistogram));
+			}else if(driverBrowser.getPageText(booleanTitle2).contains("历史曲线图")){
+				assertEquals(true, driverBrowser.isElementPresent(booleanHistoryShouPingMap));
+				assertEquals(true, driverBrowser.isElementPresent(booleanHistoryAbleMap));
+			}
 		
 	}
 	
@@ -271,19 +361,39 @@ public class AdvancedOptionsPage extends CommonPage {
 			logger.info("点击确定提交按钮！");
 			driverBrowser.click(xpathCliSure);
 			driverBrowser.pause(2500);
-		
-			if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
-				if(i!=5){
-					//点击高级选项
-					driverBrowser.click(xpathCliAdvancedOptions);
-				}
-			}else{
-				if(i!=4){ 
-					//点击高级选项
-					driverBrowser.click(xpathCliAdvancedOptions);
-				}
+			
+			if(driverBrowser.getPageText(booleanTitle2).contains("性能分布直方图")){
+				driverBrowser.executeScript("document.getElementsByTagName('h1')[0].setAttribute('id','chartTitle');");
 			}
 			
+			//循环时候的各种判断啊
+				if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")||
+						driverBrowser.getPageText(booleanTitle).contains("省份性能图") ||
+						driverBrowser.getPageText(booleanTitle).contains("城市性能图")){
+					if(i!=5){
+						//点击高级选项
+						driverBrowser.click(xpathCliAdvancedOptions);
+					}
+				}
+				else if(driverBrowser.getPageText(booleanTitle).contains("中国地图 ")||
+						driverBrowser.getPageText(booleanTitle).contains("世界地图")||
+						driverBrowser.getPageText(booleanTitle).contains("性能历史曲线图")||
+						driverBrowser.getPageText(booleanTitle).contains("运营商性能曲线图")||
+						driverBrowser.getPageText(booleanTitle).contains("城市性能曲线图")||
+						driverBrowser.getPageText(booleanTitle).contains("城市运营商性能曲线图")){
+					if(i!=4){ 
+						//点击高级选项
+						driverBrowser.click(xpathCliAdvancedOptions);
+					}
+				}
+				
+				else if(driverBrowser.getPageText(booleanTitle).contains("散点图")||
+						driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+					if(i!=4){ 
+						//点击高级选项
+						driverBrowser.click(xpathCliAdvancedOptions);
+					}
+			}
 			this.assEqual();
 			sb.delete(0, sb.length());
 		}catch(Exception e){
@@ -323,10 +433,10 @@ public class AdvancedOptionsPage extends CommonPage {
 				if(title.contains("性能历史曲线图")){
 					if(title.contains("运营商性能曲线图") || title.contains("城市性能曲线图")){
 						//选择时间粒度
-						logger.info("时间粒度选项===》select{默认选择时间粒度第一个}");
-						sb.append("时间粒度选项===》select{默认选择时间粒度第一个}");
+						logger.info("时间粒度选项===》select{默认选择时间:30分钟}");
+						sb.append("时间粒度选项===》select{默认选择时间：30分钟}");
 						driverBrowser.pause(1);
-						driverBrowser.select(idSelTime, "1", "index");
+						driverBrowser.select(idSelTime, "30", "value");
 						
 						//选择城市选项
 						logger.info("城市选项===》select{默认选择第一个城市}");
@@ -345,7 +455,7 @@ public class AdvancedOptionsPage extends CommonPage {
 					logger.info("时间粒度选项===》select{默认选择时间粒度第一个}");
 					sb.append("时间粒度选项===》select{默认选择时间粒度第一个}");
 					driverBrowser.pause(1);
-					driverBrowser.select(idSelTime, "1", "index");
+					driverBrowser.select(idSelTime, "30", "value");
 					
 					//选择城市选项
 					logger.info("城市选项===》select{默认选择第一个城市}");
@@ -523,7 +633,10 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.pause(1);
 				driverBrowser.click(xpathCliRightLiu);
 				
-				tryCatch(i);
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
 			}
 			if(i==3){
 				//时间匹配模式选项
@@ -575,8 +688,8 @@ public class AdvancedOptionsPage extends CommonPage {
 			if(i==4){
 				if(title.contains("中国地图") || title.contains("世界地图")){
 					//按性能过滤
-					logger.info("按性能过滤选项===》click{手动,按性能过滤}，send{'10'秒以下的监测数据 }");
-					sb.append("按性能过滤选项===》click{手动，按性能过滤}，send{'10'秒以下的监测数据 }");
+					logger.info("按性能过滤选项===》click{手动,select首屏时间}，send{'10'秒以下的监测数据 }");
+					sb.append("按性能过滤选项===》click{手动，select首屏时间}，send{'10'秒以下的监测数据 }");
 					driverBrowser.pause(1000);
 					driverBrowser.select(idSelAutoOut, "首屏时间", "text");
 				}
@@ -769,7 +882,10 @@ public class AdvancedOptionsPage extends CommonPage {
 				sb.append("按性能过滤选项===》select{自动，按图标维度}");
 				driverBrowser.select(idSelAuto, "按图表维度","text");
 				
-				tryCatch(i);
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
 			}
 			if(i==3){
 				//时间匹配模式选项
@@ -843,6 +959,14 @@ public class AdvancedOptionsPage extends CommonPage {
 				driverBrowser.clear(idTypeIpAdress);
 				driverBrowser.sendKeys(idTypeIpAdress, "12");
 				
+//				if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
+//					//按性能过滤
+//					logger.info("按性能过滤选项===》click{手动,select首屏时间}，send{'10'秒以下的监测数据 }");
+//					sb.append("按性能过滤选项===》click{手动，select首屏时间}，send{'10'秒以下的监测数据 }");
+//					driverBrowser.pause(1000);
+//					driverBrowser.select(idSelAutoOut, "首屏时间", "text");
+//				}
+				
 				int number = tryCatch(i);
 				if(number!=0){
 					a = number+a;
@@ -856,10 +980,182 @@ public class AdvancedOptionsPage extends CommonPage {
 				sb.append("显示及排序选项===》条件是{按运营商}");
 				driverBrowser.pause(1);
 				driverBrowser.click(idCliYunYingS);
-				if(!idCliAvailValues.isSelected() && !idCliPerfValues.isSelected()){
+				
+				if(!idCliAvailValues.isSelected()){
 					driverBrowser.click(idCliAvailValues);
+				}
+				if(!idCliPerfValues.isSelected()){
 					driverBrowser.click(idCliPerfValues);
 				}
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
+			}
+		}
+		logger.info("********************高级选项循环完成  end********************");
+		return a;
+		
+	}
+	
+	
+	
+	/**
+	* @author : chenjingli
+	* @decription 判断太多导致脚本会卡在摘取一个循环次数为6次显示及排序选项
+	* @return
+	 */
+	public int highOptionThree(){ 
+		logger.info("****************开始进入高级选项循环**********************");
+		//点击高级选项
+		driverBrowser.click(xpathCliAdvancedOptions);
+		//获取图标名称
+		//String title =driverBrowser.getPageText(booleanTitle)	;
+		int a = 0;
+		for (int i = 0; i < 6; i++) {
+			if(i==0){
+				driverBrowser.pause(1);
+				logger.info("默认高级选项执行查询");
+				sb.append("打开高级选项默认情况执行查询");
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number;
+				}
+			}
+			if(i==1){
+				
+				//选择城市选项
+				logger.info("城市选项===》select{默认选择第一个城市}");
+				sb.append("城市选项===》select{默认选择第一个城市}");
+				driverBrowser.pause(1);
+				driverBrowser.click(xpathCliFirstCity);
+				driverBrowser.click(xpathCliFirstCity);
+				
+				//运营商选项
+				logger.info("运营商选项===》select{节点组中的运营商}");
+				sb.append("运营商选项===》select{节点组中的运营商}");
+				driverBrowser.pause(1);
+				driverBrowser.select(idSelOperator, "0","value");
+				
+				//按性能过滤
+				logger.info("按性能过滤选项===》select{自动，按总体}");
+				sb.append("按性能过滤选项===》select{自动，按总体}");
+				driverBrowser.click(idCliAuto);
+				driverBrowser.pause(1);
+				
+				//按主机ip先不加
+				//按检测点排除选项
+				logger.info("监测节点排除选项===》click{排除平均CPU使用率}");
+				sb.append("监测节点排除选项===》click{排除平均CPU使用率超过'10'%的监测点}");
+				driverBrowser.pause(1000);
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[1]")).click();
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[2]")).sendKeys("10");
+				
+				//操作系统选项
+				logger.info("操作系统选项===》click{指定操作系统 Android}");
+				sb.append("操作系统选项===》click{指定操作系统 Android}");
+				driverBrowser.pause(1000);
+				driverBrowser.click(idCliAndroid);
+				driverBrowser.pause(1);
+				driverBrowser.click(idCliAndroid);
+				
+				//浏览器选项
+				logger.info("浏览器选项===》click{指定浏览器 ie11}");
+				sb.append("浏览器选项===》click{指定浏览器 ie11}");
+				driverBrowser.pause(2);
+				driverBrowser.click(idCliIE11);
+				driverBrowser.pause(1);
+				driverBrowser.click(idCliIE11);
+				
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
+			}
+			if(i==2){
+				
+				//选择城市选项
+				logger.info("城市选项===》select{选择全部城市}");
+				sb.append("城市选项===》select{选择全部城市}");
+				driverBrowser.pause(1);
+				driverBrowser.click(xpathCliRigth);
+				
+				//运营商选项
+				logger.info("运营商选项===》select{指定运营商}");
+				sb.append("运营商选项===》select{指定运营商}");
+				driverBrowser.pause(1000);
+				driverBrowser.select(idSelOperator, "主要网络提供商","text");
+				driverBrowser.click(xpathCliItOper);
+				
+				//按性能过滤s
+				logger.info("按性能过滤选项===》click{自动，排除95%-5%以下检测数据}");
+				sb.append("按性能过滤选项===》click{自动，按图标维度}");
+				driverBrowser.pause(1000);
+				driverBrowser.click(idCliAuto);
+				
+				//监测节点排除选项
+				logger.info("监测节点排除选项===》click{排除平均内存使用率超过'10'%的监测点}");
+				sb.append("监测节点排除选项===》click{排除平均内存使用率超过'10'%的监测点}");
+				driverBrowser.pause(1000);
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[3]")).click();
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[4]")).sendKeys("10");
+				
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
+			}
+			if(i==3){
+				
+				//监测节点排除选项
+				logger.info("监测节点排除选项===》click{排除平均下载速度},send{10kb以下}，{60kb以上}");
+				sb.append("监测节点排除选项===》click{排除平均下载速度},send{10kb以下}，{60kb以上}");
+				driverBrowser.pause(1000);
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[5]")).click();
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[6]")).sendKeys("10");
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[7]")).sendKeys("60");
+				
+				//按性能过滤
+				logger.info("按性能过滤选项===》click{手动,总下载时间}，send{'10'秒以下的监测数据 }");
+				sb.append("按性能过滤选项===》click{手动，总下载时间}");
+				driverBrowser.pause(1000);
+				driverBrowser.click(idCliManual);
+				driverBrowser.pause(1);
+				logger.info("按性能过滤选项===》send{'10'秒以下的监测数据 }");
+				driverBrowser.sendKeys(xpathTypeSeconds,"10");
+				
+				int number = tryCatch(i);
+				if(number!=0){
+					a = number+a;
+				}
+			}
+			if(i==4){
+//				if(driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+//					//按性能过滤
+//					logger.info("按性能过滤选项===》click{手动,select首屏时间}，send{'10'秒以下的监测数据 }");
+//					sb.append("按性能过滤选项===》click{手动，select首屏时间}，send{'10'秒以下的监测数据 }");
+//					driverBrowser.pause(1000);
+//					driverBrowser.select(idSelAutoOut, "首屏时间", "text");
+//					
+//				}
+				//监测节点排除选项
+				logger.info("监测节点排除选项===》click{排除任务下载速度在},send{10kb以下}，{60kb以上}");
+				sb.append("监测节点排除选项===》click{排除任务下载速度在},send{10kb以下}，{60kb以上}");
+				driverBrowser.pause(1000);
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[8]")).click();
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[9]")).sendKeys("10");
+				driverBrowser.getWebDriver().findElement
+				(By.xpath("//*[@id='probeTrimOption']/descendant::input[10]")).sendKeys("60");
+				
 				int number = tryCatch(i);
 				if(number!=0){
 					a = number+a;

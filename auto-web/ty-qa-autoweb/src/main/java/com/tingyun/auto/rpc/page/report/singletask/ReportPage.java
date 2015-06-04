@@ -1,4 +1,4 @@
-package com.tingyun.auto.rpc.page.report;
+package com.tingyun.auto.rpc.page.report.singletask;
 import static org.testng.Assert.fail;
 
 import java.util.List;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
 
 import com.tingyun.auto.framework.browser.DriverBrowser;
+import com.tingyun.auto.rpc.page.report.AdvancedOptionsPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
 /**
 * @author :chenjingli 
@@ -26,60 +27,12 @@ public class ReportPage extends AdvancedOptionsPage {
 		//引进高级选项page
 		ap = new AdvancedOptionsPage(driverBrowser);
 	}
-	@FindBy(xpath="//*[@id='tasksContainer']/div/div[1]/button")
-	public WebElement xpathCliSelectTask;//点击任务列表下拉框选择单任务
-	
-	@FindBy(xpath="//*[@id='perfAvailChart']/li")
-	public List<WebElement> xpathGenePerfoNum;//性能概括下拉数量 
-	
-	@FindBy(xpath="//*[@id='perfAvailChart']/li[1]/a")
-	public WebElement xpathCliChinaMap;//点击第一个中国地图
-	
 
-	
-	@FindBy(xpath="//*[@name='basedOn0']")
-	public WebElement xpathSelOption;//选择性能指标选项
-	
-	@FindBy(xpath="//*[@id='st_box']/ul[2]/li/select/descendant::option")
-	public List<WebElement> xpathGetOptions;//选择性能指标选项
-	
-	@FindBy(xpath="//*[@id='btnOverlayAdvance']/a")
-	public WebElement xpathCliAdvancedOptions ;//点击高级选项
-	
-	@FindBy(name="relativeTimeRange0")
-	public WebElement nameSelRelativeTime ;//选择相对时间
-	
-	@FindBy(xpath="//*[@id='st_box']/ul[5]/li[1]/input")
-	public WebElement xpathSelAbsoluteTime ;//点击高级选项
-	
-	@FindBy(id="absoluteTimeFrom")
-	public WebElement idTypeStartTime ;//输入绝对时间开始
-	
-	@FindBy(id="absoluteTimeTo")
-	public WebElement idTypeEndTime ;//输入绝对时间结束
-	
-	@FindBy(xpath="//*[@id='s_t_b_break']/a")
-	public WebElement xpathCliCreatReport ;//点击高级选
-	
-	@FindBy(css="#taskMap44335 > div.jvectormap-container > svg")
-	public WebElement booleanWordMapIsExist;//用来判断世界地图是否出现
-	
-	@FindBy(id="chartTitle")
-	public WebElement booleanTitle;//用来地图标题
-	
-	/**
-	 * 判断地图显示路径中国地图 和表格
-	 */
-	@FindBy(xpath="//*[@id='chinamap']/embed")
-	public WebElement booleanMapIsExist;//用来判断地图是否出现
-	
-	@FindBy(xpath="//*[@id='nbs2']/div/table/tbody")
-	public WebElement booleanTableIsExist;//用来判断表格是否出现
 	
 
 	
 	public void tryCatch()throws Exception{
-		driverBrowser.pause(2000);
+		driverBrowser.pause(1000);
 		//引用父类的方法
 		assEqual();
 		sb.delete(0, sb.length());
@@ -139,8 +92,46 @@ public class ReportPage extends AdvancedOptionsPage {
 		this.testPublich();
 	}
 	
+	/**
+	 * 单页面检测--单任务--省份性能图
+	 */
+	public void provinceXingNengMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[8]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单页面检测--单任务--城市性能图
+	 */
+	public void cityXingNengMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[9]/a")).click();
+		this.testPublich();
+	}
+	
+	
+	/**
+	 * 单页面检测--单任务--散点图
+	 */
+	public void scatterDiagramMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[10]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单页面检测--单任务--性能分布直方图
+	 */
+	public void distributionHistogramMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[11]/a")).click();
+		this.testPublich();
+	}
+	
+	
 	
 	public void testPublich(){
+		if(driverBrowser.getPageText(booleanTitle2).contains("性能分布直方图")){
+			driverBrowser.executeScript("document.getElementsByTagName('h1')[0].setAttribute('id','chartTitle');");
+		}
+		
 		int count = 0;
 		int count4=0;
 		//判断地图和图标是否存在
@@ -152,11 +143,21 @@ public class ReportPage extends AdvancedOptionsPage {
 			sb.delete(0, sb.length());
 			count++;
 		}
-		//判断使用哪个高级选项
-		if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")){
-			count4 = ap.highOptionMropertyMap();
-		}else{
-			count4 = ap.highOption();
+			//判断使用哪个高级选项
+			if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")|| 
+					driverBrowser.getPageText(booleanTitle).contains("省份性能图") ||
+					driverBrowser.getPageText(booleanTitle).contains("城市性能图")){
+				logger.info("************使用highOptionMropertyMap method**********");
+				count4 = ap.highOptionMropertyMap();
+			}else{
+				if(driverBrowser.getPageText(booleanTitle).contains("散点图")||
+						driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+					logger.info("************使用highOptionThree method**********");
+					count4 = ap.highOptionThree();
+				}else{
+					logger.info("************使用highOption method**********");
+					count4 = ap.highOption();
+				}
 		}
 		logger.info("高级选项循环的错误次数为：count========================================{}",count4);
 		if(count4!=0){
@@ -164,10 +165,11 @@ public class ReportPage extends AdvancedOptionsPage {
 		}
 		//相对时间
 		for (int i = 0; i < 2; i++) {
-			
 			//性能图展现的时候不需要循环性能指标
 			if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
-			   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+			   driverBrowser.getPageText(booleanTitle).contains("世界地图")||
+			   	driverBrowser.getPageText(booleanTitle).contains("散点图")||
+			   	driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
 				//选择相对时间为1天开始循环性能指标
 				if(i==0){
 					int count3 = PerIndexCycle();
@@ -181,10 +183,18 @@ public class ReportPage extends AdvancedOptionsPage {
 			
 			//选择相对时间为2周开始循环性能指标
 			if(i==1){
-				logger.info("快捷选项===》select相对时间为：2周");
-				sb.append("快捷选项===》select相对时间为：2周");
-				driverBrowser.select(nameSelRelativeTime, "20160", "value");//选择相对时间两周
+				
 				driverBrowser.pause(1000);
+				if(driverBrowser.getPageText(booleanTitle).contains("散点图")||
+				   driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+					logger.info("快捷选项===》select相对时间为：1周");
+					sb.append("快捷选项===》select相对时间为：1周");
+					driverBrowser.select(nameSelRelativeTime, "10080", "value");//选择相对时间1周
+				}else{
+					logger.info("快捷选项===》select相对时间为：2周");
+					sb.append("快捷选项===》select相对时间为：2周");
+					driverBrowser.select(nameSelRelativeTime, "20160", "value");//选择相对时间两周
+				}
 				try{
 					//判断地图是否存在 表格
 					this.tryCatch();
@@ -195,7 +205,9 @@ public class ReportPage extends AdvancedOptionsPage {
 				}
 				//性能图展现的时候不需要循环性能指标
 				if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
-						   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+				   driverBrowser.getPageText(booleanTitle).contains("世界地图")||
+				    driverBrowser.getPageText(booleanTitle).contains("散点图")||
+				   driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
 					//性能指标循环
 					int count3 = PerIndexCycle();
 					if(count3!=0){
@@ -227,7 +239,9 @@ public class ReportPage extends AdvancedOptionsPage {
 				}
 				//性能图展现的时候不需要循环性能指标
 				if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
-						   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+				   driverBrowser.getPageText(booleanTitle).contains("世界地图")||
+					driverBrowser.getPageText(booleanTitle).contains("散点图")||
+				driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){	  
 					//性能指标循环
 					int count3 = PerIndexCycle();
 					if(count3!=0){
@@ -238,8 +252,6 @@ public class ReportPage extends AdvancedOptionsPage {
 			}
 			//选择绝对时间为2周
 			if(i==1){
-				logger.info("快捷选项===》select绝对时间为：2周");
-				sb.append("快捷选项===》select绝对时间为：2周");
 				driverBrowser.pause(1000);
 				if(driverBrowser.getPageText(booleanTitle).contains("城市性能曲线图")){
 					//消除alert
@@ -252,7 +264,16 @@ public class ReportPage extends AdvancedOptionsPage {
 						count++;
 					}
 				}else{
-					driverBrowser.sendKeys(idTypeEndTime, StrAndDateUtil.randowStringTime("end", 14));//选择绝对时间两周
+					if(driverBrowser.getPageText(booleanTitle).contains("散点图")||
+					   driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+						logger.info("快捷选项===》send绝对时间为：1周");
+						sb.append("快捷选项===》send绝对时间为：1周");
+						driverBrowser.sendKeys(idTypeEndTime, StrAndDateUtil.randowStringTime("end", 7));//选择绝对时间两周
+					}else{
+						logger.info("快捷选项===》select绝对时间为：2周");
+						sb.append("快捷选项===》select绝对时间为：2周");
+						driverBrowser.sendKeys(idTypeEndTime, StrAndDateUtil.randowStringTime("end", 14));//选择绝对时间两周
+					}
 					try{
 						//判断地图是否存在
 						this.tryCatch();
@@ -263,8 +284,10 @@ public class ReportPage extends AdvancedOptionsPage {
 					}
 				}
 				//性能图展现的时候不需要循环性能指标
-				if(driverBrowser.getPageText(booleanTitle).contains("中国地图")||
-						   driverBrowser.getPageText(booleanTitle).contains("世界地图")){
+				if(		   driverBrowser.getPageText(booleanTitle).contains("中国地图")||
+						   driverBrowser.getPageText(booleanTitle).contains("世界地图")||
+							driverBrowser.getPageText(booleanTitle).contains("散点图")||
+						   	driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
 					int count3 = PerIndexCycle();
 					if(count3!=0){
 						count = count3+count;

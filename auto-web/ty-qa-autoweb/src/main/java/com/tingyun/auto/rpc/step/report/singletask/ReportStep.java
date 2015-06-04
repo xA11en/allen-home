@@ -1,21 +1,18 @@
-package com.tingyun.auto.rpc.step.report;
+package com.tingyun.auto.rpc.step.report.singletask;
 
 import static org.testng.Assert.fail;
 
-import java.util.NoSuchElementException;
-
 import org.testng.TestNGException;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.rpc.page.RpcLoginPage;
-import com.tingyun.auto.rpc.page.report.ReportPage;
+import com.tingyun.auto.rpc.page.report.singletask.ReportPage;
 
 /**
 * @author :chenjingli 
@@ -30,10 +27,14 @@ public class ReportStep extends GlobalStep {
 	public static final String DESCITYGMAP = "性能概括-城市性能曲线图测试用例";
 	public static final String DESCOMMUNICATIONMAP = "性能概括-城市运营商性能曲线图测试用例";
 	public static final String DESYUNXINGSXINGNENGMAP = "性能概括-运营商性能图测试用例";
+	public static final String DESPROVINCEXINGNENGMAP = "性能概括-省份性能图测试用例";
+	public static final String DESPCITYXINGNENGMAP = "性能概括-城市性能图测试用例";
+	public static final String DESSANDIANMAP = "性能概括-散点图测试用例";
+	public static final String DESXINGNENGFENBUMAP = "性能概括-性能分布直方图测试用例";
 	public static final String rpcDesLogin = "rpc系统登录测试用例";
 	private static DriverBrowser driverBrowser;
 	
-	@BeforeClass
+	@BeforeMethod(alwaysRun=true)
 	public void testRpcLogin(){
 		pinfo(ReportStep.class,rpcDesLogin+caseStart);
 		try {
@@ -50,7 +51,7 @@ public class ReportStep extends GlobalStep {
 		} 
 	}
 	//单任务--中国地图
-	//@Test(description=DESCHINAMAP)
+	@Test(description=DESCHINAMAP)
 	public void testChinaMap(){
 		pinfo(ReportStep.class,DESCHINAMAP+caseStart);
 		try {
@@ -66,7 +67,7 @@ public class ReportStep extends GlobalStep {
 		} 
 	}
 	//单任务--世界地图
-//	@Test(description=DESWORDMAP)
+	@Test(description=DESWORDMAP)
 	public void testWordMap(){
 		pinfo(ReportStep.class,DESWORDMAP+caseStart);
 		try {
@@ -81,7 +82,7 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESWORDMAP+"" + e.getMessage(), e);
 		} 
 	}
-	//@Test(description=DESXINGNENGMAP)
+	@Test(description=DESXINGNENGMAP)
 	public void testXingNengMap(){
 		pinfo(ReportStep.class,DESXINGNENGMAP+caseStart);
 		try {
@@ -96,7 +97,7 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESXINGNENGMAP+"" + e.getMessage(), e);
 		} 
 	}
-	//@Test
+	@Test(description=DESYUNXINGSHANGMAP)
 	public void testYunYingShangMap(){
 		pinfo(ReportStep.class,DESYUNXINGSHANGMAP+caseStart);
 		try {
@@ -111,7 +112,7 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESYUNXINGSHANGMAP+"" + e.getMessage(), e);
 		} 
 	}
-	//@Test
+	@Test(description=DESCITYGMAP)
 	public void testCityMap(){
 		pinfo(ReportStep.class,DESCITYGMAP+caseStart);
 		try {
@@ -126,7 +127,7 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESCITYGMAP+"" + e.getMessage(), e);
 		} 
 	}
-	//@Test
+	@Test(description=DESCOMMUNICATIONMAP)
 	public void testCityCommunication(){
 		pinfo(ReportStep.class,DESCOMMUNICATIONMAP+caseStart);
 		try {
@@ -141,7 +142,7 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESCOMMUNICATIONMAP+"" + e.getMessage(), e);
 		} 
 	}
-	@Test
+	@Test(description=DESYUNXINGSXINGNENGMAP)
 	public void testYunXingSXingNengMap(){
 		pinfo(ReportStep.class,DESYUNXINGSXINGNENGMAP+caseStart);
 		try {
@@ -156,7 +157,69 @@ public class ReportStep extends GlobalStep {
 			throw new TestNGException(DESYUNXINGSXINGNENGMAP+"" + e.getMessage(), e);
 		} 
 	}
-	@AfterClass
+	
+	@Test(description=DESPROVINCEXINGNENGMAP)
+	public void testProvinceXingNengMap(){
+			pinfo(ReportStep.class,DESPROVINCEXINGNENGMAP+caseStart);
+			try {
+				ReportPage reportPage = new ReportPage(driverBrowser);
+				reportPage.provinceXingNengMap();
+			pinfo(ReportStep.class,DESPROVINCEXINGNENGMAP+caseEnd);	
+			}catch(Error e){
+				driverBrowser.failScreenShot("testProvinceXingNengMap");
+				fail(DESPROVINCEXINGNENGMAP+FAIL + e.getMessage(), e);
+			}catch (Exception e) {
+				driverBrowser.failScreenShot("testProvinceXingNengMap");
+				throw new TestNGException(DESPROVINCEXINGNENGMAP+"" + e.getMessage(), e);
+			} 
+		}
+	@Test(description=DESPCITYXINGNENGMAP)
+	public void testCityXingNengMap(){
+			pinfo(ReportStep.class,DESPCITYXINGNENGMAP+caseStart);
+			try {
+				ReportPage reportPage = new ReportPage(driverBrowser);
+				reportPage.cityXingNengMap();
+			pinfo(ReportStep.class,DESPCITYXINGNENGMAP+caseEnd);	
+			}catch(Error e){
+				driverBrowser.failScreenShot("testCityXingNengMap");
+				fail(DESPCITYXINGNENGMAP+FAIL + e.getMessage(), e);
+			}catch (Exception e) {
+				driverBrowser.failScreenShot("testCityXingNengMap");
+				throw new TestNGException(DESPCITYXINGNENGMAP+"" + e.getMessage(), e);
+			} 
+		}
+	@Test(description=DESSANDIANMAP)
+	public void testSanDianMap(){
+			pinfo(ReportStep.class,DESSANDIANMAP+caseStart);
+			try {
+				ReportPage reportPage = new ReportPage(driverBrowser);
+				reportPage.scatterDiagramMap();
+			pinfo(ReportStep.class,DESSANDIANMAP+caseEnd);	
+			}catch(Error e){
+				driverBrowser.failScreenShot("testSanDianMap");
+				fail(DESSANDIANMAP+FAIL + e.getMessage(), e);
+			}catch (Exception e) {
+				driverBrowser.failScreenShot("testSanDianMap");
+				throw new TestNGException(DESSANDIANMAP+"" + e.getMessage(), e);
+			} 
+		}
+	@Test(description=DESXINGNENGFENBUMAP)
+	public void testDistributionHistogramMap(){
+			pinfo(ReportStep.class,DESXINGNENGFENBUMAP+caseStart);
+			try {
+				ReportPage reportPage = new ReportPage(driverBrowser);
+				reportPage.distributionHistogramMap();
+			pinfo(ReportStep.class,DESXINGNENGFENBUMAP+caseEnd);	
+			}catch(Error e){
+				driverBrowser.failScreenShot("testDistributionHistogramMap");
+				fail(DESXINGNENGFENBUMAP+FAIL + e.getMessage(), e);
+			}catch (Exception e) {
+				driverBrowser.failScreenShot("testDistributionHistogramMap");
+				throw new TestNGException(DESXINGNENGFENBUMAP+"" + e.getMessage(), e);
+			} 
+		}
+	
+	@AfterMethod(alwaysRun=true)
 	public void afterClass(){
 		driverBrowser.quit();
 	}
