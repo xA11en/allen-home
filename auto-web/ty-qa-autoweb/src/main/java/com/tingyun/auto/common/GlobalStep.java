@@ -17,21 +17,21 @@ import com.tingyun.auto.rpc.page.report.singletask.GeneralizPerforPage;
  */
 public class GlobalStep{
 	
-	protected DriverBrowser driverBrowser;
+	//protected DriverBrowser driverBrowser;
 	
 	protected Logger logger;
 	
-	protected static 	RpcLoginPage reportPage;
-	protected static 	GeneralizPerforPage genPage;
+//	protected static 	RpcLoginPage reportPage;
+//	protected static 	GeneralizPerforPage genPage;
 	
 	protected static final String caseStart ="执行开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	protected static final String caseEnd ="执行结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	protected static final String FAIL ="失败 >> >>";
-	public GlobalStep() {
-		driverBrowser = new DriverBrowser(BrowserType.Chrome);
-		 reportPage = new RpcLoginPage(driverBrowser);
-		 genPage = new GeneralizPerforPage(driverBrowser);
-	}
+//	public GlobalStep() {
+//		driverBrowser = new DriverBrowser(BrowserType.Chrome);
+//		 reportPage = new RpcLoginPage(driverBrowser);
+//		 genPage = new GeneralizPerforPage(driverBrowser);
+//	}
 //	@BeforeClass
 //	public void beforeClass() {
 //		driverBrowser = new DriverBrowser(BrowserType.Firefox);

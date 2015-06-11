@@ -49,8 +49,6 @@ import org.testng.xml.XmlSuite;
 
 import com.tingyun.auto.common.Constant;
 import com.tingyun.auto.utils.ShareSmbConfig;
-import com.tingyun.auto.utils.Smb;
-import com.tingyun.auto.utils.HtmlMail;
 
 
 /**

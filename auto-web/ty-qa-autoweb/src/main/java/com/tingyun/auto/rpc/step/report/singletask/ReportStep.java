@@ -12,6 +12,7 @@ import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.rpc.page.RpcLoginPage;
+import com.tingyun.auto.rpc.page.report.singletask.GeneralizPerforPage;
 import com.tingyun.auto.rpc.page.report.singletask.ReportPage;
 
 /**
@@ -33,7 +34,6 @@ public class ReportStep extends GlobalStep {
 	public static final String DESXINGNENGFENBUMAP = "性能概括-性能分布直方图测试用例";
 	public static final String rpcDesLogin = "rpc系统登录测试用例";
 	private static DriverBrowser driverBrowser;
-	
 	@BeforeMethod(alwaysRun=true)
 	public void testRpcLogin(){
 		pinfo(ReportStep.class,rpcDesLogin+caseStart);

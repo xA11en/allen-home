@@ -1,13 +1,16 @@
 package com.tingyun.auto.framework.browser;
 
+import static org.testng.Assert.fail;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.List;
 
-import org.openqa.selenium.Cookie;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
@@ -15,7 +18,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -25,7 +30,6 @@ import com.thoughtworks.selenium.Wait;
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.SystemClock;
 import com.tingyun.auto.framework.driver.WebdriverFactory;
-import static org.testng.Assert.*;
 /**
 * @author :chenjingli 
 * @version ：2015-5-11 下午4:13:44 
@@ -59,6 +63,7 @@ public class DriverBrowser{
 				}
 				webDriver.manage().window().maximize();
 			}else{
+				System.out.println("start");
 				remoteWebDriver = WebdriverFactory.createWebDriver(type).getRemWebDriver();
 				if(remoteWebDriver == null){
 					logger.error("反向代理生成的remoteWebDriver为null-------{}",remoteWebDriver);
@@ -203,10 +208,20 @@ public class DriverBrowser{
             handleFailure("Element display is none!");
         }
     }
-
-    private void isClickAble(WebElement webElement, SystemClock clock, long endTime) {
+    
+    public void timeOUt(final WebElement webElement){
+    	WebDriverWait wait = new WebDriverWait(webDriver,timeout);
+		
+		wait.until(new ExpectedCondition<WebElement>(){  
+			@Override  
+			public WebElement apply(WebDriver d) {  
+				return webElement;  
+			}}).click();  
+    }
+    
+    private void isClickAble(final WebElement webElement, SystemClock clock, long endTime) {
         try {
-            pause(stepInterval);
+        	timeOUt(webElement);
             webElement.click();
             logger.info("Clicked successed! " + getWebElementContent(webElement));
         } catch (AssertionError e) {
@@ -363,29 +378,37 @@ public class DriverBrowser{
      * @param webElement
      *            the expected element's xpath
      */
-    public void expectElementExist(final WebElement webElement) {
+    public void expectElementExist(final WebElement webElement,String...strings) {
         if (webElement == null) {
             handleFailure("Not found Element ,Failed click!");
         }
-        expectElementExist(webElement, timeout);
+        expectElementExist(webElement, timeout,strings);
     }
 
-    private void expectElementExist(final WebElement webElement, int timeout) {
-        try {
-            new Wait() {
-
-                @Override
-                public boolean until() {
-                    return isElementPresent(webElement);
-                }
-            }.wait("Failed to find element " + getWebElementContent(webElement), timeout);
-        } catch (Error e) {
-            e.printStackTrace();
-            handleFailure("Failed to find element " + getWebElementContent(webElement));
-        }
-        logger.info("Found desired element " + getWebElementContent(webElement));
+    private void expectElementExist(final WebElement webElement, int timeout , String...strings) {
+    	try{
+    		
+    		WebDriverWait wait = new WebDriverWait(webDriver,timeout);
+    		
+    		wait.until(new ExpectedCondition<WebElement>(){  
+    			@Override  
+    			public WebElement apply(WebDriver d) {  
+    				return webElement;  
+    			}}).isDisplayed();  
+    		
+    		logger.info("Found desired element " + getWebElementContent(webElement));
+    	}catch(Exception e){
+    		if(timeout>0){
+    			for (String string : strings) {
+    				handleFailure("期望"+string+"元素未展现，超时时间"+timeout);
+				}
+    		}else{
+    			logger.error("时间设置小于0");
+    		}
+    	}
     }
-
+    
+    
     /**
      * Expect an element not exist on the page<br>
      * 判断元素不存在，返回true Expect element not exist, but found after timeout =>
@@ -459,7 +482,7 @@ public class DriverBrowser{
     public void failScreenShot(String desc) {
 		File scrFile = ((TakesScreenshot) webDriver)
 				.getScreenshotAs(OutputType.FILE);
-		logger.info("开始截图，名称{}", desc + ".jpg");
+		logger.error("开始截图，名称{}", desc + ".jpg");
 		File screenshot = new File("test-output/html" + File.separator
 				+ "failScreenShot" + File.separator + desc + ".jpg");
 		try {

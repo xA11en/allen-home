@@ -8,21 +8,21 @@
 <!-- 		//<listener class-name="com.tingyun.auto.listener.TestNGListener"></listener> -->
 	</listeners>
 
-	 <test name="单页面检测-" junit="false" annotations="jdk" preserve-order="true">
+	 <test name="单页面检测-性能概括" junit="false" annotations="jdk" preserve-order="true">
         <classes>
-            <class name="com.tingyun.auto.rpc.step.report.ReportStep">
+            <class name="com.tingyun.auto.rpc.step.report.singletask.ReportStep">
             <methods>
-        			<include name="testChinaMap"/> 
-        			<include name="testWordMap"/>
-        			<include name="testXingNengMap"/>
-        			<include name="testYunYingShangMap"/>
-        			<include name="testCityMap"/>
-        			<include name="testCityCommunication"/>
-        			<include name="testYunXingSXingNengMap"/> 
-        			<include name="testProvinceXingNengMap"/>
-        			<include name="testCityXingNengMap"/>
-        			<include name="testSanDianMap"/>
-        			<include name="testDistributionHistogramMap"/>
+        			<include name="testChinaMap"/> <!-- 中国地图 -->
+        			<include name="testWordMap"/>  <!-- 世界地图 -->
+        			<include name="testXingNengMap"/> <!-- 性能历史曲线图 -->
+        			<include name="testYunYingShangMap"/> <!-- 运营商性能图 -->
+        			<include name="testCityMap"/> <!-- 城市性能图 -->
+        			<include name="testCityCommunication"/> <!-- 城市运营商性能图 -->
+        			<include name="testYunXingSXingNengMap"/> <!-- 运营商性能曲线图 -->
+        			<include name="testProvinceXingNengMap"/> <!-- 身份性能图 -->
+        			<include name="testCityXingNengMap"/> <!-- 城市性能地图 -->
+        			<include name="testSanDianMap"/> <!-- 散点地图 -->
+        			<include name="testDistributionHistogramMap"/> <!-- 性能分布直方地图 -->
         		</methods>
             </class>         
         </classes>

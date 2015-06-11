@@ -36,9 +36,59 @@ public class GeneralizPerforPage extends ReportPage{
 		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[2]/a")).click();
 		this.testPublich();
 	}
+	/**
+	 * 单任务检测-性能概括-点击性能概括-运营商曲线图
+	 */
+	public void operatorMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[3]/a")).click();
+		this.testPublich();
+	}
+	/**
+	 * 单任务检测-性能概括-点击性能概括-省份曲线图
+	 */
+	public void provincesMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[4]/a")).click();
+		this.testPublich();
+	}
+	/**
+	 * 单任务检测-性能概括-点击性能概括-城市曲线图
+	 */
+	public void cityMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[5]/a")).click();
+		this.testPublich();
+	}
+	/**
+	 * 单任务检测-性能概括-点击性能概括-省份运营商曲线图
+	 */
+	public void provincesOperatorMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[6]/a")).click();
+		this.testPublich();
+	}
+	/**
+	 * 单任务检测-性能概括-点击性能概括-城市运营商曲线图
+	 */
+	public void cityOperatorMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[7]/a")).click();
+		this.testPublich();
+	}
+	/**
+	 * 单任务检测-性能概括-点击性能概括-对比曲线图
+	 */
+	public void contrastCurveMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[8]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-环比曲线图
+	 */
+	public void sequentialCurveMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[9]/a")).click();
+		this.testPublich();
+	}
+	
 	
 	public void testPublich(){
-		
 		int count = 0;
 		int count4=0;
 		//判断地图和图标是否存在
@@ -58,8 +108,8 @@ public class GeneralizPerforPage extends ReportPage{
 		}
 		//相对时间
 		for (int i = 0; i < 2; i++) {
-			logger.info("快捷选项===》select相对时间为：1天");
-			sb.append("快捷选项===》select相对时间为：1天");
+				logger.info("快捷选项===》select相对时间为：1天");
+				sb.append("快捷选项===》select相对时间为：1天");
 				//选择相对时间为1天开始循环性能指标
 				if(i==0){
 					int count3 = PerIndexCycle();
@@ -68,33 +118,33 @@ public class GeneralizPerforPage extends ReportPage{
 					}
 					sb.delete(0, sb.length());//清楚stringbuffer内容
 				}
-			
-			//选择相对时间为2周开始循环性能指标
-			if(i==1){
 				
-				driverBrowser.pause(1000);
-				logger.info("快捷选项===》select相对时间为：2周");
-				sb.append("快捷选项===》select相对时间为：2周");
-				driverBrowser.select(nameSelRelativeTime, "20160", "value");//选择相对时间两周
-				try{
-					//判断地图是否存在 表格
-					this.tryCatch();
-				}catch(Exception e){
-					Reporter.log("/n"+sb.toString()+"失败");
-					sb.delete(0, sb.length());
-					count++;
+				//选择相对时间为2周开始循环性能指标
+				if(i==1){
+					
+					driverBrowser.pause(1000);
+					logger.info("快捷选项===》select相对时间为：2周");
+					sb.append("快捷选项===》select相对时间为：2周");
+					driverBrowser.select(nameSelRelativeTime, "20160", "value");//选择相对时间两周
+					try{
+						//判断地图是否存在 表格
+						this.tryCatch();
+					}catch(Exception e){
+						Reporter.log("/n"+sb.toString()+"失败");
+						sb.delete(0, sb.length());
+						count++;
+					}
+					
+					//性能指标循环
+					int count3 = PerIndexCycle();
+					if(count3!=0){
+						count = count3+count;
+					}
+					driverBrowser.pause(1000);
+					sb.delete(0, sb.length());//清楚stringbuffer内容
 				}
-				
-				//性能指标循环
-				int count3 = PerIndexCycle();
-				if(count3!=0){
-					count = count3+count;
-				}
-				driverBrowser.pause(1000);
-				sb.delete(0, sb.length());//清楚stringbuffer内容
-				}
+			}
 			
-		}	
 		
 		//绝对时间
 		for (int i = 0; i < 2; i++) {
@@ -162,7 +212,7 @@ public class GeneralizPerforPage extends ReportPage{
 		//点击高级选项
 		driverBrowser.click(xpathCliAdvancedOptions);
 		//获取图标名称
-		//String title =driverBrowser.getPageText(booleanTitle)	;
+		String title =driverBrowser.getPageText(booleanTitle);
 		int a = 0;
 		for (int i = 0; i < 6; i++) {
 			if(i==0){
@@ -235,12 +285,14 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.clear(idSendDnsAdress);
 				driverBrowser.sendKeys(idSendDnsAdress, "192.168.1.1");
 				
-				//行业选项
-				logger.info("行业选项===》click{默认第一个行业}");
-				sb.append("行业选项===》click{默认第一个行业}");
-				driverBrowser.pause(1);
-				driverBrowser.click(xpathSel);
-				driverBrowser.click(xpathCliFirst);
+				if(title.equals("历史曲线图")){
+					//行业选项
+					logger.info("行业选项===》click{默认第一个行业}");
+					sb.append("行业选项===》click{默认第一个行业}");
+					driverBrowser.pause(1);
+					driverBrowser.click(xpathSel);
+					driverBrowser.click(xpathCliFirst);
+				}
 				
 				//操作系统选项
 				logger.info("操作系统选项===》click{指定操作系统 Android}");
@@ -377,13 +429,17 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.click(xpathCliAvgDownLoad2);
 				driverBrowser.sendKeys(xpathCliAvgDownLoadXia, "10");
 				driverBrowser.sendKeys(xpathTypeUAvgDownLoadUp, "60");
-				
-				//按性能过滤
-				logger.info("按性能过滤选项===》click{手动,select首屏时间}，send{'10'秒以下的监测数据 }");
-				sb.append("按性能过滤选项===》click{手动，select首屏时间}，send{'10'秒以下的监测数据 }");
-				driverBrowser.pause(1000);
-				driverBrowser.select(idSelAutoOut, "首屏时间", "text");
-				
+				//对比曲线图不点击首屏时间
+				if(title.contains("对比曲线图")){
+					driverBrowser.click(idSelAutoOut);
+				}else{
+					//按性能过滤
+					logger.info("按性能过滤选项===》click{手动,select首屏时间}，send{'10'秒以下的监测数据 }");
+					sb.append("按性能过滤选项===》click{手动，select首屏时间}，send{'10'秒以下的监测数据 }");
+					driverBrowser.pause(1000);
+					driverBrowser.select(idSelAutoOut, "首屏时间", "text");
+					
+				}
 				int number = tryCatchGenPor(i);
 				if(number!=0){
 					a = number+a;
@@ -441,8 +497,4 @@ public class GeneralizPerforPage extends ReportPage{
 	}
 	
 	
-	@AfterMethod(alwaysRun=true)
-	public void afterClass(){
-		driverBrowser.quit();
-	}
 }	

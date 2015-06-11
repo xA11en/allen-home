@@ -1,6 +1,8 @@
 package com.tingyun.auto.framework.driver;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -26,9 +28,11 @@ public class IE extends Driver {
 	
 	
 	@Override
-	public RemoteWebDriver getRemWebDriver() {
-		// TODO Auto-generated method stub
-		return null;
+	public RemoteWebDriver getRemWebDriver() throws MalformedURLException {
+	    DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
+        capability.setBrowserName("internetExplorer"); 
+        remWebDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
+        return remWebDriver;
 	}
 
 	@Override

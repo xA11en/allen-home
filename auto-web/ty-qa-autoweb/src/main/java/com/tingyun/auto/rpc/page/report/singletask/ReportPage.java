@@ -1,15 +1,9 @@
 package com.tingyun.auto.rpc.page.report.singletask;
 import static org.testng.Assert.fail;
-
-import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
-
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.rpc.page.report.AdvancedOptionsPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
@@ -19,6 +13,8 @@ import com.tingyun.auto.utils.StrAndDateUtil;
 * @decription: rpc 系统报表page
  */
 public class ReportPage extends AdvancedOptionsPage {
+	
+	
 	private static Logger logger = LoggerFactory.getLogger(ReportPage.class);
 	protected StringBuffer sb = new StringBuffer();
 	public static AdvancedOptionsPage ap;
@@ -29,12 +25,14 @@ public class ReportPage extends AdvancedOptionsPage {
 	}
 
 	
-
-	
 	public void tryCatch()throws Exception{
 		driverBrowser.pause(1000);
 		//引用父类的方法
-		assEqual();
+		if(driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='perfAvailChart']/li[1]/a")).isDisplayed()){
+			assEqual();
+		}else{
+			assEqualPerIndicators();
+		}
 		sb.delete(0, sb.length());
 	}
 	
@@ -307,6 +305,11 @@ public class ReportPage extends AdvancedOptionsPage {
 		
 	}
 	public int PerIndexCycle(){
+		//判断有没有性能指标来使用
+		String title =driverBrowser.getPageText(booleanTitle);
+		if(title.equals("对比曲线图")){
+			return 0;
+		}
 		logger.info("******************* 执行性能指标选项的循环测试 start******************循环的次数为：==={}",driverBrowser.getElementNums(xpathGetOptions));
 		int count2 = 0;
 		//循环select性能指标

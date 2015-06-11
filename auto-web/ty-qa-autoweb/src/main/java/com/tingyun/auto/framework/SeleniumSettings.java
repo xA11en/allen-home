@@ -73,7 +73,10 @@ public class SeleniumSettings {
 	public static int    STEP_INTERVAL = Integer.parseInt(prop.getProperty("stepInterval"));
 	
 	//pageFactory 初始化默认时间
-	public static int PAGE_FACTORY_TIME_OUT = Integer.parseInt(prop.getProperty("pageFactoryTimeOut")); 
+	public static int PAGE_FACTORY_TIME_OUT = Integer.parseInt(prop.getProperty("pageFactoryTimeOut"));
+	
+	//远程ip地址
+	public static String     REMOTE_HTTP        = prop.getProperty("remoteIP");
 	/**
 	* @author : chenjingli
 	* @decription 获得ie驱动类型

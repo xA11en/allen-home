@@ -174,8 +174,49 @@ public class CommonPage extends GlobalPage {
 	@FindBy(xpath="//*[@id='compPerfByTime']/img")
 	public WebElement booleanHistoryShouPingMap;//首屏时间
 	
-	@FindBy(xpath="//*[@id='compAvailByTime']/img")//散点smoke图
+	@FindBy(xpath="//*[@id='compAvailByTime']/img")
 	public WebElement booleanHistoryAbleMap; //可用性图
+	/**
+	 * 运营商曲线图
+	 */
+	@FindBy(xpath="//*[@id='compPerfIspByTime']/img")
+	public WebElement operatoShouPingrMap;//首屏时间
+	
+	@FindBy(xpath="//*[@id='availIspByTime']/img")//散点smoke图
+	public WebElement operatoAblerMap; //可用性图
+	
+	/**
+	 * 省份曲线图  城市曲线图
+	 */
+	@FindBy(xpath="//*[@id='compPerfLocationByTime']/img")
+	public WebElement provincesAndCityShouPingrMap;//首屏时间
+	
+	@FindBy(xpath="//*[@id='availLocationByTime']/img")
+	public WebElement provincesAndCityAblerMap; //可用性图
+	
+	/**
+	 * 城市曲线图  城市运营商曲线图
+	 */
+	@FindBy(xpath="//*[@id='compPerfLocationIspByTime']/img")
+	public WebElement provincesShouPingrMap;//首屏时间
+	
+	@FindBy(xpath="//*[@id='availLocationIspByTime']/img")
+	public WebElement provincesAblerMap; //可用性图
+	
+	/**
+	 * 环比曲线图
+	 */
+	@FindBy(xpath="//*[@id='compPerfCycleByTime']/img")
+	public WebElement sequentialShouPingrMap;//首屏时间
+	
+	@FindBy(xpath="//*[@id='availCycleByTime']/img")
+	public WebElement sequentialAblerMap; //可用性图
+	
+	/**
+	 * 对比曲线图
+	 */
+	@FindBy(xpath="//*[@id='compPerfContrastByTime']/img")
+	public WebElement contrastCurveMap;//性能指标
 	
 	//*********************性能指标map判断元素end**********************************
 }

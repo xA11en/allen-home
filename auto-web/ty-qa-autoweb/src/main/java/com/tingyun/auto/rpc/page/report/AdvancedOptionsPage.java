@@ -304,6 +304,11 @@ public class AdvancedOptionsPage extends CommonPage {
 	@FindBy(tagName="h1")
 	public WebElement booleanTitle2;//用来地图标题
 	
+	/**
+	* @author : chenjingli
+	* @decription 性能概括判断
+	* @return
+	 */
 	public void assEqual(){
 		
 		if(driverBrowser.getPageText(booleanTitle2).contains("性能分布直方图")){
@@ -345,6 +350,7 @@ public class AdvancedOptionsPage extends CommonPage {
 				
 			}else if(driverBrowser.getPageText(booleanTitle2).contains("性能分布直方图")){
 				assertEquals(true, driverBrowser.isElementPresent(booDistributionHistogram));
+			//以下开始了************性能指标图的判断	
 			}else if(driverBrowser.getPageText(booleanTitle2).contains("历史曲线图")){
 				assertEquals(true, driverBrowser.isElementPresent(booleanHistoryShouPingMap));
 				assertEquals(true, driverBrowser.isElementPresent(booleanHistoryAbleMap));
@@ -352,7 +358,34 @@ public class AdvancedOptionsPage extends CommonPage {
 		
 	}
 	
-	
+
+	/**
+	* @author : chenjingli
+	* @decription 性能指标判断
+	* @return
+	 */
+	public void assEqualPerIndicators(){
+		if(driverBrowser.getPageText(booleanTitle2).contains("历史曲线图")){
+			assertEquals(true, driverBrowser.isElementPresent(booleanHistoryShouPingMap));
+			assertEquals(true, driverBrowser.isElementPresent(booleanHistoryAbleMap));
+		}else if(driverBrowser.getPageText(booleanTitle).contains("省份曲线图")||
+				driverBrowser.getPageText(booleanTitle).contains("城市曲线图")){
+			assertEquals(true, driverBrowser.isElementPresent(provincesAndCityShouPingrMap));
+			assertEquals(true, driverBrowser.isElementPresent(provincesAndCityAblerMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("运营商曲线图")){
+			assertEquals(true, driverBrowser.isElementPresent(operatoShouPingrMap));
+			assertEquals(true, driverBrowser.isElementPresent(operatoAblerMap));
+		}else if(driverBrowser.getPageText(booleanTitle).contains("城市曲线图")||
+				driverBrowser.getPageText(booleanTitle).contains("城市运营商曲线图")){
+			assertEquals(true, driverBrowser.isElementPresent(provincesShouPingrMap));
+			assertEquals(true, driverBrowser.isElementPresent(provincesAblerMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("环比曲线图")){
+			assertEquals(true, driverBrowser.isElementPresent(sequentialShouPingrMap));
+			assertEquals(true, driverBrowser.isElementPresent(sequentialAblerMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("对比曲线图")){
+			assertEquals(true, driverBrowser.isElementPresent(contrastCurveMap));
+		}
+	}
 	public int tryCatch(int i){
 		logger.info("*********************开始进入第{}次循环*****************",i);
 		int count = 0;
