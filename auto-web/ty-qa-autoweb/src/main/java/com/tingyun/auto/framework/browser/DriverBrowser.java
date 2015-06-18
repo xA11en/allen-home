@@ -63,14 +63,13 @@ public class DriverBrowser{
 				}
 				webDriver.manage().window().maximize();
 			}else{
-				System.out.println("start");
 				remoteWebDriver = WebdriverFactory.createWebDriver(type).getRemWebDriver();
 				if(remoteWebDriver == null){
 					logger.error("反向代理生成的remoteWebDriver为null-------{}",remoteWebDriver);
 				}
 			}
 		}catch(Exception e){
-			logger.error("选择浏览器类型，启动仿真浏览器异常---------："+type,e);
+			logger.error("选择浏览器类型，启动仿真浏览器异常---------：{}-堆栈信息-{}",type,e);
 		}
 	}
 	
