@@ -87,6 +87,22 @@ public class GeneralizPerforPage extends ReportPage{
 		this.testPublich();
 	}
 	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-运营商性能图
+	 */
+	public void operatorPerformanceMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[11]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-省份性能图
+	 */
+	public void provincesPerformanceMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[12]/a")).click();
+		this.testPublich();
+	}
+	
 	
 	public void testPublich(){
 		int count = 0;
@@ -239,11 +255,26 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.click(xpathCliFirstCity);
 				driverBrowser.click(xpathCliFirstCity);
 				
-				//选择时间粒度
-				logger.info("时间粒度选项===》select{默认选择时间:30分钟}");
-				sb.append("时间粒度选项===》select{默认选择时间：30分钟}");
+				//显示及排序选项
+				logger.info("显示及排序选项===》click{正排序}");
+				sb.append("显示及排序选项===》click{正排序}");
 				driverBrowser.pause(1);
-				driverBrowser.select(idSelTime, "30", "value");
+				driverBrowser.click(idCliSortZheng);
+				
+				if(driverBrowser.getPageText(booleanTitle).contains("历史曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("运营商曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("省份曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("城市曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("省份运营商曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("城市运营商曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("对比曲线图")||
+				   driverBrowser.getPageText(booleanTitle).contains("环比曲线图")){
+					//选择时间粒度
+					logger.info("时间粒度选项===》select{默认选择时间:30分钟}");
+					sb.append("时间粒度选项===》select{默认选择时间：30分钟}");
+					driverBrowser.pause(1);
+					driverBrowser.select(idSelTime, "30", "value");
+				}
 				
 				//运营商选项
 				logger.info("运营商选项===》select{节点组中的运营商}");
@@ -336,6 +367,17 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.pause(1000);
 				driverBrowser.select(idSelOperator, "主要网络提供商","text");
 				driverBrowser.click(xpathCliItOper);
+				
+				//显示及排序选项
+				if(driverBrowser.getPageText(booleanTitle).contains("运营商")){
+					logger.info("显示及排序选项===》click{按运营商}");
+					sb.append("显示及排序选项===》click{按运营商}");
+				}else{
+					logger.info("显示及排序选项===》click{按城市}");
+					sb.append("显示及排序选项===》click{按城市}");
+				}
+				driverBrowser.pause(1);
+				driverBrowser.click(idCliAble);
 				
 				//按监测节点IP/ID过滤 
 				logger.info("按监测节点IP/ID过滤===》select{按ip 不包含ip，send ip:192.168.9.1}");
@@ -485,7 +527,7 @@ public class GeneralizPerforPage extends ReportPage{
 				//点击高级选项
 				driverBrowser.click(xpathCliAdvancedOptions);
 			}	
-			this.assEqual();
+			this.assEqualPerIndicators();
 			sb.delete(0, sb.length());
 		}catch(Exception e){
 			Reporter.log("/n"+sb.toString()+"失败");

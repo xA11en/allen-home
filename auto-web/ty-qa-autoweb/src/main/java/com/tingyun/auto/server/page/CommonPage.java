@@ -1,6 +1,5 @@
 package com.tingyun.auto.server.page;
 
-import org.openqa.jetty.jetty.servlet.WebApplicationContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

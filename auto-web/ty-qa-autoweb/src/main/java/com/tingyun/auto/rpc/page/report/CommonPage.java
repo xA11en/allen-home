@@ -218,5 +218,17 @@ public class CommonPage extends GlobalPage {
 	@FindBy(xpath="//*[@id='compPerfContrastByTime']/img")
 	public WebElement contrastCurveMap;//性能指标
 	
+	/**
+	 * 运营商性能图
+	 */
+	@FindBy(xpath="//*[@id='compPerfByIsp']/img")
+	public WebElement operatorPerformanceMap;//性能指标
+	
+	/**
+	 * 省份性能图
+	 */
+	@FindBy(xpath="//*[@id='compPerfByLocation']/img")
+	public WebElement provincesPerformanceMap;//性能指标
+	
 	//*********************性能指标map判断元素end**********************************
 }

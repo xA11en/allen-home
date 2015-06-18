@@ -25,10 +25,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
@@ -46,8 +48,9 @@ import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.xml.XmlSuite;
-
+import org.testng.IResultMap;
 import com.tingyun.auto.common.Constant;
+import com.tingyun.auto.utils.HtmlMail;
 import com.tingyun.auto.utils.ShareSmbConfig;
 
 
@@ -58,7 +61,7 @@ import com.tingyun.auto.utils.ShareSmbConfig;
  * @author Daniel Dyer
  * @modify by  chenjingli
  */
-public class HTMLReporter extends AbstractReporter {
+public class HTMLReporter extends AbstractReporter{
 
 	/**
 	 * slf4j logback
@@ -186,63 +189,108 @@ public class HTMLReporter extends AbstractReporter {
 		int skip = 0;
 
 		StringBuilder html = new StringBuilder("<html>");
-
 		StringBuilder sb = new StringBuilder("");
-		sb.append("<h4>" + "详细结果：" + "<a href= '"+url+"' target='_blank'></>"+url+"</h4><br>");
-		int lineCount = 0;
-
+		html.append("<h4 href= '"+url+"' target='_blank'>" + "详细结果："+url+"</h4><br>");
+	
 		for (ISuite suite : suites) {
+			int lineCount = 0;
 			if (suite.getAllMethods() == null
 					|| suite.getAllMethods().size() == 0) {
 				continue;
 			}
+			html.append("<h1 style='text-align:center;color:blue'>测 试 报 告</h1>");
+			
 			if (lineCount == 0) {
 				sb.append("<h2 style='margin-left:40px;'>");
 			} else {
 				sb.append("<h2>");
 			}
-			sb.append("suite 模块：" + suite.getName()).append("/<h2>");
+			
 			Map<String, ISuiteResult> results = suite.getResults();
 			Iterator<String> it = suite.getResults().keySet().iterator();
+			int pass1=0;
+			int fail1=0;
 			while (it.hasNext()) {
+				/**
+				 * 整理出所需要的数据
+				 */
 				ISuiteResult result = results.get(it.next());
 				ITestContext testContext = result.getTestContext();
-				passed = passed + testContext.getPassedTests().size();
-				fail = fail + testContext.getFailedTests().size();
-				skip = skip + testContext.getSkippedTests().size();
-
-				int total = testContext.getFailedTests().size()
-						+ testContext.getPassedTests().size()
-						+ testContext.getSkippedTests().size();
-
-				 sb.append("<h3 style='margin-left:80px;'>" + "test 模块："
-				 + testContext.getName() + "\t总计：" + total + "\t通过："
-				 + testContext.getPassedTests().size() + "\t失败："
-				 + testContext.getFailedTests().size() + "\t跳过："
-				 + testContext.getSkippedTests().size() + "\t通过率："
-				 + (testContext.getPassedTests().size() * 100 / total)
-				 + " %" + "</h3>");
-				sb.append("<h3 style='margin-left:80px;'>" + "test 模块："
-						+ testContext.getName() + "</h3>");
+				ITestNGMethod[] methods = testContext.getAllTestMethods();
+				Set<ITestResult> setResults = new HashSet<>();
+				Set<ITestResult> setResults1 = new HashSet<>();
+				Set<ITestResult> setResults2 = new HashSet<>();
+				String description = null;
+				//String methodName  = null;
+				int status = 0;
+				int status1 = 0;
+				int status2 = 0;
+				/**
+				 * 产品线模块名称  test结果统计
+				 */
+				pass1 = testContext.getPassedTests().size();
+				fail1 = testContext.getFailedTests().size()+testContext.getSkippedTests().size();
+				passed = passed+pass1;
+				fail = fail+fail1;
+				int total = pass1+fail1;
+						
+				sb.append("<h3 style='color:blue;'>"+suite.getName()+"====>"+testContext.getName()+"\t  结果总计：" + total + "\t通过："
+						+ pass1 + "\t失败："
+						+fail1+ "</h3>");
+				
+				for (ITestNGMethod iTestNGMethod : methods) {
+					description = iTestNGMethod.getDescription();
+					//methodName = iTestNGMethod.getMethodName();
+					setResults = testContext.getPassedTests().getResults(iTestNGMethod);
+					setResults1 = testContext.getFailedTests().getResults(iTestNGMethod);
+					setResults2 = testContext.getSkippedTests().getResults(iTestNGMethod);
+					for (ITestResult iTestResult : setResults) {
+						status = iTestResult.getStatus();
+					}
+					for (ITestResult iTestResult : setResults1) {
+						status1 = iTestResult.getStatus();
+					}
+					for (ITestResult iTestResult : setResults2) {
+						status2 = iTestResult.getStatus();
+					}
+					if(status==1 || status1==1 || status2==1){
+						sb.append("<h4 style='margin-left:80px;color:green;'>"  
+								+"用例描述："+description+"&nbsp;&nbsp;&nbsp;&nbsp;状态： PASS"+"</h4>");
+					}else if(status ==2 || status==3 || status==0 ||status1 ==2 || status2==3 || status2==0 || status2==2){
+						sb.append("<h4 style='margin-left:80px;color:red;'>" 
+								+"用例描述："+description+"&nbsp;&nbsp;&nbsp;&nbsp;状态： FAIL"+"</h4>");
+					}
+					
+				}
+				
+				/**
+				 *  总的测试结果统计
+				 */
+			
+		
+				
 			}
 			lineCount++;
+			
 		}
-
 		html.append(
-				"<h4 style='color:red;'>" + "auto" + "环境     结果统计："
-						+ (passed + fail + skip) + "\t通过:" + passed
-						+ "&nbsp;&nbsp;失败:" + fail + "&nbsp;&nbsp;跳过:" + skip
+				"<h2 style='margin-top:30px;color:blue;'>" + "总体结果统计："
+						+ (passed + fail) + "\t通过:" + passed
+						+ "&nbsp;&nbsp;失败:" + fail
 						+ "&nbsp;&nbsp;通过率:"
-						+ (passed * 100 / (passed + fail + skip)) + " %</h4>")
-				.append(sb.toString()).append("</html>");
-
+						+ (passed * 100 / (passed + fail)) + " %</h2>");
+		
+		
+		html.append(sb.toString()).append("</html>");
+		
 		String subject = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分ss秒")
-				.format(reportTime)
-				+ "  "
-				+ "auto"
-				+ "环境      "
-				+ bundle.getString("subject");
-	//	HtmlMail.send(toMail, subject, html.toString());
+		.format(reportTime)
+		+ "  "
+		+ "auto"
+		+ "环境      "
+		+ bundle.getString("subject");
+		HtmlMail.send(toMail, subject, html.toString());
+
 	}
 
 	/**

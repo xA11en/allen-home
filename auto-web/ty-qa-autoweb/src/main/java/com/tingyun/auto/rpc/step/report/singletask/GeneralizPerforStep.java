@@ -3,7 +3,9 @@ package com.tingyun.auto.rpc.step.report.singletask;
 import static org.testng.Assert.fail;
 
 import org.testng.TestNGException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -27,10 +29,12 @@ public class GeneralizPerforStep extends GlobalStep{
 	public static final String DESCITYOPERATORMAP = "性能指标-城市运营商曲线图测试用例";
 	public static final String DESSEQUENTIALCURVEMAP = "性能指标-环比曲线图测试用例";
 	public static final String DESCONTRASTCURVEMAP = "性能指标-对比曲线图测试用例";
+	public static final String operatorPerformanceMap = "性能指标-运营商性能图测试用例";
+	public static final String provincesPerformanceMap = "性能指标-省份性能图测试用例";
 	public static final String rpcDesLogin = "rpc系统登录测试用例";
 	private static DriverBrowser driverBrowser;
 	private static 	GeneralizPerforPage genPage;
-	@BeforeMethod
+	@BeforeClass
 	public void testRpcLogin(){
 		pinfo(ReportStep.class,rpcDesLogin+caseStart);
 		try {
@@ -40,7 +44,7 @@ public class GeneralizPerforStep extends GlobalStep{
 			driverBrowser.open(SeleniumSettings.URL);
 			reportPage.RpcLogin();
 			driverBrowser.pause(1000);
-			genPage.clickGenPerfor();
+			//genPage.clickGenPerfor();
 		}catch(Error e){
 			driverBrowser.failScreenShot("testRpcLogin");
 			fail(rpcDesLogin+FAIL + e.getMessage(), e);
@@ -55,6 +59,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testHistoryMap(){
 		pinfo(ReportStep.class,DESHISTORYMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.historyCurveMap();
 		pinfo(ReportStep.class,DESHISTORYMAP+caseEnd);	
@@ -75,6 +80,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testOperatorMap(){
 		pinfo(ReportStep.class,DESOPERATORMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.operatorMap();
 		pinfo(ReportStep.class,DESOPERATORMAP+caseEnd);	
@@ -95,6 +101,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testprovincesMap(){
 		pinfo(ReportStep.class,DESPROVINCESMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.provincesMap();
 		pinfo(ReportStep.class,DESPROVINCESMAP+caseEnd);	
@@ -115,6 +122,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testCityMap(){
 		pinfo(ReportStep.class,DESCCITYMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.cityMap();
 		pinfo(ReportStep.class,DESCCITYMAP+caseEnd);	
@@ -135,6 +143,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testProvincesOperatorMap(){
 		pinfo(ReportStep.class,DESPROVINCESOPERATORMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.provincesOperatorMap();
 		pinfo(ReportStep.class,DESPROVINCESOPERATORMAP+caseEnd);	
@@ -151,10 +160,11 @@ public class GeneralizPerforStep extends GlobalStep{
 	* @decription 城市运营商曲线图
 	* @return
 	 */
-	@Test(description=DESCITYOPERATORMAP)
+	//@Test(description=DESCITYOPERATORMAP)
 	public void testCityOperatorMap(){
 		pinfo(ReportStep.class,DESCITYOPERATORMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.cityOperatorMap();
 		pinfo(ReportStep.class,DESCITYOPERATORMAP+caseEnd);	
@@ -171,10 +181,11 @@ public class GeneralizPerforStep extends GlobalStep{
 	* @decription 环比曲线图
 	* @return
 	 */
-	@Test(description=DESSEQUENTIALCURVEMAP)
+	//@Test(description=DESSEQUENTIALCURVEMAP)
 	public void testSequentialCurveMapMap(){
 		pinfo(ReportStep.class,DESSEQUENTIALCURVEMAP+caseStart);
 		try {
+			pubOpen();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.sequentialCurveMap();
 		pinfo(ReportStep.class,DESSEQUENTIALCURVEMAP+caseEnd);	
@@ -186,11 +197,12 @@ public class GeneralizPerforStep extends GlobalStep{
 			throw new TestNGException(DESSEQUENTIALCURVEMAP+"" + e.getMessage(), e);
 		} 
 	}
-	@Test(description=DESCONTRASTCURVEMAP)
+//	@Test(description=DESCONTRASTCURVEMAP)
 	public void testContrastCurveMap(){
 		pinfo(ReportStep.class,DESCONTRASTCURVEMAP+caseStart);
 		try {
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+			pubOpen();
 			genPage.contrastCurveMap();
 		pinfo(ReportStep.class,DESCONTRASTCURVEMAP+caseEnd);	
 		}catch(Error e){
@@ -201,7 +213,48 @@ public class GeneralizPerforStep extends GlobalStep{
 			throw new TestNGException(DESCONTRASTCURVEMAP+"" + e.getMessage(), e);
 		} 
 	}
-	@AfterMethod
+	
+	//@Test(description=operatorPerformanceMap)
+	public void testOperatorPerformanceMap(){
+		pinfo(ReportStep.class,operatorPerformanceMap+caseStart);
+		try {
+			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+			pubOpen();
+			genPage.operatorPerformanceMap();
+		pinfo(ReportStep.class,operatorPerformanceMap+caseEnd);	
+		}catch(Error e){
+			driverBrowser.failScreenShot("testOperatorPerformanceMap");
+			fail(operatorPerformanceMap+FAIL + e.getMessage(), e);
+		}catch (Exception e) {
+			driverBrowser.failScreenShot("testOperatorPerformanceMap");
+			throw new TestNGException(operatorPerformanceMap+"" + e.getMessage(), e);
+		} 
+	}
+	
+
+	@Test(description=provincesPerformanceMap)
+	public void testProvincesPerformanceMap(){
+		pinfo(ReportStep.class,provincesPerformanceMap+caseStart);
+		try {
+			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+			pubOpen();
+			driverBrowser.executeScript("document.getElementById('btnOverlayAdvance').click");
+			genPage.provincesPerformanceMap();
+		pinfo(ReportStep.class,provincesPerformanceMap+caseEnd);	
+		}catch(Error e){
+			driverBrowser.failScreenShot("testProvincesPerformanceMap");
+			fail(provincesPerformanceMap+FAIL + e.getMessage(), e);
+		}catch (Exception e) {
+			driverBrowser.failScreenShot("testProvincesPerformanceMap");
+			throw new TestNGException(provincesPerformanceMap+"" + e.getMessage(), e);
+		} 
+	}
+	void pubOpen(){
+		driverBrowser.open("http://rpc.dev.networkbench.com/rpc/home.do");
+		genPage.clickGenPerfor();
+	}
+	
+	@AfterClass
 	public void afterClass(){
 		driverBrowser.quit();
 	}

@@ -222,7 +222,7 @@ public class DriverBrowser{
     private void isClickAble(final WebElement webElement, SystemClock clock, long endTime) {
         try {
         	timeOUt(webElement);
-            webElement.click();
+            //webElement.click();
             logger.info("Clicked successed! " + getWebElementContent(webElement));
         } catch (AssertionError e) {
             if (clock.isNowBefore(endTime)) {
@@ -734,4 +734,6 @@ public class DriverBrowser{
 			return;
 		}
 	}
+	
+	
 }

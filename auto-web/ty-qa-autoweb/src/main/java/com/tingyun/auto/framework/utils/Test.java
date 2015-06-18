@@ -1,7 +1,6 @@
 package com.tingyun.auto.framework.utils;
 
-import java.io.IOException;
-
+import org.openqa.selenium.By;
 
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
@@ -9,18 +8,19 @@ import com.tingyun.auto.framework.browser.DriverBrowser;
 public class Test {
 	@org.testng.annotations.Test
 	public void startBrowser(){
-		DriverBrowser db = new DriverBrowser(BrowserType.IE);
+		DriverBrowser db = new DriverBrowser(BrowserType.Chrome);
 		db.open("http://www.baidu.com");
+		db.executeScript("document.getElementById('setf').click()");
 	}
-	public static void main(String[] args) throws IOException {
-		
-//		File pathToFirefoxBinary = new File(SeleniumSettings.FIREFOX); 
-//		FirefoxBinary firefoxbin = new FirefoxBinary(pathToFirefoxBinary);
-//	      DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//	      capabilities.setPlatform(platform)
-//	      capabilities.setCapability(capabilityName, value)
-//	      capabilities.setCapability("firefox_profile", firefoxbin);
-//	      WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
-//	      driver.get("http://www.baidu.com");
-	}
+//	PUBLIC STATIC VOID MAIN(STRING[] ARGS) THROWS IOEXCEPTION {
+//		
+////		FILE PATHTOFIREFOXBINARY = NEW FILE(SELENIUMSETTINGS.FIREFOX); 
+////		FIREFOXBINARY FIREFOXBIN = NEW FIREFOXBINARY(PATHTOFIREFOXBINARY);
+////	      DESIREDCAPABILITIES CAPABILITIES = DESIREDCAPABILITIES.FIREFOX();
+////	      CAPABILITIES.SETPLATFORM(PLATFORM)
+////	      CAPABILITIES.SETCAPABILITY(CAPABILITYNAME, VALUE)
+////	      CAPABILITIES.SETCAPABILITY("FIREFOX_PROFILE", FIREFOXBIN);
+////	      WEBDRIVER DRIVER = NEW REMOTEWEBDRIVER(NEW URL("HTTP://LOCALHOST:4444/WD/HUB"), CAPABILITIES);
+////	      DRIVER.GET("HTTP://WWW.BAIDU.COM");
+//	}
 }

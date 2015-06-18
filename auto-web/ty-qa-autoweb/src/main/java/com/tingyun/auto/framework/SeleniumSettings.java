@@ -31,7 +31,7 @@ public class SeleniumSettings {
 	            file = new FileInputStream("src/main/resources/selenium.properties");
 	            prop.load(file);
 	        } catch (Exception e) {
-	        	log.error("初始化selenium.pro 文件错误",e);
+	        	log.error("初始化selenium.pro 文件错误{}",e);
 	        }finally{
 	        	if(file!=null){
 	        		try {

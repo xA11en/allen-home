@@ -1,5 +1,6 @@
 package com.tingyun.auto.rpc.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -41,7 +42,7 @@ public class RpcLoginPage extends GlobalPage {
 	/**
 	 * 点击登陆
 	 */
-	@FindBy(xpath="//a[contains(text(),'登')]")
+	@FindBy(xpath="//table[@class='login_table']/descendant::a[1]")
 	public WebElement xpathCliLogin;
 	
 	public void RpcLogin()throws Exception{
@@ -53,6 +54,9 @@ public class RpcLoginPage extends GlobalPage {
 		driverBrowser.click(xpathCliRemberPwd);
 		//点击登陆
 		driverBrowser.click(xpathCliLogin);
+		//把用户名密码存入cookie
+		driverBrowser.setCookie(SeleniumSettings.USERNAME,"username");
+		driverBrowser.setCookie(SeleniumSettings.PASSWORD,"pwd");
 		//判断登陆是否成功
 		assertEquals(driverBrowser.getWebDriver().getTitle(),"听云");
 	}

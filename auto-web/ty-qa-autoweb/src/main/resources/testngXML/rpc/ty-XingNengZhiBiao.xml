@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
 
-<suite name="系统登录" preserve-order="true" parallel="tests"
+<suite name="rpc产品线" preserve-order="true" parallel="tests"
 	thread-count="1">
 	<listeners>
 		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener>
@@ -12,12 +12,12 @@
         <classes>
             <class name="com.tingyun.auto.rpc.step.report.singletask.GeneralizPerforStep">
             <methods>
-        			<include name="testHistoryMap"/>  <!-- 历史曲线图 -->
-        			<include name="testOperatorMap"/> <!-- 运营商曲线图 -->
-        			<include name="testprovincesMap"/> <!-- 省份曲线图-->
-        			<include name="testCityMap"/> <!-- 城市曲线图-->
-        			<include name="testProvincesOperatorMap"/> <!-- 省份运营商曲线图-->
-        			<include name="testCityOperatorMap"/> <!-- 城市运营商曲线图-->
+        			<exclude name="testHistoryMap"/>  <!-- 历史曲线图 -->
+        			<exclude name="testOperatorMap"/> <!-- 运营商曲线图 -->
+        			<exclude name="testprovincesMap"/> <!-- 省份曲线图-->
+        			<exclude name="testCityMap"/> <!-- 城市曲线图-->
+        			<exclude name="testProvincesOperatorMap"/> <!-- 省份运营商曲线图-->
+        			<exclude name="testCityOperatorMap"/> <!-- 城市运营商曲线图-->
         			<include name="testContrastCurveMap"/> <!-- 对比曲线图-->
         			<include name="testSequentialCurveMapMap"/> <!-- 环比曲线图-->
         		</methods>

@@ -384,6 +384,10 @@ public class AdvancedOptionsPage extends CommonPage {
 			assertEquals(true, driverBrowser.isElementPresent(sequentialAblerMap));
 		}else if(driverBrowser.getPageText(booleanTitle2).contains("对比曲线图")){
 			assertEquals(true, driverBrowser.isElementPresent(contrastCurveMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("运营商性能图")){
+			assertEquals(true, driverBrowser.isElementPresent(operatorPerformanceMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("省份性能图")){
+			assertEquals(true, driverBrowser.isElementPresent(provincesPerformanceMap));
 		}
 	}
 	public int tryCatch(int i){
@@ -478,7 +482,7 @@ public class AdvancedOptionsPage extends CommonPage {
 						driverBrowser.click(xpathCliFirstCity);
 						driverBrowser.click(xpathCliFirstCity);
 						
-						//选择城市选项
+						//显示及排序选项
 						logger.info("显示及排序选项===》click{性能图}");
 						sb.append("显示及排序选项===》click{性能图}");
 						driverBrowser.pause(1);
@@ -497,7 +501,7 @@ public class AdvancedOptionsPage extends CommonPage {
 					driverBrowser.click(xpathCliFirstCity);
 					driverBrowser.click(xpathCliFirstCity);
 					
-					//选择城市选项
+					//显示及排序选项
 					logger.info("显示及排序选项===》click{性能图}");
 					sb.append("显示及排序选项===》click{性能图}");
 					driverBrowser.pause(1);

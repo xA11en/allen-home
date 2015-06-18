@@ -143,16 +143,19 @@ public class ReportPage extends AdvancedOptionsPage {
 		}
 			//判断使用哪个高级选项
 			if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")|| 
-					driverBrowser.getPageText(booleanTitle).contains("省份性能图") ||
-					driverBrowser.getPageText(booleanTitle).contains("城市性能图")){
-				logger.info("************使用highOptionMropertyMap method**********");
+			   driverBrowser.getPageText(booleanTitle).contains("省份性能图") ||
+			   driverBrowser.getPageText(booleanTitle).contains("城市性能图")){
+				
+			    logger.info("************使用highOptionMropertyMap method**********");
 				count4 = ap.highOptionMropertyMap();
 			}else{
 				if(driverBrowser.getPageText(booleanTitle).contains("散点图")||
-						driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+				   driverBrowser.getPageText(booleanTitle).contains("性能分布直方图")){
+					
 					logger.info("************使用highOptionThree method**********");
 					count4 = ap.highOptionThree();
 				}else{
+					
 					logger.info("************使用highOption method**********");
 					count4 = ap.highOption();
 				}
@@ -321,8 +324,9 @@ public class ReportPage extends AdvancedOptionsPage {
 					,String.valueOf(i), "index");
 			//消除alert
 			driverBrowser.confirmAlert(true);
+			
+			//判断图标是否存在
 			try{
-				//判断图标是否存在
 				this.tryCatch();
 			}catch(Exception e){
 				Reporter.log("/n"+sb.toString()+"失败");
