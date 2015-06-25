@@ -21,17 +21,7 @@ import com.tingyun.auto.rpc.page.report.singletask.GeneralizPerforPage;
 * @decription: 性能指标
  */
 public class GeneralizPerforStep extends GlobalStep{
-	public static final String DESHISTORYMAP = "性能指标-历史曲线图测试用例";
-	public static final String DESOPERATORMAP = "性能指标-运营商曲线图测试用例";
-	public static final String DESPROVINCESMAP = "性能指标-省份曲线图测试用例";
-	public static final String DESCCITYMAP = "性能指标-城市曲线图测试用例";
-	public static final String DESPROVINCESOPERATORMAP = "性能指标-省份运营商曲线图测试用例";
-	public static final String DESCITYOPERATORMAP = "性能指标-城市运营商曲线图测试用例";
-	public static final String DESSEQUENTIALCURVEMAP = "性能指标-环比曲线图测试用例";
-	public static final String DESCONTRASTCURVEMAP = "性能指标-对比曲线图测试用例";
-	public static final String operatorPerformanceMap = "性能指标-运营商性能图测试用例";
-	public static final String provincesPerformanceMap = "性能指标-省份性能图测试用例";
-	public static final String rpcDesLogin = "rpc系统登录测试用例";
+
 	private static DriverBrowser driverBrowser;
 	private static 	GeneralizPerforPage genPage;
 	@BeforeClass
@@ -59,7 +49,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testHistoryMap(){
 		pinfo(ReportStep.class,DESHISTORYMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.historyCurveMap();
 		pinfo(ReportStep.class,DESHISTORYMAP+caseEnd);	
@@ -80,7 +70,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testOperatorMap(){
 		pinfo(ReportStep.class,DESOPERATORMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.operatorMap();
 		pinfo(ReportStep.class,DESOPERATORMAP+caseEnd);	
@@ -101,7 +91,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testprovincesMap(){
 		pinfo(ReportStep.class,DESPROVINCESMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.provincesMap();
 		pinfo(ReportStep.class,DESPROVINCESMAP+caseEnd);	
@@ -122,7 +112,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testCityMap(){
 		pinfo(ReportStep.class,DESCCITYMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.cityMap();
 		pinfo(ReportStep.class,DESCCITYMAP+caseEnd);	
@@ -143,7 +133,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testProvincesOperatorMap(){
 		pinfo(ReportStep.class,DESPROVINCESOPERATORMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.provincesOperatorMap();
 		pinfo(ReportStep.class,DESPROVINCESOPERATORMAP+caseEnd);	
@@ -164,7 +154,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testCityOperatorMap(){
 		pinfo(ReportStep.class,DESCITYOPERATORMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.cityOperatorMap();
 		pinfo(ReportStep.class,DESCITYOPERATORMAP+caseEnd);	
@@ -185,7 +175,7 @@ public class GeneralizPerforStep extends GlobalStep{
 	public void testSequentialCurveMapMap(){
 		pinfo(ReportStep.class,DESSEQUENTIALCURVEMAP+caseStart);
 		try {
-			pubOpen();
+			openUrl();
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
 			genPage.sequentialCurveMap();
 		pinfo(ReportStep.class,DESSEQUENTIALCURVEMAP+caseEnd);	
@@ -202,7 +192,7 @@ public class GeneralizPerforStep extends GlobalStep{
 		pinfo(ReportStep.class,DESCONTRASTCURVEMAP+caseStart);
 		try {
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
-			pubOpen();
+			openUrl();
 			genPage.contrastCurveMap();
 		pinfo(ReportStep.class,DESCONTRASTCURVEMAP+caseEnd);	
 		}catch(Error e){
@@ -219,7 +209,7 @@ public class GeneralizPerforStep extends GlobalStep{
 		pinfo(ReportStep.class,operatorPerformanceMap+caseStart);
 		try {
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
-			pubOpen();
+			openUrl();
 			genPage.operatorPerformanceMap();
 		pinfo(ReportStep.class,operatorPerformanceMap+caseEnd);	
 		}catch(Error e){
@@ -231,14 +221,13 @@ public class GeneralizPerforStep extends GlobalStep{
 		} 
 	}
 	
-
-	@Test(description=provincesPerformanceMap)
+	//省份性能图
+	//@Test(description=provincesPerformanceMap)
 	public void testProvincesPerformanceMap(){
 		pinfo(ReportStep.class,provincesPerformanceMap+caseStart);
 		try {
 			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
-			pubOpen();
-			driverBrowser.executeScript("document.getElementById('btnOverlayAdvance').click");
+			openUrl();
 			genPage.provincesPerformanceMap();
 		pinfo(ReportStep.class,provincesPerformanceMap+caseEnd);	
 		}catch(Error e){
@@ -249,7 +238,75 @@ public class GeneralizPerforStep extends GlobalStep{
 			throw new TestNGException(provincesPerformanceMap+"" + e.getMessage(), e);
 		} 
 	}
-	void pubOpen(){
+	//城市性能图
+	//@Test(description=cityPerformanceMap)
+	public void testCityPerformanceMap(){
+		pinfo(ReportStep.class,cityPerformanceMap+caseStart);
+		try {
+			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+			openUrl();
+			genPage.cityPerformanceMap();
+		pinfo(ReportStep.class,cityPerformanceMap+caseEnd);	
+		}catch(Error e){
+			driverBrowser.failScreenShot("testCityPerformanceMap");
+			fail(cityPerformanceMap+FAIL + e.getMessage(), e);
+		}catch (Exception e) {
+			driverBrowser.failScreenShot("testCityPerformanceMap");
+			throw new TestNGException(cityPerformanceMap+"" + e.getMessage(), e);
+		} 
+	}
+	//@Test(description=provinceOperatorsMap)
+	public void testProvinceOperatorsMap(){
+		pinfo(ReportStep.class,provinceOperatorsMap+caseStart);
+		try {
+			GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+			openUrl();
+			genPage.provinceOperatorsMap();
+		pinfo(ReportStep.class,provinceOperatorsMap+caseEnd);	
+		}catch(Error e){
+			driverBrowser.failScreenShot("testProvinceOperatorsMap");
+			fail(provinceOperatorsMap+FAIL + e.getMessage(), e);
+		}catch (Exception e) {
+			driverBrowser.failScreenShot("testProvinceOperatorsMap");
+			throw new TestNGException(provinceOperatorsMap+"" + e.getMessage(), e);
+		} 
+	}
+	//城市运营商性能图
+	//@Test(description=cityOperatorsMap)
+	public void testCityOperatorsMap(){
+			pinfo(ReportStep.class,cityOperatorsMap+caseStart);
+			try {
+				GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+				openUrl();
+				genPage.cityOperatorsMap();
+			pinfo(ReportStep.class,cityOperatorsMap+caseEnd);	
+			}catch(Error e){
+				driverBrowser.failScreenShot("testCityOperatorsMap");
+				fail(cityOperatorsMap+FAIL + e.getMessage(), e);
+			}catch (Exception e) {
+				driverBrowser.failScreenShot("testCityOperatorsMap");
+				throw new TestNGException(cityOperatorsMap+"" + e.getMessage(), e);
+			} 
+		}
+	
+	//城市运营商性能图
+	@Test(description=sumUpMap)
+	public void testSumUpMap(){
+			pinfo(ReportStep.class,sumUpMap+caseStart);
+			try {
+				GeneralizPerforPage genPage = new GeneralizPerforPage(driverBrowser);
+				openUrl();
+				genPage.sumUpMap();
+			pinfo(ReportStep.class,sumUpMap+caseEnd);	
+			}catch(Error e){
+				driverBrowser.failScreenShot("testSumUpMap");
+				fail(sumUpMap+FAIL + e.getMessage(), e);
+			}catch (Exception e) {
+				driverBrowser.failScreenShot("testSumUpMap");
+				throw new TestNGException(sumUpMap+"" + e.getMessage(), e);
+			} 
+		}
+	void openUrl(){
 		driverBrowser.open("http://rpc.dev.networkbench.com/rpc/home.do");
 		genPage.clickGenPerfor();
 	}

@@ -216,19 +216,34 @@ public class CommonPage extends GlobalPage {
 	 * 对比曲线图
 	 */
 	@FindBy(xpath="//*[@id='compPerfContrastByTime']/img")
-	public WebElement contrastCurveMap;//性能指标
+	public WebElement contrastCurveMap;//对比曲线图
 	
 	/**
 	 * 运营商性能图
 	 */
 	@FindBy(xpath="//*[@id='compPerfByIsp']/img")
-	public WebElement operatorPerformanceMap;//性能指标
+	public WebElement operatorPerformanceMap;//运营商性能图
 	
 	/**
 	 * 省份性能图
 	 */
 	@FindBy(xpath="//*[@id='compPerfByLocation']/img")
-	public WebElement provincesPerformanceMap;//性能指标
+	public WebElement provincesPerformanceMap;//省份性能图和城市性能图and
+	
+	/**
+	 * 省份性能图
+	 */
+	@FindBy(xpath="//*[@id='compPerfLocationIsp']/img")
+	public WebElement provinceOperatorsMap;// 省份运营商性能图  和城市运营商性能图
+	
+	/**
+	 * 汇总概况图
+	 */
+	@FindBy(xpath="//*[@id='componentsByTask']/img")
+	public WebElement performanceMap;//性能
+	
+	@FindBy(xpath="//*[@id='componentsByTaskAvail']/img")
+	public WebElement ableMap;//可用性
 	
 	//*********************性能指标map判断元素end**********************************
 }

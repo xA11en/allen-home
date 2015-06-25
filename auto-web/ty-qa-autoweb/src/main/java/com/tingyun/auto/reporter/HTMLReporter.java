@@ -48,10 +48,11 @@ import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.xml.XmlSuite;
-import org.testng.IResultMap;
+
 import com.tingyun.auto.common.Constant;
 import com.tingyun.auto.utils.HtmlMail;
 import com.tingyun.auto.utils.ShareSmbConfig;
+import com.tingyun.auto.utils.Smb;
 
 
 /**
@@ -134,7 +135,7 @@ public class HTMLReporter extends AbstractReporter{
 			createResults(suites, outputDirectory, onlyFailures);
 			createLog(outputDirectory, onlyFailures);
 			copyResources(outputDirectory);
-			//Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
+			Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
 			logger.info("上传svn共享服务器完成");
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
@@ -190,7 +191,7 @@ public class HTMLReporter extends AbstractReporter{
 
 		StringBuilder html = new StringBuilder("<html>");
 		StringBuilder sb = new StringBuilder("");
-		html.append("<h4 href= '"+url+"' target='_blank'>" + "详细结果："+url+"</h4><br>");
+		html.append("<h4>详细结果html:  <a href="+url+">"+url+"</a></h4><br>");
 	
 		for (ISuite suite : suites) {
 			int lineCount = 0;
@@ -244,21 +245,40 @@ public class HTMLReporter extends AbstractReporter{
 					setResults = testContext.getPassedTests().getResults(iTestNGMethod);
 					setResults1 = testContext.getFailedTests().getResults(iTestNGMethod);
 					setResults2 = testContext.getSkippedTests().getResults(iTestNGMethod);
-					for (ITestResult iTestResult : setResults) {
-						status = iTestResult.getStatus();
-					}
-					for (ITestResult iTestResult : setResults1) {
-						status1 = iTestResult.getStatus();
-					}
-					for (ITestResult iTestResult : setResults2) {
-						status2 = iTestResult.getStatus();
-					}
-					if(status==1 || status1==1 || status2==1){
-						sb.append("<h4 style='margin-left:80px;color:green;'>"  
-								+"用例描述："+description+"&nbsp;&nbsp;&nbsp;&nbsp;状态： PASS"+"</h4>");
-					}else if(status ==2 || status==3 || status==0 ||status1 ==2 || status2==3 || status2==0 || status2==2){
-						sb.append("<h4 style='margin-left:80px;color:red;'>" 
-								+"用例描述："+description+"&nbsp;&nbsp;&nbsp;&nbsp;状态： FAIL"+"</h4>");
+					if(setResults!=null && setResults.size()!=0){
+						for (ITestResult iTestResult : setResults) {
+							status = iTestResult.getStatus();
+							if(status==1 ){
+								sb.append("<h4 style='margin-left:60px;color:green;'>" +
+										"<span style='width:450px;float:left'>用例描述："+description+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;状态：PASS</span></h4>");
+							}else if(status ==2 || status==3){
+								sb.append("<h4 style='margin-left:60px;color:red;'>" +
+										"<span style='width:450px;float:left'>用例描述："+description+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;状态：FAIL</span></h4>");
+							}
+						}
+						
+					}else if(setResults1!=null && setResults1.size()!=0){
+						for (ITestResult iTestResult : setResults1) {
+							status1 = iTestResult.getStatus();
+							if(status1==1 ){
+								sb.append("<h4 style='margin-left:60px;color:green;'>" +
+										"<span style='width:450px;float:left'>用例描述："+description+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;状态：PASS</span></h4>");
+							}else if(status1 ==2 || status1==3){
+								sb.append("<h4 style='margin-left:60px;color:red;'>" +
+										"<span style='width:450px;float:left'>用例描述："+description+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;状态：FAIL</span></h4>");
+							}
+						}
+					}else if(setResults2!=null && setResults2.size()!=0){
+						for (ITestResult iTestResult : setResults2) {
+							status2 = iTestResult.getStatus();
+							if(status2==1 ){
+								sb.append("<h4 style='margin-left:60px;color:green;'>" +
+										"<span style='width:450px;float:left'>用例描述："+description+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;状态：PASS</span></h4>");
+							}else if(status2 ==2 || status2==3){
+								sb.append("<h4 style='margin-left:60px;color:red;'>" +
+										"<span style='width:450px;float:left'>用例描述："+description+"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;状态：FAIL</span></h4>");
+							}
+						}
 					}
 					
 				}
@@ -274,7 +294,7 @@ public class HTMLReporter extends AbstractReporter{
 			
 		}
 		html.append(
-				"<h2 style='margin-top:30px;color:blue;'>" + "总体结果统计："
+				"<h2 style='text-align:center;color:blue;'>" + "总体结果统计："
 						+ (passed + fail) + "\t通过:" + passed
 						+ "&nbsp;&nbsp;失败:" + fail
 						+ "&nbsp;&nbsp;通过率:"

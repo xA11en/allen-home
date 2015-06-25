@@ -16,6 +16,7 @@ public class ReportPage extends AdvancedOptionsPage {
 	
 	
 	private static Logger logger = LoggerFactory.getLogger(ReportPage.class);
+	private static final int RETURN_ZERO = 0 ;
 	protected StringBuffer sb = new StringBuffer();
 	public static AdvancedOptionsPage ap;
 	public ReportPage(DriverBrowser driverBrowser) {
@@ -310,8 +311,9 @@ public class ReportPage extends AdvancedOptionsPage {
 	public int PerIndexCycle(){
 		//判断有没有性能指标来使用
 		String title =driverBrowser.getPageText(booleanTitle);
-		if(title.equals("对比曲线图")){
-			return 0;
+		if(title.equals("对比曲线图")||
+		   title.equals("汇总概况图")){
+			return RETURN_ZERO;
 		}
 		logger.info("******************* 执行性能指标选项的循环测试 start******************循环的次数为：==={}",driverBrowser.getElementNums(xpathGetOptions));
 		int count2 = 0;

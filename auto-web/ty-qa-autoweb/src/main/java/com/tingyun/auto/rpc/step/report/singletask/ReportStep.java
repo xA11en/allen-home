@@ -2,6 +2,7 @@ package com.tingyun.auto.rpc.step.report.singletask;
 
 import static org.testng.Assert.fail;
 
+import org.testng.Reporter;
 import org.testng.TestNGException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

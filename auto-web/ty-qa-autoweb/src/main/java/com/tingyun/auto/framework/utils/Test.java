@@ -1,17 +1,19 @@
 package com.tingyun.auto.framework.utils;
 
-import org.openqa.selenium.By;
 
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 
 public class Test {
-	@org.testng.annotations.Test
-	public void startBrowser(){
-		DriverBrowser db = new DriverBrowser(BrowserType.Chrome);
-		db.open("http://www.baidu.com");
-		db.executeScript("document.getElementById('setf').click()");
+	public static void main(String[] args) {
+		System.out.println(1.0/2);
 	}
+//	@org.testng.annotations.Test
+//	public void startBrowser(){
+//		DriverBrowser db = new DriverBrowser(BrowserType.Chrome);
+//		db.open("http://www.baidu.com");
+//		db.executeScript("document.getElementById('setf').click()");
+//	}
 //	PUBLIC STATIC VOID MAIN(STRING[] ARGS) THROWS IOEXCEPTION {
 //		
 ////		FILE PATHTOFIREFOXBINARY = NEW FILE(SELENIUMSETTINGS.FIREFOX); 

@@ -27,40 +27,31 @@ public class GlobalStep{
 	protected static final String caseStart ="执行开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	protected static final String caseEnd ="执行结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 	protected static final String FAIL ="失败 >> >>";
-//	public GlobalStep() {
-//		driverBrowser = new DriverBrowser(BrowserType.Chrome);
-//		 reportPage = new RpcLoginPage(driverBrowser);
-//		 genPage = new GeneralizPerforPage(driverBrowser);
-//	}
-//	@BeforeClass
-//	public void beforeClass() {
-//		driverBrowser = new DriverBrowser(BrowserType.Firefox);
-//		driverBrowser.open(SeleniumSettings.URL);
-//	}
-//	
-//	@BeforeMethod
-//	public void beforeMethod(){
-//		
-//	}
-//	
-//	@AfterMethod
-//	public void afterMethod(){
-//		
-//	}
-//	
-//	@BeforeTest
-//	public void beforeTest(){
-//		
-//	}
-//	
-//	@AfterTest
-//	public void afterTest(){
-//		
-//	}
-//	@AfterClass
-//	public void afterClass(){
-//		driverBrowser.quit();
-//	}
+	
+	/**
+	 * 性能指标
+	 */
+	public static final String DESHISTORYMAP = "性能指标-历史曲线图测试用例";
+	public static final String DESOPERATORMAP = "性能指标-运营商曲线图测试用例";
+	public static final String DESPROVINCESMAP = "性能指标-省份曲线图测试用例";
+	public static final String DESCCITYMAP = "性能指标-城市曲线图测试用例";
+	public static final String DESPROVINCESOPERATORMAP = "性能指标-省份运营商曲线图测试用例";
+	public static final String DESCITYOPERATORMAP = "性能指标-城市运营商曲线图测试用例";
+	public static final String DESSEQUENTIALCURVEMAP = "性能指标-环比曲线图测试用例";
+	public static final String DESCONTRASTCURVEMAP = "性能指标-对比曲线图测试用例";
+	//性能图
+	public static final String operatorPerformanceMap = "性能指标-运营商性能图测试用例";
+	public static final String provincesPerformanceMap = "性能指标-省份性能图测试用例";
+	public static final String cityPerformanceMap = "性能指标-城市性能图测试用例";
+	public static final String provinceOperatorsMap = "性能指标-省份运营商性能图测试用例";
+	public static final String cityOperatorsMap = "性能指标-城市运营商性能图测试用例";
+	
+	//汇总图
+	public static final String sumUpMap = "性能指标-汇总概况图测试用例";
+	
+	public static final String rpcDesLogin = "rpc系统登录测试用例";
+	
+	
 	public void pinfo(Class<?> clazz,String info){
 		logger = LoggerFactory.getLogger(clazz);
 		logger.info(info);

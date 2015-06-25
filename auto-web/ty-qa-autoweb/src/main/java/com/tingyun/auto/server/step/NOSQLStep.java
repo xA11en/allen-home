@@ -62,7 +62,7 @@ public class NOSQLStep extends GlobalStep{
 	* @author : chenjingli
 	* @decription 数据库响应时间曲线图
 	 */
-	//@Test(description=RedisAndThrougth)
+	@Test(description=RedisAndThrougth)
 	public void testRedisThoughputMap (){
 		try {
 			pinfo(ReportStep.class,RedisAndThrougth+caseStart);
@@ -80,7 +80,7 @@ public class NOSQLStep extends GlobalStep{
 	* @author : chenjingli
 	* @decription 数据库响应时间曲线图
 	 */
-	//@Test(description=RedisRespond)
+	@Test(description=RedisRespond)
 	public void testRedisRespondMap(){
 		try {
 			pinfo(ReportStep.class,RedisRespond+caseStart);

@@ -13,7 +13,7 @@ import com.tingyun.auto.framework.browser.DriverBrowser;
 /**
 * @author :chenjingli 
 * @version ：2015-6-11 下午2:29:19 
-* @decription: server - web应用过程 page
+* @decription: server - JVM page
  */
 public class JVMPage extends CommonPage{
 	

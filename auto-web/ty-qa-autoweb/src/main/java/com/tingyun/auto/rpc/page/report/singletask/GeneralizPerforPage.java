@@ -103,6 +103,37 @@ public class GeneralizPerforPage extends ReportPage{
 		this.testPublich();
 	}
 	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-城市性能图
+	 */
+	public void cityPerformanceMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[13]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-省份运营商性能图
+	 */
+	public void provinceOperatorsMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[14]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-城市运营商性能图
+	 */
+	public void cityOperatorsMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[15]/a")).click();
+		this.testPublich();
+	}
+	
+	/**
+	 * 单任务检测-性能概括-点击性能概括-汇总概况图
+	 */
+	public void sumUpMap(){
+		driverBrowser.getWebDriver().findElement(By.xpath("//*[@id='componentChart']/li[17]/a")).click();
+		this.testPublich();
+	}
 	
 	public void testPublich(){
 		int count = 0;
@@ -256,10 +287,17 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.click(xpathCliFirstCity);
 				
 				//显示及排序选项
-				logger.info("显示及排序选项===》click{正排序}");
-				sb.append("显示及排序选项===》click{正排序}");
-				driverBrowser.pause(1);
-				driverBrowser.click(idCliSortZheng);
+				if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("省份性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("城市性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("省份运营商性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("城市运营商性能图")){
+					
+					logger.info("显示及排序选项===》click{正排序}");
+					sb.append("显示及排序选项===》click{正排序}");
+					driverBrowser.pause(1);
+					driverBrowser.click(idCliSortZheng);
+				}		  
 				
 				if(driverBrowser.getPageText(booleanTitle).contains("历史曲线图")||
 				   driverBrowser.getPageText(booleanTitle).contains("运营商曲线图")||
@@ -369,15 +407,22 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.click(xpathCliItOper);
 				
 				//显示及排序选项
-				if(driverBrowser.getPageText(booleanTitle).contains("运营商")){
-					logger.info("显示及排序选项===》click{按运营商}");
-					sb.append("显示及排序选项===》click{按运营商}");
-				}else{
-					logger.info("显示及排序选项===》click{按城市}");
-					sb.append("显示及排序选项===》click{按城市}");
+				if(driverBrowser.getPageText(booleanTitle).contains("运营商性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("省份性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("城市性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("省份运营商性能图")||
+				   driverBrowser.getPageText(booleanTitle).contains("城市运营商性能图")){
+					
+					if(driverBrowser.getPageText(booleanTitle).contains("运营商")){
+						logger.info("显示及排序选项===》click{按运营商}");
+						sb.append("显示及排序选项===》click{按运营商}");
+					}else{
+						logger.info("显示及排序选项===》click{按城市}");
+						sb.append("显示及排序选项===》click{按城市}");
+					}
+					driverBrowser.pause(1);
+					driverBrowser.click(idCliAble);
 				}
-				driverBrowser.pause(1);
-				driverBrowser.click(idCliAble);
 				
 				//按监测节点IP/ID过滤 
 				logger.info("按监测节点IP/ID过滤===》select{按ip 不包含ip，send ip:192.168.9.1}");
@@ -472,8 +517,9 @@ public class GeneralizPerforPage extends ReportPage{
 				driverBrowser.sendKeys(xpathCliAvgDownLoadXia, "10");
 				driverBrowser.sendKeys(xpathTypeUAvgDownLoadUp, "60");
 				//对比曲线图不点击首屏时间
-				if(title.contains("对比曲线图")){
-					driverBrowser.click(idSelAutoOut);
+				if(driverBrowser.getPageText(booleanTitle).contains("汇总概况图")||
+				   driverBrowser.getPageText(booleanTitle).contains("对比曲线图")){
+					 driverBrowser.click(idSelAutoOut);
 				}else{
 					//按性能过滤
 					logger.info("按性能过滤选项===》click{手动,select首屏时间}，send{'10'秒以下的监测数据 }");

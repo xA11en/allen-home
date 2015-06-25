@@ -384,10 +384,18 @@ public class AdvancedOptionsPage extends CommonPage {
 			assertEquals(true, driverBrowser.isElementPresent(sequentialAblerMap));
 		}else if(driverBrowser.getPageText(booleanTitle2).contains("对比曲线图")){
 			assertEquals(true, driverBrowser.isElementPresent(contrastCurveMap));
-		}else if(driverBrowser.getPageText(booleanTitle2).contains("运营商性能图")){
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("运营商性能图")&&
+				driverBrowser.getPageText(booleanTitle2).length()==6){
 			assertEquals(true, driverBrowser.isElementPresent(operatorPerformanceMap));
-		}else if(driverBrowser.getPageText(booleanTitle2).contains("省份性能图")){
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("省份性能图")||
+				driverBrowser.getPageText(booleanTitle2).contains("城市性能图")){
 			assertEquals(true, driverBrowser.isElementPresent(provincesPerformanceMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("省份运营商性能图")||
+				driverBrowser.getPageText(booleanTitle2).contains("城市运营商性能图")){
+			assertEquals(true, driverBrowser.isElementPresent(provinceOperatorsMap));
+		}else if(driverBrowser.getPageText(booleanTitle2).contains("汇总概况图")){
+			assertEquals(true, driverBrowser.isElementPresent(performanceMap));
+			assertEquals(true, driverBrowser.isElementPresent(ableMap));
 		}
 	}
 	public int tryCatch(int i){

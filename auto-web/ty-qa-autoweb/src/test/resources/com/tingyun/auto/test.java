@@ -12,6 +12,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public interface test {
-	public void add();
+public class test {
+	public static void main(String[] args) {
+		System.out.println("12345".length());
+	}
 	}
