@@ -8,7 +8,7 @@
   <packaging>jar</packaging>
 
   <name>auto-case</name>
-	<url>www.tingyun.com</url>
+  <url>www.tingyun.com</url>
 
   	<properties>
 		<java.version>1.7.0_80</java.version>
