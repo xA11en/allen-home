@@ -208,7 +208,7 @@
 				<version>2.4.2</version>
 				<configuration>
 					<suiteXmlFiles>
-<!-- 						<suiteXmlFile>src\main\resources\suite\regress-all.xml</suiteXmlFile>  -->
+						<suiteXmlFile>src\main\resources\testngXML\server\server.xml</suiteXmlFile> 
 					</suiteXmlFiles>
 					<encoding>UTF-8</encoding>
 					<reportsDirectory>test-output</reportsDirectory>
