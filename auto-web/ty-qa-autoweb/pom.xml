@@ -224,7 +224,7 @@
 				<version>2.4.2</version>
 				<configuration>
 					<suiteXmlFiles>
-<!-- 				      <suiteXmlFile>src\main\resources\testngXML\server\server.xml</suiteXmlFile>  -->
+				      <suiteXmlFile>src\main\resources\testngXML\server\server2.xml</suiteXmlFile> 
 					</suiteXmlFiles>
 					<encoding>UTF-8</encoding>
 					<reportsDirectory>test-output</reportsDirectory>
