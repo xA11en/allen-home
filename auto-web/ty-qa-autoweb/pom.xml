@@ -22,7 +22,9 @@
 		<commons-logging.version>1.1</commons-logging.version>
 		<junit.version>4.10</junit.version>
 		<oracle.driver.version>11.1.0.7.0</oracle.driver.version>
+		<spring-data-redis.version>1.1.1.RELEASE</spring-data-redis.version>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <Jedis.version>2.7.2</Jedis.version>
 	</properties>
 
 	<dependencies>
@@ -165,7 +167,21 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+	
+	
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.data</groupId> -->
+<!-- 			<artifactId>spring-data-redis</artifactId> -->
+<!-- 			<version>${spring-data-redis.version}</version> -->
+<!-- 		</dependency> -->
+		<!-- jedis 操作 redis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${Jedis.version}</version>
+		</dependency>
+	
+	
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.tmatesoft.svnkit</groupId> -->
 <!-- 			<artifactId>svnkit</artifactId> -->
@@ -186,7 +202,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
+				<version>3.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -208,7 +224,7 @@
 				<version>2.4.2</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>src\main\resources\testngXML\server\server.xml</suiteXmlFile> 
+<!-- 				      <suiteXmlFile>src\main\resources\testngXML\server\server.xml</suiteXmlFile>  -->
 					</suiteXmlFiles>
 					<encoding>UTF-8</encoding>
 					<reportsDirectory>test-output</reportsDirectory>
