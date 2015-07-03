@@ -175,11 +175,11 @@
 <!-- 			<version>${spring-data-redis.version}</version> -->
 <!-- 		</dependency> -->
 		<!-- jedis 操作 redis -->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>${Jedis.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>redis.clients</groupId> -->
+<!-- 			<artifactId>jedis</artifactId> -->
+<!-- 			<version>${Jedis.version}</version> -->
+<!-- 		</dependency> -->
 	
 	
 <!-- 		<dependency> -->
@@ -223,8 +223,11 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.4.2</version>
 				<configuration>
+<!-- 				 	<includes> -->
+<!--             			<include>Sample.java</include> -->
+<!--         	 		 </includes> -->
 					<suiteXmlFiles>
-				      <suiteXmlFile>src\main\resources\testngXML\server\server2.xml</suiteXmlFile> 
+				      <suiteXmlFile>src\main\resources\testngXML\server\server1.xml</suiteXmlFile> 
 					</suiteXmlFiles>
 					<encoding>UTF-8</encoding>
 					<reportsDirectory>test-output</reportsDirectory>
