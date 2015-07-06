@@ -29,7 +29,7 @@ public class WebApplicationStep extends GlobalStep{
 	
 	@BeforeMethod
 	public void init(){
-		driverBrowser = new DriverBrowser(BrowserType.Chrome);
+		driverBrowser = new DriverBrowser(BrowserType.Firefox);
 		applicationPage = new WebApplicationPage(driverBrowser);
 		driverBrowser.open("http://demo.tingyun.com/application/27589/actions");
 		driverBrowser.pause(1000);
