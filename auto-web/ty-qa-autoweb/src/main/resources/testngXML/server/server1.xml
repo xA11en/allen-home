@@ -11,10 +11,9 @@
 	 
   <test name="SERVER-WEB应用过程" junit="false" annotations="jdk" preserve-order="true">
         <classes>
-            <class name="com.tingyun.auto.server.step.WebApplicationStep">
+            <class name="com.tingyun.auto.test">
             <methods>
-        			<include name="testWebApplicationProcess"/>  <!-- TOP5 最耗时Web应用过程(墙钟时间比)堆叠图 -->
-    				<include name="testTimeAndThroughput"/>     <!-- 响应时间和吞吐率-->
+        			<include name="t"/>  <!-- TOP5 最耗时Web应用过程(墙钟时间比)堆叠图 -->
         		</methods>
             </class>         
         </classes>
