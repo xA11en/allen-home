@@ -37,7 +37,7 @@ public class Firefox extends Driver{
 		logger.info("-------------------开始选择远程启动火狐浏览器--------------------");
 		try {
 			DesiredCapabilities capability = DesiredCapabilities.firefox();
-			capability.setCapability(FirefoxDriver.PROFILE, this.firefox());
+			//capability.setCapability(FirefoxDriver.PROFILE, this.firefox());
 			//capability.setCapability(FirefoxDriver.BINARY, SeleniumSettings.FIREFOX);
 		return new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
 		} catch (Exception e) {
