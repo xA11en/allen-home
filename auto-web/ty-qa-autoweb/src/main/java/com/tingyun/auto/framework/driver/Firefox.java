@@ -37,11 +37,8 @@ public class Firefox extends Driver{
 		logger.info("-------------------开始选择远程启动火狐浏览器--------------------");
 		try {
 			DesiredCapabilities capability = DesiredCapabilities.firefox();
-			this.firefox();
-			capability.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
+			capability.setCapability(FirefoxDriver.PROFILE, this.firefox());
 			//capability.setCapability(FirefoxDriver.BINARY, SeleniumSettings.FIREFOX);
-			logger.info("启动远程Firefox浏览器   [{}]",
-					SeleniumSettings.FIREFOX);
 		return new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,11 +60,10 @@ public class Firefox extends Driver{
 						+ "\\classes\\";
 			File pathToFirefoxBinary = new File(SeleniumSettings.FIREFOX);
 			FirefoxBinary firefoxbin = new FirefoxBinary(pathToFirefoxBinary);
-			this.firefox();
 			//webDriver.manage().window().maximize();
 			logger.info("启动本地Firefox浏览器   [{}]",
 					SeleniumSettings.FIREFOX);
-			return new FirefoxDriver(firefoxbin, firefoxProfile,
+			return new FirefoxDriver(firefoxbin, this.firefox(),
 					null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,7 +73,7 @@ public class Firefox extends Driver{
 	}
 	
 	
-	void firefox()throws Exception{
+	FirefoxProfile firefox()throws Exception{
 		classpath = new File(classpath).getParentFile().getPath()
 				+ "\\classes\\";
 		firefoxProfile = new FirefoxProfile();
@@ -94,5 +90,6 @@ public class Firefox extends Driver{
 				true);
 		System.setProperty("javax.xml.parsers.DocumentBuilderFactory",
 				"com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl");
+		return firefoxProfile;
 	}
 }
