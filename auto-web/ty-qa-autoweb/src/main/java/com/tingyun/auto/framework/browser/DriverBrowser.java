@@ -37,7 +37,6 @@ import com.tingyun.auto.framework.driver.WebdriverFactory;
  */
 public class DriverBrowser{
 	
-	private RemoteWebDriver remoteWebDriver;
 	
 	private WebDriver webDriver;
 	
@@ -63,19 +62,17 @@ public class DriverBrowser{
 				}
 				webDriver.manage().window().maximize();
 			}else{
-				remoteWebDriver = WebdriverFactory.createWebDriver(type).getRemWebDriver();
-				if(remoteWebDriver == null){
-					logger.error("反向代理生成的remoteWebDriver为null-------{}",remoteWebDriver);
+				webDriver = WebdriverFactory.createWebDriver(type).getRemWebDriver();
+				if(webDriver == null){
+					logger.error("反向代理生成的remoteWebDriver为null-------{}",webDriver);
 				}
+				webDriver.manage().window().maximize();
 			}
 		}catch(Exception e){
 			logger.error("选择浏览器类型，启动仿真浏览器异常---------：{}-堆栈信息-{}",type,e);
 		}
 	}
 	
-	public RemoteWebDriver getRemoteWebDriver() {
-		return remoteWebDriver;
-	}
 
 	public WebDriver getWebDriver() {
 		return webDriver;
@@ -90,7 +87,7 @@ public class DriverBrowser{
     public void open(String url) {
         pause(stepInterval);
         try {
-            webDriver.get(url);
+        	webDriver.get(url);
             logger.info("Opened url " + url);
         } catch (AssertionError e) {
         	fail("Failed to open url " + url);
@@ -639,7 +636,7 @@ public class DriverBrowser{
      * @param cookieName
      * 		cookie的key
      * @return
-     * @throws
+     * @throws	
      */
     public boolean delCookie(String cookieName)
     {
@@ -665,7 +662,7 @@ public class DriverBrowser{
     	try {
             Cookie cookie = webDriver.manage().getCookieNamed(cookieName);
             String cookieValue = cookie.getValue().toString();
-            if( cookieValue== null || cookieValue == "")
+            if( cookieValue== null || cookieValue .equals(""))
          	{
          		logger.warn("警告：获取"+cookieName+"为空！");
          	}
