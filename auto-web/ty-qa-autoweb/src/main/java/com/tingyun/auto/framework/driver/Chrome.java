@@ -23,15 +23,14 @@ public class Chrome extends Driver{
 	private final static Logger logger = LoggerFactory
 			.getLogger(Chrome.class);
 	
-	private static String classpath=ClassLoader.getSystemResource("").getPath();;	
+	private static String classpath=ClassLoader.getSystemResource("").getPath();	
 	@Override
-	public RemoteWebDriver getRemWebDriver() throws MalformedURLException  {
+	public WebDriver getRemWebDriver() throws MalformedURLException  {
 		// TODO Auto-generated method stub
 		 DesiredCapabilities capability = DesiredCapabilities.chrome();
-	     capability.setBrowserName("chrome"); 
-	     capability.setVersion("38");
-	     remWebDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
-	     return remWebDriver;
+		 System.out.println(SeleniumSettings.REMOTE_HTTP);
+		 webDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
+	     return webDriver;
 	}
 
 	@Override

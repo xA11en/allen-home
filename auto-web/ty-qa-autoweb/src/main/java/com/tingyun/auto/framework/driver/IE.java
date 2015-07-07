@@ -28,11 +28,10 @@ public class IE extends Driver {
 	
 	
 	@Override
-	public RemoteWebDriver getRemWebDriver() throws MalformedURLException {
-	    DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
-        capability.setBrowserName("internetExplorer"); 
-        remWebDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
-        return remWebDriver;
+	public WebDriver getRemWebDriver() throws MalformedURLException {
+		DesiredCapabilities capabilities = this.ieCapabilities();
+        webDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capabilities);
+        return webDriver;
 	}
 
 	@Override
@@ -46,10 +45,22 @@ public class IE extends Driver {
 					+ "\\classes\\"
 					+ SeleniumSettings.IE;
 		}
-
+		DesiredCapabilities capabilities = this.ieCapabilities();
 		System.setProperty("webdriver.ie.driver", browserPath);
 		InternetExplorerDriverService service = InternetExplorerDriverService
 				.createDefaultService();
+	
+		WebDriver driver = new InternetExplorerDriver(service, capabilities);
+		//webDriver.manage().window().maximize();
+		logger.info("启动IE浏览器   [{}]", browserPath);
+		return driver;
+		}catch(Exception e){
+			logger.error("启动IE浏览器",e);
+			}
+		return null;
+	}
+	
+	DesiredCapabilities ieCapabilities(){
 		DesiredCapabilities capabilities = DesiredCapabilities
 				.internetExplorer();
 		capabilities
@@ -64,13 +75,6 @@ public class IE extends Driver {
 				true);
 		capabilities.setCapability(
 				InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
-		WebDriver driver = new InternetExplorerDriver(service, capabilities);
-		//webDriver.manage().window().maximize();
-		logger.info("启动IE浏览器   [{}]", browserPath);
-		return driver;
-		}catch(Exception e){
-			logger.error("启动IE浏览器",e);
-			}
-	return null;
+		return capabilities;
 	}
 }

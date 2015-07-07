@@ -2,11 +2,14 @@ package com.tingyun.auto.framework.driver;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +28,25 @@ public class Firefox extends Driver{
 	private final static Logger logger = LoggerFactory
 			.getLogger(Firefox.class);
 	
-	
-	private static String classpath="";	
+	private FirefoxProfile firefoxProfile;
+	private static String classpath=ClassLoader.getSystemResource("").getPath();	
 	
 	//远程浏览器拓展
 	@Override
-	public RemoteWebDriver getRemWebDriver() {
-		// TODO Auto-generated method stub
+	public WebDriver getRemWebDriver() {
+		logger.info("-------------------开始选择远程启动火狐浏览器--------------------");
+		try {
+			DesiredCapabilities capability = DesiredCapabilities.firefox();
+			this.firefox();
+			capability.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
+			//capability.setCapability(FirefoxDriver.BINARY, SeleniumSettings.FIREFOX);
+			logger.info("启动远程Firefox浏览器   [{}]",
+					SeleniumSettings.FIREFOX);
+		return new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("启动火狐浏览器异常",e);
+		} 
 		return null;
 	}
 	
@@ -42,33 +57,42 @@ public class Firefox extends Driver{
 	 */
 	@Override
 	public WebDriver getwebDriver() {
-		logger.info("-------------------开始选择火狐浏览器--------------------");
-		classpath = ClassLoader.getSystemResource("").getPath();
+		logger.info("-------------------开始选择本地启动火狐浏览器--------------------");
 		try {
 			classpath = new File(classpath).getParentFile().getPath()
 						+ "\\classes\\";
 			File pathToFirefoxBinary = new File(SeleniumSettings.FIREFOX);
 			FirefoxBinary firefoxbin = new FirefoxBinary(pathToFirefoxBinary);
-			FirefoxProfile firefoxProfile = new FirefoxProfile();
-			firefoxProfile.addExtension(new File(classpath
-					+ "browser\\firebug-1.9.0.xpi"));
-			firefoxProfile.addExtension(new File(classpath
-					+ "browser\\firepath-0.9.7-fx.xpi"));
-			firefoxProfile.setPreference("extensions.firebug.currentVersion",
-					"1.9.2");
-			firefoxProfile.setPreference("extensions.firepath.currentVersion",
-					"0.9.7");
-			System.setProperty("javax.xml.parsers.DocumentBuilderFactory",
-					"com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl");
+			this.firefox();
 			//webDriver.manage().window().maximize();
-			logger.info("启动Firefox浏览器   [{}]",
+			logger.info("启动本地Firefox浏览器   [{}]",
 					SeleniumSettings.FIREFOX);
 			return new FirefoxDriver(firefoxbin, firefoxProfile,
 					null);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("启动Firefox浏览器",e);
 		}
 		return null;
+	}
+	
+	
+	void firefox()throws Exception{
+		classpath = new File(classpath).getParentFile().getPath()
+				+ "\\classes\\";
+		firefoxProfile = new FirefoxProfile();
+		firefoxProfile.addExtension(new File(classpath
+				+ "browser\\firebug-1.9.0.xpi"));
+		firefoxProfile.addExtension(new File(classpath
+				+ "browser\\firepath-0.9.7-fx.xpi"));
+		
+		firefoxProfile.setPreference("extensions.firebug.currentVersion",
+				"1.9.2");
+		firefoxProfile.setPreference("extensions.firepath.currentVersion",
+				"0.9.7");
+		firefoxProfile.setPreference("webdriver.accept.untrusted.certs",
+				true);
+		System.setProperty("javax.xml.parsers.DocumentBuilderFactory",
+				"com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl");
 	}
 }

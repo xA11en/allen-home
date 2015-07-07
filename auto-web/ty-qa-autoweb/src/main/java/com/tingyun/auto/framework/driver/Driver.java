@@ -13,7 +13,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
  */
 public abstract class Driver {
 	
-    protected RemoteWebDriver     remWebDriver;
     
     protected WebDriver webDriver;
     
@@ -26,7 +25,7 @@ public abstract class Driver {
      * @throws IOException 
      * RemoteWebDriver
      */
-	public abstract  RemoteWebDriver getRemWebDriver() throws MalformedURLException;
+	public abstract  WebDriver getRemWebDriver() throws MalformedURLException;
 	public abstract WebDriver getwebDriver();
 	
 	
