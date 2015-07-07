@@ -83,13 +83,13 @@ public class Firefox extends Driver{
 		firefoxProfile = new FirefoxProfile();
 		firefoxProfile.addExtension(new File(classpath
 				+ "browser\\firebug-1.9.0.xpi"));
-		firefoxProfile.addExtension(new File(classpath
-				+ "browser\\firepath-0.9.7-fx.xpi"));
+		//firefoxProfile.addExtension(new File(classpath
+			//	+ "browser\\firepath-0.9.7-fx.xpi"));
 		
 		firefoxProfile.setPreference("extensions.firebug.currentVersion",
 				"1.9.2");
-		firefoxProfile.setPreference("extensions.firepath.currentVersion",
-				"0.9.7");
+//		firefoxProfile.setPreference("extensions.firepath.currentVersion",
+//				"0.9.7");
 		firefoxProfile.setPreference("webdriver.accept.untrusted.certs",
 				true);
 		System.setProperty("javax.xml.parsers.DocumentBuilderFactory",
