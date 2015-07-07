@@ -73,7 +73,7 @@ public class Firefox extends Driver{
 	}
 	
 	
-	FirefoxProfile firefox()throws Exception{
+	private FirefoxProfile firefox()throws Exception{
 		classpath = new File(classpath).getParentFile().getPath()
 				+ "\\classes\\";
 		firefoxProfile = new FirefoxProfile();
