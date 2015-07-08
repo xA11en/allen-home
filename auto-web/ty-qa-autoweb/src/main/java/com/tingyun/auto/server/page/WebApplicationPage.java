@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
 import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
@@ -52,6 +53,7 @@ public class WebApplicationPage extends CommonPage{
 	* @return
 	 */
 	public void valiTimeAndThroughput(String str)throws Exception{
+		Assert.assertEquals(1, 2);
 		driverBrowser.expectElementExist(xpathGetTimeMap,str);
 		String js = "return document.getElementById('throughputAction').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
