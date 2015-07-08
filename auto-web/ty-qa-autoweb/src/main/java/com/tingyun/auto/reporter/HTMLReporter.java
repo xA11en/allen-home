@@ -309,7 +309,7 @@ public class HTMLReporter extends AbstractReporter{
 		+ "auto"
 		+ "环境      "
 		+ bundle.getString("subject");
-		HtmlMail.send(toMail, subject, html.toString());
+		//HtmlMail.send(toMail, subject, html.toString());
 
 	}
 
