@@ -23,18 +23,18 @@ public class GlobalStep {
 	
 	public static String classpath=ClassLoader.getSystemResource("").getPath();
 	
-	@BeforeSuite
-	public void beforeSuite(){
-		String seleniumServerPath = classpath+SeleniumSettings.SELENIUM_SERVER;
-		String hubJson = classpath+SeleniumSettings.HUB_JSON;
-		String starHub = classpath+SeleniumSettings.START_HUB;
-		try {
-			Runtime.getRuntime().exec("cmd /c start "+starHub+" "+hubJson);
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error("执行批出理文件异常{}",e);
-		}
-	}
+//	@BeforeSuite
+//	public void beforeSuite(){
+//		String seleniumServerPath = classpath+SeleniumSettings.SELENIUM_SERVER;
+//		String hubJson = classpath+SeleniumSettings.HUB_JSON;
+//		String starHub = classpath+SeleniumSettings.START_HUB;
+//		try {
+//			Runtime.getRuntime().exec("cmd /c start "+starHub+" "+hubJson);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			logger.error("执行批出理文件异常{}",e);
+//		}
+//	}
 	
 	
 	protected Logger logger;
