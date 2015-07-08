@@ -65,7 +65,7 @@ public class test {
 //		WebDriver	 webDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capabilities);
 //		webDriver.get("http://www.baidu.com");
 		//节点ip：节点端口号
-		DriverBrowser driverBrowser = new DriverBrowser(BrowserType.Chrome);
+		DriverBrowser driverBrowser = new DriverBrowser(BrowserType.Firefox);
 		driverBrowser.open("http://www.baidu.com");
 		driverBrowser.getWebDriver().findElement(By.id("kw")).sendKeys("test");
 		driverBrowser.pause(2000);

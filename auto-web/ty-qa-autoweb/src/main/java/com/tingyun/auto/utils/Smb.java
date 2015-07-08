@@ -23,11 +23,6 @@ import org.slf4j.LoggerFactory;
  */
 public class Smb {
 
-	/**
-	 * slf4j logback
-	 */
-	private final static Logger logger = LoggerFactory
-			.getLogger(Smb.class);
 	private static String SMBFAILPATH = ShareSmbConfig.getSmbFailPicPath();
 	private static String SMBPATH = ShareSmbConfig.getSmbPath();
 	private static String LOCALFAILPATH = ShareSmbConfig.getLocalFailPicPath();

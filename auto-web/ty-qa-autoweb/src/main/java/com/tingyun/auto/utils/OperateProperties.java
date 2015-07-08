@@ -23,17 +23,31 @@ public class OperateProperties {
 			.getLogger(OperateProperties.class);
 	private static Properties props = new Properties(); 
 	 //属性文件的路径   
-    private static String PROFILEPATH="src/main/resources/testdate.properties";   
+    private static String PROFILEPATH_SAAS="src/main/resources/testData/saas.properties";   
+    
+    private static String PROFILEPATH_RPC="src/main/resources/testData/rpc.properties"; 
+    
+    public static int FOR_NUMBERS = 2;
 	  /**  
 	    * 根据主键key读取主键的值value  
 	    * @param filePath 属性文件路径  
 	    * @param key 键名  
 	    */   
-	    public static String readValue(String key) {   
-	         try {   
-	             InputStream in = new BufferedInputStream(new FileInputStream(   
-	            		 PROFILEPATH));   
-	             props.load(in);   
+	    public static String readValue(String key) {
+	    	
+	         try {
+	        	for (int i = 0; i < FOR_NUMBERS; i++) {
+	        	 InputStream in = null; 
+ 		 		if(i==0){
+ 		 			in = new BufferedInputStream(new FileInputStream(   
+ 		 					PROFILEPATH_SAAS));
+ 		 		}
+ 		 		if(i==1){
+ 		 			in = new BufferedInputStream(new FileInputStream(   
+ 		 					PROFILEPATH_RPC));
+ 		 		}
+ 		 		props.load(in);
+	        	}
 	             String value = props.getProperty(key);   
 	             logger.info(key +"键的值是："+ value);   
 	             return value;   
@@ -51,12 +65,21 @@ public class OperateProperties {
 	    * @param keyvalue 键值  
 	    */   
 	    public static void writeProperties(String keyname,String keyvalue) {          
-	        try {   
-	        	 OutputStream fos = new FileOutputStream(PROFILEPATH);   
-	             props.setProperty(keyname, keyvalue);   
-	            // 以适合使用 load 方法加载到 Properties 表中的格式，   
-	            // 将此 Properties 表中的属性列表（键和元素对）写入输出流   
-	            props.store(fos, "write '" + keyname + "' value");   
+	        try {
+	        	for (int i = 0; i < FOR_NUMBERS; i++) {
+	        		 OutputStream fos = null;
+	    		 		if(i==0){
+	    		 			 fos = new FileOutputStream(PROFILEPATH_SAAS);   
+	    		 		}
+	    		 		if(i==1){
+	    		 			 fos = new FileOutputStream(PROFILEPATH_RPC);
+	    		 		}
+	    		 		 props.setProperty(keyname, keyvalue);   
+	    		          // 以适合使用 load 方法加载到 Properties 表中的格式，   
+	    		            // 将此 Properties 表中的属性列表（键和元素对）写入输出流   
+	    		         props.store(fos, "write '" + keyname + "' value");   
+		        	}
+	           
 	        } catch (IOException e) {   
 	        	logger.info("属性文件更新错误");   
 	        }   
@@ -71,16 +94,28 @@ public class OperateProperties {
 	    */   
 	    public static void updateProperties(String keyname,String keyvalue) {   
 	        try {   
-	        	 props.load(new FileInputStream(PROFILEPATH));   
-	             // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。   
-	             // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。   
-	             OutputStream fos = new FileOutputStream(PROFILEPATH);              
-	             props.setProperty(keyname, keyvalue);   
-	            // 以适合使用 load 方法加载到 Properties 表中的格式，   
-	            // 将此 Properties 表中的属性列表（键和元素对）写入输出流   
-	            props.store(fos, "Update '" + keyname + "' value");   
+	        	for (int i = 0; i < FOR_NUMBERS; i++) {
+	        		 OutputStream fos = null;
+	    		 		if(i==0){
+	    		 			 props.load(new FileInputStream(PROFILEPATH_SAAS));   
+	    		             // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。   
+	    		             // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。   
+	    		            fos = new FileOutputStream(PROFILEPATH_SAAS);     
+	    		 		}
+	    		 		if(i==1){
+	    		 			 props.load(new FileInputStream(PROFILEPATH_RPC));   
+	    		             // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。   
+	    		             // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。   
+	    		             fos = new FileOutputStream(PROFILEPATH_RPC);  
+	    		 		}
+	    		 		props.setProperty(keyname, keyvalue);   
+	    		 		// 以适合使用 load 方法加载到 Properties 表中的格式，   
+	    		 		// 将此 Properties 表中的属性列表（键和元素对）写入输出流   
+	    		 		props.store(fos, "Update '" + keyname + "' value");   
+		        	}         
 	        } catch (IOException e) {   
 	            logger.info("属性文件更新错误");   
 	        }   
-	    }   
+	    }  
+	    
 }

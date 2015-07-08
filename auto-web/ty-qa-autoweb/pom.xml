@@ -175,11 +175,11 @@
 <!-- 			<version>${spring-data-redis.version}</version> -->
 <!-- 		</dependency> -->
 		<!-- jedis 操作 redis -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>redis.clients</groupId> -->
-<!-- 			<artifactId>jedis</artifactId> -->
-<!-- 			<version>${Jedis.version}</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${Jedis.version}</version>
+		</dependency>
 	
 	
 <!-- 		<dependency> -->

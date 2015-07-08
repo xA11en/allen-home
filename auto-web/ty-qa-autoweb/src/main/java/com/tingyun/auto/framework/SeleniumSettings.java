@@ -77,6 +77,21 @@ public class SeleniumSettings {
 	
 	//远程ip地址
 	public static String     REMOTE_HTTP        = prop.getProperty("remoteIP");
+	
+	//要注册机器的hub json配置文件
+    public static String     HUB_JSON        = prop.getProperty("hubJson");
+    
+    //驱动测试的节点json
+    public static String     NODE_JSON        = prop.getProperty("nodeJson");
+    
+    // selenium server
+    public static String     SELENIUM_SERVER        = prop.getProperty("selenium.server.standalone");
+    
+    // chrome启动批处理文件
+    public static String     START_CHROME        = prop.getProperty("startChrome");
+    
+    // HUB 启动批处理文件
+    public static String     START_HUB        = prop.getProperty("startHub");
 	/**
 	* @author : chenjingli
 	* @decription 获得ie驱动类型

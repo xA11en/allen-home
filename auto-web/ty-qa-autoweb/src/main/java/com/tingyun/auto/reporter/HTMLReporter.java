@@ -136,7 +136,7 @@ public class HTMLReporter extends AbstractReporter{
 			createLog(outputDirectory, onlyFailures);
 			copyResources(outputDirectory);
 			Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
-			logger.info("上传svn共享服务器完成");
+			logger.info("上传smb共享服务器完成");
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
 		} catch (Exception ex) {

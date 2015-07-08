@@ -28,7 +28,6 @@ public class Chrome extends Driver{
 	public WebDriver getRemWebDriver() throws MalformedURLException  {
 		// TODO Auto-generated method stub
 		 DesiredCapabilities capability = DesiredCapabilities.chrome();
-		 System.out.println(SeleniumSettings.REMOTE_HTTP);
 		 webDriver = new RemoteWebDriver(new URL(SeleniumSettings.REMOTE_HTTP), capability);
 	     return webDriver;
 	}

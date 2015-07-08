@@ -12,6 +12,8 @@ import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.utils.ExcelReader;
 import com.tingyun.auto.utils.OperateProperties;
+import com.tingyun.auto.utils.RedisManger;
+import com.tingyun.auto.utils.StrAndDateUtil;
 
 /**
 * @author :chenjingli 
@@ -30,18 +32,6 @@ public class GlobalPage  {
 		PageFactory.initElements(factory, this);
 	}
 	
-	public void pinfo(Class<?> clazz,String info){
-		logger = LoggerFactory.getLogger(clazz);
-		logger.info(info);
-	}
-	public void perror(Class<?> clazz,String error){
-		logger = LoggerFactory.getLogger(clazz);
-		logger.error(error);
-	}
-	public void pdebug(Class<?> clazz,String debug){
-		logger = LoggerFactory.getLogger(clazz);
-		logger.debug(debug);
-	}
 	
 	/**
 	* @author : chenjingli
@@ -67,10 +57,42 @@ public class GlobalPage  {
 	public void updateProperties(String keyname,String keyvalue){
 		 OperateProperties.updateProperties(keyname, keyvalue);
 	}
-	
+	/**
+	* @author : chenjingli
+	* @decription
+	* @return  读取radis中手机验证码
+	 */
 	public String getExcelData(String key){
 		excelReader = new ExcelReader(firePath,"report");
 		return excelReader.getExcelData(key);
 	}
+	/**
+	* @author : chenjingli
+	* @decription 通过 redis 手机验证码 规则key 获取 验证码
+	* @return String
+	 */
+	public String getRadisKey(String key,String phone){
+		
+		if(StrAndDateUtil.isBlank(key) ||StrAndDateUtil.isBlank(phone) ){
+			return null;
+		}
+		return RedisManger.getValue(key, phone);
+	}
+	
+	
+	/**
+	* @author : chenjingli
+	* @decription 通过 redis 手机验证码 规则key 获取 验证码
+	* @return String
+	 */
+	public void setRadisKeyValue(String key,String value){
+		
+		if(StrAndDateUtil.isBlank(key) ||StrAndDateUtil.isBlank(value) ){
+			logger.error("key或value为null");
+		}
+		RedisManger.setValue(key, value);
+	}
+	
+	
 	
 }
