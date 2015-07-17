@@ -227,7 +227,7 @@
 <!--             			<include>src\test\resources\com\tingyun\auto\test.java</include> -->
 <!--         	 		 </includes> -->
 					<suiteXmlFiles>
-				      <suiteXmlFile>src\main\resources\testngXML\server\server1.xml</suiteXmlFile> 
+				      <suiteXmlFile>src\main\resources\testngXML\saas\typroduct.xml</suiteXmlFile> 
 					</suiteXmlFiles>
 					<encoding>UTF-8</encoding>
 					<reportsDirectory>test-output</reportsDirectory>
