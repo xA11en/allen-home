@@ -17,6 +17,13 @@ public class FindPasswordBackPage extends CommonPage {
   /**
    * common page
    */
+	
+	@FindBy(xpath="//div[text()='下一步']")
+	public static WebElement xpathNextStep;   //下一步
+	
+	
+	@FindBy(id="inputRandom")
+	public static WebElement idSecurityCode;   //验证码
 	/**
 	 * 手机找回密码
 	 */
@@ -41,6 +48,18 @@ public class FindPasswordBackPage extends CommonPage {
 	@FindBy(id="btnEmail")
 	public WebElement idESendvericode;  //发送验证码
 	/**
+	 * common ways
+	 */
+	public static void SendCodeAndNextStep(){
+        //单击输入验证码
+		driverBrowser.sendKeys(idSecurityCode, "");
+		driverBrowser.pause(1000);
+		//driverBrowser.sendKeys(idSecurityCode, getRadisKey(readValue("redisPhoneKey"),phone));
+		//点击下一步
+		driverBrowser.click(xpathNextStep);
+		driverBrowser.pause(1000);
+}
+	/**
 	 * 手机找回密码的方法
 	 */
 	public void PhFindPassword(){
@@ -53,7 +72,7 @@ public class FindPasswordBackPage extends CommonPage {
 		//单击发送验证码
 		driverBrowser.click(idPSendvericode);
 		driverBrowser.pause(1000);
-		
+		FindPasswordBackPage.SendCodeAndNextStep();
 	}
 	public void EmFindPassword(){
 		//点击邮箱找回
@@ -65,6 +84,6 @@ public class FindPasswordBackPage extends CommonPage {
 		//单击发送验证码
 		driverBrowser.click(idESendvericode);
 		driverBrowser.pause(1000);
-		
+		FindPasswordBackPage.SendCodeAndNextStep();
 	}
 }
