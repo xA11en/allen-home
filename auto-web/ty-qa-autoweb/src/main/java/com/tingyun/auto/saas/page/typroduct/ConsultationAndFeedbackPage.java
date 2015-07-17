@@ -61,7 +61,9 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 	 
 	@FindBy(tagName="tr")
 	private List<WebElement> tagNameTr;   //验证是否成功删除
-	
+	/**
+	 * 咨询与反馈的新建、查看、删除咨询的测试用例
+	 */
 	public void saasConsultationAndFeedback(){
 		//点击咨询与反馈
 		driverBrowser.click(linCliFeedback);
