@@ -1,4 +1,4 @@
-package com.tingyun.auto.saas.page.typroduct;
+package com.tingyun.auto.saas.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import com.tingyun.auto.framework.browser.DriverBrowser;
-import com.tingyun.auto.saas.page.CommonPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
 /**
 * @author :chenjingli 
@@ -14,7 +13,10 @@ import com.tingyun.auto.utils.StrAndDateUtil;
 * @decription:  regist and login page
  */
 public class RegisteredAndLoginPage extends CommonPage {
-
+	
+	public static final String REGIST_EMAIL= "registEmail";
+	public static final String REGIST_PHONE = "registPhone";
+	
 	public RegisteredAndLoginPage(DriverBrowser driverBrowser) {
 		super(driverBrowser);
 	}
@@ -83,14 +85,43 @@ public class RegisteredAndLoginPage extends CommonPage {
 	* @return
 	 */
 	public void saasLogin(){
-		//输入用户名
-		driverBrowser.sendKeys(idTypeUsername, "");
+		if(readValue("switch").equals("false")){
+			//输入用户名  本地
+			driverBrowser.sendKeys(idTypeUsername, readValue("registEmail"));
+		}else{
+			//输入用户名  从redis
+			driverBrowser.sendKeys(idTypeUsername, getRadisKey2(REGIST_EMAIL));
+		}
 		//输入密码
-		driverBrowser.sendKeys(idTypePassword,   "" );
+		driverBrowser.sendKeys(idTypePassword, readValue("saasLoginPwd"));
+		
+		driverBrowser.setCookie("username", getRadisKey2(REGIST_EMAIL));
+		driverBrowser.setCookie("password", readValue("saasLoginPwd"));
 		//点击登陆按钮
 		driverBrowser.click(xpathCliLogin);
 	} 
 	
+	/**
+	* @author : chenjingli
+	* @decription :  saas login 子账号
+	* @return
+	 */
+	public void saasZiAccountLogin(){
+		//输入用户名  本地
+		driverBrowser.sendKeys(idTypeUsername, readValue("saasEnterpriseLoginUserName"));
+		//输入密码
+		driverBrowser.sendKeys(idTypePassword, readValue("saasEnterpriseLoginPwd"));
+		
+		driverBrowser.setCookie("username", readValue("saasEnterpriseLoginUserName"));
+		driverBrowser.setCookie("password", readValue("saasEnterpriseLoginPwd"));
+		//点击登陆按钮
+		driverBrowser.click(xpathCliLogin);
+	} 
+	/**
+	* @author : chenjingli
+	* @decription saas注册
+	* @return
+	 */
 	public void saasRegist(){
 		//点击注册按钮
 	//	driverBrowser.click(linCliRegistered);
@@ -99,7 +130,7 @@ public class RegisteredAndLoginPage extends CommonPage {
 		//输入邮箱
 		String email = StrAndDateUtil.randowEightNumbers(1, 10, 8)+"@qq.com";
 		driverBrowser.sendKeys(idTypeEmail,email);
-		setRadisKeyValue(readValue("email"), email);
+		setRadisKeyValue(REGIST_EMAIL, email);
 		driverBrowser.pause(1000);
 		//输入密码
 		driverBrowser.sendKeys(idTypePwd1, readValue("saasLoginPwd"));
@@ -120,6 +151,7 @@ public class RegisteredAndLoginPage extends CommonPage {
 		driverBrowser.click(xpathCliJob);
 		//输入手机号
 		String phone =  "131"+StrAndDateUtil.randowEightNumbers(1, 10, 8);
+		setRadisKeyValue(REGIST_PHONE, phone);
 		driverBrowser.sendKeys(idTypeMobleNum,phone);
 		driverBrowser.pause(1000);
 		//点击发送验证
@@ -132,10 +164,11 @@ public class RegisteredAndLoginPage extends CommonPage {
 		driverBrowser.click(idSelIDCType);
 		//点击阿里云
 		driverBrowser.click(idCliIDCtype);
-		driverBrowser.pause(1000);
+		driverBrowser.pause(2000);
 		//点击注册按钮
 		driverBrowser.click(idCliRegistButton);
-		driverBrowser.pause(1000);
+		driverBrowser.pause(3000);
+		//判断注册是否成功
 		Assert.assertTrue(boolRegistSuccess.isDisplayed());
 	}
 	

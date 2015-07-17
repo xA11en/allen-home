@@ -34,7 +34,7 @@ public class WebApplicationPage extends CommonPage{
 	* @decriptionTOP5 最耗时Web应用过程(墙钟时间比)堆叠图
 	* @return
 	 */
-	public void validationWebMap(String str)throws Exception{
+	public void validationWebMap(String str){
 		driverBrowser.expectElementExist(xpathGetMostWebAppMap,str);
 		String js = "return document.getElementById('top5action').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -52,7 +52,7 @@ public class WebApplicationPage extends CommonPage{
 	* @decriptionTOP5 响应时间和吞吐率
 	* @return
 	 */
-	public void valiTimeAndThroughput(String str)throws Exception{
+	public void valiTimeAndThroughput(String str){
 		Assert.assertEquals(1, 2);
 		driverBrowser.expectElementExist(xpathGetTimeMap,str);
 		String js = "return document.getElementById('throughputAction').getElementsByTagName('svg').length";

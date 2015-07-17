@@ -1,7 +1,11 @@
 package com.tingyun.auto.utils;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
@@ -98,5 +102,60 @@ public class StrAndDateUtil {
         }
 
         return false;
-    }	    
+    }	  
+    /**
+    * @author : chenjingli
+    * @decription 获取文本中的数字
+    * @return
+     */
+    public static String getTextNum(String textNum){
+		String regEx="[^0-9]";   
+		Pattern p = Pattern.compile(regEx);   
+		Matcher m = p.matcher(textNum); 
+		return m.replaceAll("").trim();
+	}
+    
+    
+    /**
+    * @author : chenjingli
+    * @decription  MD5加密
+    * @return
+     */
+    /**
+    *
+    * @param plainText
+    *            明文
+    * @return 32位密文
+    */
+   public static String encryption(String plainText) {
+       String re_md5 = new String();
+       try {
+           MessageDigest md = MessageDigest.getInstance("MD5");
+           md.update(plainText.getBytes());
+           byte b[] = md.digest();
+
+           int i;
+
+           StringBuffer buf = new StringBuffer("");
+           for (int offset = 0; offset < b.length; offset++) {
+               i = b[offset];
+               if (i < 0)
+                   i += 256;
+               if (i < 16)
+                   buf.append("0");
+               buf.append(Integer.toHexString(i));
+           }
+
+           re_md5 = buf.toString();
+
+       } catch (NoSuchAlgorithmException e) {
+           e.printStackTrace();
+       }
+       return re_md5;
+   }
+	
+    public static void main(String[] args) {
+		System.out.println(StrAndDateUtil.getTextNum("订单号：201507150041"));
+	}
+	
 }

@@ -2,40 +2,29 @@ package com.tingyun.auto.common;
 
 
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
 import org.testng.annotations.BeforeSuite;
 
-import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
-import com.tingyun.auto.rpc.page.RpcLoginPage;
-import com.tingyun.auto.rpc.page.report.singletask.GeneralizPerforPage;
 
 /**
 * @author :chenjingli 
 * @version ：2015-5-12 下午2:09:07 
 * @decription: 初始化 before 或者 after 的一些信息
  */
-public class GlobalStep {
+public class GlobalStep  extends TestListenerAdapter{
 	
-	public static String classpath=ClassLoader.getSystemResource("").getPath();
-	
+//	public static DriverBrowser driverBrowser;
 //	@BeforeSuite
 //	public void beforeSuite(){
-//		String seleniumServerPath = classpath+SeleniumSettings.SELENIUM_SERVER;
-//		String hubJson = classpath+SeleniumSettings.HUB_JSON;
-//		String starHub = classpath+SeleniumSettings.START_HUB;
-//		try {
-//			Runtime.getRuntime().exec("cmd /c start "+starHub+" "+hubJson);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			logger.error("执行批出理文件异常{}",e);
-//		}
+//		driverBrowser = new DriverBrowser(BrowserType.Chrome);
 //	}
 	
+	public static String classpath=ClassLoader.getSystemResource("").getPath();
 	
 	protected Logger logger;
 	protected static final String caseStart ="执行开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";

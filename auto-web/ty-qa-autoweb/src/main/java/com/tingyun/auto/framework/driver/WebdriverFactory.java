@@ -20,6 +20,8 @@ public class WebdriverFactory{
 			.getLogger(WebdriverFactory.class);
 	
 	public final  static String packageName = "com.tingyun.auto.framework.driver.";
+	
+	
 	/**
 	* @decription 通过反向代理生成webdriver
 	* @return

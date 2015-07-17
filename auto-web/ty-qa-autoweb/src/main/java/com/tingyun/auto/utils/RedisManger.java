@@ -113,21 +113,34 @@ public class RedisManger {
 		}
 	}
 	
-	public static String getValue(String key,String phone) {
+	public static String getValue(String... strings) {
 		try {
-			if (!getJedis().exists(key+phone)) {
-				logger.error("Faild Get Value! key======{}",key+phone);
-				return null;
-			} else {
-				String value = redis.get(key+phone).split("#")[1];
-				returnResource(redis);
-				logger.info("redis通过key-----{},获取的vakue值是-----{}",key+phone,value);
-				return value;// GET key 返回key所关联的字符串值
-			}
+			if(strings.length>1){
+				if((!getJedis().exists(strings[0]+strings[1]))){
+					logger.error("Faild Get Value! key======{}",strings[0]+strings[1]);
+					return null;
+				}else {
+						String value = redis.get(strings[0]+strings[1]).split("#")[1];
+						returnResource(redis);
+						logger.info("redis通过key-----{},获取的vakue值是-----{}",strings[0]+strings[1],value);
+						return value;// GET key 返回key所关联的字符串值
+					}
+				}else{
+					if((!getJedis().exists(strings[0]))){
+						logger.error("Faild Get Value! key======{}",strings[0]);
+						return null;
+					}else{
+						String value = redis.get(strings[0]);
+						returnResource(redis);
+						logger.info("redis通过key-----{},获取的vakue值是-----{}",strings[0],value);
+						return value;// GET key 返回key所关联的字符串值
+					}
+				}
 		} catch (Exception e) {
 			return null;
 		}
 	}
+	
 	
 	public List<String> getListValues(String key) {
 		try {
@@ -152,7 +165,7 @@ public class RedisManger {
 	public static void main(String[] args) {
 		redis = RedisManger.getJedis();
 	//	redis.set("test", "testtest");
-		System.out.println(RedisManger.getValue("reg:phone:","13812344321"));
+		System.out.println(RedisManger.getValue("reg:phone:","13111112223"));
 //		RedisManger t1 = new RedisManger();
 //		List<String> dd = new ArrayList<String>();
 //		for(int i=0;i<5;i++){

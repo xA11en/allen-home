@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -17,7 +16,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,7 +24,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
-import com.thoughtworks.selenium.Wait;
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.SystemClock;
 import com.tingyun.auto.framework.driver.WebdriverFactory;
@@ -49,6 +46,7 @@ public class DriverBrowser{
 	private static int timeout = SeleniumSettings.TIMEOUT;
 	
 	private JavascriptExecutor javaScriptExecutor;
+	
 	/**
 	 * 添加选择本地还是远程启动的构造方法
 	 */
@@ -147,7 +145,7 @@ public class DriverBrowser{
     	pause(stepInterval);
         Select select = null;
         try {
-        if(selector.isDisplayed()){
+        if(elementIsDisplay(selector)){
         	select = new Select(selector);
         	if("value".equals(value)){
         		select.selectByValue(option);
@@ -213,6 +211,27 @@ public class DriverBrowser{
 			public WebElement apply(WebDriver d) {  
 				return webElement;  
 			}}).click();  
+    }
+    /**
+    * @author : chenjingli
+    * @decription element display
+    * @return
+     */
+    public boolean elementIsDisplay(final WebElement webElement){
+    	boolean flag = false;
+    	try{
+    		WebDriverWait wait = new WebDriverWait(webDriver,timeout);
+    		wait.until(new ExpectedCondition<WebElement>(){  
+    			@Override  
+    			public WebElement apply(WebDriver d) {  
+    				return webElement;  
+    			}}).isDisplayed();  
+    		flag =true;
+    		return flag;
+    	}catch(Exception e){
+    		fail("期望的元素未出现"+webElement);
+    		return flag;
+    	}
     }
     
     private void isClickAble(final WebElement webElement, SystemClock clock, long endTime) {
@@ -583,7 +602,6 @@ public class DriverBrowser{
     /**
      * 
     * @Description 获取cookie中的用户id
-    * @author chenDoInG
     * @return String 用户id
      */
     public String getUserIDByCookie() {
@@ -596,7 +614,6 @@ public class DriverBrowser{
     /**
     * @Description 获取cookie中的用户名
     *  @return    
-    * @author chenDoInG
     * @return String 
     * @throws
     */
@@ -681,19 +698,33 @@ public class DriverBrowser{
      * @return 页面文本
      */
     public String getPageText(WebElement webElement) {
-    	pause(stepInterval);
-    	if(webElement.isDisplayed()){
-    		String pageText = webElement.getText();
-    		return pageText;
-    	}else{
-    		logger.error("element is none location is:{}",webElement);
-    		return "";
+    	try{
+    		
+    		pause(stepInterval);
+    		if(webElement.isDisplayed()){
+    			String pageText = webElement.getText();
+    			return pageText;
+    		}else{
+    			logger.error("element is none location is:{}",webElement);
+    		}
+    	}catch(Exception e){
+    		logger.error("元素文本获取获取异常",e);
     	}
+    	return "";
     }
     
     public int getElementNums(List<WebElement> elements){
-    	int	number = elements.size();
-		return number;
+    	pause(stepInterval);
+    	try{
+    		int	number = elements.size();
+    		if(number==0){
+    			return 0;
+    		}
+    		return number;
+    	}catch(Exception e){
+    		logger.error("列表数量获取异常",e);
+    	}
+    	return 0;
     }
     
     /**
@@ -730,6 +761,26 @@ public class DriverBrowser{
 			return;
 		}
 	}
+	
+//	/**
+//	 * 页面记载超过时间报错
+//	 */
+//	public void loadPage(){
+//	String js = "var start_time = new Date();  var end_time = '';var time='';  " +
+//			"var t = setInterval(function(){  " +
+//				"if(document.readyState=='complete'){" +
+//				"end_time = new Date(); time=(end_time.getTime() -  start_time.getTime()); return time;" +
+//				"clearInterval(t); " +
+//				"}  " +
+//				"},500)";
+//	
+//	this.javaScriptExecutor = (JavascriptExecutor) webDriver;
+//	long time = (long)javaScriptExecutor.executeScript(js);
+//	
+//	
+//	}
+	
+	
 	
 	
 }

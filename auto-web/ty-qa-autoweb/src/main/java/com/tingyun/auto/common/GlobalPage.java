@@ -79,6 +79,13 @@ public class GlobalPage  {
 		return RedisManger.getValue(key, phone);
 	}
 	
+	public String getRadisKey2(String key){
+		
+		if(StrAndDateUtil.isBlank(key)  ){
+			return null;
+		}
+		return RedisManger.getValue(key);
+	}
 	
 	/**
 	* @author : chenjingli

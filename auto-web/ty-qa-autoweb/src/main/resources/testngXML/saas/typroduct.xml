@@ -4,21 +4,51 @@
 <suite name="saas产品线" preserve-order="true" parallel="tests"
 	thread-count="1">
 	<listeners>
-		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener>
+<!-- 		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener> -->
 <!-- 		//<listener class-name="com.tingyun.auto.listener.TestNGListener"></listener> -->
 	</listeners>
 	
 	 
-  <test name="SAAS-注册" junit="false" annotations="jdk" preserve-order="true">
+<!--   <test name="SAAS-注册" junit="false" annotations="jdk" preserve-order="true"> -->
+<!--         <classes> -->
+<!--             <class name="com.tingyun.auto.saas.step.RegisteredStep"> -->
+<!--             <methods> -->
+<!--         			<include name="testSaasRegiste"/> saas 注册 -->
+<!--         		</methods> -->
+<!--             </class>          -->
+<!--         </classes> -->
+<!--     </test> -->
+	
+   <test name="SAAS-开通app,server.cdn,sys服务" junit="false" annotations="jdk" preserve-order="true">
         <classes>
-            <class name="com.tingyun.auto.saas.step.RegisteredStep">
+            <class name="com.tingyun.auto.saas.step.typroduct.OpenServiceStep">
             <methods>
-        			<include name="testSaasRegiste"/>  <!-- saas 注册 -->
+        			<include name="testOpenService"/>  <!--开通app,server.cdn,sys服务-->
         		</methods>
             </class>         
         </classes>
     </test>
-	
-   
-  
+    
+     <test name="SAAS-购买和续费听云app服务小微版" junit="false" annotations="jdk" preserve-order="true">
+        <classes>
+            <class name="com.tingyun.auto.saas.step.typroduct.ProductPriceStep">
+            <methods>
+        			<include name="testBuyTingYunAppService"/>  <!-- 购买app服务 -->
+        			<include name="testAppRenewalService"/>  <!-- 续费 -->
+        		</methods>
+            </class>         
+        </classes>
+    </test>
+  	
+  	  <test name="SAAS-账号管理，增加，修改和删除子账号" junit="false" annotations="jdk" preserve-order="true">
+        <classes>
+            <class name="com.tingyun.auto.saas.step.typroduct.AccountManagementStep">
+            <methods>
+        			<include name="testAddZiAccount"/>  <!-- 增加 -->
+        			<include name="testEditZiAccount"/>   <!-- 修改 -->
+        			<include name="testDeleteZiAccount"/>   <!-- 删除 -->
+        		</methods>
+            </class>         
+        </classes>
+    </test>
 </suite>
