@@ -29,7 +29,7 @@ public class ConsultationAndFeedbackStep extends GlobalStep{
 		driverBrowser = new DriverBrowser(BrowserType.Chrome);
 		ConFeedPage= new ConsultationAndFeedbackPage(driverBrowser);
 		RegisteredAndLoginPage login = new RegisteredAndLoginPage(driverBrowser);
-		driverBrowser.open(OperateProperties.readValue("saasConsultationAndFeedbackUrl"));
+		driverBrowser.open(OperateProperties.readValue("saasLoginURL"));
 		driverBrowser.pause(1000);
 		login.saasLogin();
 	}
