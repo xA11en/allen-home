@@ -33,7 +33,9 @@ public class ConsultationAndFeedbackStep extends GlobalStep{
 		driverBrowser.pause(1000);
 		login.saasLogin();
 	}
-	
+	/**
+	 * 咨询与反馈的新建、查看、删除咨询的测试用例
+	 */
 	@Test(description=ConsuAndFeedB)
 	public void testSaasConsultationAndFeedback(){
 		try {
