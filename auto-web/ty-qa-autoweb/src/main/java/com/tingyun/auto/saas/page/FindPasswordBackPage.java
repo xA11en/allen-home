@@ -14,7 +14,9 @@ public class FindPasswordBackPage extends CommonPage {
 	public FindPasswordBackPage(DriverBrowser driverBrowser) {
 		super(driverBrowser);
 	}
-	CommonPage comm = new CommonPage(driverBrowser);
+  /**
+   * common page
+   */
 	/**
 	 * 手机找回密码
 	 */
@@ -51,7 +53,7 @@ public class FindPasswordBackPage extends CommonPage {
 		//单击发送验证码
 		driverBrowser.click(idPSendvericode);
 		driverBrowser.pause(1000);
-		comm.SendCodeAndNextStep();
+		
 	}
 	public void EmFindPassword(){
 		//点击邮箱找回
@@ -63,6 +65,6 @@ public class FindPasswordBackPage extends CommonPage {
 		//单击发送验证码
 		driverBrowser.click(idESendvericode);
 		driverBrowser.pause(1000);
-		comm.SendCodeAndNextStep();
+		
 	}
 }
