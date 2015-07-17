@@ -10,13 +10,14 @@ import org.testng.Assert;
 
 import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
+import com.tingyun.auto.saas.page.CommonPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
 /**
  * @version: 2015-7-15 下午 17:28:20
  * @author: mabingxue
  * @decription: 咨询与反馈
  */
-public class ConsultationAndFeedbackPage extends GlobalPage {
+public class ConsultationAndFeedbackPage extends CommonPage {
 	private static Logger logger = LoggerFactory.getLogger(ConsultationAndFeedbackPage.class);
 	
 	public ConsultationAndFeedbackPage(DriverBrowser driverBrowser) {
@@ -27,9 +28,6 @@ public class ConsultationAndFeedbackPage extends GlobalPage {
 	 * @author: mabingxue
 	 * @decription: 咨询与反馈
 	 */
-	
-	@FindBy(xpath="//*[@id='centerleft']/ul/li[5]")
-	public WebElement xpathCliConsultAndfeedback;   //咨询与反馈
 	
 	@FindBy(xpath="//div[text()='新建咨询 & 反馈']")
 	public WebElement xpathCliGoAndAsk;      //新建咨询 & 反馈
@@ -66,7 +64,7 @@ public class ConsultationAndFeedbackPage extends GlobalPage {
 	
 	public void saasConsultationAndFeedback(){
 		//点击咨询与反馈
-		driverBrowser.click(xpathCliConsultAndfeedback);
+		driverBrowser.click(linCliFeedback);
 		driverBrowser.pause(1000);
 		//点击新建咨询 & 反馈
 		driverBrowser.click(xpathCliGoAndAsk);
