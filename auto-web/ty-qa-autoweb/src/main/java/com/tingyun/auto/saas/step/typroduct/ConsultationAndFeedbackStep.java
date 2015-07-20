@@ -3,7 +3,9 @@ package com.tingyun.auto.saas.step.typroduct;
 import static org.testng.Assert.fail;
 
 import org.testng.TestNGException;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -27,7 +29,7 @@ public class ConsultationAndFeedbackStep extends GlobalStep{
 	private static DriverBrowser driverBrowser;
 	private static ConsultationAndFeedbackPage ConFeedPage;
 	
-	@BeforeMethod
+	@BeforeClass
 	public void init(){
 		driverBrowser = new DriverBrowser(BrowserType.Chrome);
 		ConFeedPage= new ConsultationAndFeedbackPage(driverBrowser);
@@ -45,7 +47,7 @@ public class ConsultationAndFeedbackStep extends GlobalStep{
 			ConFeedPage.saasConsultationAndFeedback();
 		    pinfo(ReportStep.class,ConsuAndFeedB+caseEnd);
 	}
-	@AfterMethod
+	@AfterClass
 	public void down(){
 		driverBrowser.quit();
 	}
