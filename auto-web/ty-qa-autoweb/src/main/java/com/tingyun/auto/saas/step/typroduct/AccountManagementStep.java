@@ -4,13 +4,14 @@ package com.tingyun.auto.saas.step.typroduct;
 import static org.testng.Assert.fail;
 
 import org.testng.TestNGException;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
+import com.tingyun.auto.reporter.TestResultListener;
 import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.AccountManagementPage;
@@ -20,7 +21,7 @@ import com.tingyun.auto.utils.OperateProperties;
 * @version ：2015-6-30 下午2:28:05 
 * @decription: saas  账号管理 step
  */
-//@Listeners({ TestResultListener.class})
+@Listeners({ TestResultListener.class})
 public class AccountManagementStep extends GlobalStep {
 	
 	public static final String addZiAccount = "通过企业账号增加子账号-测试用例";
@@ -65,20 +66,12 @@ public class AccountManagementStep extends GlobalStep {
 	 */
 	@Test(description=editZiAccount)
 	public void testEditZiAccount(){
-	try{
 			driverBrowser.open(OperateProperties.readValue("saasLoginURL"));
 			loginPage.saasZiAccountLogin();
 			driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/subUserManager/userList");
 			pinfo(ReportStep.class,editZiAccount+caseStart);
 			managementPage.editZiAccount();
 			pinfo(ReportStep.class,editZiAccount+caseEnd);	
-	}catch(Error e){
-		driverBrowser.failScreenShot("testEditZiAccount");
-		fail(editZiAccount+FAIL + e.getMessage(), e);
-	}catch (Exception e) {
-		driverBrowser.failScreenShot("testEditZiAccount");
-		throw new TestNGException(editZiAccount+FAIL + e.getMessage(), e);
-	} 
 	}
 	
 	/**
@@ -87,22 +80,14 @@ public class AccountManagementStep extends GlobalStep {
 	 */
 	@Test(description=deleteZiAccount)
 	public void testDeleteZiAccount(){
-	try{
 			driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/subUserManager/userList");
 			pinfo(ReportStep.class,deleteZiAccount+caseStart);
 			managementPage.delZiAccount();
 			pinfo(ReportStep.class,deleteZiAccount+caseEnd);
-	}catch(Error e){
-		driverBrowser.failScreenShot("testDeleteZiAccount");
-		fail(deleteZiAccount+FAIL + e.getMessage(), e);
-	}catch (Exception e) {
-		driverBrowser.failScreenShot("testDeleteZiAccount");
-		throw new TestNGException(deleteZiAccount+FAIL + e.getMessage(), e);
-	} 
 	}
 	
 	
-	@AfterSuite
+	@org.testng.annotations.AfterClass
 	public void down(){
 		driverBrowser.quit();
 	}
