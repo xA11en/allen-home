@@ -1,13 +1,12 @@
 package com.tingyun.auto.saas.page.typroduct;
 
 import java.util.List;
-
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.saas.page.CommonPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
@@ -22,6 +21,7 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 	public ConsultationAndFeedbackPage(DriverBrowser driverBrowser) {
 		super(driverBrowser);
 	}
+	
 	/**
 	 * @version: 2015-7-16 上午 09:37:30
 	 * @author: mabingxue
@@ -33,10 +33,7 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 	
 	@FindBy(id="userTrade")
 	public WebElement idTypeCliSelected;  //请选择类型
-	
-	@FindBy(xpath="//*[@id='userTradeUl']/li[3]")
-	public WebElement xpathProductProblem;   //选择产品问题
-	
+   
 	@FindBy(id="content")
 	public WebElement idProblemDescription;   //问题描述
 	
@@ -73,9 +70,12 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 		//点击请选择类型
 		driverBrowser.click(idTypeCliSelected);
 		driverBrowser.pause(1000);
-		//选择产品问题
-		driverBrowser.click(xpathProductProblem);
+		//选择问题
+		String n = StrAndDateUtil.randowNumbers(1, 7, 1);
+		String tmp= "//*[@id='userTradeUl']/li["+n+"]";
+		driverBrowser.getWebDriver().findElement(By.xpath(tmp)).click();
 		driverBrowser.pause(1000);
+	     
 		//输入问题描述
 		String text = "test咨询"+StrAndDateUtil.randowNumbers(1, 10, 8);
 		driverBrowser.sendKeys(idProblemDescription, text);
