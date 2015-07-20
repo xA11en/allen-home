@@ -73,7 +73,7 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 		//选择问题
 		String n = StrAndDateUtil.randowNumbers(1, 7, 1);
 		String tmp= "//*[@id='userTradeUl']/li["+n+"]";
-		driverBrowser.getWebDriver().findElement(By.xpath(tmp)).click();
+		DriverBrowser.getWebDriver().findElement(By.xpath(tmp)).click();
 		driverBrowser.pause(1000);
 	     
 		//输入问题描述
