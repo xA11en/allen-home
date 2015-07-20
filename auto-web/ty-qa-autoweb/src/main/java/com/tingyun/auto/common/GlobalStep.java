@@ -16,13 +16,7 @@ import com.tingyun.auto.framework.browser.DriverBrowser;
 * @version ：2015-5-12 下午2:09:07 
 * @decription: 初始化 before 或者 after 的一些信息
  */
-public class GlobalStep  extends TestListenerAdapter{
-	
-//	public static DriverBrowser driverBrowser;
-//	@BeforeSuite
-//	public void beforeSuite(){
-//		driverBrowser = new DriverBrowser(BrowserType.Chrome);
-//	}
+public class GlobalStep {
 	
 	public static String classpath=ClassLoader.getSystemResource("").getPath();
 	

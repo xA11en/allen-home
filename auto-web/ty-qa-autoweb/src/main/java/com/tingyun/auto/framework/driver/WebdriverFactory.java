@@ -11,7 +11,7 @@ import com.tingyun.auto.framework.browser.BrowserType;
  * @author chenjingli
  *
  */
-public class WebdriverFactory{
+public class WebdriverFactory {
 
 	/**
 	 * slf4j logback

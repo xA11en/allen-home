@@ -36,7 +36,7 @@ public class StrAndDateUtil {
      * @param max 指定范围最大值 
      * @param n 随机数个数 
      */  
-    public static String randowEightNumbers(int min, int max, int n){  
+    public static String randowNumbers(int min, int max, int n){  
         if (n > (max - min + 1) || max < min) {  
                return null;  
            }

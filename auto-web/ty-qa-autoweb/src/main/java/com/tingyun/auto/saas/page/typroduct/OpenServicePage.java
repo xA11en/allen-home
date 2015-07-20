@@ -56,6 +56,7 @@ public class OpenServicePage extends CommonPage{
 	 * 开通 app server cdn sys服务测试用例
 	 */
 	public void openService(){
+		Assert.assertEquals(1, 2);
 		int count=0;
 		//开通app
 		driverBrowser.click(xpathCliOpenApp);

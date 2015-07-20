@@ -1,7 +1,5 @@
 package com.tingyun.auto.saas.page.typroduct;
 
-import java.awt.AWTException;
-import java.awt.Robot;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
-import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.saas.page.CommonPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
@@ -86,6 +83,7 @@ public class ProductPricePage extends CommonPage {
 	 * app购买小薇版服务
 	 */
 	public void appBuyXiaoWeiService(){
+		Assert.assertEquals(1, 2);
 		//产品价格 点击 立即购买
 		driverBrowser.click(xpathCliBuy);
 		//输入姓名
@@ -93,12 +91,12 @@ public class ProductPricePage extends CommonPage {
 		//输入appName
 		driverBrowser.sendKeys(nameTypeAppName, "testAppName");
 		//输入moble number
-		String phone =  "131"+StrAndDateUtil.randowEightNumbers(1, 10, 8);
+		String phone =  "131"+StrAndDateUtil.randowNumbers(1, 10, 8);
 		driverBrowser.sendKeys(nameTypeMobile, phone);
 		//输入公司名称
-		driverBrowser.sendKeys(nameTypeCompanyName, "testCompanyName"+StrAndDateUtil.randowEightNumbers(1, 10, 5));
+		driverBrowser.sendKeys(nameTypeCompanyName, "testCompanyName"+StrAndDateUtil.randowNumbers(1, 10, 5));
 		//输入email
-		String email = StrAndDateUtil.randowEightNumbers(1, 10, 8)+"@qq.com";
+		String email = StrAndDateUtil.randowNumbers(1, 10, 8)+"@qq.com";
 		driverBrowser.sendKeys(nameTypeCompanyEmail,email);
 		//输入公司web
 		driverBrowser.sendKeys(nameTypeCompanyWeb, "www.test.com");
@@ -116,6 +114,7 @@ public class ProductPricePage extends CommonPage {
 	 * app续费 
 	 */
 	public void appRenewal(){
+		Assert.assertEquals(1, 2);
 		//点击续费按钮
 		driverBrowser.click(classCliRenewalButton);
 		//获得结束日期

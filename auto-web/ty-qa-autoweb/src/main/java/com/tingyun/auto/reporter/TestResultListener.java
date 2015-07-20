@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 
@@ -18,13 +17,13 @@ import com.tingyun.auto.framework.browser.DriverBrowser;
 
 public class TestResultListener extends TestListenerAdapter {
 	
+
+
 	Logger logger = LoggerFactory.getLogger(TestResultListener.class);
-	DriverBrowser db = new DriverBrowser(BrowserType.Chrome);
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		String methodName = tr.getMethod().getMethodName();
-		db.failScreenShot(methodName);
-		db.quit();
+		this.failScreenShot(methodName);
 		logger.info(methodName+"was running failed!");
 	}
 
@@ -35,23 +34,23 @@ public class TestResultListener extends TestListenerAdapter {
 		logger.info(methodName+"was running skipped!");
 	}
 	
-//	/**
-//	* @author : chenjingli
-//	* @decription 截图
-//	* @return
-//	 */
-//	 public void failScreenShot(String desc) {
-//			File scrFile = ((TakesScreenshot) driverBrowser.getWebDriver())
-//					.getScreenshotAs(OutputType.FILE);
-//			logger.error("开始截图，名称{}", desc + ".jpg");
-//			File screenshot = new File("test-output/html" + File.separator
-//					+ "failScreenShot" + File.separator + desc + ".jpg");
-//			try {
-//				FileUtils.copyFile(scrFile, screenshot);
-//			} catch (IOException e) {
-//				logger.error("截图操作失败" + e.getMessage());
-//			}
-//
-//		}
+	/**
+	* @author : chenjingli
+	* @decription 截图
+	* @return
+	 */
+	 public void failScreenShot(String desc) {
+			File scrFile = ((TakesScreenshot) DriverBrowser.getWebDriver())
+					.getScreenshotAs(OutputType.FILE);
+			logger.error("开始截图，名称{}", desc + ".jpg");
+			File screenshot = new File("test-output/html" + File.separator
+					+ "failScreenShot" + File.separator + desc + ".jpg");
+			try {
+				FileUtils.copyFile(scrFile, screenshot);
+			} catch (IOException e) {
+				logger.error("截图操作失败" + e.getMessage());
+			}
+
+		}
 
 }

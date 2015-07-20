@@ -9,15 +9,15 @@
 	</listeners>
 	
 	 
-<!--   <test name="SAAS-注册" junit="false" annotations="jdk" preserve-order="true"> -->
-<!--         <classes> -->
-<!--             <class name="com.tingyun.auto.saas.step.RegisteredStep"> -->
-<!--             <methods> -->
-<!--         			<include name="testSaasRegiste"/> saas 注册 -->
-<!--         		</methods> -->
-<!--             </class>          -->
-<!--         </classes> -->
-<!--     </test> -->
+  <test name="SAAS-注册" junit="false" annotations="jdk" preserve-order="true">
+        <classes>
+            <class name="com.tingyun.auto.saas.step.RegisteredStep">
+            <methods>
+        			<include name="testSaasRegiste"/> <!-- saas 注册 -->
+        		</methods>
+            </class>         
+        </classes>
+    </test>
 
 
    <test name="SAAS-开通app,server.cdn,sys服务" junit="false" annotations="jdk" preserve-order="true">

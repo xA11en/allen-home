@@ -1,12 +1,8 @@
 package com.tingyun.auto.saas.step;
 
-import static org.testng.Assert.fail;
 
-import org.testng.TestNGException;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -22,7 +18,7 @@ import com.tingyun.auto.utils.OperateProperties;
 * @version ：2015-6-30 下午2:28:05 
 * @decription: saas 注册
  */
-//@Listeners({ TestResultListener.class})
+@Listeners({ TestResultListener.class})
 public class RegisteredStep extends GlobalStep {
 	
 	public static final String registe = "saas注册";
@@ -41,17 +37,17 @@ public class RegisteredStep extends GlobalStep {
 	 */
 	@Test(description=registe)
 	public void testSaasRegiste(){
-	try{
+//	try{
 			pinfo(ReportStep.class,registe+caseStart);
 			registPage.saasRegist();
-			pinfo(ReportStep.class,registe+caseEnd);	
-	}catch(Error e){
-		driverBrowser.failScreenShot("testSaasRegiste");
-		fail(registe+FAIL + e.getMessage(), e);
-	}catch (Exception e) {
-		driverBrowser.failScreenShot("testSaasRegiste");
-		throw new TestNGException(registe+FAIL + e.getMessage(), e);
-	} 
+			pinfo(ReportStep.class,registe+caseEnd);
+//	}catch(Error e){
+//		driverBrowser.failScreenShot("testSaasRegiste");
+//		fail(registe+FAIL + e.getMessage(), e);
+//	}catch (Exception e) {
+//		driverBrowser.failScreenShot("testSaasRegiste");
+//		throw new TestNGException(registe+FAIL + e.getMessage(), e);
+//	} 
 	}
 	
 	@AfterClass

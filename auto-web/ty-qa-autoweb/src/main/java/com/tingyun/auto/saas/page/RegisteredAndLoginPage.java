@@ -1,6 +1,5 @@
 package com.tingyun.auto.saas.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -128,7 +127,7 @@ public class RegisteredAndLoginPage extends CommonPage {
 		//切换窗口
 		//driverBrowser.selectWindow(driverBrowser.getWebDriver().getWindowHandle());
 		//输入邮箱
-		String email = StrAndDateUtil.randowEightNumbers(1, 10, 8)+"@qq.com";
+		String email = StrAndDateUtil.randowNumbers(1, 10, 8)+"@qq.com";
 		driverBrowser.sendKeys(idTypeEmail,email);
 		setRadisKeyValue(REGIST_EMAIL, email);
 		driverBrowser.pause(1000);
@@ -150,7 +149,7 @@ public class RegisteredAndLoginPage extends CommonPage {
 		//点击测试工程师
 		driverBrowser.click(xpathCliJob);
 		//输入手机号
-		String phone =  "131"+StrAndDateUtil.randowEightNumbers(1, 10, 8);
+		String phone =  "131"+StrAndDateUtil.randowNumbers(1, 10, 8);
 		setRadisKeyValue(REGIST_PHONE, phone);
 		driverBrowser.sendKeys(idTypeMobleNum,phone);
 		driverBrowser.pause(1000);

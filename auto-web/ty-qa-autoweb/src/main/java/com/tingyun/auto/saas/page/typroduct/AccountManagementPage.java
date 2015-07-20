@@ -2,7 +2,6 @@ package com.tingyun.auto.saas.page.typroduct;
 
 import java.util.List;
 
-import javax.xml.crypto.dsig.spec.XPathType;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
 import com.tingyun.auto.framework.browser.DriverBrowser;
-import com.tingyun.auto.saas.page.CommonPage;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
 
@@ -24,7 +22,7 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 	
 	static Logger logger = LoggerFactory.getLogger(AccountManagementPage.class);
 	static final String REGIST_EMAIL= "ZiregistEmail";
-	static final String ZI_ACCOUNUT_NAME="子账号"+StrAndDateUtil.randowEightNumbers(1, 10, 5);
+	static final String ZI_ACCOUNUT_NAME="子账号"+StrAndDateUtil.randowNumbers(1, 10, 5);
 	public AccountManagementPage(DriverBrowser driverBrowser) {
 		super(driverBrowser);
 	}
@@ -118,14 +116,14 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 		//输入姓名
 		driverBrowser.sendKeys(idTypeUserName,ZI_ACCOUNUT_NAME );
 		//输入邮箱
-		String email = StrAndDateUtil.randowEightNumbers(1, 10, 8)+"@qq.com";
+		String email = StrAndDateUtil.randowNumbers(1, 10, 8)+"@qq.com";
 		driverBrowser.sendKeys(idTypeUserEmail, email);
 		
 		logger.info("随机生成的子账号名称为-----》：{}",ZI_ACCOUNUT_NAME);
 		//邮箱存入redis
 		setRadisKeyValue(REGIST_EMAIL, email);
 		//输入手机
-		driverBrowser.sendKeys(idTypeUserMobile, "131"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+		driverBrowser.sendKeys(idTypeUserMobile, "131"+StrAndDateUtil.randowNumbers(1, 10, 8));
 		//选择角色
 		driverBrowser.click(idSelectRoleImg);
 		//点击选择的角色
@@ -139,15 +137,15 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 		//选择旅游出行
 		driverBrowser.click(xpathSelTourismTravel);
 		//输入部门
-		driverBrowser.sendKeys(idTypeUserDepartment, "部门"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+		driverBrowser.sendKeys(idTypeUserDepartment, "部门"+StrAndDateUtil.randowNumbers(1, 10, 8));
 		//选择岗位
 		driverBrowser.click(idSelJobs);
 		//选择研发测试岗位
 		driverBrowser.click(idSelJobTest);
 		//输入公司名称
-		driverBrowser.sendKeys(idTypeCompanyName,"公司名称"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+		driverBrowser.sendKeys(idTypeCompanyName,"公司名称"+StrAndDateUtil.randowNumbers(1, 10, 8));
 		//输入公司地址
-		driverBrowser.sendKeys(idTypeCompanyAddress, "公司地址"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+		driverBrowser.sendKeys(idTypeCompanyAddress, "公司地址"+StrAndDateUtil.randowNumbers(1, 10, 8));
 		//点击保存
 		driverBrowser.click(xpathCliSave);
 		driverBrowser.pause(1500);
@@ -181,17 +179,17 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 		driverBrowser.click(xpathSelTourismTravel);
 		//输入部门
 		driverBrowser.clear(idTypeUserDepartment);
-	    driverBrowser.sendKeys(idTypeUserDepartment, "部门"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+	    driverBrowser.sendKeys(idTypeUserDepartment, "部门"+StrAndDateUtil.randowNumbers(1, 10, 8));
 	    //选择岗位
 	  	driverBrowser.click(idSelJobs);
 	  	//选择研发测试岗位
 	  	driverBrowser.click(idSelJobTest);
 	  	//输入公司名称
 		driverBrowser.clear(idTypeCompanyName);
-	  	driverBrowser.sendKeys(idTypeCompanyName,"公司名称"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+	  	driverBrowser.sendKeys(idTypeCompanyName,"公司名称"+StrAndDateUtil.randowNumbers(1, 10, 8));
 	  	//输入公司地址
 	  	driverBrowser.clear(idTypeCompanyAddress);
-	  	driverBrowser.sendKeys(idTypeCompanyAddress, "公司地址"+StrAndDateUtil.randowEightNumbers(1, 10, 8));
+	  	driverBrowser.sendKeys(idTypeCompanyAddress, "公司地址"+StrAndDateUtil.randowNumbers(1, 10, 8));
 	    //点击保存
 	  	driverBrowser.click(xpathCliSave);
 	  	driverBrowser.pause(1500);

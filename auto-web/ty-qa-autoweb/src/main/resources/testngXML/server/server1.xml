@@ -4,8 +4,8 @@
 <suite name="server产品线" preserve-order="true" parallel="tests"
 	thread-count="1">
 	<listeners>
-		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener>
-<!-- 		//<listener class-name="com.tingyun.auto.listener.TestNGListener"></listener> -->
+<!-- 		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener> -->
+<!-- 		<listener class-name="com.tingyun.auto.listener.TestResultListener"></listener> -->
 	</listeners>
 	
 	 

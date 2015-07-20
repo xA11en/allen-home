@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
-import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.saas.page.CommonPage;
 import com.tingyun.auto.utils.StrAndDateUtil;
@@ -78,7 +77,7 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 		driverBrowser.click(xpathProductProblem);
 		driverBrowser.pause(1000);
 		//输入问题描述
-		String text = "test咨询"+StrAndDateUtil.randowEightNumbers(1, 10, 8);
+		String text = "test咨询"+StrAndDateUtil.randowNumbers(1, 10, 8);
 		driverBrowser.sendKeys(idProblemDescription, text);
 		driverBrowser.pause(1000);
 		//点击提交
