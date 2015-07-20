@@ -83,7 +83,6 @@ public class ProductPricePage extends CommonPage {
 	 * app购买小薇版服务
 	 */
 	public void appBuyXiaoWeiService(){
-		Assert.assertEquals(1, 2);
 		//产品价格 点击 立即购买
 		driverBrowser.click(xpathCliBuy);
 		//输入姓名
@@ -114,7 +113,6 @@ public class ProductPricePage extends CommonPage {
 	 * app续费 
 	 */
 	public void appRenewal(){
-		Assert.assertEquals(1, 2);
 		//点击续费按钮
 		driverBrowser.click(classCliRenewalButton);
 		//获得结束日期
