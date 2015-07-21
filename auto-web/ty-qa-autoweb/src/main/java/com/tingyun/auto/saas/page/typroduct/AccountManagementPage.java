@@ -98,7 +98,23 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 	
 	@FindBy(xpath="//*[@id='page_1']/div[1]/descendant::a[1]")
 	public WebElement xpathGetFirstAccountName;//获得第一个account name
+	/**
+	 * 权限相关的元素page
+	 */
+	@FindBy(xpath="//*[@id='page_1']/div[1]//a[text()='权限']")
+	public WebElement xpathCliRight;//权限
 	
+	@FindBy(xpath="//*[@id='rumselect_1_rumselect_left_1_check']")
+	public WebElement xpathCliBox;//选择应用
+	
+	@FindBy(className="rumselect-to-right-button")
+	public WebElement CliSelectRightBut;//分配应用
+	
+	@FindBy(xpath="//*[@id='filter_ok']")
+	public WebElement xpathCliSSave;//保存
+	
+	@FindBy(linkText="自动化saas测试专用授权测试数据1勿删")
+	public WebElement AssertText;//验证元素
 	/**
 	 *  子账号增加 测试用例
 	 */
@@ -195,6 +211,19 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 	  	driverBrowser.pause(1500);
 	  		
 	  	Assert.assertEquals(driverBrowser.getPageText(xpathGetFirstAccountName), ZI_ACCOUNUT_NAME);
+	}
+	/**
+	 * 权限分配
+	 */
+	public void AllocatRight(){
+		//点击权限
+		driverBrowser.click(xpathCliRight);
+		//点击选择方框
+		driverBrowser.click(xpathCliBox);
+		//点击向右选择
+		driverBrowser.click(CliSelectRightBut);
+		//点击保存
+		driverBrowser.click(xpathCliSSave);
 	}
 	/**
 	 * 删除子账号信息

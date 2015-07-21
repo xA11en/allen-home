@@ -50,7 +50,15 @@ public class AccountManagementStep extends GlobalStep {
 			managementPage.addZiAccountName();
 			pinfo(AccountManagementStep.class,addZiAccount+caseEnd);	
 	}
-	
+	/**
+	 *@author: mabingxue 
+	 *@decription:权限分配
+	 */
+	public void testAllocatRight(){
+		managementPage.AllocatRight();
+		driverBrowser.open(OperateProperties.readValue("JidiaoDoujingUrl"));
+		managementPage.saasLogin();
+	}
 	/**
 	* @author : chenjingli
 	* @decription 通过企业账号编辑子账号
