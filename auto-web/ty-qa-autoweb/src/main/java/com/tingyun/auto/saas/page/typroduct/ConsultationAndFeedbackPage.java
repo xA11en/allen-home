@@ -109,10 +109,10 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 		int cellNum2 = driverBrowser.getElementNums(xpathCell);
 		if(cellNum1<=1){
 		Assert.assertEquals(cellNum1-1,cellNum2);
-		logger.info("新建问题后tr标签的数量cellNum1={},删除问题后表格的数量cellNum2={}",cellNum1,cellNum2);
+		logger.info("新建问题后cell的数量cellNum1={},删除问题后表格的数量cellNum2={}",cellNum1,cellNum2);
 		}else{
 			Assert.assertEquals(cellNum1-1,cellNum2);
-		  logger.info("新建问题后tr标签的数量tagNum1={},删除问题后tr标签的数量tagNum2={}",tagNum1,tagNum2);
+		  logger.info("新建问题后cell的数量tagNum1={},删除问题后tr标签的数量tagNum2={}",cellNum1,cellNum2);
 		}
 	}
 	}
