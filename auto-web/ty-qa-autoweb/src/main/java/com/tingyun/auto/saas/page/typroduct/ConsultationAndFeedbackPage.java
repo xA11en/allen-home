@@ -55,8 +55,8 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 	@FindBy(xpath="//table/descendant::a[2]")
 	public WebElement xpathDelete;            //点击删除
 	 
-	@FindBy(tagName="tr")
-	private List<WebElement> tagNameTr;   //验证是否成功删除
+	@FindBy(xpath="//tr[@class='feedback_tab1_tr1']/following-sibling::tr")
+	private List<WebElement> xpathCell;   //验证是否成功删除
 	/**
 	 * 咨询与反馈的新建、查看、删除咨询的测试用例
 	 */
@@ -94,7 +94,7 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 		//点击关闭
 		driverBrowser.click(xpathClose);
 		driverBrowser.pause(1000);
-		int tagNum1 = driverBrowser.getElementNums(tagNameTr);
+		int cellNum1 = driverBrowser.getElementNums(xpathCell);
 		//点击删除
 		driverBrowser.click(xpathDelete);
 		driverBrowser.pause(1000);
@@ -105,12 +105,13 @@ public class ConsultationAndFeedbackPage extends CommonPage {
 		driverBrowser.confirmAlert(true);
 		driverBrowser.pause(1000);
 		//验证是否成功删除
-		int tagNum2 = driverBrowser.getElementNums(tagNameTr);
-		if(tagNum1<=2){
-		Assert.assertEquals(tagNum1-2,tagNum2);
-		logger.info("新建问题后tr标签的数量tagNum1={},删除问题后tr标签的数量tagNum2={}",tagNum1,tagNum2);
+		
+		int cellNum2 = driverBrowser.getElementNums(xpathCell);
+		if(cellNum1<=1){
+		Assert.assertEquals(cellNum1-1,cellNum2);
+		logger.info("新建问题后tr标签的数量cellNum1={},删除问题后表格的数量cellNum2={}",cellNum1,cellNum2);
 		}else{
-			//Assert.assertEquals(tagNum1-1,tagNum2);
+			Assert.assertEquals(cellNum1-1,cellNum2);
 		  logger.info("新建问题后tr标签的数量tagNum1={},删除问题后tr标签的数量tagNum2={}",tagNum1,tagNum2);
 		}
 	}
