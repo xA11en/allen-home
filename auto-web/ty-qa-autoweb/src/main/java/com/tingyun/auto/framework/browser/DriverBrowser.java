@@ -23,7 +23,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
-import org.testng.TestListenerAdapter;
 
 import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.SystemClock;
@@ -33,7 +32,7 @@ import com.tingyun.auto.framework.driver.WebdriverFactory;
 * @version ：2015-5-11 下午4:13:44 
 * @decription: 选择浏览器启动入口
  */
-public class DriverBrowser extends TestListenerAdapter{
+public class DriverBrowser{
 	
 	
 	public static WebDriver webDriver;
