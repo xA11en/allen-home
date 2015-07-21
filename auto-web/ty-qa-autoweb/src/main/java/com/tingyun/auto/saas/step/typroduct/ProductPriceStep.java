@@ -11,7 +11,6 @@ import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.reporter.TestResultListener;
-import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.ProductPricePage;
 import com.tingyun.auto.utils.OperateProperties;
@@ -46,9 +45,9 @@ public class ProductPriceStep extends GlobalStep {
 	@Test(description=buyTingYunAppService)
 	public void testBuyTingYunAppService(){
 	//try{
-			pinfo(ReportStep.class,buyTingYunAppService+caseStart);
+			pinfo(ProductPriceStep.class,buyTingYunAppService+caseStart);
 			pricePage.appBuyXiaoWeiService();
-			pinfo(ReportStep.class,buyTingYunAppService+caseEnd);	
+			pinfo(ProductPriceStep.class,buyTingYunAppService+caseEnd);	
 //	}catch(Error e){
 //		driverBrowser.failScreenShot("testBuyTingYunAppService");
 //		fail(buyTingYunAppService+FAIL + e.getMessage(), e);
@@ -66,9 +65,9 @@ public class ProductPriceStep extends GlobalStep {
 	public void testAppRenewalService(){
 //	try{
 			driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/userService/myproduct");
-			pinfo(ReportStep.class,appRenewal+caseStart);
+			pinfo(ProductPriceStep.class,appRenewal+caseStart);
 			pricePage.appRenewal();
-			pinfo(ReportStep.class,appRenewal+caseEnd);
+			pinfo(ProductPriceStep.class,appRenewal+caseEnd);
 //	}catch(Error e){
 //		driverBrowser.failScreenShot("testAppRenewalService");
 //		fail(appRenewal+FAIL + e.getMessage(), e);

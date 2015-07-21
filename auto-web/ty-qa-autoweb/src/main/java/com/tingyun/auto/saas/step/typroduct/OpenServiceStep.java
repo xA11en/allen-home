@@ -10,7 +10,6 @@ import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.reporter.TestResultListener;
-import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.OpenServicePage;
 import com.tingyun.auto.utils.OperateProperties;
@@ -42,9 +41,9 @@ public class OpenServiceStep extends GlobalStep {
 	@Test(description=openServiceDes)
 	public void testOpenService(){
 	//try{
-			pinfo(ReportStep.class,openServiceDes+caseStart);
+			pinfo(OpenServiceStep.class,openServiceDes+caseStart);
 			servicePage.openService();
-			pinfo(ReportStep.class,openServiceDes+caseEnd);	
+			pinfo(OpenServiceStep.class,openServiceDes+caseEnd);	
 //	}catch(Error e){
 //		driverBrowser.failScreenShot("testOpenService");
 //		fail(openServiceDes+FAIL + e.getMessage(), e);

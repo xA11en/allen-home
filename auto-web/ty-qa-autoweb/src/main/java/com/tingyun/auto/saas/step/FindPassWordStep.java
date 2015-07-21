@@ -12,7 +12,6 @@ import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.reporter.TestResultListener;
-import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.FindPasswordBackPage;
 import com.tingyun.auto.utils.OperateProperties;
 
@@ -34,15 +33,15 @@ public class FindPassWordStep extends GlobalStep{
 	
 	@Test(description=PhFindPw)
 	public void testPhFindPassword(){
-			pinfo(ReportStep.class,PhFindPw+caseStart);
+			pinfo(FindPassWordStep.class,PhFindPw+caseStart);
 			findPage.PhFindPassword();
-			pinfo(ReportStep.class,PhFindPw+caseEnd);	
+			pinfo(FindPassWordStep.class,PhFindPw+caseEnd);	
 	}
 	@Test(description=EmFindPw)
 	public void testEmFindPassword(){
-			pinfo(ReportStep.class,EmFindPw+caseStart);
+			pinfo(FindPassWordStep.class,EmFindPw+caseStart);
 			findPage.PhFindPassword();
-			pinfo(ReportStep.class,EmFindPw+caseEnd);	
+			pinfo(FindPassWordStep.class,EmFindPw+caseEnd);	
 	}
 	@AfterMethod
 	public void down(){

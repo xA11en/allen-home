@@ -10,7 +10,6 @@ import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.reporter.TestResultListener;
-import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.utils.OperateProperties;
 /**
@@ -38,9 +37,9 @@ public class RegisteredStep extends GlobalStep {
 	@Test(description=registe)
 	public void testSaasRegiste(){
 //	try{
-			pinfo(ReportStep.class,registe+caseStart);
+			pinfo(RegisteredStep.class,registe+caseStart);
 			registPage.saasRegist();
-			pinfo(ReportStep.class,registe+caseEnd);
+			pinfo(RegisteredStep.class,registe+caseEnd);
 //	}catch(Error e){
 //		driverBrowser.failScreenShot("testSaasRegiste");
 //		fail(registe+FAIL + e.getMessage(), e);

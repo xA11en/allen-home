@@ -14,7 +14,6 @@ import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.reporter.TestResultListener;
-import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.ConsultationAndFeedbackPage;
 import com.tingyun.auto.utils.OperateProperties;
@@ -43,9 +42,9 @@ public class ConsultationAndFeedbackStep extends GlobalStep{
 	 */
 	@Test(description=ConsuAndFeedB)
 	public void testSaasConsultationAndFeedback(){
-			pinfo(ReportStep.class,ConsuAndFeedB+caseStart);
+			pinfo(ConsultationAndFeedbackStep.class,ConsuAndFeedB+caseStart);
 			ConFeedPage.saasConsultationAndFeedback();
-		    pinfo(ReportStep.class,ConsuAndFeedB+caseEnd);
+		    pinfo(ConsultationAndFeedbackStep.class,ConsuAndFeedB+caseEnd);
 	}
 	@AfterClass
 	public void down(){

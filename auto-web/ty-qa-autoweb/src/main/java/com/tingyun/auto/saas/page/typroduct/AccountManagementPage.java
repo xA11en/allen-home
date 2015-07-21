@@ -127,7 +127,7 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 		//选择角色
 		driverBrowser.click(idSelectRoleImg);
 		//点击选择的角色
-		driverBrowser.click(xpathSelAppAdmin);
+		driverBrowser.click(xpathSelReportAdmin);
 		//输入登陆密码
 		driverBrowser.sendKeys(idTypePwd, readValue("saasLoginPwd"));
 		//再次输入登陆密码
@@ -172,7 +172,7 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 		//选择角色
 		driverBrowser.click(idSelectRoleImg);
 		//点击选择的角色报表查看员
-		driverBrowser.click(xpathSelReportAdmin);
+		driverBrowser.click(xpathSelAppAdmin);
 		//选择行业
 		driverBrowser.click(idSelsndustry);
 		//选择旅游出行

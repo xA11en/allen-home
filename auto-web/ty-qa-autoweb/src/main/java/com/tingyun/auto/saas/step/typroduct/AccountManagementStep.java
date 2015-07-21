@@ -12,7 +12,6 @@ import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 import com.tingyun.auto.reporter.TestResultListener;
-import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.AccountManagementPage;
 import com.tingyun.auto.utils.OperateProperties;
@@ -47,17 +46,9 @@ public class AccountManagementStep extends GlobalStep {
 	 */
 	@Test(description=addZiAccount)
 	public void testAddZiAccount(){
-	try{
-			pinfo(ReportStep.class,addZiAccount+caseStart);
+			pinfo(AccountManagementStep.class,addZiAccount+caseStart);
 			managementPage.addZiAccountName();
-			pinfo(ReportStep.class,addZiAccount+caseEnd);	
-	}catch(Error e){
-		driverBrowser.failScreenShot("testAddZiAccount");
-		fail(addZiAccount+FAIL + e.getMessage(), e);
-	}catch (Exception e) {
-		driverBrowser.failScreenShot("testAddZiAccount");
-		throw new TestNGException(addZiAccount+FAIL + e.getMessage(), e);
-	} 
+			pinfo(AccountManagementStep.class,addZiAccount+caseEnd);	
 	}
 	
 	/**
@@ -69,9 +60,9 @@ public class AccountManagementStep extends GlobalStep {
 			driverBrowser.open(OperateProperties.readValue("saasLoginURL"));
 			loginPage.saasZiAccountLogin();
 			driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/subUserManager/userList");
-			pinfo(ReportStep.class,editZiAccount+caseStart);
+			pinfo(AccountManagementStep.class,editZiAccount+caseStart);
 			managementPage.editZiAccount();
-			pinfo(ReportStep.class,editZiAccount+caseEnd);	
+			pinfo(AccountManagementStep.class,editZiAccount+caseEnd);	
 	}
 	
 	/**
@@ -81,9 +72,9 @@ public class AccountManagementStep extends GlobalStep {
 	@Test(description=deleteZiAccount)
 	public void testDeleteZiAccount(){
 			driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/subUserManager/userList");
-			pinfo(ReportStep.class,deleteZiAccount+caseStart);
+			pinfo(AccountManagementStep.class,deleteZiAccount+caseStart);
 			managementPage.delZiAccount();
-			pinfo(ReportStep.class,deleteZiAccount+caseEnd);
+			pinfo(AccountManagementStep.class,deleteZiAccount+caseEnd);
 	}
 	
 	
