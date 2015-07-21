@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 
-import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 /**
 * @author :chenjingli 
@@ -36,7 +34,7 @@ public class DataSourcePage extends CommonPage{
 	* @decriptionTOP5 最耗时SQL操作堆叠图
 	* @return
 	 */
-	public void validationSQLMap(String str)throws Exception{
+	public void validationSQLMap(String str){
 		driverBrowser.expectElementExist(xpathGetMostSQLMap,str);
 		String js = "return document.getElementById('topSql').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -54,7 +52,7 @@ public class DataSourcePage extends CommonPage{
 	* @decriptionTOP5 数据库吞吐率堆叠图
 	* @return
 	 */
-	public void valiDataSourceMap(String str)throws Exception{
+	public void valiDataSourceMap(String str){
 		driverBrowser.expectElementExist(xpathGetDataSourceMap,str);
 		String js = "return document.getElementById('throughput').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -70,7 +68,7 @@ public class DataSourcePage extends CommonPage{
 	* @decriptionTOP5 数据库响应时间曲线图
 	* @return
 	 */
-	public void valiDataSourceRespondMap(String str)throws Exception{
+	public void valiDataSourceRespondMap(String str){
 		driverBrowser.expectElementExist(xpathGetDataSourceRespondMap,str);
 		String js = "return document.getElementById('performance').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);

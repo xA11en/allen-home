@@ -50,7 +50,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 应用服务器响应时间图
 	* @return
 	 */
-	public void cssAppRespondTimeMap(String str)throws Exception{
+	public void cssAppRespondTimeMap(String str){
 		driverBrowser.expectElementExist(cssAppRespondTimeMap,str);
 		String js = "return document.getElementById('httpAndNetwork').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -68,7 +68,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 Apdex指标图
 	* @return
 	 */
-	public void cssApdexMap(String str)throws Exception{
+	public void cssApdexMap(String str){
 		driverBrowser.expectElementExist(cssApdexMap,str);
 		String js = "return document.getElementById('apdex').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -84,7 +84,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 错误率图
 	* @return
 	 */
-	public void cssErrorMap(String str)throws Exception{
+	public void cssErrorMap(String str){
 		driverBrowser.expectElementExist(cssErrorMap,str);
 		String js = "return document.getElementById('error').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -102,7 +102,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 最耗时Web应用过程（Web Action）图表显示正常
 	* @return
 	 */
-	public void csstopWebActionMap(String str)throws Exception{
+	public void csstopWebActionMap(String str){
 		driverBrowser.expectElementExist(csstopWebActionMap,str);
 		String js = "return document.getElementById('topWebAction').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -120,7 +120,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 吞吐率图
 	* @return
 	 */
-	public void cssThroughtMap(String str)throws Exception{
+	public void cssThroughtMap(String str){
 		driverBrowser.expectElementExist(cssThroughtMap,str);
 		String js = "return document.getElementById('throughput').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -136,7 +136,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 服务器资源--cpu
 	* @return
 	 */
-	public void cssCPUTimeMap(String str)throws Exception{
+	public void cssCPUTimeMap(String str){
 		driverBrowser.expectElementExist(cssCPUTimeMap,str);
 		String js = "return document.getElementById('httpResponseTime').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -153,7 +153,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5 服务器资源--内存
 	* @return
 	 */
-	public void cssMerboryMap(String str)throws Exception{
+	public void cssMerboryMap(String str){
 		driverBrowser.expectElementExist(cssMerboryMap,str);
 		String js = "return document.getElementById('activeDevice').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -169,7 +169,7 @@ public class IntelligenceSummaryPage extends CommonPage{
 	* @decriptionTOP5  展现所有的数据 table 
 	* @return
 	 */
-	public void idTable(String str)throws Exception{
+	public void idTable(String str){
 		driverBrowser.expectElementExist(idTable,str);
 //		String js = "return document.getElementById('tablesorter').length";
 //		Long length = (Long) driverBrowser.executeScript(js);

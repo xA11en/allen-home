@@ -7,9 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-
-import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 /**
 * @author :chenjingli 
@@ -37,7 +34,7 @@ public class BackgroundTasksPage extends CommonPage{
 	* @decriptionTOP5 最耗时后台任务图表
 	* @return
 	 */
-	public void validationTimeConsumingMap(String str)throws Exception{
+	public void validationTimeConsumingMap(String str){
 		driverBrowser.expectElementExist(xpathMostTimeConsumingMap,str);
 		String js = "return document.getElementById('top5bgAction').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -55,7 +52,7 @@ public class BackgroundTasksPage extends CommonPage{
 	* @decriptionTOP5 应用CPU使用率图表
 	* @return
 	 */
-	public void valiAppCpuMap(String str)throws Exception{
+	public void valiAppCpuMap(String str){
 		driverBrowser.expectElementExist(xpathAppCpuMap,str);
 		String js = "return document.getElementById('bgCpu').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -71,7 +68,7 @@ public class BackgroundTasksPage extends CommonPage{
 	* @decriptionTOP5 应用内存使用量图表
 	* @return
 	 */
-	public void valiAppMemoryMap(String str)throws Exception{
+	public void valiAppMemoryMap(String str){
 		driverBrowser.expectElementExist(xpathAppMemoryMap,str);
 		String js = "return document.getElementById('bgMem').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);

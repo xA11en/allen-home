@@ -31,7 +31,7 @@ public class ErrorPage extends CommonPage{
 	* @decriptionTOP5  应用错误率
 	* @return
 	 */
-	public void validationAppErrorMap(String str)throws Exception{
+	public void validationAppErrorMap(String str){
 		driverBrowser.expectElementExist(xpathAppErrorMap,str);
 		String js = "return document.getElementById('applicationErrors').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);

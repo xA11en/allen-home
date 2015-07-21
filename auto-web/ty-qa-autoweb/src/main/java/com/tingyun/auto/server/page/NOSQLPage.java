@@ -7,9 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-
-import com.tingyun.auto.common.GlobalPage;
 import com.tingyun.auto.framework.browser.DriverBrowser;
 /**
 * @author :chenjingli 
@@ -37,7 +34,7 @@ public class NOSQLPage extends CommonPage{
 	* @decriptionTOP5 最耗时Redis操作堆叠图
 	* @return
 	 */
-	public void validationRedisMap(String str)throws Exception{
+	public void validationRedisMap(String str){
 		driverBrowser.expectElementExist(xpathGetMostRedisMap,str);
 		String js = "return document.getElementById('topMongodb').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -55,7 +52,7 @@ public class NOSQLPage extends CommonPage{
 	* @decriptionTOP5 Redis吞吐率堆叠图
 	* @return
 	 */
-	public void valiRedisThroughtMap(String str)throws Exception{
+	public void valiRedisThroughtMap(String str){
 		driverBrowser.expectElementExist(xpathGetRedisThroughtMap,str);
 		String js = "return document.getElementById('throughput').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -71,7 +68,7 @@ public class NOSQLPage extends CommonPage{
 	* @decriptionTOP5 Redis响应时间曲线图
 	* @return
 	 */
-	public void valiRedisRespondMap(String str)throws Exception{
+	public void valiRedisRespondMap(String str){
 		driverBrowser.expectElementExist(xpathGetRedisRespondMap,str);
 		String js = "return document.getElementById('performance').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);

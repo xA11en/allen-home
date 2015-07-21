@@ -34,7 +34,7 @@ public class ExternalApplicationPage extends CommonPage{
 	* @decriptionTOP5 总耗时最慢的外部应用曲线图
 	* @return
 	 */
-	public void validationMostSlowWebAPPMap(String str)throws Exception{
+	public void validationMostSlowWebAPPMap(String str){
 		driverBrowser.expectElementExist(xpathGetMostSlowWebAPPMap,str);
 		String js = "return document.getElementById('topSql').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -52,7 +52,7 @@ public class ExternalApplicationPage extends CommonPage{
 	* @decriptionTOP5 外部应用吞吐率曲线图
 	* @return
 	 */
-	public void valiWebAppThroughtMap(String str)throws Exception{
+	public void valiWebAppThroughtMap(String str){
 		driverBrowser.expectElementExist(xpathGetWebAppThroughtMap,str);
 		String js = "return document.getElementById('throughput').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);

@@ -57,7 +57,7 @@ public class JVMPage extends CommonPage{
 	* @return
 	* @description 判断图片个数 如果少于14个说明有未显示图标存在 错误会截图
 	 */
-	public void validationCommonJvmMap(String str)throws Exception{
+	public void validationCommonJvmMap(String str){
 		
 		String js = "return document.getElementById('heapMemory').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -74,7 +74,7 @@ public class JVMPage extends CommonPage{
 	* @decriptionTOP5 Garbage collection CPU time 
 	* @return
 	 */
-	public void valiGCMap(String str)throws Exception{
+	public void valiGCMap(String str){
 		driverBrowser.expectElementExist(xpathGetgcMap,str);
 		String js = "return document.getElementById('gc').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -90,7 +90,7 @@ public class JVMPage extends CommonPage{
 	* @decriptionTOP5 Class Count 
 	* @return
 	 */
-	public void valiJvmClassMap(String str)throws Exception{
+	public void valiJvmClassMap(String str){
 		driverBrowser.expectElementExist(xpathGetgcMap,str);
 		String js = "return document.getElementById('jvmclass').getElementsByTagName('svg').length";
 		Long length = (Long) driverBrowser.executeScript(js);
@@ -107,7 +107,7 @@ public class JVMPage extends CommonPage{
 	* @decriptionTOP5 Class Count 
 	* @return
 	 */
-	public void valiThreadCountMap(String str)throws Exception{
+	public void valiThreadCountMap(String str){
 		//点击线程按钮
 		driverBrowser.click(xpathCliThread);
 		//判断图标是否真正常展现

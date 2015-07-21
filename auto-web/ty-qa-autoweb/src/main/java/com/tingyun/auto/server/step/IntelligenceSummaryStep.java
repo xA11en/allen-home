@@ -1,27 +1,24 @@
 package com.tingyun.auto.server.step;
 
-import static org.testng.Assert.fail;
 
-import org.openqa.selenium.By;
-import org.testng.TestNGException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.tingyun.auto.common.GlobalStep;
-import com.tingyun.auto.framework.SeleniumSettings;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
-import com.tingyun.auto.rpc.page.RpcLoginPage;
+import com.tingyun.auto.reporter.TestResultListener;
 import com.tingyun.auto.rpc.step.report.singletask.ReportStep;
-import com.tingyun.auto.server.page.DataSourcePage;
 import com.tingyun.auto.server.page.IntelligenceSummaryPage;
-import com.tingyun.auto.server.page.WebApplicationPage;
+
 /**
 * @author :chenjingli 
 * @version ：2015-6-11 上午11:50:36 
 * @decription:  server - 情报汇总 step
  */
+@Listeners({ TestResultListener.class })
 public class IntelligenceSummaryStep extends GlobalStep{
 	
 	private static final String cssAppRespondTimeMap = "应用服务器响应时间--展现测试用例";
@@ -49,17 +46,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=cssAppRespondTimeMap)
 	public void testAppRespondTimeMap(){
-		try {
 			pinfo(ReportStep.class,cssAppRespondTimeMap+caseStart);
 			summaryPage.cssAppRespondTimeMap(cssAppRespondTimeMap);
 			pinfo(ReportStep.class,cssAppRespondTimeMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testAppRespondTimeMap");
-			fail(cssAppRespondTimeMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testAppRespondTimeMap");
-			throw new TestNGException(cssAppRespondTimeMap+"" + e.getMessage(), e);
-		} 
 	}
 
 	/**
@@ -68,17 +57,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=cssApdexMap)
 	public void testApdexMapp (){
-		try {
 			pinfo(ReportStep.class,cssApdexMap+caseStart);
 			summaryPage.cssApdexMap(cssApdexMap);
 			pinfo(ReportStep.class,cssApdexMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testApdexMapp");
-			fail(cssApdexMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testApdexMapp");
-			throw new TestNGException(cssApdexMap+"" + e.getMessage(), e);
-		} 
 	}
 
 	/**
@@ -87,17 +68,8 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=cssErrorMap)
 	public void testErrorMapp(){
-		try {
 			pinfo(ReportStep.class,cssErrorMap+caseStart);
 			summaryPage.cssErrorMap(cssErrorMap);
-			pinfo(ReportStep.class,cssErrorMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testErrorMapp");
-			fail(cssErrorMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testErrorMapp");
-			throw new TestNGException(cssErrorMap+"" + e.getMessage(), e);
-		} 
 	}
 	/**
 	* @author : chenjingli
@@ -105,17 +77,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=csstopWebActionMap)
 	public void testTopWebActionMap(){
-		try {
 			pinfo(ReportStep.class,csstopWebActionMap+caseStart);
 			summaryPage.csstopWebActionMap(csstopWebActionMap);
 			pinfo(ReportStep.class,csstopWebActionMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testTopWebActionMap");
-			fail(csstopWebActionMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testTopWebActionMap");
-			throw new TestNGException(csstopWebActionMap+"" + e.getMessage(), e);
-		} 
 	}
 	
 	/**
@@ -124,17 +88,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=cssThroughtMap)
 	public void testThroughtMap(){
-		try {
 			pinfo(ReportStep.class,cssThroughtMap+caseStart);
 			summaryPage.cssThroughtMap(cssThroughtMap);
 			pinfo(ReportStep.class,cssThroughtMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testThroughtMap");
-			fail(cssThroughtMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testThroughtMap");
-			throw new TestNGException(cssThroughtMap+"" + e.getMessage(), e);
-		} 
 	}
 	
 	/**
@@ -143,17 +99,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=cssCPUTimeMap)
 	public void testCPUTimeMap(){
-		try {
 			pinfo(ReportStep.class,cssCPUTimeMap+caseStart);
 			summaryPage.cssCPUTimeMap(cssCPUTimeMap);
 			pinfo(ReportStep.class,cssCPUTimeMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testCPUTimeMap");
-			fail(cssCPUTimeMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testCPUTimeMap");
-			throw new TestNGException(cssCPUTimeMap+"" + e.getMessage(), e);
-		} 
 	}
 	
 	/**
@@ -162,17 +110,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=cssMerboryMap)
 	public void testMerboryMap(){
-		try {
 			pinfo(ReportStep.class,cssMerboryMap+caseStart);
 			summaryPage.cssMerboryMap(cssMerboryMap);
 			pinfo(ReportStep.class,cssMerboryMap+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testMerboryMap");
-			fail(cssMerboryMap+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testMerboryMap");
-			throw new TestNGException(cssMerboryMap+"" + e.getMessage(), e);
-		} 
 	}
 	/**
 	* @author : chenjingli
@@ -180,17 +120,9 @@ public class IntelligenceSummaryStep extends GlobalStep{
 	 */
 	@Test(description=idTable)
 	public void testTable(){
-		try {
 			pinfo(ReportStep.class,idTable+caseStart);
 			summaryPage.idTable(idTable);
 			pinfo(ReportStep.class,idTable+caseEnd);	
-		}catch(Error e){
-			driverBrowser.failScreenShot("testTable");
-			fail(idTable+FAIL + e.getMessage(), e);
-		}catch (Exception e) {
-			driverBrowser.failScreenShot("testTable");
-			throw new TestNGException(idTable+"" + e.getMessage(), e);
-		} 
 	}
 	
 	
