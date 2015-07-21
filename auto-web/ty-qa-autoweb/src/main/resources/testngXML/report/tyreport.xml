@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+
+<suite name="report产品线" preserve-order="true" parallel="tests"
+	thread-count="1">
+	<listeners>
+		<listener class-name="com.tingyun.auto.reporter.HTMLReporter"></listener>
+<!-- 		//<listener class-name="com.tingyun.auto.listener.TestNGListener"></listener> -->
+	</listeners>
+	
+	 
+  
+	
+	
+</suite>
