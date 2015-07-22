@@ -47,6 +47,7 @@
             <class name="com.tingyun.auto.saas.step.typroduct.AccountManagementStep">
             <methods>
         			<include name="testAddZiAccount"/>  <!-- 增加 -->
+        			<include name="testAllocatRight"/>  <!-- 权限分配 -->
         			<include name="testEditZiAccount"/>   <!-- 修改 -->
         			<include name="testDeleteZiAccount"/>   <!-- 删除 -->
         		</methods>
