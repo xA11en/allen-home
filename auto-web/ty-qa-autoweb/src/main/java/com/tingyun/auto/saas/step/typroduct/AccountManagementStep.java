@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
-import com.tingyun.auto.report.ReportCommonPage;
 import com.tingyun.auto.reporter.TestResultListener;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.AccountManagementPage;
@@ -32,7 +31,6 @@ public class AccountManagementStep extends GlobalStep {
 	private static AccountManagementPage managementPage;
 	public static DriverBrowser driverBrowser;
 	private static RegisteredAndLoginPage loginPage;
-	private static ReportCommonPage reportPage;
 	
 	@BeforeClass
 	public void init(){
