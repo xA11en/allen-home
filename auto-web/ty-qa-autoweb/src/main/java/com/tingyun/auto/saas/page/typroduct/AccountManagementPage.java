@@ -129,8 +129,8 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 	@FindBy(xpath="//a[contains(text(),'登')]")
 	public WebElement xpathCliLogin;
 	
-	@FindBy(linkText="自动化saas测试专用授权测试数据1勿删")
-	public WebElement AssertText;
+	@FindBy(xpath="//li[1]/div/span[2]/a")
+	public WebElement xpathAssert;
 	/**
 	 *  子账号增加 测试用例
 	 */
@@ -224,7 +224,7 @@ public class AccountManagementPage extends RegisteredAndLoginPage {
 		//点击进入控制台
 		driverBrowser.click(xpathCliLoginApp);
 		//验证权限是否分配成功
-		Assert.assertEquals(AssertText.isDisplayed(), true);
+		Assert.assertEquals(xpathAssert.isDisplayed(), true);
 	}
 	/**
 	 * 编辑子账号信息
