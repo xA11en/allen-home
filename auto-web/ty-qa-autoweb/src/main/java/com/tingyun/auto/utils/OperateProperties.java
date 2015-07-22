@@ -27,7 +27,9 @@ public class OperateProperties {
     
     private static String PROFILEPATH_RPC="src/main/resources/testData/rpc.properties"; 
     
-    public static int FOR_NUMBERS = 2;
+    private static String PROFILEPATH_RPT="src/main/resources/testData/report.properties";
+    
+    public static int FOR_NUMBERS = 3;
 	  /**  
 	    * 根据主键key读取主键的值value  
 	    * @param filePath 属性文件路径  
@@ -45,6 +47,10 @@ public class OperateProperties {
  		 		if(i==1){
  		 			in = new BufferedInputStream(new FileInputStream(   
  		 					PROFILEPATH_RPC));
+ 		 		}
+ 		 		if(i==2){
+ 		 			in = new BufferedInputStream(new FileInputStream(   
+ 		 					PROFILEPATH_RPT));
  		 		}
  		 		props.load(in);
 	        	}
@@ -73,6 +79,9 @@ public class OperateProperties {
 	    		 		}
 	    		 		if(i==1){
 	    		 			 fos = new FileOutputStream(PROFILEPATH_RPC);
+	    		 		}
+	    		 		if(i==2){
+	    		 			 fos = new FileOutputStream(PROFILEPATH_RPT);
 	    		 		}
 	    		 		 props.setProperty(keyname, keyvalue);   
 	    		          // 以适合使用 load 方法加载到 Properties 表中的格式，   
@@ -107,6 +116,12 @@ public class OperateProperties {
 	    		             // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。   
 	    		             // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。   
 	    		             fos = new FileOutputStream(PROFILEPATH_RPC);  
+	    		 		}
+	    		 		if(i==2){
+	    		 			 props.load(new FileInputStream(PROFILEPATH_RPT));   
+	    		             // 调用 Hashtable 的方法 put，使用 getProperty 方法提供并行性。   
+	    		             // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。   
+	    		             fos = new FileOutputStream(PROFILEPATH_RPT);  
 	    		 		}
 	    		 		props.setProperty(keyname, keyvalue);   
 	    		 		// 以适合使用 load 方法加载到 Properties 表中的格式，   
