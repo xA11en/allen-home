@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import com.tingyun.auto.common.GlobalStep;
 import com.tingyun.auto.framework.browser.BrowserType;
 import com.tingyun.auto.framework.browser.DriverBrowser;
+import com.tingyun.auto.report.ReportCommonPage;
 import com.tingyun.auto.reporter.TestResultListener;
 import com.tingyun.auto.saas.page.RegisteredAndLoginPage;
 import com.tingyun.auto.saas.page.typroduct.AccountManagementPage;
@@ -27,9 +28,11 @@ public class AccountManagementStep extends GlobalStep {
 	public static final String editZiAccount = "通过企业账号编辑子账号-测试用例";
 	public static final String deleteZiAccount = "通过企业账号删除子账号-测试用例";
 	public static final String appRenewal = "续费听云app服务测试用例";
+	public static final String AllocatRight = "分配权限测试用例";
 	private static AccountManagementPage managementPage;
 	public static DriverBrowser driverBrowser;
 	private static RegisteredAndLoginPage loginPage;
+	private static ReportCommonPage reportPage;
 	
 	@BeforeClass
 	public void init(){
@@ -54,10 +57,13 @@ public class AccountManagementStep extends GlobalStep {
 	 *@author: mabingxue 
 	 *@decription:权限分配
 	 */
+	@Test(description=AllocatRight)
 	public void testAllocatRight(){
+		driverBrowser.open(OperateProperties.readValue("saasLoginURL"));
+		loginPage.saasZiAccountLogin();
+		driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/subUserManager/userList");
 		managementPage.AllocatRight();
-		driverBrowser.open(OperateProperties.readValue("JidiaoDoujingUrl"));
-		managementPage.saasLogin();
+		
 	}
 	/**
 	* @author : chenjingli
@@ -66,7 +72,7 @@ public class AccountManagementStep extends GlobalStep {
 	@Test(description=editZiAccount)
 	public void testEditZiAccount(){
 			driverBrowser.open(OperateProperties.readValue("saasLoginURL"));
-			loginPage.saasZiAccountLogin();
+			//loginPage.saasZiAccountLogin();
 			driverBrowser.open("http://saas.networkbench.com:8080/lens-saas/subUserManager/userList");
 			pinfo(AccountManagementStep.class,editZiAccount+caseStart);
 			managementPage.editZiAccount();
