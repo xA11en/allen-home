@@ -135,8 +135,8 @@ public class HTMLReporter extends AbstractReporter{
 			createResults(suites, outputDirectory, onlyFailures);
 			createLog(outputDirectory, onlyFailures);
 			copyResources(outputDirectory);
-			Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
-			logger.info("上传smb共享服务器完成");
+			//Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
+			//logger.info("上传smb共享服务器完成");
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
 		} catch (Exception ex) {
@@ -182,8 +182,8 @@ public class HTMLReporter extends AbstractReporter{
 //			env = "生产";
 //		}
 
-		String url ="\\\\"+ShareSmbConfig.getSharePath() + INDEX_FILE;
-		//String url = "E:\\workspace\\ty-qa-autoweb\\test-output\\html\\index.html";
+		//String url ="\\\\"+ShareSmbConfig.getSharePath() + INDEX_FILE;
+		String url = "http://192.168.2.58:9090/jenkins/workspace/saas-auto/test-output/html/index.html";
 
 		int passed = 0;
 		int fail = 0;
