@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+.class_button{
+	cursor: pointer;
+    float: right;
+    height: 40px;
+    margin: 15px 20px 10px 10px;
+    text-align: center;
+    width: 100px;
+    margin-top: 5px
+    
+}
+.class_title{
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	margin-top:50px;
+	text-align: center;
+	height:80px;
+	width: 1000px;
+	background:none repeat scroll 0 0 rgb(89, 202, 210);
+}
+.class_titlelist{
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	margin-top:50px;
+	text-align: center;
+	height:120px;
+	width: 1200px;
+	background:none repeat scroll 0 0 rgb(89, 202, 210);
+}
+.class_td1{
+	text-align: center;
+	margin-top:auto;
+	font-size: 20px;
+}
+.class_td{
+	margin-top:auto;
+	font-size: 15px;
+}
+.class_span{
+	text-align: center;
+	font-size: 20px;
+	line-height: 120px;
+	font-size: 30px;
+}
+.class_a{
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+/* add jsp */
+
+.input_text{
+	border: 1px solid rgb(204, 204, 204);
+    color: rgb(51, 51, 51);
+    height: 36px;
+    line-height: 16px;
+    padding: 16px 0 46px 5px;
+    width: 350px;
+}
+.foot{
+	border-top: 1px solid rgb(229, 229, 229);
+    color: rgb(15, 15, 15);
+    background:none repeat scroll 0 0 rgb(89, 180, 210);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    text-align: center;
+    width: 1000px;
+	
+}
+.footlist{
+	border-top: 1px solid rgb(229, 229, 229);
+    color: rgb(15, 15, 15);
+    background:none repeat scroll 0 0 rgb(89, 180, 210);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    text-align: center;
+    width: 1200px;
+	
+}
+.pic{
+		width: 20px;
+		margin: 0 auto;
+		background: url(../img/dao.png) top center repeat-y #FFFFFF;
+	}
+input.inputgri, select.inputgri, textarea.inputgri {
+		background: #eeeeee;
+		font-size: 14px;
+		border: 1px solid #cccccc;
+		padding: 3px;
+		width: 280px;
+		height: 40px;
+}
+input.inputgri:focus, select.inputgri:focus , textarea.inputgri:focus {
+		background: #ffffff;
+		border: 1px solid #686868;
+}
+.upd_class{
+	width: 1000px;
+	height: 90px;
+	background: none repeat scroll 0 0 rgb(89, 202, 210);
+}
+.upd_clss_form{
+	width: 995px;
+	height: 500px;
+	
+}
+
+.class_td2{
+	padding-left:40px;
+	line-height:90px;
+	font-size: 20px;
+}
+.error{
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	width:400px;
+	height:600px;
+	background: url(../img/dong.png) top center repeat-y #FFFFFF;
+}
+.class_page{
+	font-size:25px;
+	    position: absolute;
+        bottom: -400px;
+        right: 250px;
+        color: blue;
+}
