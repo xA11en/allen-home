@@ -27,7 +27,7 @@ public class ReportApiController{
 	private Logger logger = LoggerFactory.getLogger(ReportApiController.class);
 	private ReportApiDao dao = (ReportApiDao) Factory
 		    .getInstance("ReportApiDao");
-	private static final int pageNumber = 5;
+	private static final int pageNumber =10;
 	@RequestMapping("/list")
 	public String reportList(ModelMap modelMap,HttpServletRequest request){
 		
@@ -40,7 +40,7 @@ public class ReportApiController{
 			int totalPages = dao.totalPages(pageNumber);
 			List<ReportApi> listApis = dao.findAllByPaging(pages, pageNumber);
 			logger.info("查询出记录数为：{}",listApis.size());
-			//List<ReportApi> listApis = dao.findAll();
+		//	List<ReportApi> listApis = dao.findAll();
 			modelMap.put("listApis", listApis);
 			request.setAttribute("pages", pages);
 		    request.setAttribute("totalPages", totalPages);

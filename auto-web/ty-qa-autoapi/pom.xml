@@ -13,6 +13,7 @@
 <!-- 		<mybatis.version>3.2.6</mybatis.version> -->
 		<!-- log4j日志文件管理包版本 -->
 		<slf4j.version>1.7.7</slf4j.version>
+		<svnkit.version>1.8.7</svnkit.version>
 		<log4j.version>1.2.17</log4j.version>
 		<dbutil.version>1.6</dbutil.version>
 		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -101,7 +102,13 @@
 			<version>2.2.2</version>
 		</dependency>
 		<!-- springframe end -->
-
+		<!-- svn jar -->
+		
+		<dependency>
+			<groupId>org.tmatesoft.svnkit</groupId>
+			<artifactId>svnkit</artifactId>
+			<version>${svnkit.version}</version>
+		</dependency>
 		<!-- mybatis核心包 -->
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.mybatis</groupId> -->

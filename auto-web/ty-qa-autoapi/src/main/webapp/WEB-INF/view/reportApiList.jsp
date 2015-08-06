@@ -35,12 +35,12 @@
 				<tr>
 				
 					<td class="class_td"><c:out value="${status.index+1}" /></td>
-				    <td class="class_td"><span id="name_span"><c:out value="${listApis.caseName}" /></span></td>
+				    <td class="class_td"><span><c:out value="${listApis.caseName}" /></span></td>
 				    <td class="class_td"><c:out value="${listApis.c6nnnfcg}" /></td>
-				    <td class="class_td"><span id="par_span"><c:out value="${listApis.parameter}" /></span></td>
-				    <td class="class_td"><span id="url_span"><c:out value="${listApis.url}" /></span></td>
-				    <td class="class_td"><span id="xml"><c:out value="${listApis.xml}" /></span></td>
-				    <td class="class_td"><span id="json_span"><c:out value="${listApis.json}" /></span></td>
+				    <td class="class_td"><span><c:out value="${listApis.parameter}" /></span></td>
+				    <td class="class_td"><span><c:out value="${listApis.url}" /></span></td>
+				    <td class="class_td"><span><c:out value="${listApis.xml}" /></span></td>
+				    <td class="class_td"><span><c:out value="${listApis.json}" /></span></td>
 <%-- 				     <td class="class_td"><c:out value="${reportApis.st}" /></td> --%>
 				    <td >
 <%-- 				    href="${pageContext.request.contextPath}/person/toupdate.action?id=${p.id} --%>
@@ -74,6 +74,11 @@
 							</c:otherwise>
 						</c:choose>
 						总共${totalPages}页
+						<c:choose>
+							<c:when test="${pages < totalPages}">
+								<a href="list.do?pages=${totalPages}">尾页</a>
+							</c:when>
+						</c:choose>
 		</div>
 	</div>
 	<div class="footlist">

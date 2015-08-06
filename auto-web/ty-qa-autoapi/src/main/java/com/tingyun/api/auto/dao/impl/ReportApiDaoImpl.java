@@ -36,6 +36,9 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 	private static final String COUNT_SQL = "select count(*) from REPORT_API";
 	
 	private static final String FIND_XML_JSON_SQL = "select xml,json from REPORT_API where id=?";
+	
+	private static final String PAGE_SQL =FIND_ALL_SQL+ " limit ?,?";
+	
 	private static Logger logger = LoggerFactory.getLogger(ReportApiDaoImpl.class);
 	@Override
 	public List<ReportApi> findAll()throws Exception {
@@ -131,10 +134,11 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 		List<ReportApi> list = null;
 		try {
 			QueryRunner runner = new QueryRunner();  
-			int start = rowsPerPage * (pages - 1) + 1;
-		    int end = start + rowsPerPage; 
-			list =  runner.query(ConnectionContext.getInstance().getConnection(),FIND_ALL_SQL+" limit ?,?", 
-					new BeanListHandler<ReportApi>(ReportApi.class),end,start);  
+			int start = rowsPerPage * (pages - 1);
+		    int end = rowsPerPage; 
+			list =  runner.query(DBUtils.getConnection(),PAGE_SQL, 
+					new BeanListHandler<ReportApi>(ReportApi.class),start,end);
+			System.out.println(PAGE_SQL);
 		} catch (SQLException e) {
 			logger.error("查询全部异常：{}",e);
 			e.printStackTrace();
@@ -152,8 +156,10 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 			if(rst.next()){
 				totalRows = rst.getInt(1);
 			}
+			System.out.println(totalRows);
 			totalPages = (totalRows % rowsPerPages == 0) ? 
 					totalRows / rowsPerPages:totalRows / rowsPerPages + 1;
+			System.out.println(totalPages+"=================");
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;

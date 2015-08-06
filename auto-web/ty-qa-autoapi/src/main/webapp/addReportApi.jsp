@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>增加用例jsp</title>
 <link href="resources/css/reportApi.css" rel="stylesheet" type="text/css" />
-<script src="resources/js/jquery-1.8.3.js" sype="text/javascript"></script>
+<script src="resources/js/jquery-1.8.3.min.js" sype="text/javascript"></script>
 </head>
 <body>
 	<script>

@@ -25,7 +25,7 @@ public class test {
 //				System.out.println(reportApi.getId()+"----------"+reportApi.getCaseName());
 //			}
 //		}
-	//@org.testng.annotations.Test
+	@org.testng.annotations.Test
 	public void testFindAll(){// pages, int rowsPerPage
 		ReportApiDao ra = new ReportApiDaoImpl();
 		List<ReportApi> list;
@@ -35,7 +35,6 @@ public class test {
 //				ReportApi reportApi = list.get(i);
 //			}
 			System.out.println(list.size());
-			System.out.println(list.toString());
 //			for (ReportApi reportApi : list) {
 //				System.out.println(reportApi.getCaseName());
 //			}
@@ -53,7 +52,7 @@ public class test {
 	}
 	
 	
-	@Test
+	//@Test
 	public void detail() throws Exception{
 		ReportApiDao ra = new ReportApiDaoImpl();
 		List<String> list = ra.findXmlAndJsonBuId(85);

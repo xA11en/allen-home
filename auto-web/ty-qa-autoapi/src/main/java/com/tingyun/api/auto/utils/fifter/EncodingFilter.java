@@ -48,11 +48,8 @@ public class EncodingFilter implements Filter {
         public String getParameter(String name) {
                String value = request.getParameter(name);
                try {
-            	if(null == value){
-            		value = new String(encoding); 
-            	}else{
-            		value = new String(value.getBytes("iso8859-1"), encoding);
-            	}
+            	   value = (null == value) ? new String(encoding) : 
+            		   new String(value.getBytes("iso8859-1"), encoding);
                } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                }
