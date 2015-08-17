@@ -22,7 +22,7 @@ import com.tingyun.auto.framework.SeleniumSettings;
 public class IE extends Driver {
 
 	private final static Logger logger = LoggerFactory
-			.getLogger(Chrome.class);
+			.getLogger(IE.class);
 	
 	private static String classpath=ClassLoader.getSystemResource("").getPath();
 	
