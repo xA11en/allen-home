@@ -1,16 +1,12 @@
 package com.tingyun.api.auto.utils;
 
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 
 public class ConnectionContext {
 	
 	private ConnectionContext(){
-		
 	}
 	/**
 	 * 单例ConnectionContext
@@ -39,7 +35,7 @@ public class ConnectionContext {
 	/**
 	 * 从ThreadLocal  获得数据库连接
 	 */
-	public Connection getConnection(){
+	public synchronized Connection getConnection(){
 		return threadLocal.get();
 	}
 	

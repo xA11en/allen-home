@@ -1,6 +1,5 @@
 package com.tingyun.api.auto.dao.impl;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,7 @@ import com.tingyun.api.auto.utils.DBUtils;
 
 public class ReportApiDaoImpl  implements ReportApiDao  {
 	
-	private static final String FIND_ALL_SQL = "select * from REPORT_API order by id";
+	private static final String FIND_ALL_SQL = "select * from REPORT_API order by id desc";
 	
 	private static final String DELETE_SQL = "delete from REPORT_API where id=?";
 	
@@ -138,10 +137,11 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 		    int end = rowsPerPage; 
 			list =  runner.query(DBUtils.getConnection(),PAGE_SQL, 
 					new BeanListHandler<ReportApi>(ReportApi.class),start,end);
-			System.out.println(PAGE_SQL);
 		} catch (SQLException e) {
 			logger.error("查询全部异常：{}",e);
 			e.printStackTrace();
+		}finally{
+			DBUtils.close();
 		}
 		return list;
 	}
@@ -150,16 +150,14 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 	public int totalPages(int rowsPerPages) throws Exception {
 		int totalPages = 0;
 		try{
-			ResultSet rst = DBUtils.getConnection().createStatement()
+			ResultSet rst = ConnectionContext.getInstance().getConnection().createStatement()
 					.executeQuery(COUNT_SQL);
 			int totalRows = 0;
 			if(rst.next()){
 				totalRows = rst.getInt(1);
 			}
-			System.out.println(totalRows);
 			totalPages = (totalRows % rowsPerPages == 0) ? 
 					totalRows / rowsPerPages:totalRows / rowsPerPages + 1;
-			System.out.println(totalPages+"=================");
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
@@ -172,9 +170,8 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 		List<String> listString = null;
 		try{
 			listString = new ArrayList<String>();
-			ReportApi r =  new QueryRunner().query(DBUtils.getConnection(),
+			ReportApi r =  new QueryRunner().query(ConnectionContext.getInstance().getConnection(),
 					FIND_XML_JSON_SQL,  new BeanHandler<ReportApi>(ReportApi.class),id );
-			System.out.println(r.getXml());
 			listString.add(r.getXml());
 			listString.add(r.getJson());
 		}catch(Exception e){

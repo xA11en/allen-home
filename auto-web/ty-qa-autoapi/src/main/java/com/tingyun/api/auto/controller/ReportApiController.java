@@ -1,6 +1,7 @@
 package com.tingyun.api.auto.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tingyun.api.auto.dao.ReportApiDao;
 import com.tingyun.api.auto.entity.ReportApi;
@@ -24,10 +26,10 @@ import com.tingyun.api.auto.utils.Factory;
  */
 @Controller("/reportList")
 public class ReportApiController{
-	private Logger logger = LoggerFactory.getLogger(ReportApiController.class);
+	public Logger logger = LoggerFactory.getLogger(ReportApiController.class);
 	private ReportApiDao dao = (ReportApiDao) Factory
 		    .getInstance("ReportApiDao");
-	private static final int pageNumber =10;
+	private static final int pageNumber =20	;
 	@RequestMapping("/list")
 	public String reportList(ModelMap modelMap,HttpServletRequest request){
 		
@@ -40,7 +42,6 @@ public class ReportApiController{
 			int totalPages = dao.totalPages(pageNumber);
 			List<ReportApi> listApis = dao.findAllByPaging(pages, pageNumber);
 			logger.info("查询出记录数为：{}",listApis.size());
-		//	List<ReportApi> listApis = dao.findAll();
 			modelMap.put("listApis", listApis);
 			request.setAttribute("pages", pages);
 		    request.setAttribute("totalPages", totalPages);
@@ -55,23 +56,27 @@ public class ReportApiController{
 	}
 	
 	@RequestMapping("/add")
-	public void reportAdd(ModelMap modelMap,HttpServletRequest request,HttpServletResponse response){
+	@ResponseBody
+	public ModelMap reportAdd(HttpServletRequest request,HttpServletResponse response){
 		String name = request.getParameter("name");
 		String parameter = request.getParameter("canshu");
 		String url = request.getParameter("url");
 		String c6nnnfcg = request.getParameter("c6nnnfcg");
 		try {
 	    dao.save(new String[]{name,c6nnnfcg,parameter,url});
-	    response.sendRedirect("list.do");
+	    ModelMap modelMap = new ModelMap();
+	    modelMap.addAttribute("msg", "success");
+	    return modelMap;
+	    //response.sendRedirect("list.do");
 	    } catch (Exception e) {
 	    	logger.error("删除全部api数据异常：{}",e);
 		    e.printStackTrace();
 		    throw new RuntimeException(e);
 	    }
-		
 	}
 	
 	@RequestMapping("/del")
+	@ResponseBody
 	public void reportDel(ModelMap modelMap,HttpServletRequest request,HttpServletResponse response){
 		int id = Integer.parseInt(request.getParameter("id"));
 		try {
@@ -152,6 +157,11 @@ public class ReportApiController{
 	      e.printStackTrace();
 	      throw new RuntimeException(e);
       }
+		
+	}
+	@RequestMapping("/addReport")
+	public String addReport(){
+			return "addReportApi";
 		
 	}
 }

@@ -41,7 +41,7 @@ public class SVNUtils {
 		SVN_URL="https://192.168.1.42/nbs-automation-test/trunk/auto-web/ty-qa-autoapi";
 		SVN_USERNAME="chenjl";
 		SVN_PWD="chenjl@123";
-		LOCAL_SVN_WORKSPACE="F:local_svn_workspace";
+		LOCAL_SVN_WORKSPACE="D:/softwaredownload/eclipse-jee-juno-SR2-x86_64_scm/L";
 		//创建本地代码副本路径
 		filedir = new File(LOCAL_SVN_WORKSPACE);
 		//版本初始化

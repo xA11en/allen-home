@@ -13,6 +13,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.tingyun.api.auto.utils.ConnectionContext;
 import com.tingyun.api.auto.utils.DBUtils;
 
@@ -22,6 +25,8 @@ import com.tingyun.api.auto.utils.DBUtils;
 * @decription:事务处理拦截器
  */
 public class TransactionFilter implements Filter{
+	
+	static Logger LOG = LoggerFactory.getLogger(TransactionFilter.class);
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

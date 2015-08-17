@@ -37,7 +37,10 @@ public class DBUtils {
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(url, user, password);
 	}
-
+	
+	public static void close() throws SQLException {
+		DBUtils.getConnection().close();
+	}
 	public static void main(String[] args) throws Exception {
 		Properties props = new Properties();
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/jdbc.properties");
