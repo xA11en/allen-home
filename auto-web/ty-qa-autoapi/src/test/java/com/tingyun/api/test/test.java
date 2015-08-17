@@ -6,6 +6,7 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import com.tingyun.api.auto.dao.ReportApiDao;
+import com.tingyun.api.auto.dao.impl.MarkingImpl;
 import com.tingyun.api.auto.dao.impl.ReportApiDaoImpl;
 import com.tingyun.api.auto.entity.ReportApi;
 
@@ -34,6 +35,7 @@ public class test {
 //			for (int i = 0; i < list.size(); i++) {
 //				ReportApi reportApi = list.get(i);
 //			}
+			MarkingImpl.insertStatus();
 			System.out.println(list.size());
 //			for (ReportApi reportApi : list) {
 //				System.out.println(reportApi.getCaseName());
