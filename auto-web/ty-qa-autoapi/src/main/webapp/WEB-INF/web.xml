@@ -9,7 +9,13 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>classpath:logback.xml</param-value>
+	</context-param>
+  <listener>
+	<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+ </listener>
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>
@@ -48,7 +54,7 @@
         <url-pattern>/*</url-pattern>  
     </filter-mapping>
       <error-page>
- 	<exception-type>java.lang.RuntimeException</exception-type>
- 	<location>/WEB-INF/view/error.jsp</location>
+ 	<exception-type>javax.servlet.ServletException</exception-type>
+ 	<location>/jsp/error.jsp</location>
  </error-page>	
 </web-app>

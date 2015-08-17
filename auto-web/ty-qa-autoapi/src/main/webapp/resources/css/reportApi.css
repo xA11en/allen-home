@@ -6,8 +6,19 @@
     margin: 15px 20px 10px 10px;
     text-align: center;
     width: 100px;
-    margin-top: 5px
+    margin-top: 5px;
+    background-color: green;
     
+}
+.class_shezhi{
+	cursor: pointer;
+    float: left;
+    height: 40px;
+    margin: 15px 20px 10px 10px;
+    text-align: center;
+    width: 100px;
+    margin-top: 5px;
+    background: url(../img/shezhi.png) top left repeat-y ;
 }
 .class_title{
 	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
@@ -25,26 +36,37 @@
 	width: 1200px;
 	background:none repeat scroll 0 0 rgb(89, 202, 210);
 }
+.class_ty{
+	height:120px;
+	background: url(../img/ty_logo.png) top left repeat-y ;
+}
 .class_td1{
 	text-align: center;
 	margin-top:auto;
-	font-size: 20px;
+	font-size: 21px;
+	font-weight: bold;
 }
 .class_td{
 	margin-top:auto;
-	font-size: 15px;
+	font-size: 16px;
 }
 .class_span{
 	text-align: center;
 	font-size: 20px;
 	line-height: 120px;
 	font-size: 30px;
+	color: blue;
 }
 .class_a{
 	margin-right: 5px;
 	margin-left: 5px;
 }
-
+.class_a:hover{
+	background:green;
+	} 
+.class_page:hover{
+	background:green;
+}
 /* add jsp */
 
 .input_text{
@@ -77,7 +99,7 @@
     width: 1200px;
 	
 }
-.pic{
+.pic li{
 		width: 20px;
 		margin: 0 auto;
 		background: url(../img/dao.png) top center repeat-y #FFFFFF;
@@ -119,7 +141,26 @@ input.inputgri:focus, select.inputgri:focus , textarea.inputgri:focus {
 .class_page{
 	font-size:25px;
 	    position: absolute;
-        bottom: -400px;
         right: 250px;
         color: blue;
+        margin-right: -109px;
+        top:1148px;
+}
+.class_dis_div{
+	width:70px;
+	height:73px;
+	float: left;
+	margin-left:-77px;
+	margin-top:-18px;
+	
+}
+.class_dis_div ul li{
+	list-style-type:none;
+	margin-top: 10px;
+}
+.class_dis_div ul li input{
+	width: 70px;
+	margin-left: -30px;
+	margin-top: -10px;
+	cursor: pointer;
 }
