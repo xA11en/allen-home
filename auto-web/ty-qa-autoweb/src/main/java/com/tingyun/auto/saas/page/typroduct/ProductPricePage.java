@@ -57,7 +57,7 @@ public class ProductPricePage extends CommonPage {
 	/**
 	 * 续费page
 	 */
-	@FindBy(xpath="//div[@class='fuwu_list_on']/descendant::a[contains(text(),'续费')][1]")
+	@FindBy(xpath="//div[@class='fuwu_list_on']/descendant::div[contains(text(),'续费')][1]")
 	public WebElement classCliRenewalButton;//点击 续费按钮
 	
 	@FindBy(xpath="//div[@class='fuwu_list_on']/descendant::p[3]")
