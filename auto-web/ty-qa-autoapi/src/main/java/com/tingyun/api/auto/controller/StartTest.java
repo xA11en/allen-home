@@ -28,7 +28,9 @@ public class StartTest {
 	@RequestMapping("/go")
 	public String startTest(ModelMap modelMap,HttpServletRequest request) {
 				Runtime process = Runtime.getRuntime();
+				SVNUtils.checkCodeFromSvn();
 				try {
+				Thread.sleep(1000);
 				process.exec("cmd /c start");
 				Robot r;
 				Thread.sleep(2000);
