@@ -183,7 +183,7 @@ public class HTMLReporter extends AbstractReporter{
 //		}
 
 		//String url ="\\\\"+ShareSmbConfig.getSharePath() + INDEX_FILE;
-		String url = "http://localhost:8080/html/index.html";
+		String url = "http://localhost:8080/ty-qa-autoapi/html/index.html";
 
 		int passed = 0;
 		int fail = 0;
