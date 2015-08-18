@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.tmatesoft.sqljet.core.internal.lang.SqlParser.match_op_return;
 
 import com.tingyun.api.auto.dao.impl.MarkingImpl;
 import com.tingyun.api.auto.utils.SVNUtils;
@@ -26,7 +28,6 @@ public class StartTest {
 	@RequestMapping("/go")
 	public String startTest(ModelMap modelMap,HttpServletRequest request) {
 				Runtime process = Runtime.getRuntime();
-				SVNUtils.checkCodeFromSvn();
 				try {
 				process.exec("cmd /c start");
 				Robot r;
@@ -52,15 +53,7 @@ public class StartTest {
 					r.keyPress(KeyEvent.VK_I);
 					r.keyPress(KeyEvent.VK_T);
 					r.keyPress(KeyEvent.VK_ENTER);
-					Thread.sleep(5000);
-					for(;;){
-						if(MarkingImpl.selStatus()!=null){
-							modelMap.addAttribute("msg", "批量接口测试执行完毕....");
-							break;
-						}else{
-							continue;
-						}
-					}
+					modelMap.addAttribute("msg", "测试正在后台执行，点击查看报告后可能需要耐心等待一点时间！....");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					LOG.info("执行测试异常",e);
@@ -69,5 +62,19 @@ public class StartTest {
 				return "test";
 			
 }
-	
+	@RequestMapping("/start")
+	@ResponseBody
+	public ModelMap startTest() {
+		try{
+		ModelMap modelMap = new ModelMap();
+		if(MarkingImpl.selStatus()!=null){
+			MarkingImpl.deleteStatus();
+			modelMap.addAttribute("msg", "success");
+		}
+		return modelMap;
+		}catch (Exception e) {
+			// TODO: handle exception
+			throw new RuntimeException(e);
+		}
+	}
 }

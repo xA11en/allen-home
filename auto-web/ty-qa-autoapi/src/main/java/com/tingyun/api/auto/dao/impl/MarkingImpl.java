@@ -1,6 +1,7 @@
 package com.tingyun.api.auto.dao.impl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -49,8 +50,8 @@ public class MarkingImpl {
 	public static String  selStatus(){
 		try {
 		 QueryRunner queryRunner = new QueryRunner(true); 
-		 Marking mark = queryRunner.query(DBUtils.getConnection(),"select * from MARKING_TABLE", new BeanHandler<Marking>(Marking.class));
-		 return mark.getStatus();
+		 Marking marks =  queryRunner.query(DBUtils.getConnection(),"select * from MARKING_TABLE", new BeanHandler<Marking>(Marking.class));
+		 return marks.getStatus();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,8 +66,8 @@ public class MarkingImpl {
 		return null;
 	}
 	public static void main(String[] args) {
-//		MarkingImpl.insertStatus();
-//		System.out.println(selStatus());
+		//MarkingImpl.insertStatus();
+		System.out.println(MarkingImpl.selStatus());
 		//MarkingImpl.deleteStatus();
 	}
 }

@@ -3,12 +3,14 @@ package com.tingyun.api.test;
 
 import java.util.List;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.tingyun.api.auto.dao.ReportApiDao;
 import com.tingyun.api.auto.dao.impl.MarkingImpl;
 import com.tingyun.api.auto.dao.impl.ReportApiDaoImpl;
 import com.tingyun.api.auto.entity.ReportApi;
+import com.tingyun.api.auto.utils.SVNUtils;
 
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +28,11 @@ public class test {
 //				System.out.println(reportApi.getId()+"----------"+reportApi.getCaseName());
 //			}
 //		}
-	@org.testng.annotations.Test
+	@BeforeClass
+	public void init(){
+		SVNUtils.checkCodeFromSvn();
+	}
+	@Test
 	public void testFindAll(){// pages, int rowsPerPage
 		ReportApiDao ra = new ReportApiDaoImpl();
 		List<ReportApi> list;

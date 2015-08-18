@@ -137,6 +137,7 @@ public class HTMLReporter extends AbstractReporter{
 			//Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
 			//logger.info("上传smb共享服务器完成");
 			generateMailHtml(suites, META.getReportCurrent());
+			HtmlMail.MoveFolderAndFileWithSelf();
 			logger.info("测试报告完成");
 		} catch (Exception ex) {
 			throw new ReportNGException("Failed generating HTML report.", ex);
@@ -182,7 +183,7 @@ public class HTMLReporter extends AbstractReporter{
 //		}
 
 		//String url ="\\\\"+ShareSmbConfig.getSharePath() + INDEX_FILE;
-		String url = "http://192.168.2.58:9090/jenkins/workspace/saas-auto/test-output/html/index.html";
+		String url = "http://localhost:8080/html/index.html";
 
 		int passed = 0;
 		int fail = 0;

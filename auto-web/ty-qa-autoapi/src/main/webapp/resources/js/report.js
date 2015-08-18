@@ -40,3 +40,22 @@ function clixml(id,caseName){
 	});
 }
 
+function startTest(){
+	$("#msg").hide(); 
+	$("#bu").hide(); 
+	$("#in").show(); 
+	$.ajax({
+		type:"post",
+		url:"start.do",
+		success:function(data){
+			if(data && $.trim(data.msg)=="success"){
+				window.location.href ="html/index.html";
+			}
+		}
+	,error:function(data){
+		alert("网络异常！");
+	}
+	});
+	 setInterval('startTest()',3000);
+}
+
