@@ -138,7 +138,6 @@ public class HTMLReporter extends AbstractReporter{
 			//Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
 			//logger.info("上传smb共享服务器完成");
 			HtmlMail.MoveFolderAndFileWithSelf();
-			Thread.sleep(2000);
 			MarkingImpl.insertStatus();
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
