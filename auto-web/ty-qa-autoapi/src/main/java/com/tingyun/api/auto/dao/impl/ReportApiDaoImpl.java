@@ -36,7 +36,7 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 	
 	private static final String FIND_XML_JSON_SQL = "select xml,json from REPORT_API where id=?";
 	
-	private static final String PAGE_SQL =FIND_ALL_SQL+ " limit ?,?";
+	private static final String PAGE_SQL =FIND_ALL_SQL+ " limit = ?,?";
 	
 	private static Logger logger = LoggerFactory.getLogger(ReportApiDaoImpl.class);
 	@Override
