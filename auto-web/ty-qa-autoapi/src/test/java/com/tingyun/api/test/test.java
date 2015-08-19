@@ -3,6 +3,7 @@ package com.tingyun.api.test;
 
 import java.util.List;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -39,6 +40,7 @@ public class test {
 //			}
 			MarkingImpl.insertStatus();
 			System.out.println(list.size());
+			Assert.assertEquals(list.size(), 6);
 //			for (ReportApi reportApi : list) {
 //				System.out.println(reportApi.getCaseName());
 //			}
