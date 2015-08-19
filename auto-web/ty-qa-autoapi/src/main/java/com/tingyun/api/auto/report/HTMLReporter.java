@@ -50,6 +50,7 @@ import org.testng.Reporter;
 import org.testng.xml.XmlSuite;
 
 import com.tingyun.api.auto.common.Constant;
+import com.tingyun.api.auto.dao.impl.MarkingImpl;
 import com.tingyun.api.auto.utils.HtmlMail;
 
 
@@ -136,6 +137,9 @@ public class HTMLReporter extends AbstractReporter{
 			copyResources(outputDirectory);
 			//Smb.smbPut(System.getProperty("user.dir")+ ShareSmbConfig.getLocalPath());
 			//logger.info("上传smb共享服务器完成");
+			HtmlMail.MoveFolderAndFileWithSelf();
+			Thread.sleep(2000);
+			MarkingImpl.insertStatus();
 			generateMailHtml(suites, META.getReportCurrent());
 			logger.info("测试报告完成");
 		} catch (Exception ex) {

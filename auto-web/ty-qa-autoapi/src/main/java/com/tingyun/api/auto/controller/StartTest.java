@@ -28,14 +28,13 @@ public class StartTest {
 	public static int count = 0;
 	@RequestMapping("/go")
 	public String startTest(ModelMap modelMap,HttpServletRequest request) {
-				Runtime process = Runtime.getRuntime();
-				SVNUtils.checkCodeFromSvn();
 				try {
+					SVNUtils.checkCodeFromSvn();
 				Thread.sleep(1000);
+				Runtime process = Runtime.getRuntime();
 				process.exec("cmd /c start");
-				Robot r;
 				Thread.sleep(2000);
-					r = new Robot();
+				Robot r = new Robot();
 					r.keyPress(KeyEvent.VK_C);
 					r.keyPress(KeyEvent.VK_D);
 					r.keyPress(KeyEvent.VK_SPACE);
@@ -71,7 +70,7 @@ public class StartTest {
 		count++;
 		LOG.info("******************开始进入后台执行测试用例action:startTest(),等待所有测试执行完毕！************");
 		try{
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		ModelMap modelMap = new ModelMap();
 		if(MarkingImpl.selStatus()!=null){
 			MarkingImpl.deleteStatus();
