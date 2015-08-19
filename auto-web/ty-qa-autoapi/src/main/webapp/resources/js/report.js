@@ -56,6 +56,6 @@ function startTest(){
 		alert("网络异常！");
 	}
 	});
-	 setInterval('startTest()',3000);
+	 setInterval('startTest()',5000);
 }
 
