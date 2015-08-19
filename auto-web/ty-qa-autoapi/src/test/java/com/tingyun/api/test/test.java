@@ -43,9 +43,6 @@ public class test {
 //			}
 			System.out.println(list.size());
 			Assert.assertEquals(list.size(), 6);
-			HtmlMail.MoveFolderAndFileWithSelf();
-			Thread.sleep(2000);
-			MarkingImpl.insertStatus();
 //			for (ReportApi reportApi : list) {
 //				System.out.println(reportApi.getCaseName());
 //			}
