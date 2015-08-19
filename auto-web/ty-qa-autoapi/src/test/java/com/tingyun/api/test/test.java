@@ -4,6 +4,7 @@ package com.tingyun.api.test;
 import java.util.List;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -49,7 +50,7 @@ public class test {
 			e.printStackTrace();
 		}
 	}
-	@AfterTest
+	@AfterSuite
 	public void after(){
 		HtmlMail.MoveFolderAndFileWithSelf();
 		MarkingImpl.insertStatus();
