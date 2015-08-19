@@ -29,7 +29,7 @@ public class test {
 //				System.out.println(reportApi.getId()+"----------"+reportApi.getCaseName());
 //			}
 //		}
-	@Test
+	@Test(description="查询分页测试")
 	public void testFindAll(){// pages, int rowsPerPage
 		ReportApiDao ra = new ReportApiDaoImpl();
 		List<ReportApi> list;
