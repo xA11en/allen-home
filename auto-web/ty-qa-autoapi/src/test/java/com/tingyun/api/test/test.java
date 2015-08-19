@@ -4,6 +4,7 @@ package com.tingyun.api.test;
 import java.util.List;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -11,6 +12,7 @@ import com.tingyun.api.auto.dao.ReportApiDao;
 import com.tingyun.api.auto.dao.impl.MarkingImpl;
 import com.tingyun.api.auto.dao.impl.ReportApiDaoImpl;
 import com.tingyun.api.auto.entity.ReportApi;
+import com.tingyun.api.auto.utils.HtmlMail;
 import com.tingyun.api.auto.utils.SVNUtils;
 
 //
@@ -38,7 +40,6 @@ public class test {
 //			for (int i = 0; i < list.size(); i++) {
 //				ReportApi reportApi = list.get(i);
 //			}
-			MarkingImpl.insertStatus();
 			System.out.println(list.size());
 			Assert.assertEquals(list.size(), 6);
 //			for (ReportApi reportApi : list) {
@@ -47,6 +48,11 @@ public class test {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@AfterTest
+	public void after(){
+		HtmlMail.MoveFolderAndFileWithSelf();
+		MarkingImpl.insertStatus();
 	}
 //	@Test
 	public void save() throws Exception{
