@@ -24,13 +24,13 @@ public class SVNUtils {
 	
 	private static Logger LOG = LoggerFactory.getLogger(SVNUtils.class);
 	
-	private static String SVN_URL=null;
+	
 	
 	private static  String SVN_USERNAME=null;
 	
 	private static  String SVN_PWD=null;
-	//副本本地路径
-	private static  String LOCAL_SVN_WORKSPACE=null;
+	
+	
 	//生命svn客户端
 	private static SVNClientManager ourClientManager;
 	//cong svn客户端 manager 获得 SVNUpdateClient updateClient
@@ -38,12 +38,12 @@ public class SVNUtils {
 	//本地副本代码路径
 	private static File filedir = null;
 	static{
-		SVN_URL="https://192.168.1.42/nbs-automation-test/trunk/auto-web/ty-qa-autoapi";
+		
 		SVN_USERNAME="chenjl";
 		SVN_PWD="chenjl@123";
-		LOCAL_SVN_WORKSPACE="D:/softwaredownload/eclipse-jee-juno-SR2-x86_64_scm/L";
+		
 		//创建本地代码副本路径
-		filedir = new File(LOCAL_SVN_WORKSPACE);
+		filedir = new File(HtmlMail.LOCAL_SVN_WORKSPACE);
 		//版本初始化
         DAVRepositoryFactory.setup();
 		//加载驱动选项
@@ -74,7 +74,7 @@ public class SVNUtils {
 		}
 		//调用do checkoout方法 下载代码
 		try {
-			updateClient.doCheckout(SVNURL.parseURIDecoded(SVN_URL),filedir,SVNRevision.HEAD, SVNRevision.HEAD, true);
+			updateClient.doCheckout(SVNURL.parseURIDecoded(HtmlMail.SVN_URL),filedir,SVNRevision.HEAD, SVNRevision.HEAD, true);
 		} catch (SVNException e) {
 			// TODO Auto-generated catch block
 			LOG.error("checkout code from svn to local exception {}",e);
