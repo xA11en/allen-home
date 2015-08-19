@@ -52,8 +52,13 @@ public class test {
 	}
 	@AfterSuite
 	public void after(){
-		HtmlMail.MoveFolderAndFileWithSelf();
-		MarkingImpl.insertStatus();
+		try{
+			Thread.sleep(2000);
+			HtmlMail.MoveFolderAndFileWithSelf();
+			MarkingImpl.insertStatus();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 //	@Test
 	public void save() throws Exception{
