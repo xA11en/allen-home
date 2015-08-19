@@ -68,6 +68,7 @@ public class StartTest {
 	@ResponseBody
 	public ModelMap startTest() {
 		try{
+		Thread.sleep(2000);
 		ModelMap modelMap = new ModelMap();
 		if(MarkingImpl.selStatus()!=null){
 			MarkingImpl.deleteStatus();

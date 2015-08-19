@@ -1,7 +1,6 @@
 package com.tingyun.api.auto.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tingyun.api.auto.common.MyException;
 import com.tingyun.api.auto.dao.ReportApiDao;
 import com.tingyun.api.auto.entity.ReportApi;
 import com.tingyun.api.auto.utils.Factory;
@@ -48,8 +48,7 @@ public class ReportApiController{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error("查询全部api数据异常：{}",e);
-		    e.printStackTrace();
-		    throw new RuntimeException(e);
+		    throw new MyException("分页查询数据异常",e);
 		}
 		return "reportApiList";
 		
@@ -70,8 +69,7 @@ public class ReportApiController{
 	    //response.sendRedirect("list.do");
 	    } catch (Exception e) {
 	    	logger.error("删除全部api数据异常：{}",e);
-		    e.printStackTrace();
-		    throw new RuntimeException(e);
+	    	 throw new MyException("删除全部api数据异常",e);
 	    }
 	}
 	
@@ -84,8 +82,7 @@ public class ReportApiController{
 			response.sendRedirect("list.do");
       } catch (Exception e) {
     	  logger.error("删除数据异常：{}",e);
-	      e.printStackTrace();
-	      throw new RuntimeException(e);
+	      throw new MyException("删除数据异常",e);
       }
 		
 	}
