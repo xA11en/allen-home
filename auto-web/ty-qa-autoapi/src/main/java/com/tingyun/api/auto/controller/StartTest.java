@@ -25,6 +25,7 @@ import com.tingyun.api.auto.utils.SVNUtils;
 @Controller
 public class StartTest {
 	private static Logger LOG = LoggerFactory.getLogger(StartTest.class);
+	public static int count = 0;
 	@RequestMapping("/go")
 	public String startTest(ModelMap modelMap,HttpServletRequest request) {
 				Runtime process = Runtime.getRuntime();
@@ -67,11 +68,14 @@ public class StartTest {
 	@RequestMapping("/start")
 	@ResponseBody
 	public ModelMap startTest() {
+		count++;
+		LOG.info("******************开始进入后台执行测试用例action:startTest(),等待所有测试执行完毕！************");
 		try{
 		Thread.sleep(2000);
 		ModelMap modelMap = new ModelMap();
 		if(MarkingImpl.selStatus()!=null){
 			MarkingImpl.deleteStatus();
+			LOG.info("*********************starText()共被前台请求了：'{}'次*******************",count);
 			modelMap.addAttribute("msg", "success");
 		}
 		return modelMap;
