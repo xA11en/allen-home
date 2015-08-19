@@ -29,10 +29,10 @@
 	
 	
 	
-<!-- 	<logger name="com.tingyun.api.auto.controller.ReportApiController" level="INFO" > -->
-<!-- 		<appender-ref ref="STDOUT" /> -->
-<!-- 		<appender-ref ref="file" /> -->
-<!-- 	</logger> -->
+	<logger name="com.tingyun.api.auto.report.HTMLReporter" level="INFO" >
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="file" />
+	</logger>
     
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
