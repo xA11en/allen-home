@@ -28,10 +28,6 @@ public class test {
 //				System.out.println(reportApi.getId()+"----------"+reportApi.getCaseName());
 //			}
 //		}
-	@BeforeClass
-	public void init(){
-		SVNUtils.checkCodeFromSvn();
-	}
 	@Test
 	public void testFindAll(){// pages, int rowsPerPage
 		ReportApiDao ra = new ReportApiDaoImpl();
@@ -47,7 +43,6 @@ public class test {
 //				System.out.println(reportApi.getCaseName());
 //			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
