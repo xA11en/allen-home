@@ -28,6 +28,9 @@ public class HtmlMail {
 	public static String svnPath = "";
 	public static String tomcatPath = "";
 	private static ResourceBundle bundle = null;
+	public static String SVN_URL= "";
+	//副本本地路径
+	public static  String LOCAL_SVN_WORKSPACE= "";
 
 	static {
 		try {
@@ -52,6 +55,14 @@ public class HtmlMail {
 			if (bundle.getString("localPath") != null
 					&& !bundle.getString("localPath").trim().equals("")) {
 				svnPath = bundle.getString("localPath");
+			}
+			if (bundle.getString("svn_url") != null
+					&& !bundle.getString("svn_url").trim().equals("")) {
+				SVN_URL = bundle.getString("svn_url");
+			}
+			if (bundle.getString("local_svn_workspace") != null
+					&& !bundle.getString("local_svn_workspace").trim().equals("")) {
+				LOCAL_SVN_WORKSPACE = bundle.getString("local_svn_workspace");
 			}
 		} catch (Exception e) {
 			logger.error("获取邮件配置信息异常：{}",e);
