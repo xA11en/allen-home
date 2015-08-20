@@ -58,13 +58,13 @@ public class test {
 	@AfterSuite
 	public void after(){
 		CloseableHttpClient httpclient = HttpClients.createDefault();
-		HttpPost httppost = new HttpPost("http://localhost:8080/start.do");
-		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		HttpPost httppost = new HttpPost("http://localhost:8080/start.do?status=1");
+//		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
 		try {
-		parameters.add(new BasicNameValuePair("status","1"));
-		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters);
-		httppost.setEntity(entity);
-		CloseableHttpResponse response = httpclient.execute(httppost);
+//		parameters.add(new BasicNameValuePair("status","1"));
+//		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters);
+//		httppost.setEntity(entity);
+		httpclient.execute(httppost);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
