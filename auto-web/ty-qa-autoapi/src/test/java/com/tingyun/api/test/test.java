@@ -1,20 +1,25 @@
 package com.tingyun.api.test;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.tingyun.api.auto.dao.ReportApiDao;
-import com.tingyun.api.auto.dao.impl.MarkingImpl;
 import com.tingyun.api.auto.dao.impl.ReportApiDaoImpl;
 import com.tingyun.api.auto.entity.ReportApi;
-import com.tingyun.api.auto.utils.HtmlMail;
-import com.tingyun.api.auto.utils.SVNUtils;
 
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -48,6 +53,31 @@ public class test {
 //			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	@AfterSuite
+	public void after(){
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		HttpPost httppost = new HttpPost("http://localhost:8080/start.do");
+		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+		try {
+		parameters.add(new BasicNameValuePair("status","1"));
+		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters);
+		httppost.setEntity(entity);
+		CloseableHttpResponse response = httpclient.execute(httppost);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			// 关闭连接,释放资源  
+			try {
+				httpclient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 //	@Test

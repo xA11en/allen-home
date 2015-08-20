@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import com.tingyun.api.auto.utils.SVNUtils;
 */
 @Controller
 public class StartTest {
+	private static boolean flag = false;
 	private static Logger LOG = LoggerFactory.getLogger(StartTest.class);
 	@RequestMapping("/go")
 	public String startTest(ModelMap modelMap,HttpServletRequest request) {
@@ -65,21 +67,25 @@ public class StartTest {
 }
 	@RequestMapping("/start")
 	@ResponseBody
-	public ModelMap startTest() {
+	public ModelMap startTest(HttpServletRequest request) {
 		int count=0;
 		LOG.info("******************开始进入后台执行测试用例action:startTest(),等待所有测试执行完毕！************");
 		try{
-		Thread.sleep(3000);
 		ModelMap modelMap = new ModelMap();
-		if(MarkingImpl.selStatus()!=null){
-			MarkingImpl.deleteStatus();
-			modelMap.addAttribute("msg", "success");
+		String par = request.getParameter("status");
+		if(StringUtils.isNotBlank(par) && par.equals("1")){
+			flag = true;
 		}else {
 			int timeout = 20;
 			count++;
+			LOG.info("count============"+count);
 			if(count==timeout){
 				modelMap.addAttribute("msg", "error");
 			}
+		}
+		while(flag){
+			Thread.sleep(3000);
+			modelMap.addAttribute("msg", "success");
 		}
 		return modelMap;
 		}catch (Exception e) {
