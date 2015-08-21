@@ -21,7 +21,7 @@
 	<div style="padding-top:20px; height:1000px; width: 1200px; text-align: center;background:none repeat scroll 0 0 rgb(238, 239, 243); MARGIN-RIGHT: auto; MARGIN-LEFT: auto;">
 	
 	<form action="go.do">
-					<input onclick="return confirm('即将在后台执行测试这可能需要一点时间...耐心等待界面跳转查看报告！不执行请点击《取消》')" class="class_button" type="submit" value="执行测试">
+					<input onclick="return confirm('确定执行测试？')" class="class_button" type="submit" value="执行测试">
 	</form>
 	
 	<input type="button" class="class_button" value="增  加" onclick="window.location.href ='addReport.do'">

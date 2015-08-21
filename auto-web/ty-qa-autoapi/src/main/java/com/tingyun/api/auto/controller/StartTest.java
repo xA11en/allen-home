@@ -73,19 +73,16 @@ public class StartTest {
 		try{
 		ModelMap modelMap = new ModelMap();
 		String par = request.getParameter("status");
+		System.out.println(par+"============");
 		if(StringUtils.isNotBlank(par) && par.equals("1")){
 			flag = true;
-		}else {
-			int timeout = 20;
-			count++;
-			LOG.info("count============"+count);
-			if(count==timeout){
-				modelMap.addAttribute("msg", "error");
-			}
-		}
-		while(flag){
-			Thread.sleep(3000);
+			return null;
+		} 
+		if(flag){
 			modelMap.addAttribute("msg", "success");
+			flag=false;	
+		}else{
+			modelMap.addAttribute("msg", "flag");
 		}
 		return modelMap;
 		}catch (Exception e) {

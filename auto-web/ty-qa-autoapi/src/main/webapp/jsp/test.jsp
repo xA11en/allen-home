@@ -13,7 +13,7 @@
 <body style="background-color:tan;">
 	<div id="repTets" style="color: red;font-size: 35px;text-align: center;margin-left: auto;margin-right: auto;margin-top: 292px;">
 	<span id="msg" style="display: block;" >${msg}</span><input id="bu" style="height: 35px; cursor: pointer;" onclick="startTest();" value="查看测试报告" type="button"></input>
-	<span id="in" style="display: none;">正在查询中...请等待跳转！</span>
+	<span id="in" style="display: none;">正在查询中...请等待跳转！</span><span id="num" style="display: none;">1</span>
 	</div>
 </body>
 </html>

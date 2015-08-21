@@ -40,15 +40,26 @@ function clixml(id,caseName){
 	});
 }
 
+var time=0;
+var timeout=60;
 function startTest(){
 	$("#msg").hide(); 
 	$("#bu").hide(); 
-	$("#in").show(); 
+	$("#in").show();
+	$("#num").show();
+	time++;
+	document.getElementById("num").innerHTML=time;
+	if(time==timeout){
+		alert("超过最大时间,点击确定跳转回首页，重新执行！");
+	    window.location.href ="list.do";
+	}
 	$.ajax({
 		type:"post",
 		url:"start.do",
 		success:function(data){
 			if(data && $.trim(data.msg)=="success"){
+				time=0;
+				clearInterval("startTest()");
 				window.location.href ="html/index.html";
 			}
 		}
@@ -56,6 +67,6 @@ function startTest(){
 		alert("网络异常！");
 	}
 	});
-	 setInterval('startTest()',5000);
+	setInterval("startTest()",5000)
 }
 
