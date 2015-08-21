@@ -63,9 +63,6 @@ function startTest(){
 				window.location.href ="html/index.html";
 			}
 		}
-	,error:function(data){
-		alert("网络异常！");
-	}
 	});
 	setInterval("startTest()",5000)
 }
