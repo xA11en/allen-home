@@ -25,15 +25,27 @@ public class ExcelReader {
     private Workbook workBook;    
     private Sheet sheet;
     private List<String> columnHeaderList;
-    private List<List<String>> listData;
+    public static List<List<String>> listData;
     private List<Map<String,String>> mapData;
+    public static int lastRowNumber;
     private boolean flag;
     
-    public ExcelReader(String filePath, String sheetName) {
+    public List<List<String>> getListData() {
+		return listData;
+	}
+    
+    
+	public int getLastRowNumber() {
+		return lastRowNumber;
+	}
+
+
+	public ExcelReader(String filePath, String sheetName) {
         this.filePath = filePath;
         this.sheetName = sheetName;
         this.flag = false;
         this.load();
+        this.getSheetData();
     }    
     
     private void load() {
@@ -104,10 +116,11 @@ public class ExcelReader {
         int numOfRows = sheet.getLastRowNum() + 1;
         for (int i = 0; i < numOfRows; i++) {
             Row row = sheet.getRow(i);
+            lastRowNumber = row.getLastCellNum();
             Map<String, String> map = new HashMap<String, String>();
             List<String> list = new ArrayList<String>();
             if (row != null) {
-                for (int j = 0; j < row.getLastCellNum(); j++) {
+                for (int j = 0; j < lastRowNumber; j++) {
                     Cell cell = row.getCell(j);
                     if (i == 0){
                         columnHeaderList.add(getCellValue(cell));
@@ -167,11 +180,10 @@ public class ExcelReader {
     	 }else{
     		 return null;
     	 }
-    	 
-    	 
     }
+    
     public static void main(String[] args) {
         ExcelReader eh = new ExcelReader("E:\\test.xlsx","Sheet1");
-      System.out.println(eh.getExcelData("test1"));
+        System.out.println(eh.getListData().size());
     }
 }
