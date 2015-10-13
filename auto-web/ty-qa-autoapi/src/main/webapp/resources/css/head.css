@@ -1,0 +1,93 @@
+
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0 none;
+}
+BODY {
+    font-family: "微软雅黑";
+}
+.header {
+    background: url("../images/header_bg.jpg") repeat-x scroll 0 0 rgb(79, 78, 78);
+    float: left;
+    height: 87px;
+    position: relative;
+    width: 100%;
+}
+.logo {
+    float: left;
+    height: 37px;
+    margin-left: 18px;
+    margin-top: 27px;
+    width: 107px;
+}
+
+
+/* 左侧菜单  */
+
+.sidebar {
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 190px;
+    background: #6CBEE4;
+}
+.sidebar ul {
+    list-style: none outside none;
+}
+.sidebar ul li {
+    float: left;
+    font-size: 12px;
+    height: 70px;
+    line-height: 70px;
+    text-align: left;
+    text-indent: 60px;
+    width: 190px;
+}
+.sidebar ul li a {
+    border-left: 3px solid rgb(243, 243, 243);
+    color: rgb(102, 102, 102);
+    display: block;
+    height: 70px;
+    line-height: 70px;
+    text-decoration: none;
+}
+.sidebar ul li a:hover {
+    background: #EAEEF0;
+    border-left: 3px solid rgb(221, 221, 221);
+    color: #A0B2BA;
+    height: 70px;
+}
+.sidebar #current a {
+    background: none repeat scroll 0 0 rgb(77, 162, 198);
+    border-left: 3px solid rgb(77, 162, 198);
+    color: rgb(255, 255, 255);
+    height: 45px;
+    line-height: 45px;
+    text-indent: 60px;
+    width: 187px;
+}
+
+.content_sidebar_background {
+    height: 100%;
+}
+.content_sidebar {
+	height: 100%;
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+.app{
+	height: 70px;
+	font-size: 20px;
+	text-align: left;
+}
+.head_title{
+	color: #CACCFC;
+    font-size: 35px;
+    line-height: 87px;
+    text-align: center;
+}

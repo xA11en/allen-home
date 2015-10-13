@@ -1,0 +1,196 @@
+@CHARSET "UTF-8";
+
+#json tr td{
+    color: rgb(102, 102, 102);
+    font-family: "微软雅黑";
+}
+.class_button{
+	cursor: pointer;
+    float: right;
+    height: 40px;
+    margin: 15px 20px 10px 10px;
+    text-align: center;
+    width: 100px;
+    margin-top: 5px;
+    background-color: green;
+    
+}
+.class_shezhi{
+	cursor: pointer;
+    float: left;
+    height: 40px;
+    margin: 15px 20px 10px 10px;
+    text-align: center;
+    width: 100px;
+    margin-top: 5px;
+    background: url(../img/shezhi.png) top left repeat-y ;
+}
+.class_title{
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	margin-top:50px;
+	text-align: center;
+	height:80px;
+	width: 1000px;
+	background:none repeat scroll 0 0 rgb(89, 202, 210);
+}
+.class_titlelist{
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	margin-top:50px;
+	text-align: center;
+	height:120px;
+	width: 1200px;
+/* 	background:none repeat scroll 0 0 rgb(89, 202, 210); */
+}
+.class_ty{
+	height:123px;
+	background: url(../img/ty_logo.png) top left repeat-y ;
+}
+.class_ty_report{
+	height:123px;
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	margin-top:50px;
+	text-align: center;
+	height:107px;
+	width: 1003px;
+	background:none repeat scroll 0 0 rgb(89, 202, 210);
+/* 	background: url(../img/ty_logo.png) top left repeat-y ; */
+}
+.class_td1{
+	text-align: center;
+	margin-top:auto;
+	font-size: 21px;
+	font-weight: bold;
+}
+.class_td{
+	margin-top:auto;
+	font-size: 16px;
+}
+.class_span{
+	text-align: center;
+	font-size: 20px;
+	line-height: 120px;
+	font-size: 50px;
+	color: blue;
+	text-transform: capitalize;
+}
+.class_a{
+	margin-right: 5px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.class_a:hover{
+	background:green;
+	} 
+.class_page:hover{
+	background:green;
+}
+/* add jsp */
+
+.input_text{
+	border: 1px solid rgb(204, 204, 204);
+    color: rgb(51, 51, 51);
+    height: 36px;
+    line-height: 16px;
+    padding: 16px 0 46px 5px;
+    width: 350px;
+}
+.foot{
+	border-top: 1px solid rgb(229, 229, 229);
+    color: rgb(15, 15, 15);
+    background:none repeat scroll 0 0 rgb(89, 180, 210);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    text-align: center;
+    width: 1000px;
+	
+}
+.footlist{
+	border-top: 1px solid rgb(229, 229, 229);
+    color: rgb(15, 15, 15);
+    background:none repeat scroll 0 0 rgb(89, 180, 210);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    text-align: center;
+    width: 1200px;
+	
+}
+.pic li{
+		width: 20px;
+		margin: 0 auto;
+		background: url(../img/dao.png) top center repeat-y #FFFFFF;
+	}
+input.inputgri, select.inputgri, textarea.inputgri {
+		background: #eeeeee;
+		font-size: 14px;
+		border: 1px solid #cccccc;
+		padding: 3px;
+		width: 280px;
+		height: 40px;
+}
+input.inputgri:focus, select.inputgri:focus , textarea.inputgri:focus {
+		background: #ffffff;
+		border: 1px solid #686868;
+}
+.upd_class{
+	width: 1000px;
+	height: 90px;
+	background: none repeat scroll 0 0 rgb(89, 202, 210);
+}
+.upd_clss_form{
+	width: 995px;
+	height: 500px;
+	
+}
+
+.class_td2{
+	padding-left:40px;
+	line-height:90px;
+	font-size: 20px;
+}
+.error{
+	MARGIN-RIGHT: auto; MARGIN-LEFT: auto;
+	width:400px;
+	height:600px;
+	background: url(../img/dong.png) top center repeat-y #FFFFFF;
+}
+.class_page{
+	font-size:25px;
+    color: blue;
+    float: right;
+    margin-right: 28px;
+    margin-top: 22px;
+}
+.class_dis_div{
+	width:70px;
+	height:73px;
+	float: left;
+	margin-left:-77px;
+	margin-top:-18px;
+	
+}
+.class_dis_div ul li{
+	list-style-type:none;
+	margin-top: 10px;
+}
+.class_dis_div ul li input{
+	width: 70px;
+	margin-left: -30px;
+	margin-top: -10px;
+	cursor: pointer;
+}
+.button_add_go{
+    margin-right: 50px;
+    position: relative;
+     margin-top: -17px;
+}
+.p_span_time{
+ 	 color: rgb(244, 52, 80);
+    display: none;
+    float: right;
+    font-size: 32px;
+    height: 40px;
+    margin-right: 30px;
+    margin-top: auto;
+}

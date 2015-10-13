@@ -1,0 +1,172 @@
+
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    border: 0 none;
+}
+BODY {
+    background-color: rgb(255, 255, 255);
+    color: rgb(102, 102, 102);
+    font-family: "微软雅黑";
+    font-size: 12px;
+    height: auto;
+    position: relative;
+    width: 100%;
+}
+
+
+
+.subuser_box {
+    border-radius: 3px 3px 0 0;
+    width: 780px;
+}
+.subuser_tit {
+    background: none repeat scroll 0 0 rgb(89, 202, 210);
+    border-radius: 3px 3px 0 0;
+    color: rgb(255, 255, 255);
+    height: 70px;
+    overflow: hidden;
+    padding: 0 30px;
+    width: 940px;
+}
+.mytable{
+	 width: 999px;
+}
+.float_left {
+    font-size: 25px;
+    height: 70px;
+    line-height: 70px;
+    text-align:center;
+}
+.p_return_class{
+	float: right;
+	margin-top: 12px;
+	cursor: pointer;
+}
+.p_return_class:hover{
+	color: #95EFF3
+}
+.subuser_box .float_right {
+    background: url("../images/button_bj.png") no-repeat scroll left -1033px transparent;
+    cursor: pointer;
+    float: right;
+    height: 40px;
+    line-height: 40px;
+    margin: 15px 0;
+    text-align: center;
+    width: 130px;
+}
+.subuser_box .float_right:hover {
+    background: url("../images/button_bj.png") no-repeat scroll left -1083px transparent;
+}
+.subuser_layout {
+    background: none repeat scroll 0 0 rgb(245, 248, 252);
+    font-size: 14px;
+    height: auto;
+    overflow: hidden;
+    width: 128%;
+}
+.subuser_layout tr {
+    height: 40px;
+}
+.subuser_layout td {
+    border-bottom: 1px solid rgb(255, 255, 255);
+/*     color: rgb(102, 102, 102); */
+    vertical-align: middle;
+}
+.trbj {
+    border: 0 none;
+    color: rgb(89, 202, 210);
+}
+.trbj td {
+    color: rgb(89, 202, 210);
+    text-align: center;
+    font-size: 17px;
+}
+.td0 {
+    text-align: center;
+    width: 120px;
+}
+.td1 {
+    text-align: center;
+    width: 120px;
+}
+.td2 {
+    text-align: center;
+/*     width: 120px; */
+}
+.td3 {
+    width: 89px;
+    text-align: center;
+    color: red;
+}
+.td4{
+	text-align: center;
+}
+.subuser_layout .td4 {
+    text-align: center;
+    width: 100px;
+}
+.subuser_layout .td5 {
+    width: 90px;
+}
+.subuser_layout .td6 {
+    width: 35px;
+}
+.subuser_layout .td_rowspan {
+    width: 115px;
+}
+.subuser_layout .mydetail {
+    color: rgb(29, 149, 200);
+}
+.subuser_layout .myremove {
+    color: rgb(29, 149, 200);
+}
+.subuser_layout .myremove:hover {
+    text-decoration: underline;
+}
+.subuser_layout .myedit {
+    color: rgb(29, 149, 200);
+}
+.subuser_layout .myedit:hover {
+    text-decoration: underline;
+}
+.subuser_layout .mypermssion {
+    color: rgb(29, 149, 200);
+}
+.subuser_layout .mypermssion:hover {
+    text-decoration: underline;
+}
+.subuser_layout .mytr {
+    background: url("../images/mytrhover.png") repeat scroll 0 0 transparent;
+}
+.subuser_layout .div_bj1 {
+    background: none repeat scroll 0 0 rgb(241, 242, 245);
+}
+.subuser_layout .div_bj2 {
+    background: none repeat scroll 0 0 rgb(238, 239, 243);
+}
+.subuser_layout1 {
+    min-height: 500px;
+    padding-top: 10px;
+}
+.subuser_layout1 .nosubuser {
+    background: url("../images/no_account_img.png") no-repeat scroll 110px 115px rgb(238, 239, 243);
+    color: rgb(51, 51, 51);
+    font-size: 18px;
+    height: 135px;
+    line-height: 120px;
+    padding: 110px 0 210px 250px;
+    width: 530px;
+}
+.subuser_layout1 .nosubuser a {
+    color: rgb(240, 131, 0);
+    text-decoration: none;
+}
+.subuser_layout1 .nosubuser a:hover {
+    text-decoration: none;
+}
+
