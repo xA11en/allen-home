@@ -101,7 +101,7 @@ public class ReportApiController{
 			return "updateReportApi";
 			}catch (Exception e) {
 			      e.printStackTrace();
-			      throw new RuntimeException(e);
+			      throw new ApiException(e);
 		    }
 		
 	}
@@ -130,7 +130,7 @@ public class ReportApiController{
 		   } catch (Exception e1) {
 			      logger.error("修改数据异常：{}",e1);
 			      e1.printStackTrace();
-			      throw new RuntimeException(e1);
+			      throw new ApiException(e1);
 		   }
 		
 	}
@@ -146,7 +146,7 @@ public class ReportApiController{
       } catch (Exception e) {
     	  logger.error("查询xml异常：{}",e);
 	      e.printStackTrace();
-	      throw new RuntimeException(e);
+	      throw new ApiException(e);
       }
 		
 	}
@@ -162,7 +162,7 @@ public class ReportApiController{
       } catch (Exception e) {
     	  logger.error("查询json异常：{}",e);
 	      e.printStackTrace();
-	      throw new RuntimeException(e);
+	      throw new ApiException(e);
       }
 		
 	}
