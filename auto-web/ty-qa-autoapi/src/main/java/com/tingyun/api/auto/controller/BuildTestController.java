@@ -47,7 +47,7 @@ public class BuildTestController {
 	    	 if(list.size()==0)
 		    		throw new ApiException("查询全部的app api测试用例结果集为0！");
 	    	
-	    	 for (int i = 86; i < list.size(); i++) 
+	    	 for (int i = 0; i < list.size(); i++) 
 	    	 {
 	    		 //数据库存储的请求参数
 	    		 String authKey = list.get(i).getC6nnnfcg();
