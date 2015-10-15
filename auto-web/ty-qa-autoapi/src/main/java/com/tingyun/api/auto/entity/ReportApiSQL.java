@@ -16,4 +16,5 @@ public class ReportApiSQL {
 	public static final String FIND_XML_JSON_SQL = "select xml,json from TEST_APP_API where id=?";
 	
 	public static final String PAGE_SQL =FIND_ALL_SQL+ " limit ?,?";
+	
 }

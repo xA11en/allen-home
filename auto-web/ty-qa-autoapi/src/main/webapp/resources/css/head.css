@@ -49,17 +49,12 @@ BODY {
 }
 .sidebar ul li a {
     border-left: 3px solid rgb(243, 243, 243);
-    color: rgb(102, 102, 102);
+    color: #583FE4;
     display: block;
     height: 70px;
     line-height: 70px;
     text-decoration: none;
-}
-.sidebar ul li a:hover {
-    background: #EAEEF0;
-    border-left: 3px solid rgb(221, 221, 221);
-    color: #A0B2BA;
-    height: 70px;
+    font-weight: bold;
 }
 .sidebar #current a {
     background: none repeat scroll 0 0 rgb(77, 162, 198);
@@ -84,6 +79,19 @@ BODY {
 	height: 70px;
 	font-size: 20px;
 	text-align: left;
+	background:#50DDDD;
+}
+.server{
+	height: 70px;
+	font-size: 20px;
+	text-align: left;
+	background:#509AD3;
+}
+.app:hover{
+	background: #EAEEF0;
+}
+.server:hover{
+	background: #EAEEF0;
 }
 .head_title{
 	color: #CACCFC;

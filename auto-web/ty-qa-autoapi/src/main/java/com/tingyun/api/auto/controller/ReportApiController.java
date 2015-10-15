@@ -1,10 +1,9 @@
 package com.tingyun.api.auto.controller;
 
+import java.net.URLDecoder;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,11 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.tingyun.api.auto.common.ApiException;
-import com.tingyun.api.auto.dao.DBUtilsDAO;
 import com.tingyun.api.auto.dao.ReportApiDao;
 import com.tingyun.api.auto.entity.ReportApiBean;
 
@@ -170,5 +166,23 @@ public class ReportApiController{
 	public String addReport(){
 			return "addReportApi";
 		
+	}
+	
+	@RequestMapping("/search")
+	public String searchApiList(ModelMap modelMap,HttpServletRequest request,HttpServletResponse response){
+		try {
+			String name = URLDecoder.decode(request.getParameter("caseName"), "utf-8");
+			if(name.equals("") ||name==null){
+				response.sendRedirect("list.do");
+			}
+			List<ReportApiBean> listApis = reportApiDao.findAllByPagingAndName(name);
+			logger.info("查询出记录数为：{}",listApis.size());
+			modelMap.put("listApis", listApis);
+			return "result";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error("搜索api异常：{}",e);
+		    throw new ApiException("搜索api异常",e);
+		}
 	}
 }

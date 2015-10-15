@@ -6,13 +6,12 @@
 }
 .class_button{
 	cursor: pointer;
-    float: right;
+/*     float: right; */
     height: 40px;
     margin: 15px 20px 10px 10px;
     text-align: center;
     width: 100px;
     margin-top: 5px;
-    background-color: green;
     
 }
 .class_shezhi{
@@ -181,9 +180,22 @@ input.inputgri:focus, select.inputgri:focus , textarea.inputgri:focus {
 	cursor: pointer;
 }
 .button_add_go{
-    margin-right: 50px;
-    position: relative;
-     margin-top: -17px;
+  text-align: end;
+}
+.button_add_go a:hover{
+	color: red;
+}
+.button_add_go a{
+	font-size: 20px;
+}
+.changeUrl{
+    border: 1px solid rgb(212, 212, 212);
+    color: rgb(102, 102, 102);
+    float: left;
+    height: 20px;
+    margin-left: 20px;
+    padding: 2px 5px 1px 22px;
+    width: 70%;
 }
 .p_span_time{
  	 color: rgb(244, 52, 80);

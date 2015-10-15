@@ -12,6 +12,7 @@
 						http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
      <!-- 开启  默认的注解映射的支持 -->    
      <mvc:annotation-driven />
+     <mvc:default-servlet-handler/>  
 		<context:component-scan base-package="com.tingyun.api.auto.controller" />
 		<context:component-scan base-package="com.tingyun.api.auto.dao" />
 		
@@ -33,7 +34,7 @@
         </property>
     </bean>
 	<!-- 对静态资源文件的访问  方案一 （二选一） -->    
-	  <mvc:default-servlet-handler/>    
+	   
     <!-- datasource相关配置 -->
     <bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

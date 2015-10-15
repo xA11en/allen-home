@@ -22,4 +22,5 @@ public interface ReportApiDao {
 	List<ReportApiBean> findAllByPaging(int pages,int rowsPerPage)throws Exception;
 	int totalPages(int rowsPerPages) throws Exception;
 	List<String> findXmlAndJsonBuId(int id)throws Exception;
+	List<ReportApiBean> findAllByPagingAndName(String caseName)throws Exception;
 }

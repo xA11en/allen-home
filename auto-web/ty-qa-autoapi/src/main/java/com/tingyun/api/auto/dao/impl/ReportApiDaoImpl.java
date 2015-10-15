@@ -106,5 +106,18 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 		return listString;
 	}
 
+	@Override
+	public List<ReportApiBean> findAllByPagingAndName(
+			String caseName) throws Exception {
+		logger.info("开始查询所有的api接口数据..........");
+	    String sql ="select * from TEST_APP_API where caseName like '%"+caseName+"%' order by id desc";
+	    List<ReportApiBean> list =  dbUtilsDAO.query
+	    		(
+	    		ReportApiBean.class, sql
+	    		);
+	    return list;
+	}
+	
+
 
 }

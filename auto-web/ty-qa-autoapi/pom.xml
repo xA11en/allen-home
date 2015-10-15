@@ -117,7 +117,11 @@
 		</dependency>
 		<!-- springframe end -->
 		<!-- svn jar -->
-		
+<!-- 		<dependency> -->
+<!-- 			<groupId>net.sf.json-lib</groupId> -->
+<!-- 			<artifactId>json-lib</artifactId> -->
+<!-- 			<version>2.3</version> -->
+<!--     	</dependency> -->
 		<dependency>
 			<groupId>org.tmatesoft.svnkit</groupId>
 			<artifactId>svnkit</artifactId>
