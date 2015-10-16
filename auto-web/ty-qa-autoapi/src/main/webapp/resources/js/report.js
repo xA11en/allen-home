@@ -91,17 +91,5 @@ function getApiListByName(){
 	if(name=="" || name==null){
 		window.location.href ="list.do";
 	}
-//	alert(name);
-//	$.ajax({
-//		type:"get",
-//		url:"search.do?caseName="+name,
-//		success:function(data){
-//			alert(data.length);
-//			alert(2);
-//			if(data){
-//				alert(data.length);
-//			}
-//		}
-//	});
 	 $("#api_table").load("search.do?caseName=" + encodeURI(encodeURI($("#searchName").val())), false);
 }
