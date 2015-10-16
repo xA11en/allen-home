@@ -33,21 +33,15 @@ public class ApiRuturnResultDaoImpl implements ApiRuturnResultDao {
 
 	@Override
 	public List<ApiRuturnResultBean> selectAll() throws Exception{
-		// TODO Auto-generated method stub
-//		 Statement stmt = DBUtils.getConnection().createStatement();
-//		 ResultSet result = stmt.executeQuery(ApiRuturnResultSql.SELECT_ALL);
-//		 List<ApiRuturnResultBean> resultBeans = new ArrayList<ApiRuturnResultBean>();
-//		 while(result.next()){//判断是否还有下一行  
-//			 	ApiRuturnResultBean apiRuturnResultBean = new ApiRuturnResultBean();
-//	            apiRuturnResultBean.setId(result.getInt("id"));
-//	            apiRuturnResultBean.setAppId(result.getInt("app_id"));
-//	            apiRuturnResultBean.setAppJson(result.getString("app_api_result"));
-//	            resultBeans.add(apiRuturnResultBean);
-//	        }
 		 List<ApiRuturnResultBean> list =  dbUtilsDAO.query(ApiRuturnResultBean.class, ApiRuturnResultSql.SELECT_ALL, null);
 		 return list;
 	}
 
-
+	@Override
+	public List<ApiRuturnResultBean> selectByAppId(int id) throws Exception {
+		// TODO Auto-generated method stub
+		List<ApiRuturnResultBean> list =  dbUtilsDAO.query(ApiRuturnResultBean.class, ApiRuturnResultSql.SELECT_JSON_BY_APPID, id);
+		 return list;
+	}
 
 }

@@ -32,9 +32,6 @@ BODY {
     padding: 0 30px;
     width: 940px;
 }
-.mytable{
-	 width: 999px;
-}
 .float_left {
     font-size: 25px;
     height: 70px;
@@ -67,15 +64,6 @@ BODY {
     font-size: 14px;
     height: auto;
     overflow: hidden;
-    width: 128%;
-}
-.subuser_layout tr {
-    height: 40px;
-}
-.subuser_layout td {
-    border-bottom: 1px solid rgb(255, 255, 255);
-/*     color: rgb(102, 102, 102); */
-    vertical-align: middle;
 }
 .trbj {
     border: 0 none;
@@ -85,36 +73,60 @@ BODY {
     color: rgb(89, 202, 210);
     text-align: center;
     font-size: 17px;
+    width: 239px;
 }
 .td0 {
     text-align: center;
-    width: 120px;
+    width: 167px;
+    color: rgb(89, 202, 210);
+    line-height: 3;
+    font-size: 17px;
 }
 .td1 {
+	 color: rgb(89, 202, 210);
     text-align: center;
     width: 120px;
+    line-height: 3;
+    font-size: 17px;
 }
 .td2 {
+	 color: rgb(89, 202, 210);
     text-align: center;
-/*     width: 120px; */
+    width: 588px;
+    line-height: 3;
+    font-size: 17px;
 }
 .td3 {
+	 color: rgb(89, 202, 210);
     width: 89px;
     text-align: center;
-    color: red;
+    line-height: 3;
+    font-size: 17px;
 }
 .td4{
 	text-align: center;
+	width: 167px;
 }
-.subuser_layout .td4 {
-    text-align: center;
-    width: 100px;
+.td5{
+	text-align: center;
+	 width: 120px;
+	  line-height: 3;
 }
-.subuser_layout .td5 {
-    width: 90px;
+.td6{
+	text-align: center;
+	 width: 588px;
 }
-.subuser_layout .td6 {
-    width: 35px;
+.td7{
+	text-align: center;
+	   width: 89px;
+	   color: red;
+	    line-height: 3;
+}
+.mytr td:hover{
+	color: blue;
+}
+.class_a span:hover{
+	color:red;
 }
 .subuser_layout .td_rowspan {
     width: 115px;
@@ -168,5 +180,8 @@ BODY {
 }
 .subuser_layout1 .nosubuser a:hover {
     text-decoration: none;
+}
+.subuser_layout tr td {
+    float: left;
 }
 

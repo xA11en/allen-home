@@ -55,7 +55,7 @@ public class ReportApiController{
 		}
 		
 		
-		return "reportApiList";
+		return "app/reportApiList";
 		
 	}
 	
@@ -154,7 +154,7 @@ public class ReportApiController{
 		try {
 			List<String> listString = reportApiDao.findXmlAndJsonBuId(id);
 			modelMap.addAttribute("listString", listString.get(0));
-			return "detail";
+			return "app/detail";
       } catch (Exception e) {
     	  logger.error("查询json异常：{}",e);
 	      e.printStackTrace();
@@ -164,7 +164,7 @@ public class ReportApiController{
 	}
 	@RequestMapping("/addReport")
 	public String addReport(){
-			return "addReportApi";
+			return "app/addReportApi";
 		
 	}
 	
@@ -178,7 +178,7 @@ public class ReportApiController{
 			List<ReportApiBean> listApis = reportApiDao.findAllByPagingAndName(name);
 			logger.info("查询出记录数为：{}",listApis.size());
 			modelMap.put("listApis", listApis);
-			return "result";
+			return "app/result";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error("搜索api异常：{}",e);

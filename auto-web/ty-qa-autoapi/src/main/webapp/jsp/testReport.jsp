@@ -13,8 +13,7 @@
 </head>
 <body style="background-color: #003838;">
 	<div style="height:auto; width: 1000px;margin-top:80px;MARGIN-RIGHT: auto; MARGIN-LEFT: auto;background:none repeat scroll 0 0 rgb(238, 239, 243); ">
-		<div class="center_right_box">
-	<div class="subuser_box">
+	<div >
 		<div class="subuser_tit">
 	    	<div class="float_left">接 口 测 试 报 告
 	    			<p class="p_return_class">
@@ -24,40 +23,33 @@
 	    </div>
 	    
 	    <div class="subuser_layout">
-	    	<div class="mytable">
-		    	<div>
-		            <table cellpadding="0" cellspacing="0" width="100%">
-		                <tr class="trbj">
+		   		<div id="userInfo">
+					<table cellpadding='0' cellspacing='0' width='100%' height="100%">
+						 <tr class="">
 		                	<td class="td0">用例名称</td>
 		                    <td class="td1">返回值</td>
 		                    <td class="td2">请求头</td>
 		                    <td class="td3">状态</td>
-<!-- 		                    <td class="td4">角色</td> -->
-<!-- 		                    <td class="td5">创建时间</td> -->
-<!-- 							<td rowspan="3" class="td_rowspan">操作</td> -->
 		                </tr>
-		            </table>
-		        </div>
-		   		<div id="userInfo">
-					<div class='p_div' id='page_1'>
-						<div class='div_bj2'>
-					<table cellpadding='0' cellspacing='0' width='100%'>
-						<tr onmouseout="this.style.backgroundColor='#F4F9FD'" onmouseover="this.style.backgroundColor='#95EFF3'">
-							<td class='td0'><span>${caseName}</span></td>
-							<td class='td1' >
-								<a class="class_a" onclick="location.href='apiResult.do'"><span id="api">查看详细返回信息</span></a>
+						<tr class="mytr" onmouseout="this.style.backgroundColor='#F4F9FD'" onmouseover="this.style.backgroundColor='#95EFF3'">
+						 <c:forEach var="listVo"  items="${listVo}" varStatus="status"
+	                          >  
+							<td class="td4"><span>${listVo.caseName}</span></td>
+					
+							<td class="td5" >
+								<a class="class_a" onclick="location.href='apiResult.do?appId=${listVo.appId}'">
+								<span id="api">查看详细返回信息</span>
+								</a>
 							</td>
-							<td class='td2'><span>${requestTou}</span></td>
-							<td class='td3'>${Fail}</td>
+							<td class="td6"><span>${listVo.requestTou}</span></td>
+							<td class="td7"><span>${listVo.status}</span></td>
+						</c:forEach>
 						</tr>
 						<tr> 
-							<td class="td4"><span>${success}</span></td>
+							<td class="class_td"><span>${success}</span></td>
 						</tr>
 					</table>
-						</div>
-					</div>
 				</div>
-			</div>
 	    </div>
 	   
 	    <form  id="queryForm" action="/lens-saas/subUserManager/userList" method="post">
@@ -66,6 +58,5 @@
 	    </form>
     </div>
 </div>
-	</div>
 </body>
 </html>

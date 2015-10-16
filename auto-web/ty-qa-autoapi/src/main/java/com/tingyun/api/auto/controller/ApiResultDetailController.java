@@ -36,13 +36,14 @@ public class ApiResultDetailController {
 	public String  apiResultDetail(ModelMap modelMap,HttpServletRequest request){
 		LOG.info("********************开始进入测试结果详情页【method: {} 】***********************","apiResultDetail");
 		try {
-			List<ApiRuturnResultBean> resultBeans = resultDao.selectAll();
+			int id = Integer.parseInt(request.getParameter("appId"));
+			List<ApiRuturnResultBean> resultBeans = resultDao.selectByAppId(id);
 			if(resultBeans.size()==0)
 				throw new ApiException("api 测试结果为0");
 			
 				//返回界面原来的接口json 和 这个用例的错误接口返回结果
 				modelMap.addAttribute("errorJson", resultBeans.get(0).getApp_api_result());
-				ReportApiBean reportApiBean =  reportApiDao.findById(resultBeans.get(0).getApp_id());
+				ReportApiBean reportApiBean =  reportApiDao.findById(id);
 				modelMap.addAttribute("appJson", reportApiBean.getJson());
 				
 		} catch (Exception e) {
@@ -50,6 +51,6 @@ public class ApiResultDetailController {
 			// TODO Auto-generated catch block
 			throw new ApiException(e);
 		}
-		return "detail";
+		return "app/detail";
 	}
 }
