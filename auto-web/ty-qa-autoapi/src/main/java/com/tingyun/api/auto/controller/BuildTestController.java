@@ -79,6 +79,7 @@ public class BuildTestController {
 	    				testReportBeanVOs.add(vo);
 	    				modelMap.addAttribute("listVo", testReportBeanVOs);
 	    		}	
+	    		LOG.info("接口测试完毕！");
 			 }
 		} catch (Exception e) {
 			LOG.error("执行测试接口测试过程出现异常{}",e);

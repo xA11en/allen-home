@@ -172,12 +172,11 @@ public class ReportApiController{
 	public String searchApiList(ModelMap modelMap,HttpServletRequest request,HttpServletResponse response){
 		try {
 			String name = URLDecoder.decode(request.getParameter("caseName"), "utf-8");
-			if(name.equals("") ||name==null){
-				response.sendRedirect("list.do");
-			}
 			List<ReportApiBean> listApis = reportApiDao.findAllByPagingAndName(name);
+			if(listApis.size()==0){
+				modelMap.put("info","没查到任何关于【'"+name+"'】的记录！");
+			}
 			logger.info("查询出记录数为：{}",listApis.size());
-			modelMap.put("listApis", listApis);
 			return "app/result";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

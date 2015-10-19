@@ -87,9 +87,12 @@ function startTestxx(){
 
 
 function getApiListByName(){
-	var name = $("#searchName").val();
+	var name = $.trim($("#searchName").val());
 	if(name=="" || name==null){
 		window.location.href ="list.do";
 	}
-	 $("#api_table").load("search.do?caseName=" + encodeURI(encodeURI($("#searchName").val())), false);
+	if(name.length>30){
+		alert("超过查询字符限制！");
+	}
+	 $("#api_table").load("search.do?caseName=" + encodeURI(encodeURI(name)), false);
 }
