@@ -94,7 +94,7 @@ public class ReportApiController{
 		try {
 			ReportApiBean e = reportApiDao.findById(id);
 			request.setAttribute("e", e);
-			return "updateReportApi";
+			return "app/updateReportApi";
 			}catch (Exception e) {
 			      e.printStackTrace();
 			      throw new ApiException(e);
@@ -176,6 +176,7 @@ public class ReportApiController{
 			if(listApis.size()==0){
 				modelMap.put("info","没查到任何关于【'"+name+"'】的记录！");
 			}
+			modelMap.put("listApis", listApis);
 			logger.info("查询出记录数为：{}",listApis.size());
 			return "app/result";
 		} catch (Exception e) {

@@ -34,7 +34,6 @@
 					  <c:forEach var="listApis"  items="${listApis}" varStatus="status"
 	                          >  
 					<tr style="height: 40px;"  onmouseout="this.style.backgroundColor='#F4F9FD'" onmouseover="this.style.backgroundColor='rgb(29, 149, 200)'" >
-						<td class="class_td">${info}</td>
 						<td class="class_td"><c:out value="${status.count}" /></td>
 					    <td class="class_td"><span><c:out value="${listApis.caseName}" /></span></td>
 					    <td class="class_td"><c:out value="${listApis.c6nnnfcg}" /></td>

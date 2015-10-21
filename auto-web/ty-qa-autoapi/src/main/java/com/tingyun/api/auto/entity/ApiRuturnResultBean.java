@@ -21,6 +21,8 @@ public class ApiRuturnResultBean implements Serializable  {
 	private String timestamp;
 	
 	private Integer errorCount;
+	
+	private Integer sumErrorCount;
 
 	public Integer getId() {
 		return id;
@@ -62,17 +64,21 @@ public class ApiRuturnResultBean implements Serializable  {
 		this.errorCount = errorCount;
 	}
 
+	public Integer getSumErrorCount() {
+		return sumErrorCount;
+	}
+
+	public void setSumErrorCount(Integer sumErrorCount) {
+		this.sumErrorCount = sumErrorCount;
+	}
+
 	@Override
 	public String toString() {
 		return "ApiRuturnResultBean [id=" + id + ", app_id=" + app_id
 				+ ", app_api_result=" + app_api_result + ", timestamp="
-				+ timestamp + ", errorCount=" + errorCount + "]";
+				+ timestamp + ", errorCount=" + errorCount + ", sumErrorCount="
+				+ sumErrorCount + "]";
 	}
-
-
-
-
-
 
 	
 	

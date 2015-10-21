@@ -7,11 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>report用例展示jsp</title>
-<link href="resources/css/reportApi.css" rel="stylesheet" type="text/css" />
-<link href="resources/css/head.css" rel="stylesheet" type="text/css"/>
-<!--  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
-<script src="resources/js/jquery-1.8.3.js" type="text/javascript"></script>
-<script src="resources/js/report.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -62,7 +57,7 @@
 <div>
 	<div class="button_add_go">
 		
-		<input  id="searchName" placeholder="请输入caseName进行搜索"  class="changeUrl" type="text" onkeyup="getApiListByName();" 
+		<input  id="searchName" placeholder="   请输入caseName进行搜索"  class="changeUrl" type="text" onkeyup="getApiListByName();" 
 		name="name" style="width: 200px;float:none;height:25px;margin-right:20px;background:url('resources/img/search.gif') no-repeat 5px 8px;" />
 	 	<a target="_blank" href="go.do" onclick="alert('这个测试可能几秒时间，耐心等待！');">
 			执行测试

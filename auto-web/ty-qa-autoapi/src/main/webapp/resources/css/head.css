@@ -33,7 +33,6 @@ BODY {
     height: 100%;
     position: relative;
     width: 190px;
-    background: #6CBEE4;
 }
 .sidebar ul {
     list-style: none outside none;
@@ -98,4 +97,17 @@ BODY {
     font-size: 35px;
     line-height: 87px;
     text-align: center;
+}
+.zhiliang{
+	float: left;
+    margin-left: 109px;
+    margin-top: 36px;
+}
+.zhiliang a{
+	color: white;
+	font-size: 15px;
+    margin-left: 3px;
+}
+.zhiliang a:hover{
+	color: #EAEEF0;
 }

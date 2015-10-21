@@ -46,7 +46,7 @@
 						</c:forEach>
 						</tr>
 						<tr> 
-							<td class="class_td"><span>${success}</span></td>
+							<td class="class_td"><span class="no_error_test">${success}</span></td>
 						</tr>
 					</table>
 				</div>

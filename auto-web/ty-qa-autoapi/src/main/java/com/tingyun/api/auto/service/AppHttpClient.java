@@ -25,6 +25,8 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,8 +82,20 @@ public class AppHttpClient {
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (HttpStatus.SC_OK == statusCode) {
 				String entityContent  = EntityUtils.toString(response.getEntity(), DEFAULT_ENCODE);
-				response.close();
-				return entityContent;
+				JSONObject jsonObject =  new JSONObject(entityContent);
+				JSONObject  chart = jsonObject.getJSONObject("chart");
+				String beginTime=chart.getString("beginTime");
+				String endTime=chart.getString("endTime");
+				String timeGranularity=chart.getString("timeGranularity");
+				JSONArray dataset=chart.getJSONArray("dataset");
+				List<String> listJsons = new ArrayList<String>();
+				listJsons.add(beginTime);
+				listJsons.add(endTime);
+				listJsons.add(timeGranularity);
+				listJsons.add(dataset.toString());
+//				jsonObject.get
+//				response.close();
+				return listJsons.toString();
 			} else {
 				throw new Exception("HTTP response ERROR and statusCode=" + statusCode);
 			}
