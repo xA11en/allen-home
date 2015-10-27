@@ -3,6 +3,7 @@ package com.tingyun.api.auto.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -10,6 +11,8 @@ import javax.sql.DataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +59,18 @@ public class DBUtilsDAO {
         			(List<T>) queryRunner.query(sql, new BeanListHandler(entityClass)) :
         			(List<T>) queryRunner.query(sql, new BeanListHandler(entityClass), params);	
         return list; 
+    }
+    
+    /**
+     * 返回多条记录
+     */
+    public List<Map<String, Object>> queryMore(String sql, Object... params)throws SQLException{
+    	 queryRunner = new QueryRunner(dataSource); 
+    	 List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
+    	 maps = (params == null) ?
+     			 queryRunner.query(sql, new MapListHandler()) :
+     				queryRunner.query(sql, new MapListHandler(), params);	
+     	 return maps;
     }
     
     

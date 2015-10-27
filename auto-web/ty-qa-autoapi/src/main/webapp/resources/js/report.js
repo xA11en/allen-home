@@ -44,7 +44,6 @@ function clixml(id,caseName){
 		url:"del.do?id="+id,
 		success:function(data){
 			console.log(data);
-			alert(data);
 			if(data && $.trim(data)=="success"){
 				confirm("确定要删除'"+caseName+"'吗？'");
 				window.location.href ="list.do";
@@ -84,7 +83,9 @@ function startTestxx(){
 	});
 	setInterval("startTest()",5000)
 }
-
+/**
+ * app server network 搜索
+ */
 
 function getApiListByName(){
 	var name = $.trim($("#searchName").val());
@@ -96,3 +97,90 @@ function getApiListByName(){
 	}
 	 $("#api_table").load("search.do?caseName=" + encodeURI(encodeURI(name)), false);
 }
+function getApiListByNameServer(){
+	var name = $.trim($("#searchName").val());
+	if(name=="" || name==null){
+		window.location.href ="listServer";
+	}
+	if(name.length>30){
+		alert("超过查询字符限制！");
+	}
+	 $("#api_table").load("searchServer.do?caseName=" + encodeURI(encodeURI(name)), false);
+}
+function getApiListByNameNet(){
+	var name = $.trim($("#searchName").val());
+	if(name=="" || name==null){
+		window.location.href ="listNetwork";
+	}
+	if(name.length>30){
+		alert("超过查询字符限制！");
+	}
+	 $("#api_table").load("searchNetwork.do?caseName=" + encodeURI(encodeURI(name)), false);
+}
+/**
+ * 质量看板 下拉菜单
+ */
+$(function(){
+	$("#zhiliang").mouseover(function(){
+		$("#zhiliang span").css("background","black");
+		$("#another_project").show();
+	});
+	$("#zhiliang").mouseout(function(){
+		$("#zhiliang span").css("background","none");
+		$("#another_project").hide();
+	});
+});
+/**
+ * highchar app
+ */
+$(function(){
+	var path = $("#ctx").val();
+	var appPath = path+"/ApihighChar/errorCount";
+	var x = [];//X轴
+	var y = [];//Y轴
+	var color = ["gray","pink","red","blue","yellow","green","#fff"];
+		$.ajax({
+			type:"post",
+			url:appPath,
+			success:function(data){
+				 var obj = eval("("+data+")");  
+				 for(var key in obj){ 
+					 var value = obj[key];
+					 for(var name in value){
+						 //获取后台的key 和value
+						// alert(name);
+						 x.push(name);
+						 y.push(value[name]);
+						 var chart = new Highcharts.Chart({
+						        chart:{
+						            renderTo:'container',
+						            type:'column' //显示类型 柱形
+						        },
+						        title:{
+						            text:'app前20接口错误' //图表的标题
+						        },
+						        xAxis:{
+						            categories:x
+						        },
+						        yAxis:{
+						        	categories:y,
+						            title:{
+						                text:'错误次数' //Y轴的名称
+						            },
+						        },
+						        series:[{
+						            name:"姓名",
+						            data:value
+						        }]
+						    });
+					 }
+					}  
+			}
+		,error:function(){
+			alert("网络错误！");
+		}
+		});
+
+	
+});
+

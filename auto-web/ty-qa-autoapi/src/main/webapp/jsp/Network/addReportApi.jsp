@@ -42,12 +42,12 @@
 				alert("请输入url名称：");
 				return false;
 			}
-			var url="add.do";
+			var url="addNetwork.do";
 			$.post(url,$("#for_submit").serialize(),
 					function(data){
 				if(data && $.trim(data)=="success"){
 					alert("增加成功！");
-					window.location.href ="list.do";
+					window.location.href ="listNetwork.do";
 				}else{
 					alert("增加失败！");
 				}
@@ -76,7 +76,7 @@
 								</td>
 								<td class="class_td2" valign="middle" align="left">
 									<input type="text" class="inputgri" id="cnn" 
-									name="c6nnnfcg"/>
+									name="authKey"/>
 								</td>
 							</tr>
 							<tr>
@@ -88,7 +88,7 @@
 									name="canshu"></textarea>
 								</td>
 							</tr>
-								<tr>
+							<tr>
 								<td class="class_td2" valign="middle" align="right">
 									用例url:
 								</td>
@@ -96,6 +96,16 @@
 									
 									<textarea type="text" class="inputgri" id="url"
 									name="url" ></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td class="class_td2" valign="middle" align="right">
+									json:
+								</td>
+								<td class="class_td2" valign="middle" align="left">
+									
+									<textarea type="text" class="inputgri" id="json"
+									name="json" ></textarea>
 								</td>
 							</tr>
 						</table>

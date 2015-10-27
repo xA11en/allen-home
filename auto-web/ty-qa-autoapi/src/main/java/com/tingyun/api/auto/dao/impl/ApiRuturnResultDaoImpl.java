@@ -1,10 +1,10 @@
 package com.tingyun.api.auto.dao.impl;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,6 @@ import com.tingyun.api.auto.dao.ApiRuturnResultDao;
 import com.tingyun.api.auto.dao.DBUtilsDAO;
 import com.tingyun.api.auto.entity.ApiRuturnResultBean;
 import com.tingyun.api.auto.entity.ApiRuturnResultSql;
-import com.tingyun.api.auto.utils.DBUtils;
 /**
 * @author :chenjingli 
 * @version ：2015-9-23 下午2:33:44 
@@ -42,6 +41,13 @@ public class ApiRuturnResultDaoImpl implements ApiRuturnResultDao {
 		// TODO Auto-generated method stub
 		List<ApiRuturnResultBean> list =  dbUtilsDAO.query(ApiRuturnResultBean.class, ApiRuturnResultSql.SELECT_JSON_BY_APPID, id);
 		 return list;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectByerrorCount() throws Exception {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> mapList = dbUtilsDAO.queryMore(ApiRuturnResultSql.SELECT_APP_API_ERROR_SQL, null);
+		return mapList;
 	}
 
 }

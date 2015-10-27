@@ -1,9 +1,12 @@
 package com.tingyun.api.auto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +47,24 @@ public class ApiResultDetailController {
 				//返回界面原来的接口json 和 这个用例的错误接口返回结果
 				modelMap.addAttribute("errorJson", resultBeans.get(0).getApp_api_result());
 				ReportApiBean reportApiBean =  reportApiDao.findById(id);
-				modelMap.addAttribute("appJson", reportApiBean.getJson());
+				JSONObject jsonObject =  new JSONObject(reportApiBean.getJson());
+				JSONObject  chart = jsonObject.getJSONObject("chart");
+				String beginTime=chart.getString("beginTime");
+				String endTime=chart.getString("endTime");
+				String timeGranularity=chart.getString("timeGranularity");
+				JSONArray dataset=chart.getJSONArray("dataset");
+				List<String> listJsons = new ArrayList<String>();
+				listJsons.add(beginTime);
+				listJsons.add(endTime);
+				listJsons.add(timeGranularity);
+				listJsons.add(dataset.toString());	
+				modelMap.addAttribute("appJson",listJsons.toString());
 				
 		} catch (Exception e) {
 			LOG.error("测试结果详情页出现异常{}",e);
 			// TODO Auto-generated catch block
 			throw new ApiException(e);
 		}
-		return "app/detail";
+		return "detail";
 	}
 }

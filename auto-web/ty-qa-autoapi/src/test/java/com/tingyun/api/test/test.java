@@ -1,19 +1,19 @@
 package com.tingyun.api.test;
 
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
-import javax.annotation.Resource;
-
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.testng.annotations.Test;
 
-import com.tingyun.api.auto.dao.ApiRuturnResultDao;
-import com.tingyun.api.auto.dao.impl.ApiRuturnResultDaoImpl;
-import com.tingyun.api.auto.entity.ApiRuturnResultBean;
+import com.tingyun.api.auto.entity.ApiRuturnResultSql;
+import com.tingyun.api.auto.utils.DBUtils;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,13 +22,16 @@ public class test {
 	
 	@Test
     public void testSearchApiResult(){
+		List<Map<String, Object>> map;
 		try {
-			ApiRuturnResultDao resultDao = new ApiRuturnResultDaoImpl();
-			List<ApiRuturnResultBean> resultBeans = resultDao.selectAll();
-			for (ApiRuturnResultBean apiRuturnResultBean : resultBeans) {
-				System.out.println(apiRuturnResultBean.toString());
+			map = new QueryRunner(
+				).query(DBUtils.getConnection(),ApiRuturnResultSql.SELECT_APP_API_ERROR_SQL, new MapListHandler ());
+			for (Map<String, Object> map2 : map) {
+				int id = (Integer) map2.get("app_id");
+				System.out.println(id);
+//				System.out.println(map2.get("app_id"));
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

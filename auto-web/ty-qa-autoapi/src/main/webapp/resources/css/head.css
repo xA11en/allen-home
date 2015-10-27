@@ -33,6 +33,7 @@ BODY {
     height: 100%;
     position: relative;
     width: 190px;
+    margin-left: -13px;
 }
 .sidebar ul {
     list-style: none outside none;
@@ -45,6 +46,23 @@ BODY {
     text-align: left;
     text-indent: 60px;
     width: 190px;
+}
+.another_project ul {
+    list-style: none outside none;
+}
+.another_project{
+	background: black;
+	height: 86px;
+    margin-left: 0;
+    width: 119px;
+}
+.another_project  li {
+    float: left;
+    font-size: 12px;
+    line-height: 28px;
+    text-align: left;
+    text-indent: 12px;
+    list-style-type:none; 
 }
 .sidebar ul li a {
     border-left: 3px solid rgb(243, 243, 243);
@@ -86,10 +104,28 @@ BODY {
 	text-align: left;
 	background:#509AD3;
 }
+.network{
+	height: 70px;
+	font-size: 20px;
+	text-align: left;
+	background:#D9847D;
+}
+.server span{
+	margin-left: -29px;
+}
+.app span{
+	margin-left: -29px;
+}
+.network span{
+	margin-left: -29px;
+}
 .app:hover{
 	background: #EAEEF0;
 }
 .server:hover{
+	background: #EAEEF0;
+}
+.network:hover{
 	background: #EAEEF0;
 }
 .head_title{
@@ -97,6 +133,8 @@ BODY {
     font-size: 35px;
     line-height: 87px;
     text-align: center;
+    position: absolute;
+	margin-left: 556px;
 }
 .zhiliang{
 	float: left;

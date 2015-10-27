@@ -10,8 +10,7 @@
 <title>report用例展示jsp</title>
 </head>
 <body>
-<script type="text/javascript">
-</script>
+
 
 
 <%@include file="/jsp/head.jsp"%>
@@ -21,44 +20,58 @@
     <ul>
           <li>
                	<a href="list.do">
-		          <div  class="app" name="" noUrl=""  >
-		          	<span>APP接口</span>
+		          <div class="app" name="" noUrl=""  >
+		          <span>	APP接口</span>
 		           </div>
 		        </a>
          </li>
         <li>
         		<a href="listServer">
 		          <div class="server" name="" noUrl=""  >
-		         <span> SERVER接口</span>
+		          <span>SERVER接口</span>
 		           </div>
 		        </a>
         </li>
 	    <li>
 	        	<a href="listNetwork">
 			       <div class="network" name="" noUrl=""  >
-			     <span>   NET_WORK接口</span>
+			      <span> NET_WORK接口</span>
 			        </div>
 			     </a>
 	      </li>
+<!--          <li> -->
+<!--                <a href="/report/mobileApp/1/alarmList"> -->
+<!-- 		           <div class="icon_appalert_01" name="APP警报" noUrl=""  > -->
+<!-- 		                                        APP警报 -->
+<!-- 		            </div> -->
+<!-- 		       </a> -->
+<!--           </li> -->
+<!--           <li> -->
+<!--                 <a href="/report/keyUrl/228/keyAlarmList"> -->
+<!-- 		            <div class="icon_keyAlarmList_01" name="关键元素警报" noUrl=""  > -->
+<!-- 		                                        关键元素警报 -->
+<!-- 		            </div> -->
+<!-- 		         </a> -->
+<!--           </li>               -->
     </ul>
 </div>
 <div>
 	<div class="button_add_go">
-		<span>app接口用例详细</span>
-		<input  id="searchName" placeholder="   请输入caseName进行搜索"  class="changeUrl" type="text" onkeyup="getApiListByName();" 
+		<span>network接口用例详细</span>
+		<input  id="searchName" placeholder="   请输入caseName进行搜索"  class="changeUrl" type="text" onkeyup="getApiListByNameNet();" 
 		name="name" style="width: 200px;float:none;height:25px;margin-right:20px;background:url('resources/img/search.gif') no-repeat 5px 8px;" />
-	 	<a target="_blank" href="go.do" onclick="alert('这个测试可能几秒时间，耐心等待！');">
+	 	<a target="_blank" href="#" onclick="alert('这个测试可能几秒时间，耐心等待！');">
 			执行测试
 		</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a type="button" href="addReport.do" >
+		<a type="button" href="addNetworkReport.do" >
 			增  加
 		</a>
 		&nbsp;  &nbsp;	   &nbsp;         &nbsp;
 	</div>
          
 	<div id="api_table" style="text-align: center; MARGIN-LEFT: auto;">
-		<div style="padding-top:20px; height:765px; width: 84.5%; text-align: center;background:none repeat scroll 0 0 rgb(238, 239, 243);  MARGIN-LEFT: auto;">
+		<div style="padding-top:20px; height:765px; width:  84.5%; text-align: center;background:none repeat scroll 0 0 rgb(238, 239, 243);  MARGIN-LEFT: auto;">
 			<p class="p_span_time">
 				<span>1</span>
 			</p>
@@ -79,14 +92,14 @@
 					<tr style="height: 40px;"  onmouseout="this.style.backgroundColor='#F4F9FD'" onmouseover="this.style.backgroundColor='rgb(29, 149, 200)'" >
 						<td class="class_td"><c:out value="${status.count+((pages-1)*15)}" /></td>
 					    <td class="class_td"><span><c:out value="${listApis.caseName}" /></span></td>
-					    <td class="class_td"><c:out value="${listApis.c6nnnfcg}" /></td>
+					    <td class="class_td"><c:out value="${listApis.authKey}" /></td>
 					    <td class="class_td"><span><c:out value="${listApis.parameter}" /></span></td>
 					    <td class="class_td"><span><c:out value="${listApis.url}" /></span></td>
 					    <td class="class_td"><a class="class_a" ><span><c:out value="${listApis.json}" /></span></a></td>
 	<%-- 				    <td class="class_td"> <a class="class_a" href="detailJson0.do?id=${listApis.id}"><span><c:out value="${listApis.xml}" /></span></a></td> --%>
 					    <td >
-							 <a class="class_a" href="load.do?id=${listApis.id}">编辑</a>
-	        				 <a class="class_a" href="del.do?id=${listApis.id}" onclick="return confirm('确定删除${listApis.caseName}吗?');">删除</a>
+							 <a class="class_a" href="loadNetwork.do?id=${listApis.id}">编辑</a>
+	        				 <a class="class_a" href="delNetwork.do?id=${listApis.id}" onclick="return confirm('确定删除${listApis.caseName}吗?');">删除</a>
 						</td>
 					</tr>
 						</c:forEach>
@@ -98,13 +111,13 @@
 									<a ></a>
 								</c:when>
 								<c:otherwise>
-									<a href="list.do?pages=1">首页</a>
+									<a href="listNetwork.do?pages=1">首页</a>
 								</c:otherwise>
 							</c:choose>
 			
 							<c:choose>
 								<c:when test="${pages > 1}">
-									<a href="list.do?pages=${pages-1}">上一页</a>
+									<a href="listNetwork.do?pages=${pages-1}">上一页</a>
 								</c:when>
 								<c:otherwise>
 									上一页
@@ -113,7 +126,7 @@
 							第${pages}页
 							<c:choose>
 								<c:when test="${pages < totalPages}">
-									<a href="list.do?pages=${pages+1}">下一页</a>
+									<a href="listNetwork.do?pages=${pages+1}">下一页</a>
 								</c:when>
 								<c:otherwise>
 									下一页
@@ -122,7 +135,7 @@
 							总共${totalPages}页
 							<c:choose>
 								<c:when test="${pages < totalPages}">
-									<a href="list.do?pages=${totalPages}">尾页</a>
+									<a href="listNetwork.do?pages=${totalPages}">尾页</a>
 								</c:when>
 							</c:choose>
 			</div>

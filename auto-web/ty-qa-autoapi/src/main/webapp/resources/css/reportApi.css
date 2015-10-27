@@ -6,7 +6,7 @@
 }
 .class_button{
 	cursor: pointer;
-/*     float: right; */
+    float: right;
     height: 40px;
     margin: 15px 20px 10px 10px;
     text-align: center;
@@ -181,6 +181,16 @@ input.inputgri:focus, select.inputgri:focus , textarea.inputgri:focus {
 }
 .button_add_go{
   text-align: end;
+}
+.button_add_go span{
+    background: none repeat scroll 0 0 rgb(237, 238, 237);
+    color: blue;
+    float: left;
+    font-size: 20px;
+    line-height: 2;
+    margin-left: 46px;
+    text-align: left;
+    width: 244px;
 }
 .button_add_go a:hover{
 	color: red;

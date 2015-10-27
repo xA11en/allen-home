@@ -12,7 +12,7 @@
 	<div style="height:600px;;; width: 1000px;margin-top: 20px;MARGIN-RIGHT: auto; MARGIN-LEFT: auto;background:none repeat scroll 0 0 rgb(238, 239, 243); ">
 	
 	<div class="upd_class"><h2 style="text-align: center;line-height: 90px;color: blue">修 改 测 试 用 例 界 面</h2></div>	
-	<form class="upd_clss_form"  action="update.do?id=${e.id}" method="post">
+	<form class="upd_clss_form"  action="updateNetWork.do?id=${e.id}" method="post">
 						<table cellpadding="0" cellspacing="0" border="0">
 							<tr>
 								<td class="class_td2" valign="middle" align="right">
@@ -37,7 +37,7 @@
 								</td>
 								<td class="class_td2" valign="middle" align="left">
 									<input type="text" class="inputgri"  
-									name="c6nnnfcg" value="${e.c6nnnfcg}"></input>
+									name="authKey" value="${e.authKey}"></input>
 								</td>
 							</tr>
 							<tr>
