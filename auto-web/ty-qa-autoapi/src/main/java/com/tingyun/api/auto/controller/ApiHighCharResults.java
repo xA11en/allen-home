@@ -57,8 +57,9 @@ public class ApiHighCharResults {
 				appHighCharMap.put(reportApiBean.getCaseName(),errorC);
 			}
 			JSONArray json = JSONArray.fromObject(appHighCharMap);
-			response.getWriter().printf(json.toString());
-			//return "app/appHighChar";
+			response.getWriter().write(json.toString());
+			LOG.info("查询出的展示apphighchar接口的数据是{}",json.toString());
+			return;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			LOG.error("查询app api组装数据前台展示出错！",e);

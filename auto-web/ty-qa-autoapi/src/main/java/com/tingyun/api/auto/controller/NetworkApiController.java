@@ -30,6 +30,7 @@ import com.tingyun.api.auto.entity.NetworkReportApiBean;
 public class NetworkApiController{
 	public Logger logger = LoggerFactory.getLogger(NetworkApiController.class);
 	
+	private static final String NETWORK_RETURN_INFO="nothing anthing infomation!";
 	
 	@Resource NetWorkReportApiDao reportApiDao;
 	
@@ -44,7 +45,11 @@ public class NetworkApiController{
 			int pages = Integer.parseInt(firstPage);
 			int totalPages = reportApiDao.totalPages(pageNumber);
 			List<NetworkReportApiBean> listApis = reportApiDao.findAllByPaging(pages, pageNumber);
-			logger.info("查询出记录数为：{}",listApis.size());
+			if(listApis.size()==0){
+				
+				modelMap.put("info", NETWORK_RETURN_INFO);
+			}
+			logger.info("查询出network api 记录数为：{}",listApis.size());
 			modelMap.put("listApis", listApis);
 			request.setAttribute("pages", pages);
 		    request.setAttribute("totalPages", totalPages);

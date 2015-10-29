@@ -103,6 +103,9 @@
 						</td>
 					</tr>
 						</c:forEach>
+					<tr style="height:40px;">
+						 <td  rowspan="7"  colspan="7" style="color: red;" >${info}</td>
+					</tr>
 				</tbody>
 			</table>
 			<div class="class_page">
