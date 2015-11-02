@@ -62,5 +62,21 @@
 	 <bean id="dbUtilsDao" class="com.tingyun.api.auto.dao.DBUtilsDAO">  
         <property name="dataSource" ref="dataSource" />  
    	 </bean>  
-	
+	  <mvc:interceptors>  
+        <mvc:interceptor>  
+            <!-- 需拦截的地址 -->  
+                        <!-- 一级目录 -->  
+            <mvc:mapping path="/*.do" />
+            <mvc:mapping path="/*.ajax" />  
+            <mvc:mapping path="/*.htm" />  
+  
+                        <!-- 二级目录 -->  
+            <mvc:mapping path="/*/*.do" />  
+            <mvc:mapping path="/*/*.ajax" />  
+            <mvc:mapping path="/*/*.htm" />  
+            <!-- 需排除拦截的地址 -->  
+            <mvc:exclude-mapping path="reportLogin/login"/>  
+            <bean class="com.tingyun.api.auto.utils.fifter.SecurityInterceptor" />  
+        </mvc:interceptor>  
+    </mvc:interceptors>  
 </beans>

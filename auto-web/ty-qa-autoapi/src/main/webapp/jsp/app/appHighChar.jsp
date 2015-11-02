@@ -81,7 +81,7 @@ $(function () {
 });
 </script>
 </head>
-<body>
+<body style="background: #6699FF;">
 
 
 	<%@include file="/jsp/head.jsp"%>

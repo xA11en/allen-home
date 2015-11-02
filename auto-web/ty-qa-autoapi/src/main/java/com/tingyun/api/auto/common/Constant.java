@@ -25,5 +25,6 @@ public class Constant {
 	//标示接口返回成功springmvc
 	public static final String SUCCESS_STATUS = "success";
 	
-	
+	//登陆标识
+	public static final String LOGIN_SUCCESS_STATUS = "login_success";
 }

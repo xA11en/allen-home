@@ -13,6 +13,8 @@
 <script src="${ctx}/resources/js/highcharts.js" type="text/javascript"></script>
 <script src="${ctx}/resources/js/jquery-1.8.3.js" type="text/javascript"></script>
 <script src="${ctx}/resources/js/report.js" type="text/javascript"></script>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 

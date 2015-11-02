@@ -33,7 +33,7 @@ BODY {
     height: 100%;
     position: relative;
     width: 190px;
-    margin-left: -13px;
+    margin-left: 25px;
 }
 .sidebar ul {
     list-style: none outside none;
@@ -134,7 +134,7 @@ BODY {
     line-height: 87px;
     text-align: center;
     position: absolute;
-	margin-left: 556px;
+	margin-left: 783px;
 }
 .zhiliang{
 	float: left;
