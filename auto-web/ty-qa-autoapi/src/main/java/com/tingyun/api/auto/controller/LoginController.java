@@ -52,16 +52,5 @@ public class LoginController {
 		return null;
 	}
 	
-	@RequestMapping("/login2")
-	public void login2(ModelMap model,HttpServletRequest request,HttpServletResponse response){
-		String path = request.getServletPath();
-		String[] strings = path.split("/");
-		try {
-			response.sendRedirect("list");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 }
