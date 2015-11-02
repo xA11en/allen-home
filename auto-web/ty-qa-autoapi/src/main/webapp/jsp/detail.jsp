@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="resources/css/reportApi.css" rel="stylesheet" type="text/css" />
 <script src="resources/js/jquery-1.8.3.js" type="text/javascript"></script>
-<title>XML/JSON 详 细 情 况 界 面 </title>
+<title>JSON详情 </title>
 </head>
 <body style="background-color: black;">
 	<div style="height:auto; width: 1000px;margin-top: 20px;MARGIN-RIGHT: auto; MARGIN-LEFT: auto;background:none repeat scroll 0 0 rgb(238, 239, 243); ">

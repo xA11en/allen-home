@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>修改用例jsp</title>
+<title>network接口更新</title>
 <link href="resources/css/reportApi.css" rel="stylesheet" type="text/css" />
 </head>
 <body style="background-color: black;">

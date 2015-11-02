@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>接口平台登录</title>
 <c:set var="ctx" value="<%=request.getContextPath()%>"/>
 <link href="${ctx}/resources/css/reportApi.css" rel="stylesheet" type="text/css" />
 <link href="${ctx}/resources/css/head.css" rel="stylesheet" type="text/css"/>

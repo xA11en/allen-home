@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>report用例展示jsp</title>
+<title>server错误接口报表展现</title>
 </head>
 <body>
 

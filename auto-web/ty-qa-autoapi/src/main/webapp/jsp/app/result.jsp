@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>report用例展示jsp</title>
+<title>app接口测试结果详细</title>
 <link href="resources/css/reportApi.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/head.css" rel="stylesheet" type="text/css"/>
 <!--  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->

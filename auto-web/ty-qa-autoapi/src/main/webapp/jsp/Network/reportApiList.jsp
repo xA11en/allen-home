@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="ctx" value="<%=request.getContextPath()%>"/>
-<title>report用例展示jsp</title>
+<title>network接口用例详细</title>
 </head>
 <body>
 

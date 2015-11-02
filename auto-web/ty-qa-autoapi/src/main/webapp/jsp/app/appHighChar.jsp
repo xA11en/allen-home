@@ -13,7 +13,7 @@
 	type="text/javascript"></script>
 <%-- <script src="${ctx}/resources/js/highcharts.js" type="text/javascript"></script> --%>
 <%-- <script src="${ctx}/resources/js/jquery-1.8.3.js" type="text/javascript"></script> --%>
-<title>report用例展示jsp</title>
+<title>app接口报表展示</title>
 <script type="text/javascript">
 $(function () { 
 // 	var path = $("#ctx").val();

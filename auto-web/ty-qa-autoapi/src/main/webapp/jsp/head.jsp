@@ -28,10 +28,11 @@
 	</div>
 	<div class="zhiliang" id="zhiliang">
 	<span>
-		<a href="jsp/app/appHighChar.jsp">质量看板</a>
+		<a>质量看板</a>
 		<i class="icon-chevron-down icon-white">
 		</i>
 	</span>
+	
 		<ul id="another_project" class="another_project" style="display: none;">
 			<li>
 				<a id="appHigh" target="_blank" href="${ctx}/ApihighChar/getAppHighChar" id="another_link" >APP</a>
@@ -49,6 +50,9 @@
 		接  口  自  动  化  测  试  平  台
 		</p>
 	</div>
+	<span style="float: right;   font-size: 18px; margin-right: 225px;">
+		<a style="color: white;" href="${ctx}/reportLogin/login">退出</a>
+	</span>
 	<!-- End Logo -->
 	<!-- Start meum -->
 </div>
