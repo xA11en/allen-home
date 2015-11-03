@@ -29,6 +29,7 @@
                 <prop key="java.sql.SQLException">error</prop>
                 <prop key="java.io.IOException">error</prop>
                 <prop key="java.lang.RuntimeException">error</prop>
+                <prop key="com.tingyun.api.auto.common.ApiException">error</prop>
             </props>
         </property>
     </bean>
