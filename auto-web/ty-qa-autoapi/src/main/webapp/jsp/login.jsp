@@ -33,6 +33,17 @@
 		});
 	}
 	
+	 function checkKeyPress(e) {
+		 var evt = e || window.event;
+		 if(evt && evt.keyCode == 13) {
+		 var target = evt.srcElement || evt.target;
+		 if(target) {
+		 var tname = target.tagName;
+		 if(tname == "INPUT" || tname == "SELECT") doLogin();
+		 }
+		 }
+		 } 
+	
 </script>
 </head>
 <body>
@@ -44,7 +55,7 @@
 			</div>
 			<div class="login-content ">
 			<div class="form">
-			<form action="" method="post" id="loginForm" style="text-align: center;">
+			<form onkeypress="checkKeyPress(event)"   action="" method="post" id="loginForm" style="text-align: center;">
 				<div class="form-group">
 					<div class="col-xs-12  ">
 						<div class="input-group">
