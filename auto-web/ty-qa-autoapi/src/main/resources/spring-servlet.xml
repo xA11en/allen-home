@@ -67,11 +67,13 @@
             <!-- 需拦截的地址 -->  
                         <!-- 一级目录 -->  
             <mvc:mapping path="/*.do" />
+             <mvc:mapping path="/*" />
             <mvc:mapping path="/*.ajax" />  
             <mvc:mapping path="/*.htm" />  
   
                         <!-- 二级目录 -->  
-            <mvc:mapping path="/*/*.do" />  
+            <mvc:mapping path="/*/*.do" /> 
+             <mvc:mapping path="/*/*" /> 
             <mvc:mapping path="/*/*.ajax" />  
             <mvc:mapping path="/*/*.htm" />  
             <!-- 需排除拦截的地址 -->  

@@ -57,8 +57,16 @@ $(function () {
 				        yAxis:{
 				        	categories:y,
 				            title:{
-				                text:'错误次数' //Y轴的名称
-				            }
+				                text:'接口错误次数' //Y轴的名称
+				            },
+				            labels:{
+				            	style:{
+				            		color:"black",
+				            		font:"25px"
+				            		
+				            	}
+				            	
+				            },
 				        },
 				        series:[{
 				            name:"错误次数",
@@ -93,7 +101,7 @@ $(function () {
 					aria-describedby="qtip-14"> app前20条错误接口展示 </span>
 			</div>
 			<div id="container"
-				style="width: 700px; height: 400px; text-align: center; margin-left: 421px; margin-top: 110px;"></div>
+				style="width: auto; height: auto; text-align: center;  margin-top: 110px;"></div>
 		</div>
 	</div>
 
