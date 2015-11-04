@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="api_table" style="text-align: center; MARGIN-LEFT: auto;">
-		<div style="padding-top:20px; height:765px; width: 1200px; text-align: center;background:none repeat scroll 0 0 rgb(238, 239, 243);  MARGIN-LEFT: auto;">
+		<div style="padding-top:20px; height:765px; width: 84.5%; text-align: center;background:none repeat scroll 0 0 rgb(238, 239, 243);  MARGIN-LEFT: auto;">
 			<p class="p_span_time">
 				<span>1</span>
 			</p>
