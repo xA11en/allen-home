@@ -53,6 +53,7 @@ public class DBUtilsDAO {
      */ 
     @SuppressWarnings("unchecked") 
     public <T> List<T> query(Class<T> entityClass, String sql, Object... params) throws SQLException {
+    	LOG.info("打印sql信息：====》{}",sql);
         queryRunner = new QueryRunner(dataSource); 
         List<T> list = new ArrayList<T>(); 
         	list = (params == null) ?
@@ -65,6 +66,7 @@ public class DBUtilsDAO {
      * 返回多条记录
      */
     public List<Map<String, Object>> queryMore(String sql, Object... params)throws SQLException{
+    	LOG.info("打印sql信息：====》{}",sql);
     	 queryRunner = new QueryRunner(dataSource); 
     	 List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
     	 maps = (params == null) ?
@@ -81,7 +83,8 @@ public class DBUtilsDAO {
      * @return 受影响的行数 
      * @throws SQLException 
      */ 
-    public int update(String sql, Object[] params) throws SQLException { 
+    public int update(String sql, Object[] params) throws SQLException {
+    	LOG.info("打印sql信息：====》{}",sql);
         queryRunner = new QueryRunner(); 
         int affectedRows = 0; 
             if (params == null) { 
@@ -99,6 +102,7 @@ public class DBUtilsDAO {
      * @throws SQLException 
      */ 
     public int updateByParams(String sql, Object... params) throws SQLException { 
+    	LOG.info("打印sql信息：====》{}",sql);
         queryRunner = new QueryRunner(); 
         int affectedRows = 0; 
             if (params == null) { 
@@ -118,6 +122,7 @@ public class DBUtilsDAO {
      */ 
     @SuppressWarnings("unchecked") 
     public <T> T findFirst(Class<T> entityClass, String sql, Object[] params) throws SQLException { 
+    	LOG.info("打印sql信息：====》{}",sql);
         queryRunner = new QueryRunner(dataSource); 
         Object object = null; 
             if (params == null) { 

@@ -32,22 +32,24 @@ public class LoginController {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		LOG.info("**********start 用户 ：【{}】登陆了接口平台！",username);
+		try {
 		if(StringUtils.isBlank(username) || StringUtils.isBlank(password) )
 		{
 			LOG.info("用户名和密码为null");
 			return "login";
 		}
 		LoginBean bean = new LoginBean();
-		bean.setUsername(username);bean.setPassword(password);
-		if(bean!=null){ 
+		if(username.equals("test") && password.equals("1")){
+			bean.setUsername(username);bean.setPassword(password);
 			LOG.info("把登陆信息存入seesion!{}",bean.toString());
 			httpSessio.setAttribute(Constant.LOGIN_SUCCESS_STATUS,bean);
-			try {
-				response.getWriter().write("success");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			response.getWriter().write("success");
+		}else{
+			response.getWriter().write("fail");;
+		}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}
