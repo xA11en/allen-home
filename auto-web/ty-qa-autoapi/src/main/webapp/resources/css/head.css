@@ -111,13 +111,13 @@ BODY {
 	background:#D9847D;
 }
 .server span{
-	margin-left: -29px;
+	margin-left: -35px;
 }
 .app span{
-	margin-left: -29px;
+	margin-left: -35px;
 }
 .network span{
-	margin-left: -29px;
+	margin-left: -35px;
 }
 .app:hover{
 	background: #EAEEF0;
