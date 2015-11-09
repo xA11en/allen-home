@@ -28,7 +28,7 @@
 			if(data && $.trim(data)=="success"){
 				window.location.href ="${ctx}/list";
 			}else if(data && $.trim(data)=="fail"){
-				alert("用户名密码不正确，请输入username:test pwd：1 ");
+				alert("用户名密码不正确,详情咨询chenjingli");
 			}
 		});
 	}
