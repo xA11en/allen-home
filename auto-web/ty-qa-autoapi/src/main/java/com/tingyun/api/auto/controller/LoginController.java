@@ -39,7 +39,9 @@ public class LoginController {
 			return "login";
 		}
 		LoginBean bean = new LoginBean();
-		if(username.equals("test") && password.equals("1")){
+		if(username.equals("zhaodd") && password.equals("1")||
+		   username.equals("yangll") && password.equals("1")||
+		   username.equals("liq") && password.equals("1")){
 			bean.setUsername(username);bean.setPassword(password);
 			LOG.info("把登陆信息存入seesion!{}",bean.toString());
 			httpSessio.setAttribute(Constant.LOGIN_SUCCESS_STATUS,bean);
