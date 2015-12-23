@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>  
   
   	<properties>
+ 	 	<url.nexus.local>http://192.168.1.16:8081/nexus</url.nexus.local>
 		<!-- spring版本号 -->
 		<spring.version>4.1.7.RELEASE</spring.version>
 		<org.aspectj.version>1.7.3</org.aspectj.version>
@@ -22,6 +23,188 @@
 		 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		 <argLine>-Dfile.encoding=UTF-8</argLine>
 	</properties>
+	
+		<!-- 设定除中央仓库(repo1.maven.org/maven2/)外的其他仓库,按设定顺序进行查找. -->
+	<repositories>
+		<!-- 如有Nexus私服 -->
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>${url.nexus.local}/content/repositories/releases</url>
+		</repository>
+
+		<repository>
+			<id>nexus-snapshots</id>
+			<name>Team Nexus Repository</name>
+			<url>${url.nexus.local}/content/repositories/snapshots</url>
+		</repository>
+
+		<!-- <repository> <id>nexus-fengzhiyin-snapshots</id> <name>Team Nexus Repository</name> <url>http://192.168.1.211:8081/nexus/content/repositories/snapshots</url> 
+			</repository> -->
+		<repository>
+			<id>central</id>
+			<name>Oschina Repository</name>
+			<url>http://maven.oschina.net/content/groups/public/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>offical</id>
+			<name>Maven Official Repository</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>flex-mojos-repository</id>
+			<url>http://repository.sonatype.org/content/groups/flexgroup/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>flex-mojos-internal-repository</id>
+			<url>http://repository.sonatype.org/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>org.springframework.maven.milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jboss</id>
+			<name>Jboss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>java.net</id>
+			<name>Java.net Repository</name>
+			<url>http://download.java.net/maven/2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>spy</id>
+			<name>Spy Repository</name>
+			<layout>default</layout>
+			<url>http://files.couchbase.com/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>datanucleus</id>
+			<name>datanucleus Repository</name>
+			<layout>default</layout>
+			<url>http://www.datanucleus.org/downloads/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>internet2.edu</id>
+			<name>internet2.edu Repository</name>
+			<layout>default</layout>
+			<url>http://www.internet2.edu/grouper/downloads/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!-- 设定插件仓库 如有Nexus私服 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>${url.nexus.local}/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		
+		<pluginRepository>
+			<id>flex-mojos-plugin-repository</id>
+			<url>http://repository.sonatype.org/content/groups/flexgroup/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>flex-mojos-internal-plugins-repository</id>
+			<url>http://repository.sonatype.org/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		
+		<pluginRepository>
+			<id>mirror.1and1</id>
+			<name>mirror.1and1 Repository</name>
+			<url>http://mirror.1and1.com/software/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>code.lds.org</id>
+			<name>code.lds.org Repository</name>
+			<url>https://code.lds.org/nexus/content/repositories/plugin-repo/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- 设定使用Release插件发布的仓库服务器 -->
+	<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Team Nexus Release Repository</name>
+			<url>${url.nexus.local}/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Team Nexus Snapshot Repository</name>
+			<url>${url.nexus.local}/content/repositories/snapshots</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
+	
 	<dependencies>
 		<dependency>
 	    <groupId>org.apache.maven.plugins</groupId>
@@ -312,6 +495,34 @@
 			<artifactId>json</artifactId>
 			<version>20090211</version>
 		</dependency>
+		
+		
+		
+			
+	 	<dependency>
+		  <groupId>com.networkbench.newlens</groupId>
+		  <artifactId>newlens-datacollector-common</artifactId>
+		  <version>1.3.8-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>com.networkbench.newlens</groupId>
+		  <artifactId>newlens-datacollector-frontend</artifactId>
+		  <version>1.3.8-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.networkbench.newlens</groupId>
+		  <artifactId>newlens-datacollector-backend</artifactId>
+		  <version>1.3.8-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.networkbench</groupId>
+		  <artifactId>networkbench-nbfs</artifactId>
+		  <version>1.0.2</version>
+		</dependency>
+		
 	</dependencies>
 	
 	<build>
