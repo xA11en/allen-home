@@ -12,9 +12,9 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
-import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import com.tingyun.api.auto.utils.DBUtils;
 
@@ -23,7 +23,27 @@ import com.tingyun.api.auto.utils.DBUtils;
 * @version ：2015-9-21 下午3:34:54 
 * @decription:
  */
-public class DBUtilsDAO {
+public class DBUtilsDAO  extends AbstractRoutingDataSource {
+	
+	/**
+	 * 数据源切换
+	 */
+	
+	public static final String DATA_SOURCE_A = "dataSourceA";
+    public static final String DATA_SOURCE_B = "dataSourceB";
+    private static final ThreadLocal<String> contextHolder = new ThreadLocal<String>();
+    
+    
+    public static void setCustomerType(String customerType) {
+            contextHolder.set(customerType);
+    }
+    public static String getCustomerType() {
+            return contextHolder.get();
+    }
+    public static void clearCustomerType() {
+            contextHolder.remove();
+    }
+	
 	
 	@Resource
 	private DataSource dataSource;
@@ -85,7 +105,7 @@ public class DBUtilsDAO {
      */ 
     public int update(String sql, Object[] params) throws SQLException {
     	LOG.info("打印sql信息：====》{}",sql);
-        queryRunner = new QueryRunner(); 
+        queryRunner = new QueryRunner(dataSource); 
         int affectedRows = 0; 
             if (params == null) { 
                 affectedRows = queryRunner.update(sql); 
@@ -94,6 +114,15 @@ public class DBUtilsDAO {
             } 
         return affectedRows; 
     } 
+    /**
+     * 批处理多条数据
+     */
+    public void insertMore(String sql, Object[][] params) throws SQLException {
+    	LOG.info("打印sql信息：====》{}",sql);
+        queryRunner = new QueryRunner(dataSource);
+        queryRunner.batch(sql, params);
+    } 
+    
     /** 
      * 执行sql语句 
      * @param sql sql语句 
@@ -103,7 +132,7 @@ public class DBUtilsDAO {
      */ 
     public int updateByParams(String sql, Object... params) throws SQLException { 
     	LOG.info("打印sql信息：====》{}",sql);
-        queryRunner = new QueryRunner(); 
+        queryRunner = new QueryRunner(dataSource); 
         int affectedRows = 0; 
             if (params == null) { 
                 affectedRows = queryRunner.update(sql); 
@@ -131,6 +160,12 @@ public class DBUtilsDAO {
                 object = queryRunner.query(sql, new BeanHandler(entityClass), params); 
             } 
         return (T) object; 
-    } 
+    }
+
+	@Override
+	protected Object determineCurrentLookupKey() {
+		// TODO Auto-generated method stub
+		return getCustomerType();
+	} 
     
 }

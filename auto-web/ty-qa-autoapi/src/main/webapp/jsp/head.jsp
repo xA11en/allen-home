@@ -43,6 +43,9 @@
 			<li>
 				<a id="another_link" href="/report/network/network/overview">NET_WORK</a>
 			</li>
+			<li>
+				<a id="another_link" href="/report/network/network/overview">警报</a>
+			</li>
 		</ul>
 	</div>
 	<div class="head_title">
