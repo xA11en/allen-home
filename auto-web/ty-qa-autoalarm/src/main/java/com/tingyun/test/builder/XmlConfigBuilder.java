@@ -51,8 +51,18 @@ public class XmlConfigBuilder {
 			List<Task> tasks = step.getTasks();
 			for(int j=0;j<tasks.size();j++){
 				Task task = tasks.get(j);
-				String type = StringUtils.isNotEmpty(task.getType())?task.getType():"upload";
-				TestTask testTask = TaskFactory.get(type);
+				
+				TestTask testTask = null;
+				if(StringUtils.isNotEmpty(task.getClazz())){
+					try {
+						testTask = (TestTask) Class.forName(task.getClazz()).newInstance();
+					} catch (InstantiationException | ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+				}else{
+					String type = StringUtils.isNotEmpty(task.getType())?task.getType():"upload";
+					testTask = TaskFactory.get(type);
+				}
 				
 				if(StringUtils.isEmpty(task.getName())){
 					BeanUtils.copyProperty(testTask, "name", "task_"+(i+1));
@@ -91,6 +101,9 @@ public class XmlConfigBuilder {
 		
 		digester.addObjectCreate(taskXpath, Task.class); 
 		digester.addSetProperties(taskXpath);
+//		digester.addSetProperty(taskXpath, "class", "clazz");
+		digester.addCallMethod(taskXpath, "setClazz",1);
+		digester.addCallParam(taskXpath, 0, "class");
 		digester.addSetNext(taskXpath,"addTask");
 		
 		digester.addObjectCreate(paramXpath, Param.class); 
@@ -119,6 +132,7 @@ public class XmlConfigBuilder {
 		System.out.println(job.getName());
 		System.out.println(job.getSteps().get(0).getName());
 		System.out.println(job.getSteps().get(0).getTasks().get(0).getName());
+		System.out.println(job.getSteps().get(0).getTasks().get(0).getClazz());
 		return job;
 	}
 	

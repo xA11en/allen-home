@@ -10,6 +10,7 @@ public class Task {
 	private String startTimeExp;
 	private String endTimeExp;
 	private int sleepTime;
+	private String clazz;
 	
 	private List<Param> params = new ArrayList<Param>();
 
@@ -64,4 +65,13 @@ public class Task {
 	public void setSleepTime(int sleepTime) {
 		this.sleepTime = sleepTime;
 	}
+
+	public String getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(String clazz) {
+		this.clazz = clazz;
+	}
+	
 }

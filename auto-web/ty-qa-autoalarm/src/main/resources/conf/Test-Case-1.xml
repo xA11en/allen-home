@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Job name="name1" description="description1">
     <Step name="stepname1" startTimeExp="stepname1_starttime" endTimeExp="stepname1_endtime" sleepTime="10000">
-    	<Task name="taskname1" type="upload">
+    	<Task name="taskname1" type="upload" class="com.tingyun.alarm.task.SQL1Task">
     	    <params>
     	        <param key="1222" value="1111" />
     	    </params>
