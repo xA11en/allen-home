@@ -61,8 +61,8 @@ public class TestJobExecutor implements Runnable{
 				
 			}
 			
-			System.out.println(context.get("stepname1_starttime"));
-			System.out.println(context.get("stepname1_endtime"));
+//			System.out.println(context.get("stepname1_starttime"));
+//			System.out.println(context.get("stepname1_endtime"));
 		}
 	}
 

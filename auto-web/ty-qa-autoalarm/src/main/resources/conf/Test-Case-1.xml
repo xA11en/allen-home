@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Job name="name1" description="description1">
-    <Step name="stepname1" startTimeExp="stepname1_starttime" endTimeExp="stepname1_endtime" sleepTime="10000">
-    	<Task name="taskname1" type="upload" class="com.tingyun.alarm.task.SQL1Task">
+    <Step name="Step1" startTimeExp="task_uploadApp_startTime" endTimeExp="task_uploadApp_endTime" sleepTime="60000">
+    	<Task name="task_uploadApp" class="com.tingyun.alarm.task.uploadAppTask">
     	    <params>
-    	        <param key="1222" value="1111" />
+    	        <param key="key" value="46ee0d1a497741eca1375feafdec074e" />
+    	        <param key="thinkTime" value="60000" />
+    	        <param key="fixed" value="fixed" />
+    	        <param key="count" value="100" />
+    	        <param key="period" value="4" />
+    	        <param key="responseTime" value="200" />
+    	        <param key="interactionTime" value="51" />
     	    </params>
-    	</Task>    
+    	</Task>
+    </Step>
+    
+	
+    <!-- 查询数据库 -->
+	<Step name="Step2" >
+    	<Task name="task_selectDB_alarm_event" class="com.tingyun.alarm.task.DBSelectAlarmEventTask">
+    	    <params>
+    	        <param key="startTimeExp" value="task_uploadApp_startTime" />
+    	        <param key="endTimeExp" value="task_uploadApp_endTime" />
+    	        <param key="targetType" value="1" />
+    	        <param key="targetId" value="3009" />
+    	        <param key="targetParentId" value="3009" />
+    	    </params>
+    	</Task>
+    </Step>
+    
+	<!-- 对比结果 -->
+	<Step name="Step3" >
+    	<Task name="task_selectDB_alarm_event" class="com.tingyun.alarm.task.CheckAlarmEventDataTask">
+    	    <params>
+    	        
+    	    </params>
+    	</Task>
     </Step>
 </Job>

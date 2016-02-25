@@ -72,7 +72,8 @@ public class XmlConfigBuilder {
 				BeanUtils.copyProperty(testTask, "startTimeExp", task.getStartTimeExp());
 				BeanUtils.copyProperty(testTask, "endTimeExp", task.getEndTimeExp());
 				BeanUtils.copyProperty(testTask, "sleepTime", task.getSleepTime());
-				
+				BeanUtils.copyProperty(testTask, "step", testStep);
+				BeanUtils.copyProperty(testTask, "job", testJob);
 				testStep.getTasks().add(testTask);
 				
 				//params
