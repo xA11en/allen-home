@@ -30,13 +30,14 @@ public class XmlConfigBuilder {
 		List<Step> steps = job.getSteps();
 		
 		TestJob testJob = new SimpleTestJob();
+		System.out.println();
 		BeanUtils.copyProperty(testJob, "name", job.getName());
+		BeanUtils.copyProperty(testJob, "description", job.getDescription());
 		
 		//steps
 		for(int i=0;i<steps.size();i++){
 			Step step = steps.get(i);
 			TestStep testStep = new SimpleTestStep();
-			
 			if(StringUtils.isEmpty(step.getName())){
 				BeanUtils.copyProperty(testStep, "name", "step_"+(i+1));
 			}else{
@@ -130,15 +131,16 @@ public class XmlConfigBuilder {
 			e.printStackTrace();
 		}  
 		
-		System.out.println(job.getName());
-		System.out.println(job.getSteps().get(0).getName());
-		System.out.println(job.getSteps().get(0).getTasks().get(0).getName());
-		System.out.println(job.getSteps().get(0).getTasks().get(0).getClazz());
+//		System.out.println(job.getName());
+//		System.out.println(job.getDescription());
+//		System.out.println(job.getSteps().get(0).getName());
+//		System.out.println(job.getSteps().get(0).getTasks().get(0).getName());
+//		System.out.println(job.getSteps().get(0).getTasks().get(0).getClazz());
 		return job;
 	}
 	
 	public static InputStream getClassPathFileInputStream(String path){
-		return XmlConfigBuilder.class.getClassLoader().getResourceAsStream( path);
+		return XmlConfigBuilder.class.getClassLoader().getResourceAsStream( "conf/"+path);
 	}
 	
 	public static void main(String[] args) {

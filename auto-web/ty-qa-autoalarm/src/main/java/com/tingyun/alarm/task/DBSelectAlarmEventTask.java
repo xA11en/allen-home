@@ -18,7 +18,7 @@ import com.tingyun.test.task.AbstractTestTask;
 
 public class DBSelectAlarmEventTask extends AbstractTestTask {
 	
-	private final static int TIME_OFFSET = 1000;
+	private final static int TIME_OFFSET = 60;
 
 	public DBSelectAlarmEventTask() {
 	}
@@ -55,5 +55,6 @@ public class DBSelectAlarmEventTask extends AbstractTestTask {
 		}
 		return alarmEvents;
 	}
+
 
 }

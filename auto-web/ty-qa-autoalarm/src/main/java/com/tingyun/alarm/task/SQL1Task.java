@@ -24,8 +24,9 @@ public class SQL1Task extends AbstractTestTask {
 	@Override
 	public List doTask() {
 		// TODO Auto-generated method stub
-		System.out.println(this.getClass().getName());
+		System.out.println(this.getClass().getName()+"===========");
 		return null;
 	}
+
 
 }
