@@ -39,6 +39,7 @@ public class TestJobExecutor {
 					//业务
 					List result = task.doTask();
 					if(result!=null){
+						System.out.println(result.size());
 						context.put(task.getName()+"_data", result);
 						
 					}

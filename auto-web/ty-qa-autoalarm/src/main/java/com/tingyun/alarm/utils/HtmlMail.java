@@ -159,7 +159,7 @@ public class HtmlMail {
 		
 		StringBuilder html = new StringBuilder("<html>");
 		html.append("<h1 style='text-align:center;color:blue'>测 试 报 告</h1>");
-		html.append("<h2>"+sb.toString()+"</h2>").append("</html>");
+		html.append("<h2 style='text-align:center;color:black'>"+sb.toString()+"</h2>").append("</html>");
 		String subject = new SimpleDateFormat("yyyy年MM月dd日 HH点mm分ss秒")
 		.format(new Date())
 		+ "  "

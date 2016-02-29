@@ -28,9 +28,15 @@ public class Main {
 		});
 		}
 		service.shutdown();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		 while (true) {  
 	            if (service.isTerminated()) {  
-	            	HtmlMail.generateMailHtml(new File(System.getProperty("user.dir")+"\\src\\main\\resources\\alarmResult.txt"));;  
+	            	HtmlMail.generateMailHtml(new File(System.getProperty("user.dir")+"\\src\\main\\resources\\alarmResult.txt"));;
+	            	System.out.println("报告已完成，邮件已发送！");
 	                break;  
 	            }  
 	        }  
