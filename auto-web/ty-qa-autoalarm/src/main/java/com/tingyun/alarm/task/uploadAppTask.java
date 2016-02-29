@@ -15,6 +15,7 @@ public class uploadAppTask extends AbstractTestTask {
 	@Override
 	public List doTask() {
 		
+		
 		Map<String,Object> params = this.params;
 		String key = (String)params.get("key");
 		String thinkTime = (String)params.get("thinkTime");
@@ -23,9 +24,21 @@ public class uploadAppTask extends AbstractTestTask {
 		String period = (String)params.get("period");
 		String responseTime = (String)params.get("responseTime");
 		String interactionTime = (String)params.get("interactionTime");
+		String viewLoadTime = (String)params.get("viewLoadTime");
+		String imageProcessTime = (String)params.get("imageProcessTime");
+		String dataStorageTime = (String)params.get("dataStorageTime");
+		String networkVisitTime = (String)params.get("networkVisitTime");
+		String jsonProcessTime = (String)params.get("jsonProcessTime");
+		String httpErrorPercentage = (String)params.get("httpErrorPercentage");
+		String networkErrorPercentage = (String)params.get("networkErrorPercentage");
+		String deviceIndex = (String)params.get("deviceIndex");
+		
+		
 		
 		new MobileAgentSimulatorNew().main(new AppParmaters(
-				key,thinkTime,fixed,count,period,responseTime,interactionTime,"51","51","51","51","51","0.0","0.0","1"));
+				key,thinkTime,fixed,count,period,responseTime,interactionTime,viewLoadTime,
+				imageProcessTime,dataStorageTime,networkVisitTime,jsonProcessTime,httpErrorPercentage,networkErrorPercentage,
+				deviceIndex));
 		
 		return null;
 	}
