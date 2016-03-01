@@ -53,22 +53,26 @@ public class CheckAlarmEventDataTask extends AbstractTestTask {
 				testResults.setDescription(desc);
 				testResults.setResult(DB_RESULT_WARNING);
 				listAlarmTestResults.add(testResults);
-				System.out.println(desc+"--------"+DB_RESULT_WARNING +" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus());
+				System.out.println(desc+"--------"+DB_RESULT_WARNING +" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus()
+						+"targetName="+alarm.getTarget_name());
 			}else if(alarm.getEvent_level() ==2 && alarm.getStatus() ==1){
 				testResults.setDescription(desc);
 				testResults.setResult(DB_RESULT_SERIOUS);
 				listAlarmTestResults.add(testResults);
-				System.out.println(desc+"--------"+DB_RESULT_SERIOUS+" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus());
+				System.out.println(desc+"--------"+DB_RESULT_SERIOUS+" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus()
+						+"targetName="+alarm.getTarget_name());
 			}else if(alarm.getEvent_level() ==1 && alarm.getStatus() ==0){
 				testResults.setDescription(desc);
 				testResults.setResult(DB_RESULT_WARNING_JIECHU);
 				listAlarmTestResults.add(testResults);
-				System.out.println(desc+"--------"+DB_RESULT_WARNING_JIECHU+" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus());
+				System.out.println(desc+"--------"+DB_RESULT_WARNING_JIECHU+" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus()
+						+"targetName="+alarm.getTarget_name());
 			}else if(alarm.getEvent_level() ==2 && alarm.getStatus() ==0){
 				testResults.setDescription(desc);
 				testResults.setResult(DB_RESULT_SERIOUS_JIECHU);
 				listAlarmTestResults.add(testResults);
-				System.out.println(desc+"--------"+DB_RESULT_SERIOUS_JIECHU+" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus());
+				System.out.println(desc+"--------"+DB_RESULT_SERIOUS_JIECHU+" Event_level="+alarm.getEvent_level()+"status="+alarm.getStatus()
+						+"targetName="+alarm.getTarget_name());
 			}else{
 				testResults.setDescription(desc);
 				testResults.setResult(DB_RESULT_WARNING);

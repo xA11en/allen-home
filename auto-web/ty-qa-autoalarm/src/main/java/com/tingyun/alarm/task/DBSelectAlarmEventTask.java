@@ -19,7 +19,7 @@ import com.tingyun.test.task.AbstractTestTask;
 
 public class DBSelectAlarmEventTask extends AbstractTestTask {
 	
-	private final static int TIME_OFFSET = 120;
+	private final static int TIME_OFFSET = 130;
 
 	public DBSelectAlarmEventTask() {
 	}
@@ -45,21 +45,17 @@ public class DBSelectAlarmEventTask extends AbstractTestTask {
 		List<AlarmEvents> alarmEvents = null;
 		try {
 			QueryRunner runner = new QueryRunner();
-					if(targetId==0 ){
-						Thread.sleep(3000);
-						alarmEvents = 	runner.query
-						(DBUtils.getConnection(), AlarmSQL.SELECT_EVENTS__NO_TAGGETID_SQL,
-								new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,targetType,1,sTime,eTime);
-						System.out.println("查询结果显示："+alarmEvents.size()+"  targetId==0 的情况下的参数"+
-								"targetParentId = "+targetParentId+" targetType="+targetType+" startTime="+sTime +" endTime="+eTime);
-					}else{
+//						alarmEvents = 	runner.query
+//						(DBUtils.getConnection(), AlarmSQL.SELECT_EVENTS__NO_TAGGETID_SQL,
+//								new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,targetType,1,sTime,eTime);
+//						System.out.println("查询结果显示："+alarmEvents.size()+"  targetId==0 的情况下的参数"+
+//								"targetParentId = "+targetParentId+" targetType="+targetType+" startTime="+sTime +" endTime="+eTime);
 						Thread.sleep(3000);
 						alarmEvents = 	runner.query
 								(DBUtils.getConnection(), AlarmSQL.SELECT_EVENTS_SQL,
-										new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,targetId,targetType,1,sTime,eTime);
+										new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,1,sTime,eTime);
 						System.out.println("查询结果显示："+alarmEvents.size()+"   targetId!=0 的情况下的参数"+
-								"targetParentId = "+targetParentId+" targetId="+targetId+" targetType="+targetType+" startTime="+sTime +" endTime="+eTime);
-					}
+								"targetParentId = "+targetParentId+" eventType="+1+" startTime="+sTime +" endTime="+eTime);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block 
 			e.printStackTrace();
