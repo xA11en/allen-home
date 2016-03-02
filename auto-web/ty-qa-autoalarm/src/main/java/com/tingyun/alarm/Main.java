@@ -1,6 +1,5 @@
 package com.tingyun.alarm;
 
-import com.tingyun.alarm.entity.ProductLineType;
 
 
 
