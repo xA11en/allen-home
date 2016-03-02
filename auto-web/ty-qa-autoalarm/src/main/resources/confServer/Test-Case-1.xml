@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Job name="name1" description="description1111111111">
-    <Step name="Step1" startTimeExp="task_uploadApp_startTime" endTimeExp="task_uploadApp_endTime" sleepTime="1">
-    	<Task name="task_uploadApp" class="com.tingyun.alarm.task.uploadAppTask">
+    <Step name="Step1" startTimeExp="task_uploadApp_startTime" endTimeExp="task_uploadApp_endTime" sleepTime="6000">
+    	<Task name="task_uploadApp" class="com.tingyun.alarm.task.uploadServerTask">
     	    <params>
     	        <param key="key" value="46ee0d1a497741eca1375feafdec074e" />
     	        <param key="thinkTime" value="60000" />
     	        <param key="fixed" value="fixed" />
     	        <param key="count" value="100" />
-    	        <param key="period" value="1" />
+    	        <param key="period" value="3" />
     	        <param key="responseTime" value="200" />
     	        <param key="interactionTime" value="51" />
     	        <param key="viewLoadTime" value="51" />

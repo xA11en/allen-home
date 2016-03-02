@@ -11,6 +11,8 @@ import com.tingyun.test.TestStep;
 import com.tingyun.test.TestTask;
 
 public abstract class AbstractTestTask implements TestTask {
+	
+	
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	protected TestJob job;

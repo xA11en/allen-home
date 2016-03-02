@@ -11,6 +11,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.lang.time.DateUtils;
 
 import com.networkbench.newlens.datacollector.util.NumberUtils;
+import com.tingyun.alarm.Main;
 import com.tingyun.alarm.entity.AlarmEvents;
 import com.tingyun.alarm.entity.AlarmSQL;
 import com.tingyun.alarm.utils.DBUtils;
@@ -29,10 +30,8 @@ public class DBSelectAlarmEventTask extends AbstractTestTask {
 		Map<String,Object> params = this.params;
 		String startTimeExp = (String)params.get("startTimeExp");
 		String endTimeExp = (String)params.get("endTimeExp");
-		
-		
-		int targetType = NumberUtils.intValue(params.get("targetType"));
-		int targetId = NumberUtils.intValue(params.get("targetId"));
+//		int targetType = NumberUtils.intValue(params.get("targetType"));
+//		int targetId = NumberUtils.intValue(params.get("targetId"));
 		int targetParentId = NumberUtils.intValue(params.get("targetParentId"));
 		
 		TestJobContext context = TestJobContext.getContext();
@@ -43,19 +42,25 @@ public class DBSelectAlarmEventTask extends AbstractTestTask {
 		endTime = DateUtils.addSeconds(endTime, TIME_OFFSET);
 		String eTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(endTime);
 		List<AlarmEvents> alarmEvents = null;
+		if(Main.SWITCH == false){
+			alarmEvents =this.excuteSql(AlarmSQL.SELECT_EVENTS_SQL_JIECHU, targetParentId, sTime, eTime);
+		}else{
+			alarmEvents =this.excuteSql(AlarmSQL.SELECT_EVENTS_SQL, targetParentId, sTime, eTime);
+		}
+		
+		return alarmEvents;
+	}
+	
+	private List<AlarmEvents> excuteSql(String sql,int targetParentId ,String sTime,String eTime){
+		List<AlarmEvents> alarmEvents = null;
 		try {
 			QueryRunner runner = new QueryRunner();
-//						alarmEvents = 	runner.query
-//						(DBUtils.getConnection(), AlarmSQL.SELECT_EVENTS__NO_TAGGETID_SQL,
-//								new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,targetType,1,sTime,eTime);
-//						System.out.println("查询结果显示："+alarmEvents.size()+"  targetId==0 的情况下的参数"+
-//								"targetParentId = "+targetParentId+" targetType="+targetType+" startTime="+sTime +" endTime="+eTime);
-						Thread.sleep(3000);
-						alarmEvents = 	runner.query
-								(DBUtils.getConnection(), AlarmSQL.SELECT_EVENTS_SQL,
-										new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,1,sTime,eTime);
-						System.out.println("查询结果显示："+alarmEvents.size()+"   targetId!=0 的情况下的参数"+
-								"targetParentId = "+targetParentId+" eventType="+1+" startTime="+sTime +" endTime="+eTime);
+			Thread.sleep(3000);
+			 alarmEvents = 	runner.query
+					(DBUtils.getConnection(), sql,
+							new BeanListHandler<AlarmEvents>(AlarmEvents.class),targetParentId,1,sTime,eTime);
+			System.out.println("查询结果显示："+alarmEvents.size()+"   targetId!=0 的情况下的参数"+
+					"targetParentId = "+targetParentId+" eventType="+1+" startTime="+sTime +" endTime="+eTime);			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block 
 			e.printStackTrace();

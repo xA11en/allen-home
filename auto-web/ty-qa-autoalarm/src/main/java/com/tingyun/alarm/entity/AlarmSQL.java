@@ -48,5 +48,6 @@ public class AlarmSQL {
 	//events事件表查询sql
 	
 	public static final String SELECT_EVENTS_SQL = "select * from NL_U_ALARM_EVENTS where target_parent_id = ?  and event_type = ? and begin_time >= ? and begin_time <= ?";
-	public static final String SELECT_EVENTS__NO_TAGGETID_SQL = "select * from NL_U_ALARM_EVENTS where target_parent_id = ? and target_type = ? and event_type = ? and begin_time >= ? and begin_time <= ?";
+	public static final String SELECT_EVENTS_SQL_JIECHU = "select * from NL_U_ALARM_EVENTS where target_parent_id = ?  and event_type = ? and end_time >= ? and end_time <= ?";
+	//public static final String SELECT_EVENTS__NO_TAGGETID_SQL = "select * from NL_U_ALARM_EVENTS where target_parent_id = ? and target_type = ? and event_type = ? and begin_time >= ? and begin_time <= ?";
 }
