@@ -17,20 +17,10 @@ public class uploadServerTask extends AbstractTestTask {
 	@Override
 	public List doTask() {
 		
-
-//		private String[] ApplicationName;		
-//		private String mode;
-//		private String count;
-//		private String period;
-//		private String apdex;
-//		private String responseTime;
-//		private String errRate;
-		
-		
 		
 		Map<String,Object> params = this.params;
 		String ApplicationName = (String)params.get("ApplicationName");
-		String mode = (String)params.get("mode");
+		String mode = (String)params.get("fixed");
 		String count = (String)params.get("count");
 		String period = (String)params.get("period");
 		String apdex = (String)params.get("apdex");
