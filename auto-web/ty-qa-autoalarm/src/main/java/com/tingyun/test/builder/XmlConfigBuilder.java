@@ -140,7 +140,7 @@ public class XmlConfigBuilder {
 	}
 	
 	public static InputStream getClassPathFileInputStream(String path){
-		return XmlConfigBuilder.class.getClassLoader().getResourceAsStream( "conf/"+path);
+		return XmlConfigBuilder.class.getClassLoader().getResourceAsStream(path);
 	}
 	
 	public static void main(String[] args) {

@@ -1,8 +1,14 @@
 package test;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import com.tingyun.alarm.utils.HtmlMail;
+import com.tingyun.test.TestJobExecutor;
 
 public class AppUploadData  {
 	public static void main(String[] args) throws IOException {
@@ -21,6 +27,22 @@ public class AppUploadData  {
 			e.printStackTrace();
 			}
 			} 
+//		ExecutorService service = Executors.newFixedThreadPool(2); 
+//		for (int i = 0; i <10; i++) {
+//			 final int taskId = i;
+//		service.execute(new Runnable() { 
+//		public void run() {
+//			System.out.println(taskId);
+//		} 
+//		});
+//		}
+//		service.shutdown();
+//		while (true) {  
+//			if (service.isTerminated()) {  
+//				System.out.println("ok");  
+//				break;  
+//			}  
+//		}  
 	}
 }
 //		 try {  

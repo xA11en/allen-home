@@ -13,9 +13,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//new MinorMain("APP");
+		new MinorMain("APP");
 		
-		new MinorMain("SERVER");
+		//new MinorMain("SERVER");
 	}
 	
 	
