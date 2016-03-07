@@ -47,7 +47,7 @@ public  class MinorMain {
 			}
 			 while (true) {  
 		            if (service.isTerminated()) {  
-		            	HtmlMail.generateMailHtml(new File(System.getProperty("user.dir")+"\\src\\main\\resources\\alarmResult.txt"));;
+		            	HtmlMail.generateMailHtml(new File(MinorMain.class.getClassLoader().getResource("alarmResult.txt").getPath()));
 		            	System.out.println("报告已完成，邮件已发送！");
 		                break;  
 		            }  

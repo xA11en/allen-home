@@ -42,7 +42,7 @@ public class DBUtils {
 	}
 	public static void main(String[] args) throws Exception {
 		Properties props = new Properties();
-		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/jdbc.properties");
-		props.load(fis);
+		//FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/src/main/resources/jdbc.properties");
+		props.load(DBUtils.class.getResourceAsStream("jdbc.properties"));
 	}
 }

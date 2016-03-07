@@ -7,26 +7,28 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.tingyun.alarm.MinorMain;
 import com.tingyun.alarm.utils.HtmlMail;
 import com.tingyun.test.TestJobExecutor;
 
 public class AppUploadData  {
 	public static void main(String[] args) throws IOException {
-		FileWriter fw = null; 
-		try { 
-			fw = new FileWriter( System.getProperty("user.dir")+"\\src\\main\\resources\\alarmResult.txt",true); // 第二个参数 true 表示写入方式是追加方式 
-			fw.write(new Date() + " : 哈哈" + "\r\n"); }
-		catch (Exception e) 
-		{ 
-			System.out.println("书写日志发生错误：" + e.toString()); 
-			}finally { 
-			try{ 
-			fw.close(); 
-				}
-			catch (IOException e){ // TODO 自动生成 catch 块 
-			e.printStackTrace();
-			}
-			} 
+		System.out.println(new File(MinorMain.class.getClassLoader().getResource("alarmResult.txt").getPath()));
+//		FileWriter fw = null; 
+//		try { 
+//			fw = new FileWriter( System.getProperty("user.dir")+"\\src\\main\\resources\\alarmResult.txt",true); // 第二个参数 true 表示写入方式是追加方式 
+//			fw.write(new Date() + " : 哈哈" + "\r\n"); }
+//		catch (Exception e) 
+//		{ 
+//			System.out.println("书写日志发生错误：" + e.toString()); 
+//			}finally { 
+//			try{ 
+//			fw.close(); 
+//				}
+//			catch (IOException e){ // TODO 自动生成 catch 块 
+//			e.printStackTrace();
+//			}
+//			} 
 //		ExecutorService service = Executors.newFixedThreadPool(2); 
 //		for (int i = 0; i <10; i++) {
 //			 final int taskId = i;
