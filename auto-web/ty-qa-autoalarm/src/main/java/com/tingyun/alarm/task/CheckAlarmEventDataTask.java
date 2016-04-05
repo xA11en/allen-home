@@ -76,7 +76,7 @@ public class CheckAlarmEventDataTask extends AbstractTestTask {
 	private void writeTestResultToText(List<AlarmTestResults> list){
 		FileWriter fw = null; 
 		try { 
-			fw = new FileWriter(CheckAlarmEventDataTask.class.getResource("alarmResult.txt").getPath(),true);// 第二个参数 true 表示写入方式是追加方式
+			fw = new FileWriter(System.getProperty("user.dir")+"\\src\\main\\resources\\conf\\alarmResult.txt",true);// 第二个参数 true 表示写入方式是追加方式
 			for (AlarmTestResults results : list) {
 				fw.write(results.getDescription() + "   ----------------    " + results.getResult()+"\r\n"); 
 			}

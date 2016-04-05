@@ -33,6 +33,17 @@ public class InitXml {
 				confs.add("confServer/"+files[i].getName());
 				}
 				return confs;
+		}else if(type.equals("BROWSER")){
+			 file = new File((this.getClass().getResource("/confBrowser").getPath()));
+			 File[] files = file.listFiles();
+				if(files.length == 0){
+					return null;
+				}
+				List<String> confs = new ArrayList<String>();
+				for (int i = 0; i < files.length; i++) {
+				confs.add("confBrowser/"+files[i].getName());
+				}
+				return confs;
 		}
 		return null;
 	}

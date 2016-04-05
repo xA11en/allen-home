@@ -21,6 +21,9 @@ public  class MinorMain {
 			}else if(flag.equals(ProductLineType.SERVER)){
 				List<String> confs = new  InitXml().getXML(flag);
 				this.excuteTest(confs);
+			}else if(flag.equals(ProductLineType.BROWSER)){
+				List<String> confs = new  InitXml().getXML(flag);
+				this.excuteTest(confs);
 			}
 			}
 		

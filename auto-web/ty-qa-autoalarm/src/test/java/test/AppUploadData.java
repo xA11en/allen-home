@@ -1,19 +1,34 @@
 package test;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import com.tingyun.alarm.MinorMain;
-import com.tingyun.alarm.utils.HtmlMail;
-import com.tingyun.test.TestJobExecutor;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.util.EntityUtils;
 
 public class AppUploadData  {
 	public static void main(String[] args) throws IOException {
-		System.out.println(new File(MinorMain.class.getClassLoader().getResource("alarmResult.txt").getPath()));
+		 CloseableHttpClient httpclient = HttpClients.createDefault();   
+		 HttpGet httpGet = new HttpGet("http://localhost:9090/ty-qa-autoapi/load.do");
+		 BasicHttpParams httpParams = new BasicHttpParams();
+		 httpParams.setParameter("id", "32");
+		 httpParams.setParameter("name", "test");
+		 httpGet.setParams(httpParams);
+		 CloseableHttpResponse response = httpclient.execute(httpGet);  
+		 HttpEntity entity = response.getEntity();
+		 if(response.getStatusLine().getStatusCode() ==200){
+			 System.out.println("api success");
+			 System.out.println(EntityUtils.toString(entity));
+		 }else{
+			 System.out.println(EntityUtils.toString(entity));
+		 }
+		
+		
+//		System.out.println(new File(MinorMain.class.getClassLoader().getResource("alarmResult.txt").getPath()));
 //		FileWriter fw = null; 
 //		try { 
 //			fw = new FileWriter( System.getProperty("user.dir")+"\\src\\main\\resources\\alarmResult.txt",true); // 第二个参数 true 表示写入方式是追加方式 
