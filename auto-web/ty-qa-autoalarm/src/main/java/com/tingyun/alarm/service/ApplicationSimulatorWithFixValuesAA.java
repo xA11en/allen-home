@@ -30,7 +30,7 @@ import com.networkbench.newlens.datacollector.mvc.command.UploadRequestCommand;
 import com.networkbench.newlens.datacollector.serialize.JacksonSerializableObjectMapper;
 import com.tingyun.alarm.entity.ServerParmaters;
 
-public class ApplicationSimulatorWithFixValuesAAA {
+public class ApplicationSimulatorWithFixValuesAA {
 	
 	private static final JacksonSerializableObjectMapper JSON_OBJECT_MAPPER = new JacksonSerializableObjectMapper();
 	private static final Pattern PATTERN_INIT_MOBILE_APP_RESPONSE = Pattern.compile("\\{\"status\"\\:\"success\",\"result\"\\:\\{.*\"appSessionKey\"\\s*\\:\\s*\"([a-zA-Z0-9_]+)\".*}");
@@ -40,7 +40,7 @@ public class ApplicationSimulatorWithFixValuesAAA {
 	private static final String DATA_VERSION = "1.0";
 	private static final MobileDeviceInfo[] MOBILE_DEVICES = new MobileDeviceInfo[4];
 	private static final MobileDeviceInfo[] MOBILE_DEVS = new MobileDeviceInfo[6];
-	private static String[] applicationNames = null;
+	private String[] applicationNames = null;
 	private static final ClientConfiguration[] CLIENT_CON = new ClientConfiguration[3];
 	private static int ActionCount;
 
@@ -105,8 +105,7 @@ public class ApplicationSimulatorWithFixValuesAAA {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args,ServerParmaters serverParmaters) {
-		
+	public void main(String[] args,ServerParmaters serverParmaters) {
 		String serverUrl = (args.length == 0 ? "http://192.168.2.219:8080": args[0]);
 		if (serverUrl.indexOf("://") == -1) {
 			serverUrl = "http://" + serverUrl;
@@ -115,22 +114,17 @@ public class ApplicationSimulatorWithFixValuesAAA {
 		String appToken = (args.length > 1 ? args[1] : DEFAULT_MOBILE_APP_TOKEN);
 		int thinkTime = (UncString.toInt(System.getProperty("thinkTime"), 60000));
 		int period = (UncString.toInt(serverParmaters.getPeriod(), 10));
+
+		//String mode = System.getProperty("mode");
 		String mode = serverParmaters.getMode();
 		applicationNames= serverParmaters.getApplicationName();//
-		
-		
-		
-		
-//		int thinkTime = (UncString.toInt(System.getProperty("thinkTime"), 60000));
-//		int period = (UncString.toInt(System.getProperty("period"), 10));
-//
-//		String mode = System.getProperty("mode");
+//		System.out.println(serverParmaters.getCount()+"----------------------------");
+		double apdex = (UncString.toDouble(serverParmaters.getApdex(), 0.9));//apdex默认0.9
+		int Actioncount = UncString.toInt(serverParmaters.getCount(),10);//吞吐率默认10
+		int responseTime = UncString.toInt(serverParmaters.getResponseTime(),50);//响应时间默认50
+		double errRate = (UncString.toDouble(serverParmaters.getErrRate(), 0.0));//错误率默认0
 
-		double apdex = (UncString.toDouble(serverParmaters.getApdex(), 0.6));
-		double errRate = (UncString.toDouble(serverParmaters.getErrRate(), 0.3));
-		int responseTime = UncString.toInt(serverParmaters.getResponseTime());
-		
-		int Actioncount = UncString.toInt(System.getProperty("count"),100);
+
 		ActionCount=Actioncount;
 
 		int protocolIndex = serverUrl.indexOf("://");
@@ -165,8 +159,7 @@ public class ApplicationSimulatorWithFixValuesAAA {
 
 	private static Map<String, Integer> DEVICE_LAST_LAUNCH_TIME = new HashMap<String, Integer>();
 
-	private static void simulateInFixedValues(String protocol, String host,int port, int period, int thinkTime, String appToken, double apdex,double errRate, int responseTime) throws Exception {
-		
+	private void simulateInFixedValues(String protocol, String host,int port, int period, int thinkTime, String appToken, double apdex,double errRate, int responseTime) throws Exception {
 		String response = simulateInitAgentApp(protocol, host, port, appToken);
 		//long startTime = System.currentTimeMillis() / 1000;
 		
@@ -178,49 +171,50 @@ public class ApplicationSimulatorWithFixValuesAAA {
 				
 				String appsessionkey = matcher.group(1);
 				String deviceId = String.valueOf((int) (System.currentTimeMillis()));
-				System.out.println("upload data using appsessionkey=" + appsessionkey + "...");
+				
+				//System.out.println("upload data using appsessionkey=" + appsessionkey + "...");
 				DEVICE_LAST_LAUNCH_TIME.put(deviceId, Integer.valueOf((int) (System.currentTimeMillis() / 1000L)));
 
 				//while (System.currentTimeMillis() / 1000 - startTime <= time) {
 					
-				for(int i=1;i<=period;i++){
-					System.out.println("upload "+i);
-
-					/*Integer launchTime = DEVICE_LAST_LAUNCH_TIME.get(deviceId);
-					int activeTime = (int) (System.currentTimeMillis() / 1000L) - launchTime.intValue();
-					int expectedActiveTime = UncString.randomInt(90, 600);
-					boolean isLastRequest = (activeTime > expectedActiveTime);
-*/
-					String resp = simulateUploaFixValuedAgentData(protocol,host, port, appToken, appsessionkey, apdex, errRate, responseTime);
-					//System.out.println("uploaded " + ", response: " + resp);
-				/*	if (isLastRequest) {
-						
-						System.out.println("disconnect device: " + deviceId + ", active time: " + activeTime);
-						System.out.println("reconnect ...");
-						
-						// reconnect
-						response = simulateInitAgentApp(protocol, host, port,appToken);
-
-						if (response != null) {
-							matcher = PATTERN_INIT_MOBILE_APP_RESPONSE.matcher(response);
-							if (matcher.matches()) {
-								appsessionkey = matcher.group(1);
-								deviceId = String.valueOf((int) (System.currentTimeMillis()));
-								DEVICE_LAST_LAUNCH_TIME.put(deviceId, Integer.valueOf((int) (System.currentTimeMillis() / 1000L)));
-							}
-						}
-					}*/
-					System.out.println("sleep---"+thinkTime+"ms");
-					//Thread.sleep(thinkTime);
-					Thread.sleep(60000);
-				}
+//				for(int i=1;i<=period;i++){
+//					//System.out.println("upload "+i);
+//
+//					/*Integer launchTime = DEVICE_LAST_LAUNCH_TIME.get(deviceId);
+//					int activeTime = (int) (System.currentTimeMillis() / 1000L) - launchTime.intValue();
+//					int expectedActiveTime = UncString.randomInt(90, 600);
+//					boolean isLastRequest = (activeTime > expectedActiveTime);
+//*/
+//					String resp = simulateUploaFixValuedAgentData(protocol,host, port, appToken, appsessionkey, apdex, errRate, responseTime);
+//					//System.out.println("uploaded " + ", response: " + resp);
+//				/*	if (isLastRequest) {
+//						
+//						System.out.println("disconnect device: " + deviceId + ", active time: " + activeTime);
+//						System.out.println("reconnect ...");
+//						
+//						// reconnect
+//						response = simulateInitAgentApp(protocol, host, port,appToken);
+//
+//						if (response != null) {
+//							matcher = PATTERN_INIT_MOBILE_APP_RESPONSE.matcher(response);
+//							if (matcher.matches()) {
+//								appsessionkey = matcher.group(1);
+//								deviceId = String.valueOf((int) (System.currentTimeMillis()));
+//								DEVICE_LAST_LAUNCH_TIME.put(deviceId, Integer.valueOf((int) (System.currentTimeMillis() / 1000L)));
+//							}
+//						}
+//					}*/
+//					//System.out.println("sleep---"+thinkTime+"ms");
+//					//Thread.sleep(thinkTime);
+//					Thread.sleep(60000);
+//				}
 			} else {
 				System.out.println("token not found in response: " + response);
 			}
 		}
 	}
 
-	private static void simulate(String protocol, String host, int port,int period, int thinkTime, String appToken) throws Exception {
+	private void simulate(String protocol, String host, int port,int period, int thinkTime, String appToken) throws Exception {
 		
 		//long startTime = System.currentTimeMillis() / 1000;
 		String response = simulateInitAgentApp(protocol, host, port, appToken);
@@ -240,7 +234,6 @@ public class ApplicationSimulatorWithFixValuesAAA {
 				//while (System.currentTimeMillis() / 1000 - startTime <= period * 60) {
 				
 				for(int i=1;i<=period;i++){
-					System.out.println(i);
 					double apdex = Math.random();
 					double errRate = Math.random();
 					Integer launchTime = DEVICE_LAST_LAUNCH_TIME.get(deviceId);
@@ -249,7 +242,7 @@ public class ApplicationSimulatorWithFixValuesAAA {
 					boolean isLastRequest = (activeTime > expectedActiveTime);
 
 					String resp = simulateUploaFixValuedAgentData(protocol,host, port, appToken, appsessionkey, apdex, errRate,0);
-					System.out.println("uploaded" + ", response: " + resp);
+					//System.out.println("uploaded" + ", response: " + resp);
 					if (isLastRequest) {
 						
 						System.out.println("disconnect device: " + deviceId+ ", active time: " + activeTime);
@@ -280,9 +273,10 @@ public class ApplicationSimulatorWithFixValuesAAA {
 		
 	}
 
-	private static String simulateInitAgentApp(String protocol, String host,
+	private String simulateInitAgentApp(String protocol, String host,
 			int port, String appToken) throws Exception {
-		System.out.println("initAgentApp with token: " + appToken);
+		System.out.println(appToken+"======================");
+		//System.out.println("initAgentApp with token: " + appToken);
 
 		int configIndex = UncString.randomInt(CLIENT_CON.length);
 		ClientConfiguration clientconfig = CLIENT_CON[configIndex];
@@ -308,24 +302,23 @@ public class ApplicationSimulatorWithFixValuesAAA {
 		command.setPort(8080);
 
 		String text = jsonize(command);
-		System.out.println(" Send init:   "+text);
+		//System.out.println(" Send init:   "+text);
 		String response = post(protocol, host, port,
 				"/initAgentApp?licenseKey=" + appToken + "&version="
 						+ DATA_VERSION, text, appToken);
-		System.out.println(" Received init:   " + response);
+		System.out.println(applicationNames[0]+" Received init:   " + response);
 		return response;
 	}
 
-	private static String simulateUploaFixValuedAgentData(String protocol,String host, int port, String appToken, String token, double fixedApdex, double fixedErrRate,int responseTime) throws Exception {
-		
+	private String simulateUploaFixValuedAgentData(String protocol,String host, int port, String appToken, String token, double fixedApdex, double fixedErrRate,int responseTime) throws Exception {
 		UploadRequestCommand command = createFixValueUploadMessage(fixedApdex, fixedErrRate, responseTime);
 		String text = jsonize(command);
-		System.out.println(text);
+		//System.out.println(applicationNames[0]+"---"+text);
 		return post(protocol, host, port, "/upload?licenseKey=" + appToken + "&version=" + DATA_VERSION + "&appSessionKey=" + token, text,appToken);
 		
 	}
 
-	public static UploadRequestCommand createFixValueUploadMessage( double fixedApdex, double fixedErrRate,int responseTime) {
+	public UploadRequestCommand createFixValueUploadMessage( double fixedApdex, double fixedErrRate,int responseTime) {
 		
 		UploadRequestCommand command = new UploadRequestCommand();
 
@@ -355,9 +348,8 @@ public class ApplicationSimulatorWithFixValuesAAA {
 		int scount = count - ecount;
 		int sacount = (int) (scount * fixedApdex / 2);
 		int tcount = (int) ((scount * fixedApdex - sacount) * 2);
-
-		System.out.println("errRate:" + fixedErrRate + " apdex:" + fixedApdex + "  count:" + count + "	ecount:" + ecount + " sount:" + scount + " sacount:" + sacount + " tcount" + tcount);
-
+		System.out.println("---");
+		System.out.println(applicationNames[0]+"---"+"errRate:" + fixedErrRate + " apdex:" + fixedApdex + "  count:" + count + "	ecount:" + ecount + " sount:" + scount + " sacount:" + sacount + " tcount" + tcount);
 		GenericMetricItem webactionMetricItem = new GenericMetricItem();
 		webactionMetricItem.setMetricKey(new MetricKey(0, 0,"WebAction/Servlet/SaveForC3p0MysqlS", null));
 		webactionMetricItem.setSum(responseTime * count);

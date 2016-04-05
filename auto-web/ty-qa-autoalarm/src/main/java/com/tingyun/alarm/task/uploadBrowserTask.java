@@ -6,7 +6,7 @@ import java.util.Map;
 import com.tingyun.alarm.entity.AppParmaters;
 import com.tingyun.alarm.entity.BrowserParmaters;
 import com.tingyun.alarm.entity.ServerParmaters;
-import com.tingyun.alarm.service.ApplicationSimulatorWithFixValuesAAA;
+import com.tingyun.alarm.service.ApplicationSimulatorWithFixValuesAA;
 import com.tingyun.alarm.service.JsAgentSimulator;
 import com.tingyun.alarm.service.MobileAgentSimulatorNew;
 import com.tingyun.test.task.AbstractTestTask;

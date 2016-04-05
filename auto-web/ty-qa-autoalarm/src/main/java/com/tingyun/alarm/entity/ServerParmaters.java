@@ -9,7 +9,7 @@ public class ServerParmaters implements Serializable{
 	 */
 	private static final long serialVersionUID = -7225537728876866276L;
 
-	private String[] ApplicationName;		
+	private String[] ApplicationName;	
 	private String mode;
 	private String count;
 	private String period;

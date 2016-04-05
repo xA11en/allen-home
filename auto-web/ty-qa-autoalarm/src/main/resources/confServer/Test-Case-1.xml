@@ -4,9 +4,10 @@
     	<Task name="task_uploadApp" class="com.tingyun.alarm.task.uploadServerTask">
     	    <params>
     	        <param key="ApplicationName" value="pyh-触发告警456" />
+    	        <param key="key" value="a704190ed18ca8a05084053bc554cca0" />
     	        <param key="fixed" value="fixed" />
     	        <param key="count" value="20" />
-    	        <param key="period" value="1" />
+    	        <param key="period" value="5" />
     	        <param key="apdex" value="0.8" />
     	        <param key="errRate" value="0.0" />
     	    </params>
