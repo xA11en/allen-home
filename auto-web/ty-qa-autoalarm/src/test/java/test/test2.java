@@ -41,7 +41,7 @@ public static void main(String[] args) {
 					"5", "5", "5", "5", 
 					"5", "5", "5", "5", 
 					"5", "5", "5", "c36d-f9a03883",
-					"3", "5", "http%3A%2F%2F192.168.5.50%3A8081%2FtestSDTY%2Ftest%2Fhi.jsp", "PoOWKylNJfI", "");
+					"3", "5", "http%3A%2F%2F192.168.5.50%3A8081%2FtestSDTY%2Ftest%2Fhi.jsp", "yQSNkTzc7Kg", "");
 	new JsAgentSimulator().simulatorBrowserData(bp);
 }
 		
