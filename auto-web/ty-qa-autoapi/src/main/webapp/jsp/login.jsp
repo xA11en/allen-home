@@ -33,6 +33,8 @@
 		});
 	}
 	
+	
+	
 	 function checkKeyPress(e) {
 		 var evt = e || window.event;
 		 if(evt && evt.keyCode == 13) {
@@ -68,7 +70,7 @@
 					<div class="col-xs-12  ">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-							<input type="text" id="password" name="password" class="form-control" placeholder="请输入用密码">
+							<input type="password" id="password" name="password" class="form-control" placeholder="请输入用密码">
 						</div>
 					</div>
 				</div>
