@@ -21,10 +21,10 @@ public class DBUtils {
 			InputStream is = DBUtils.class.getClassLoader().getResourceAsStream(
 					"jdbc.properties");
 			props.load(is);
-			driverClass = props.getProperty("amysql.driverClassName");
-			url = props.getProperty("amysql.url");
-			user = props.getProperty("amysql.username");
-			password = props.getProperty("amysql.password");
+			driverClass = props.getProperty("mysql.driverClassName");
+			url = props.getProperty("mysql.url");
+			user = props.getProperty("mysql.username");
+			password = props.getProperty("mysql.password");
 			Class.forName(driverClass);
 		} catch (Exception e) {
 			e.printStackTrace();
