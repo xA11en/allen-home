@@ -1,5 +1,7 @@
 package com.tingyun.api.test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,30 +33,8 @@ public class Mythread {
 		System.out.println("test2");
 	}
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		final Service s = new Service (); 
-		ExecutorService service = Executors.newCachedThreadPool(); 
-		for(int i=0; i<10; i++) { 
-		service.execute(new Runnable() { 
-		public void run() { 
-		s.service(); 
-		} 
-		}); 
-		} 
-		} 
-		static class Service { 
-		private int count = 0; 
-		Lock lock = new ReentrantLock(); 
-		public void service() { 
-		++ count; 
-		try { 
-		Thread.sleep(200l); 
-		} catch (InterruptedException e) { 
-		e.printStackTrace(); 
-		} 
-		System.out.println("service :" + count + " time"); 
-		} 
-		} 
-
+		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:00").format(new Date()));
+	}
 //		ExecutorService service = Executors.newCachedThreadPool(); 
 //		CompletionService<Integer> cservice = new ExecutorCompletionService<Integer>(service); 
 //		Collection<Callable<Integer>> tasks = new ArrayList<Callable<Integer>>(); 
