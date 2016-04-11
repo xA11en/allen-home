@@ -85,6 +85,8 @@ public class ReportApiDaoImpl  implements ReportApiDao  {
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
+		}finally{
+			DBUtils.close();
 		}
 		return totalPages;
 	}
