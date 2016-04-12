@@ -33,15 +33,20 @@ public static void main(String[] args) {
 //	protected String waitSecond;//上传等待时间 
 //	protected String count;//循环次数
 //	protected String pfUrl;//测试地址
-//	protected String key;//测试地址
+//	protected String key;//测试key
+//	protected String key;//ajax url
+	
+	//上传错误率的时候 count 设置为100 次  
+	// 如果测试页面加载 则需：dom处理 请求排队 网络延时  服务器响应时间   设置为 ‘0’ 
+	// 如果测试 后端响应 则需：
 	BrowserParmaters bp = new BrowserParmaters
-			("5", "5", "5", "5",
-					"5", "5", "5", 
-					"5", "5", "5", 
-					"5", "5", "5", "5", 
-					"5", "5", "5", "5", 
-					"5", "5", "5", "c36d-f9a03883",
-					"3", "5", "http%3A%2F%2F192.168.5.50%3A8081%2FtestSDTY%2Ftest%2Fhi.jsp", "yQSNkTzc7Kg", "");
+			("10", "10", "0.3", "10",
+					"10", "10", "10", 
+					"10", "10", "10", 
+					"10", "10", "10", "10", 
+					"10", "10", "10", "10", 
+					"10", "10", "10", "pvid-zcy",
+					"0", "100", "http%3A%2F%2F192.168.5.50%3A8081%2FtestSDTY%2Ftest%2Fhi.jsp", "yQSNkTzc7Kg", "");
 	new JsAgentSimulator().simulatorBrowserData(bp);
 }
 		
