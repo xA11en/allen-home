@@ -155,9 +155,9 @@ public class DBUtilsDAO  extends AbstractRoutingDataSource {
         queryRunner = new QueryRunner(dataSource); 
         Object object = null; 
             if (params == null) { 
-                object = queryRunner.query(sql, new BeanHandler(entityClass)); 
+                object = queryRunner.query(sql, new BeanHandler<T>(entityClass)); 
             } else { 
-                object = queryRunner.query(sql, new BeanHandler(entityClass), params); 
+                object = queryRunner.query(sql, new BeanHandler<T>(entityClass), params); 
             } 
         return (T) object; 
     }
