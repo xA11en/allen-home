@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import net.sf.json.JSONObject;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -38,7 +41,14 @@ public class JsAgentSimulator {
 		ips.add("61.132.88.36");//江苏
 		
 	}
-	
+	public void simlatorError(BrowserParmaters bp,int count,int errorTime,int loadTime){
+		int jsCount = (int) (Double.parseDouble(bp.getJsErrorRate())    * count);
+		for (int j = 0; j < jsCount; j++) {
+			errorTime = (int)System.currentTimeMillis()/1000;
+			postJsError(putParmtersToPf(bp),errorTime-loadTime);
+			System.out.println(("上传了err 【"+(j+1)+"】次数据：" +bp.toString()));
+		}
+	}
 	
 	 public void simulatorBrowserData(BrowserParmaters bp)  {
 		int loadTime = 0 ;
@@ -47,10 +57,10 @@ public class JsAgentSimulator {
 		for (int i = 0; i < count; i++) {
 			try {
 				postPf(putParmtersToPf(bp));
-				System.out.println("上传了一次数据："+bp.toString());
 				//get 当前时间
 				loadTime = (int)System.currentTimeMillis()/1000;
-				postXhr(putParmtersToPf(bp), bp.getCallBackTime());
+				postXhr(putParmtersToPf(bp), bp.getCallBackTime(),bp.getAjaxRequestTime());
+				System.out.println("sleep 【"+bp.getWaitSecond()+"】秒"+"pf和ajax send 【"+(i+1)+"】次数据："+bp.toString());
 				TimeUnit.SECONDS.sleep(Long.parseLong(bp.getWaitSecond()));
 			} catch (NumberFormatException | InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -58,14 +68,10 @@ public class JsAgentSimulator {
 			} catch(ClientProtocolException | UnsupportedEncodingException e){
 				e.printStackTrace();
 			}
-			int jsCount = Integer.parseInt(bp.getJsErrorRate())  * count;
-			for (int j = 0; j < jsCount; j++) {
-				errorTime = (int)System.currentTimeMillis()/1000;
-				postJsError(putParmtersToPf(bp),errorTime-loadTime);
-				logger.info("上传了一次数据：{}",bp.toString());
-			}
 			
 		}
+		simlatorError(bp, count, errorTime, loadTime);
+		
 	}
 	
 	
@@ -80,30 +86,25 @@ public class JsAgentSimulator {
 		HttpPost post = new HttpPost(urlString);
 		post.setHeader("User-Agent", 
 				"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36");
+		JSONObject params = new JSONObject();
+		params.put("datas", "[[\"Uncaught ReferenceError: t is not defined\",46, 2,"
+				+ "\"http://192.168.5.50:8081/testSDTY/test2.jsp\", "
+				+ "1, \"ReferenceError: t is not defined at window.onload (http://192.168.5.50:8081/testSDTY/test2.jsp:46:2)\","
+				+ "\"undefined\" "
+				+ ","+1+"]]");
+//		params.put("datas", "[[\"Uncaught ReferenceError: t is not defined\",46, 2,"
+//				+ "\"http://192.168.5.50:8081/testSDTY/test3.jsp\", "
+//				+ "1, \"ReferenceError: t is not defined at window.onload (http://192.168.5.50:8081/testSDTY/test3.jsp:46:2)\","
+//				+ "\"undefined\" "
+//				+ ","+1+"]]");
+		//设置post的header头
 		//创建参数列表
-        List<NameValuePair> listPairs = new ArrayList<NameValuePair>();
-        listPairs.add(new BasicNameValuePair("datas",
-        		"[[\"Uncaught ReferenceError: t is not defined\",46, 2,"
-        				+ "\"http://192.168.5.50:8081/testSDTY/test2.jsp\", "
-        				+ "1, \"ReferenceError: t is not defined at window.onload (http://192.168.5.50:8081/testSDTY/test2.jsp:46:2)\","
-        				+ "\"undefined\" "
-        				+ ","+1+"]]"));
-        listPairs.add(new BasicNameValuePair("datas",
-        		"[[\"Uncaught ReferenceError: t is not defined\",46, 2,"
-        				+ "\"http://192.168.5.50:8081/testSDTY/test2.jsp\", "
-        				+ "1, \"ReferenceError: t is not defined at window.onload (http://192.168.5.50:8081/testSDTY/test2.jsp:46:2)\","
-        				+ "\"undefined\" "
-        				+ ","+1+"]]"));
-        listPairs.add(new BasicNameValuePair("datas",
-        		"[[\"Uncaught ReferenceError: t is not defined\",46, 2,"
-        				+ "\"http://192.168.5.50:8081/testSDTY/test2.jsp\", "
-        				+ "1, \"ReferenceError: t is not defined at window.onload (http://192.168.5.50:8081/testSDTY/test2.jsp:46:2)\","
-        				+ "\"undefined\" "
-        				+ ","+1+"]]"));
         try {
-        UrlEncodedFormEntity entity = new UrlEncodedFormEntity(listPairs, "utf-8");
-        post.setEntity(entity);
-        httpclient.execute(post);
+        	StringEntity rquestEntity = new StringEntity(params.toString());
+        	rquestEntity.setContentEncoding("UTF-8");
+        	rquestEntity.setContentType("application/json");
+        	post.setEntity(rquestEntity);		
+        	httpclient.execute(post);
         }catch(IOException e){
         	e.printStackTrace();
         }finally{
@@ -127,7 +128,7 @@ public class JsAgentSimulator {
 	}
 	
 	//send xhr  data ajax about
-	private void postXhr(BrowserPF bp,String callBackTime) throws ClientProtocolException, UnsupportedEncodingException{
+	private void postXhr(BrowserPF bp,String callBackTime,String ajaxTime) throws ClientProtocolException, UnsupportedEncodingException{
 		List<ParamsBean> list = add(bp);	
 	    String paramstr = HttpParamUtil.getParams("get", list);
 	    String urlString =DEFAULT_DC_SERVER_URL+"xhr"+paramstr;
@@ -135,18 +136,21 @@ public class JsAgentSimulator {
 		HttpPost post = new HttpPost(urlString);
 		post.setHeader("User-Agent", 
 				"Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36");
+		Random random = new Random();
+		String ip = ips.get(random.nextInt(ips.size()));
+		post.setHeader("x-forwarded-for",ip);
 		//创建参数列表
-        List<NameValuePair> listPairs = new ArrayList<NameValuePair>();
-        listPairs.add(new BasicNameValuePair("xhr", "[[\"POST http://192.168.5.50:8081/testSDTY/servlet/testServlet\",20, '"+callBackTime+"', 200, 0, 15, 10]]"));
-        listPairs.add(new BasicNameValuePair("xhr", "[[\"POST http://192.168.5.50:8081/testSDTY/servlet/testServlet\",20, '"+callBackTime+"', 200, 0, 15, 10]]"));
-        listPairs.add(new BasicNameValuePair("xhr", "[[\"POST http://192.168.5.50:8081/testSDTY/servlet/testServlet\",20, '"+callBackTime+"', 200, 0, 15, 10]]"));
+		JSONObject params = new JSONObject();
+		params.put("xhr","[[\"POST http://192.168.5.50:8081/testSDTY/servlet/testServlet\",'"+ajaxTime+"', '"+callBackTime+"', 200, 0, 15, 10]]");
+		//params.put("xhr","[[\"POST http://192.168.5.50:8081/testSDTY/servlet/testServlet2\",25, '"+callBackTime+"', 300, 0, 25, 30]]");
+		StringEntity rquestEntity = new StringEntity(params.toString());
+		//设置post的header头
+		rquestEntity.setContentEncoding("UTF-8");
+		rquestEntity.setContentType("application/json");
+		post.setEntity(rquestEntity);
         try {
-			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(listPairs, "utf-8");
-			post.setEntity(entity);
-			Random random = new Random();
-			String ip = ips.get(random.nextInt(ips.size()));
-			post.setHeader("x-forwarded-for",ip);
 			httpclient.execute(post);
+			
         } catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
