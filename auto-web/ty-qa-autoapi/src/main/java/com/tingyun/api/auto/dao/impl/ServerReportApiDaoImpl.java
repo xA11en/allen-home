@@ -74,7 +74,7 @@ public class ServerReportApiDaoImpl  implements ServerReportApiDao  {
 	public int totalPages(int rowsPerPages) throws Exception {
 		int totalPages = 0;
 		try{
-			ResultSet rst = DBUtils.getConnection().createStatement()
+			ResultSet rst = dbUtilsDAO.getConnection().createStatement()
 					.executeQuery(ServerReportApiSQL.COUNT_SQL);
 			int totalRows = 0;
 			if(rst.next()){
@@ -94,7 +94,7 @@ public class ServerReportApiDaoImpl  implements ServerReportApiDao  {
 		List<String> listString = null;
 		try{
 			listString = new ArrayList<String>();
-			ServerReportApiBean r =  new QueryRunner().query(DBUtils.getConnection(),
+			ServerReportApiBean r =  new QueryRunner().query(dbUtilsDAO.getConnection(),
 					ServerReportApiSQL.FIND_XML_JSON_SQL,  new BeanHandler<ServerReportApiBean>(ServerReportApiBean.class),id );
 			listString.add(r.getJson());
 		}catch(Exception e){
